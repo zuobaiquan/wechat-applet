@@ -1,0 +1,40 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/news/news",
+    "pages/location/location"
+  ],
+  "tabBar": {
+    "color": "#dddddd",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/wechat.png",
+        "selectedIconPath": "image/wechatHL.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/location/location",
+        "iconPath": "image/locate.png",
+        "selectedIconPath": "image/locateHL.png",
+        "text": "定位"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "iconPath": "image/wechat.png",
+        "selectedIconPath": "image/wechat.png",
+        "text": "日志"
+      }
+    ]
+  },
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "我的项目",
+    "navigationBarTextStyle":"#ffffff"
+  }
+}

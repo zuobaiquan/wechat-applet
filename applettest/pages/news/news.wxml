@@ -1,0 +1,6 @@
+<!--pages/news/news.wxml-->
+<view class="classname">
+  <text bindtap="change">{{msg}}</text>
+</view>
+<button size="mini" type="primary" bindtap="fnUserState">回来</button>
+<button size="mini" type="primary" bindtap="fnUserState2">退出</button>

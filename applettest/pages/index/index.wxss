@@ -1,0 +1,5 @@
+/**index.wxss**/
+.nav-text{
+  color:blue;
+  font-size: 28px;
+}
