@@ -1,0 +1,3 @@
+<scroll-view class="container" scroll-y="true">
+  <text>test</text>
+</scroll-view>
