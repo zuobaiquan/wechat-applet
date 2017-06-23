@@ -3,23 +3,6 @@ App({
   // ========== 全局数据对象（整个应用程序共享） ==========
   // globalData: {},
 
-  // ========== 应用程序全局方法 ==========
-  // fetchApi (url, callback) {
-  //   // return callback(null, top250)
-  //   wx.request({
-  //     url,
-  //     data: {},
-  //     header: { 'Content-Type': 'application/json' },
-  //     success (res) {
-  //       callback(null, res.data)
-  //     },
-  //     fail (e) {
-  //       console.error(e)
-  //       callback(e)
-  //     }
-  //   })
-  // },
-
   // ========== 生命周期方法 ==========
 
   // onLaunch () {

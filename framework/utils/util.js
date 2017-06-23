@@ -25,4 +25,8 @@ function formatDate (source, format) {
   return format
 }
 
-module.exports = { formatDate }
+function rightIdcard(idcard) {
+  return idcard.replace(idcard.substr(6, 8), "******");
+}
+
+module.exports = { formatDate, rightIdcard }

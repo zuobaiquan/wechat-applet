@@ -1,0 +1,17 @@
+
+<template name="item1">
+  <navigator url="../item/item?id={{item.id}}">
+    <view class="item">
+      item1
+    </view>
+  </navigator>
+</template>
+
+
+<template name="item2">
+  <navigator url="../item/item?id={{item.subject.id}}">
+    <view class="item">
+     item2
+    </view>
+  </navigator>
+</template>

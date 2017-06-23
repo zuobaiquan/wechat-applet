@@ -1,4 +1,4 @@
-const API_URL = 'https://api.douban.com/v2/movie'
+const API_URL = 'http://121.41.90.22:15038'
 
 function fetchApi (type, params) {
   return new Promise((resolve, reject) => {
@@ -24,14 +24,3 @@ module.exports = {
       .then(res => res.data)
   }
 }
-
-
-// class Douban {
-//   // 不支持
-//   // static API_URL = 'https://api.douban.com/v2/movie/'
-
-//   constructor (title, movies) {
-//     this.title = title
-//     this.movies = movies
-//   }
-// }
