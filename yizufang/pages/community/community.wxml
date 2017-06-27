@@ -1,0 +1,60 @@
+
+<view class="container">
+  <view class="search-textcon">
+      <input class="search-text" type="text" placeholder="搜索城市或学校名" />
+      <icon class="serach-icon" type="search" size="18" color="#4b474c" />
+  </view>
+
+  <view class="community-tabcon">
+    <view class="community-top">
+       <text class="top-title">社区列表</text>
+    </view>
+    <view class="tabcon-item" data-current="0" bindtap="selCommunity">
+      <image class="tabcon-img" src="../../images/community/allcity.png"></image>
+      <text class="city-tablist">所有城市</text>
+    </view>
+    <view class="tabcon-item" data-current="1" bindtap="selCommunity">
+      <image  class="tabcon-img" src="../../images/community/allschool.png"></image>
+      <text class="city-tablist">所有学校</text>
+    </view>
+    <view class="white-space"></view> 
+  </view>
+
+  <view class="community-tabcon">
+    <view class="community-top">
+       <text class="top-title">我关注的社区</text>
+    </view>
+     <view class="tab-myattention" wx:for="{{myattentionList}}" wx:key="*this">
+            <view class="attention-left">
+                <image class="left-image" src="../../images/index/community-icon.png"></image>
+            </view>
+            <view class="attention-middle">
+              <view class="middle-itemname">{{item.name}}</view>
+              <view class="middle-itemnum">最近有{{item.noticeNum}}条消息</view>
+            </view>
+            <view class="attention-right">
+                <view class="attention-num">{{item.attentionNum}}人关注</view>
+            </view>
+        </view>
+    <view class="white-space"></view> 
+  </view>
+
+  <view class="community-tabcon">
+    <view class="community-top">
+       <text class="top-title">你可能感兴趣的社区</text>
+    </view>
+    <view class="tab-myattention" wx:for="{{myattentionList}}" wx:key="*this">
+            <view class="attention-left">
+                <image class="left-image" src="../../images/index/community-icon.png"></image>
+            </view>
+            <view class="attention-middle">
+              <view class="middle-itemname">{{item.name}}</view>
+              <view class="middle-itemnum">最近有{{item.noticeNum}}条消息</view>
+            </view>
+            <view class="attention-right">
+                <view class="attention-num1">＜{{item.attentionNum}}km</view>
+                <view class="attention-num2">{{item.attentionNum}}人关注</view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,59 @@
+{
+  "pages": [
+    
+    "pages/selcommunity/selcommunity",
+    "pages/community/community",
+    "pages/index/index",
+    "pages/searchbox/searchbox",
+    "pages/selcity/selcity",
+    "pages/mycenter/mycenter",
+    "pages/personal/personal"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "首页",
+    "backgroundColor": "#000000",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#ccc",
+    "selectedColor": "#35495e",
+    "borderStyle": "white",
+    "backgroundColor": "#f9f9f9",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/index/index",
+        "iconPath": "images/house-index.png",
+        "selectedIconPath": "images/house-index-active.png"
+      },
+      {
+        "text": "社区",
+        "pagePath": "pages/community/community",
+        "iconPath": "images/community.png",
+        "selectedIconPath": "images/community-active.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/mycenter/mycenter",
+        "iconPath": "images/mycenter.png",
+        "selectedIconPath": "images/mycenter-active.png"
+      },
+      {
+        "text": "账户",
+        "pagePath": "pages/personal/personal",
+        "iconPath": "images/personal.png",
+        "selectedIconPath": "images/personal-active.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

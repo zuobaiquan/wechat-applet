@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="search-textcon">
+      <input class="search-text" type="text" placeholder="搜索城市名等" />
+      <icon class="serach-icon" type="search" size="18" color="#4b474c" />
+  </view>
+
+<view class="city-tabcon">
+  <view class="tabcon-item">
+    <view class="selcity-tablist {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">美国</view>
+  </view>
+  <view class="tabcon-item">
+    <view class="selcity-tablist {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">加拿大</view>
+  </view>
+</view>
+  
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">   
+    <swiper-item>  
+      <view>我是美国</view>  
+    </swiper-item>  
+    <swiper-item>  
+      <view>我是加拿大</view>  
+    </swiper-item> 
+</swiper>  
+
+</view>

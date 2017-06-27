@@ -1,0 +1,16 @@
+
+<template name="item1">
+   <view class="empty-desclist">
+            <view class="empty-desc">●<text class="list-text">搜索英文城市名，或其他译名</text></view>
+            <view class="empty-desc">●<text class="list-text">切换其他类别查看结果（如，社区）</text></view>
+   </view>
+</template>
+
+
+<template name="item2">
+  <navigator url="../item/item?id={{item.subject.id}}">
+    <view class="item">
+     item2
+    </view>
+  </navigator>
+</template>

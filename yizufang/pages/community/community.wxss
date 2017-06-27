@@ -1,0 +1,84 @@
+.community-tabcon{
+  width:100%;
+  margin:0 auto;
+  overflow: hidden;
+}
+.community-tabcon .community-top{
+  margin:24rpx 0 0 32rpx;
+  height:60rpx;
+  line-height:36rpx;
+  border-bottom: 2rpx solid  #dfdfdf;
+}
+.community-top .top-title{
+  font-size:32rpx;
+}
+
+
+.community-tabcon .tabcon-item{
+  margin:40rpx 0 40rpx 40rpx;
+  float: left;
+  width:44%;
+}
+.tabcon-item .tabcon-img{
+  width:70rpx;
+  height:70rpx;
+  float: left;
+}
+.tabcon-item .city-tablist{
+  margin-left:24rpx;
+  display: inline-block;
+  line-height:70rpx;
+  font-size:32rpx;
+}
+
+.white-space{
+  clear: both;
+  background:#f6f6f6;
+  width:100%;
+  height:14rpx;
+}
+
+.tab-myattention{
+  margin:20rpx;
+  height:86rpx;
+}
+.tab-myattention .attention-left{
+  width:18%;
+  float: left;
+  text-align: center;
+}
+.attention-left .left-image{
+  width:80rpx;
+  height:86rpx;
+}
+.tab-myattention .attention-middle{
+  width:64%;
+  float: left;
+  color:#323232;
+}
+.middle-itemname{
+  font-size:32rpx;
+  padding-top:8rpx;
+}
+.middle-itemnum{
+  font-size:24rpx;
+  color:#999999;
+}
+.attention-num1{
+  padding-top:8rpx;
+  font-size:32rpx;
+}
+.attention-num2{
+  font-size:24rpx;
+  color:#999999;
+}
+.tab-myattention .attention-right{
+  width:18%;
+  float: left;
+}
+
+.attention-right .attention-num{
+  font-size:24rpx;
+  color:#999999;
+  margin-top:40rpx;
+}

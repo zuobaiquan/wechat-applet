@@ -1,0 +1,30 @@
+
+.city-tabcon{
+  width:100%;
+  margin:0 auto;
+}
+.city-tabcon .tabcon-item{
+  width:50%;
+  float: left;
+}
+.city-tabcon .selcity-tablist{
+  font-size: 30rpx;
+  width:152rpx;
+  margin:0 auto;
+  height:64rpx;
+  line-height: 64rpx;
+  text-align: center; 
+}
+.on{ 
+  color: #f47a20;  
+  border-bottom: 6rpx solid #f47a20;
+}
+.swiper-box{ 
+  display: block; 
+  height: 100%; 
+  width: 100%; 
+  overflow: hidden; 
+}  
+.swiper-box view{  
+  text-align: center;  
+}  
