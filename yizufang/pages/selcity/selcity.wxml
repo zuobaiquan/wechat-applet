@@ -15,7 +15,7 @@
   
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">   
     <swiper-item>  
-      <view>我是美国</view>  
+        <view>我是美国</view> 
     </swiper-item>  
     <swiper-item>  
       <view>我是加拿大</view>  

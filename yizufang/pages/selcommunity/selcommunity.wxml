@@ -12,14 +12,18 @@
     <view class="selcity-tablist {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">所有学校</view>
   </view>
 </view>
+
   
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">   
     <swiper-item>  
-      <view>我是所有城市</view>  
+        <view class="city-box" wx:for="{{cityList}}" wx:key="*this">
+            <view class="list-typename">{{item.name}}</view>
+            <view class="list-typelist" wx:for="{{item.child}}" wx:key="*this">{{item.cityname}}<text class="text-state"> {{item.statename}}</text></view>
+        </view>
     </swiper-item>  
     <swiper-item>  
-      <view>我是所有学校</view>  
+      <view>我是加拿大</view>  
     </swiper-item> 
-</swiper>  
+</swiper> 
 
 </view>

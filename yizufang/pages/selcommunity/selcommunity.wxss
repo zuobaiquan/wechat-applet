@@ -14,3 +14,27 @@
   line-height: 64rpx;
   text-align: center; 
 }
+.city-box{
+  width:100%;
+  height:auto;
+  margin-top:60rpx;
+}
+
+.city-box .list-typename{
+  padding-left:42rpx;
+  background:#f6f6f6;
+  width:100%;
+  text-align: left;
+  height:74rpx;
+  line-height: 74rpx;
+}
+.city-box .list-typelist{
+  margin:0 42rpx;
+  text-align: left;
+  height:76rpx;
+  line-height: 76rpx;
+  border-bottom:4rpx solid #dfdfdf;
+}
+.list-typelist .text-state{
+  color:#dfdfdf;
+}

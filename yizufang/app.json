@@ -1,11 +1,10 @@
 {
   "pages": [
-    
+    "pages/index/index",
+    "pages/selcity/selcity",
     "pages/selcommunity/selcommunity",
     "pages/community/community",
-    "pages/index/index",
     "pages/searchbox/searchbox",
-    "pages/selcity/selcity",
     "pages/mycenter/mycenter",
     "pages/personal/personal"
   ],
@@ -17,7 +16,8 @@
     "backgroundTextStyle": "dark",
     "enablePullDownRefresh": true
   },
-  "tabBar": {
+  "tabBar":
+   {
     "color": "#ccc",
     "selectedColor": "#35495e",
     "borderStyle": "white",

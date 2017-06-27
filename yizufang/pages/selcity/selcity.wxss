@@ -15,16 +15,5 @@
   line-height: 64rpx;
   text-align: center; 
 }
-.on{ 
-  color: #f47a20;  
-  border-bottom: 6rpx solid #f47a20;
-}
-.swiper-box{ 
-  display: block; 
-  height: 100%; 
-  width: 100%; 
-  overflow: hidden; 
-}  
-.swiper-box view{  
-  text-align: center;  
-}  
+
+

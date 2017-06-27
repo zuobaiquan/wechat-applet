@@ -7,13 +7,12 @@ Page({
     winHeight: 0,
     // tab切换  
     currentTab: 0,
-    swiperAmList: [{ }, {  }, { }]
   },
   onLoad() {
     var that = this;
     that.setData({
       winWidth: 400,
-      winHeight: 400
+      winHeight: 600
     });
   },
   bindChange: function (e) {
