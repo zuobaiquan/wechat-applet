@@ -44,6 +44,11 @@ Page({
     wx.navigateTo({
       url: '../searchbox/searchbox'
     })
+  },
+  searchMap:function(){
+    wx.navigateTo({
+      url: '../map/map'
+    })
   }
 
 

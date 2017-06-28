@@ -38,3 +38,16 @@
 .list-typelist .text-state{
   color:#dfdfdf;
 }
+
+
+
+.wxSortPickerViewTemTags{
+  position: fixed;
+  top: 190rpx;
+  right: 10rpx;
+}
+.wxSortPickerViewTemTag{
+  text-align: center;
+  padding: 4rpx 6rpx;
+  font-size: 26rpx;
+}

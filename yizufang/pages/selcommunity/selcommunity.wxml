@@ -22,8 +22,16 @@
         </view>
     </swiper-item>  
     <swiper-item>  
-      <view>我是加拿大</view>  
+      <view>我是学校</view>  
     </swiper-item> 
 </swiper> 
+
+<scroll-view style="width:20px;height: {{wxSortPickerData.view.scrollHeight}}px;" class="wxSortPickerViewTemTags">
+        <block wx:for="{{['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']}}" wx:for-item="item" wx:key="">
+            <view bindtap="wxSortPickerViewTemTagTap" data-tag="{{item}}" class="wxSortPickerViewTemTag">{{item}}</view>
+        </block>
+</scroll-view>
+
+
 
 </view>

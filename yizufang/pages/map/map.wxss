@@ -1,0 +1,35 @@
+.search-textcon{
+  position:relative;
+  margin:14rpx 30rpx;
+}
+.search-textcon .serach-icon{
+  position:absolute;
+  left:16rpx;
+  top:10rpx;
+  width:34rpx;
+  height:32rpx;
+}
+.search-textcon .search-text{
+  width:80%;
+  border:1px solid #4b474c;
+  border-radius:10px;
+  font-size:28rpx;
+  color:#4b474c;
+  height:62rpx;
+  padding-left:60rpx;
+}
+.search-list{
+  position:absolute;
+  right:-10rpx;
+  top:0;
+  bottom:0;
+  font-size:32rpx;
+  padding:15rpx;
+}
+
+
+map{
+    width: 100%;
+    height: 600rpx;
+    top:10rpx;
+}

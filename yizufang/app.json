@@ -1,8 +1,10 @@
 {
   "pages": [
+    
+    "pages/map/map",
     "pages/index/index",
-    "pages/selcity/selcity",
     "pages/selcommunity/selcommunity",
+    "pages/selcity/selcity",
     "pages/community/community",
     "pages/searchbox/searchbox",
     "pages/mycenter/mycenter",
@@ -14,7 +16,7 @@
     "navigationBarTitleText": "首页",
     "backgroundColor": "#000000",
     "backgroundTextStyle": "dark",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": false
   },
   "tabBar":
    {

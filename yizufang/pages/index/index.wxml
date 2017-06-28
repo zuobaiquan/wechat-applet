@@ -8,7 +8,7 @@
       <input class="search-text" bindfocus="selectKeyword" type="text" placeholder="搜索关键字，如城市或学校名等" />
       <icon class="serach-icon" type="search" size="18" color="#4b474c" />
     </view>
-    <image class="serach-righticon" src="../../images/index/mappoint.png"></image>
+    <image bindtap="searchMap" class="serach-righticon" src="../../images/index/mappoint.png"></image>
   </view>
   <view class="middle-imgbox">
       <swiper indicator-dots="true" autoplay="auto" circular="true" indicator-color="#dfdfdf" indicator-active-color="#f47a20" interval="5000" duration="1000">
