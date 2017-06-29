@@ -57,14 +57,13 @@ Page({
     }
   },
   changeText:function(e){
-    console.log(e);
     this.setData({
-      // searchcon: ''
+      searchcon: e.detail.value
     });
   },
   clearText:function(e){
     this.setData({
-      searchcon: e.detail.value
+      searchcon: ""
     });
   },
   cancelSearch:function(e){

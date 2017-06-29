@@ -2,7 +2,7 @@
 .search-box{
   height:90rpx;
   line-height: 90rpx;
-  margin:0 24rpx;
+  margin:12rpx 24rpx 0;
   font-size:26rpx;
 }
 .search-con{
@@ -28,7 +28,7 @@
 .search-textcon .serach-icon{
   position:absolute;
   left:16rpx;
-  top:10rpx;
+  top:6rpx;
   width:34rpx;
   height:32rpx;
 }

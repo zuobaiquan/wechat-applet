@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/scoll/scoll",
     "pages/index/index",
     "pages/logs/logs",
     "pages/news/news",

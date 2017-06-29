@@ -1,8 +1,8 @@
 {
   "pages": [
     
-    "pages/map/map",
     "pages/index/index",
+    "pages/map/map",
     "pages/selcommunity/selcommunity",
     "pages/selcity/selcity",
     "pages/community/community",

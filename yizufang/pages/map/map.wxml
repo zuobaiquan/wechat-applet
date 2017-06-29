@@ -5,5 +5,5 @@
       <icon class="serach-icon" type="search" size="18" color="#4b474c" />
       <view class="search-list" bindtap="cancelSearch">列表</view>
   </view>
-  <map id="myMap" scale="{{scale}}" latitude="{{latitude}}" longitude="{{longitude}}"  bindmarkertap="markertap" show-location style="height:{{windowHeight}}px" />
+  <map id="myMap" scale="{{scale}}" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" covers="{{covers}}" bindcallouttap="markertap" show-location style="height:{{windowHeight}}px" />
 </view>

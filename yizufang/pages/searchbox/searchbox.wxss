@@ -110,7 +110,7 @@
   height:200rpx;
 }
 .empty-datacon .empty-desc{
-  height:40rpx;
+  height:auto;
   line-height: 40rpx;
 }
 .empty-desclist{

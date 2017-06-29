@@ -7,7 +7,7 @@
   </view>
 
 <view class="search-desc">
-在以下分类中搜索{{searchcon}}
+在以下分类中搜索“{{searchcon}}”
 </view>
 <view class="search-tab">
     <view class="search-item {{currentTab==1 ? 'show-tab' : ''}}" data-current="1" bindtap="selectedTab">
@@ -27,7 +27,7 @@
 <view class="search-content">
     <view class="search-item {{currentTab==1 ? 'show-content' : 'hidden-content'}}">
         <view wx:if="{{communityListlen==0}}" class="empty-datacon">
-          <template is="emptyData"/>
+          <template is="emptyData" data="{{searchcon}}"/>
         </view>
         <view wx:if="{{communityListlen!=0}}" class="tab-community" wx:for="{{communityList}}" wx:key="*this">
             <image src="../../images/index/community-icon.png" class="community-img" />
@@ -36,7 +36,7 @@
     </view>
     <view class="search-item {{currentTab==2 ? 'show-content' : 'hidden-content'}}">
           <view  wx:if="{{houseListlen==0}}" class="empty-datacon">
-            <template is="emptyData"/>
+            <template is="emptyData" data="{{searchcon}}"/>
           </view>
           <view  wx:if="{{houseListlen!=0}}" class="tab-houselist show-data" wx:for="{{houseList}}" wx:key="*this">
               <image src="{{item.url}}" class="tab-house" />
@@ -55,7 +55,7 @@
     </view>
     <view class="search-item {{currentTab==3 ? 'show-content' : 'hidden-content'}}">
             <view  wx:if="{{rentMatelen==0}}" class="empty-datacon">
-              <template is="emptyData"/>
+              <template is="emptyData" data="{{searchcon}}"/>
             </view>
           <view  wx:if="{{rentMatelen!=0}}" class="tab-houselist tab-roommate" wx:for="{{rentMate}}" wx:key="*this">
               <view class="roomate-left">
@@ -78,9 +78,7 @@
     </view>
     <view class="search-item {{currentTab==4 ? 'show-content' : 'hidden-content'}}">
           <view wx:if="{{roomMatelen==0}}" class="empty-datacon">
-           <template is="emptyData"/>
-
-
+           <template is="emptyData" data="{{searchcon}}"/>
           </view>
           <view wx:if="{{roomMatelen!=0}}" class="tab-houselist tab-roommate" wx:for="{{roomMate}}" wx:key="*this">
               <view class="roomate-left">
@@ -108,7 +106,7 @@
 
 
 <template name="emptyData">
-  <view class="empty-desc">没有在房源中搜索搜搜到“三番”相关信息</view>
+  <view class="empty-desc">没有在房源中搜索搜搜到“{{searchcon}}”相关信息</view>
               <view>你可以尝试：</view>
               <view class="empty-desclist">
                 <view class="empty-desc">●<text class="list-text">搜索英文城市名，或其他译名</text></view>

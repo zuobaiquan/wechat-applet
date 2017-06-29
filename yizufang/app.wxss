@@ -138,7 +138,7 @@ page {
 .search-textcon .serach-icon{
   position:absolute;
   left:16rpx;
-  top:10rpx;
+  top:7rpx;
   width:34rpx;
   height:32rpx;
 }
