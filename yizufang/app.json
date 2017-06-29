@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/selcommunity/selcommunity",
+    "pages/communitydetail/communitydetail",
     
-    "pages/searchcom/searchcom",
+    "pages/selcommunity/selcommunity",
     "pages/community/community",
     "pages/map/map",
     "pages/selcity/selcity",

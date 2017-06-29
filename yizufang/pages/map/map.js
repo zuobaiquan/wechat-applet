@@ -44,14 +44,14 @@ Page({
 
   onLoad () {
     var that=this;
-    
-    wx.getLocation({
+    //-73.949658,40.936027
+    wx.openLocation({
       type: 'wgs84',
       success: function (res) {
         console.info(res);
         that.setData({
-          longitude: res.longitude,
-          latitude: res.latitude,
+          longitude: '-73.949658',
+          latitude: '40.936027',
           // 'map.markers': [{
           //   latitude: res.latitude,
           //   longitude: res.longitude,

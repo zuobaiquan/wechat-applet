@@ -28,3 +28,10 @@
 <view class="search-item {{currentTab==2 ? 'show-content' : 'hidden-content'}}">
 我是加拿大
 </view>
+
+
+<view class="toast-box" wx:if="{{isShowToast}}">  
+  <view class="toast-content">
+    <view class="toast-text">{{scrollIntoId}}</view>
+  </view>
+</view>

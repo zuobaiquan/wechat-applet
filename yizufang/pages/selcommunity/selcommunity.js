@@ -5,6 +5,7 @@ var app = getApp()
 Page({
   data: {
     currentTab: 1,
+    isShowToast: false,
     letterlist: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
     scrollIntoId: 'A',
     cityList: [
@@ -27,11 +28,15 @@ Page({
   letterSelstart: function (e) {
     var letter = e.target.dataset.id
     this.setData({
-      scrollIntoId: letter
+      scrollIntoId: letter,
+      isShowToast: true,
     })
-    wx.showToast({
-      title: letter
-    })
+    var that = this;
+    setTimeout(function () {
+      that.setData({
+        isShowToast: false
+      });
+    }, 800);
   },
   selectedTab: function (e) {
     var index = e.currentTarget.dataset.current;

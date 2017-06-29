@@ -98,3 +98,33 @@
   width:34rpx;
   height:32rpx;
 }
+
+
+
+.list-city{
+  margin:30rpx 0;
+  height:90rpx;
+  width:100%;
+}
+.list-city .city-left{
+  width:24%;
+  float: left;
+  text-align: center;
+}
+.city-left .left-image{
+  width:90rpx;
+  height:90rpx;
+}
+.list-city .city-middle{
+  width:76%;
+  float: left;
+}
+.city-middle .middle-itemname{
+  font-size:32rpx;
+  line-height:48rpx;
+}
+.city-middle .middle-itemnum{
+  font-size:24rpx;
+  color:#999999;
+  line-height:36rpx;
+}
