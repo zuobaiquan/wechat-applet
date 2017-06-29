@@ -82,3 +82,19 @@
   color:#999999;
   margin-top:40rpx;
 }
+
+.no-attention{
+  margin-left:42rpx;
+  height:100rpx;
+  line-height:100rpx;
+  font-size:28rpx;
+  color:#999999;
+}
+
+.search-textcon .serach-icon{
+  position:absolute;
+  left:16rpx;
+  top:12rpx;
+  width:34rpx;
+  height:32rpx;
+}

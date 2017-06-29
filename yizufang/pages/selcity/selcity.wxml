@@ -1,25 +1,30 @@
-<view class="container">
-  <view class="search-textcon">
-      <input class="search-text" type="text" placeholder="搜索城市名等" />
+<view class="search-textcon">
+      <input class="search-text" type="text" placeholder="搜索城市名" />
       <icon class="serach-icon" type="search" size="18" color="#4b474c" />
-  </view>
-
+</view>
 <view class="city-tabcon">
   <view class="tabcon-item">
-    <view class="selcity-tablist {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">美国</view>
+    <view class="selcity-tablist {{currentTab==1 ? 'show-tab' : ''}}" data-current="1" bindtap="selectedTab">美国</view>
   </view>
   <view class="tabcon-item">
-    <view class="selcity-tablist {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">加拿大</view>
+    <view class="selcity-tablist {{currentTab==2 ? 'show-tab' : ''}}" data-current="2" bindtap="selectedTab">加拿大</view>
   </view>
 </view>
-  
-<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">   
-    <swiper-item>  
-        <view>我是美国</view> 
-    </swiper-item>  
-    <swiper-item>  
-      <view>我是加拿大</view>  
-    </swiper-item> 
-</swiper>  
 
+<view class="search-item {{currentTab==1 ? 'show-content' : 'hidden-content'}}">
+<scroll-view class="scroll-container">
+    <scroll-view class="scroll-view" scroll-y="true" scroll-into-view="{{scrollIntoId}}">
+        <view wx:for="{{cityList}}" wx:key="city" wx:for-item="city">
+            <view class="list-typename" id="{{city.name}}">{{city.name}}</view>
+            <view class="list-typelist" wx:for="{{city.child}}" wx:key="cityitem" wx:for-item="cityitem">{{cityitem.cityname}}<text class="text-state"> {{cityitem.statename}}</text></view>
+        </view>
+    </scroll-view>
+    <view class="letterlist" bindtouchstart="letterSelstart">
+         <view class="letter" wx:for="{{letterlist}}" wx:key="*this" data-id="{{item}}">{{item}}</view>
+    </view>
+</scroll-view>
+</view>
+
+<view class="search-item {{currentTab==2 ? 'show-content' : 'hidden-content'}}">
+我是加拿大
 </view>

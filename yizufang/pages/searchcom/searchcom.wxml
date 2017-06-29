@@ -1,0 +1,16 @@
+<view class="container">
+  <view class="search-textcon">
+      <input class="search-text" bindinput="searchChange" type="text" placeholder="搜索城市或学校名" />
+      <icon class="serach-icon" type="search" size="18" color="#4b474c" />
+  </view>
+  <view class="list-city" wx:for="{{cityList}}" wx:key="city">
+      <view class="city-left">
+          <image class="left-image" src="../../images/index/community-icon.png"></image>
+      </view>
+      <view class="city-middle">
+        <view class="middle-itemname">{{item.name}}</view>
+        <view class="middle-itemnum">最近有{{item.noticeNum}}条消息</view>
+      </view>
+      
+  </view>
+</view>

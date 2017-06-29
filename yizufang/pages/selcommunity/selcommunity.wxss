@@ -26,14 +26,14 @@ page{
 
 .show-content{
   display: block;
-  margin-bottom:100rpx;
+  margin-bottom:50rpx;
 }
 .hidden-content{
   display: none;
 }
 .show-tab{
   color:#f47a20;
-  border-bottom:4rpx solid #f47a20;
+  border-bottom:6rpx solid #f47a20;
 }
 .scroll-container,.search-item,.scroll-view{
   width: 100%;
@@ -52,9 +52,7 @@ page{
   width: 52rpx;
   height: 20px;
   line-height: 20px;
-} 
-
-
+}
 .list-typelist{
   margin:0 42rpx;
   text-align: left;
@@ -62,15 +60,22 @@ page{
   line-height: 76rpx;
   border-bottom:4rpx solid #dfdfdf;
 }
-.list-typename{
-  padding-left:42rpx;
-  margin-top: 20rpx;
-  background:#f6f6f6;
+
+.list-city{
+  margin:20rpx 0;
+  height:90rpx;
   width:100%;
-  text-align: left;
-  height:74rpx;
-  line-height: 74rpx;
 }
-.list-typelist .text-state{
-  color:#dfdfdf;
+.list-city .list-cityimg{
+  margin-left:38rpx;
+  height:90rpx;
+  width:90rpx;
+  float: left;
 }
+.list-city .list-cityname{
+  float: left;
+  margin-left:38rpx;
+  line-height:90rpx;
+  
+}
+

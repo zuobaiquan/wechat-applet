@@ -1,11 +1,12 @@
 {
   "pages": [
-    
     "pages/index/index",
-    "pages/map/map",
     "pages/selcommunity/selcommunity",
-    "pages/selcity/selcity",
+    
+    "pages/searchcom/searchcom",
     "pages/community/community",
+    "pages/map/map",
+    "pages/selcity/selcity",
     "pages/searchbox/searchbox",
     "pages/mycenter/mycenter",
     "pages/personal/personal"

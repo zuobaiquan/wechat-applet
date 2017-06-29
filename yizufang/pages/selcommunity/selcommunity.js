@@ -8,30 +8,21 @@ Page({
     letterlist: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
     scrollIntoId: 'A',
     cityList: [
-      // { "name": "热门城市", "child": [{ cityname: '西雅图', 'statename': '华盛顿州' }, { cityname: '洛杉矶', 'statename': '加利福尼亚州' }, { cityname: '旧金山', 'statename': '加利福尼亚州' }, { cityname: '芝加哥', 'statename': '伊利诺伊州' }, { cityname: '纽约', 'statename': '纽约州' }] },
-      { "name": "A", "child": [{ cityname: 'A美国城市名1', 'statename': '华盛顿州' }, { cityname: 'A美国城市名1', 'statename': '所在州' }, { cityname: 'A美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'A美国城市名1', 'statename': '所在州' }] },
-      { "name": "B", "child": [{ cityname: 'B美国城市名1', 'statename': '华盛顿州' }, { cityname: 'B美国城市名1', 'statename': '所在州' }, { cityname: 'B美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'B美国城市名1', 'statename': '所在州' }] },
-      { "name": "C", "child": [{ cityname: 'C美国城市名1', 'statename': '华盛顿州' }, { cityname: 'C美国城市名1', 'statename': '所在州' }, { cityname: 'C美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'C美国城市名1', 'statename': '所在州' }] },
-      { "name": "D", "child": [{ cityname: 'D美国城市名1', 'statename': '华盛顿州' }, { cityname: 'D美国城市名1', 'statename': '所在州' }, { cityname: 'D美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'D美国城市名1', 'statename': '所在州' }] },
-      { "name": "E", "child": [{ cityname: 'E美国城市名1', 'statename': '华盛顿州' }, { cityname: 'E美国城市名1', 'statename': '所在州' }, { cityname: 'E美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'E美国城市名1', 'statename': '所在州' }] },
-      { "name": "F", "child": [{ cityname: 'F美国城市名1', 'statename': '华盛顿州' }, { cityname: 'F美国城市名1', 'statename': '所在州' }, { cityname: 'F美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'F美国城市名1', 'statename': '所在州' }] },
-      { "name": "G", "child": [{ cityname: 'G美国城市名1', 'statename': '华盛顿州' }, { cityname: 'G美国城市名1', 'statename': '所在州' }, { cityname: 'G美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'G美国城市名1', 'statename': '所在州' }] },
-      { "name": "H", "child": [{ cityname: 'H美国城市名1', 'statename': '华盛顿州' }, { cityname: 'H美国城市名1', 'statename': '所在州' }, { cityname: 'H美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'H美国城市名1', 'statename': '所在州' }] },
-      { "name": "I", "child": [{ cityname: 'I美国城市名1', 'statename': '华盛顿州' }, { cityname: 'I美国城市名1', 'statename': '所在州' }, { cityname: 'I美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'I美国城市名1', 'statename': '所在州' }] },
-      { "name": "J", "child": [{ cityname: 'J美国城市名1', 'statename': '华盛顿州' }, { cityname: 'J美国城市名1', 'statename': '所在州' }, { cityname: 'J美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'J美国城市名1', 'statename': '所在州' }] },
-      { "name": "K", "child": [{ cityname: 'K美国城市名1', 'statename': '华盛顿州' }, { cityname: 'K美国城市名1', 'statename': '所在州' }, { cityname: 'K美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'K美国城市名1', 'statename': '所在州' }] },
-      { "name": "M", "child": [{ cityname: 'M美国城市名1', 'statename': '华盛顿州' }, { cityname: 'M美国城市名1', 'statename': '所在州' }, { cityname: 'M美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'M美国城市名1', 'statename': '所在州' }] }]
+      { "name": "A", "child": [{ cityname: 'A城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'A城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'A城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'A城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'A城市名', 'picture': '../../images/community/community-icon.png' }] },
+      { "name": "B", "child": [{ cityname: 'B城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'B城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'B城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'B城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'B城市名', 'picture': '../../images/community/community-icon.png' }] },
+      { "name": "C", "child": [{ cityname: 'C城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'C城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'C城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'C城市名', 'picture': '../../images/community/community-icon.png' }] },
+      { "name": "D", "child": [{ cityname: 'D城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'D城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'D城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'D城市名', 'picture': '../../images/community/community-icon.png' }] },
+      { "name": "E", "child": [{ cityname: 'E城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'E城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'E城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'E城市名', 'picture': '../../images/community/community-icon.png' }] },
+      { "name": "F", "child": [{ cityname: 'F城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'F城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'F城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'F城市名', 'picture': '../../images/community/community-icon.png' }] },
+      { "name": "G", "child": [{ cityname: 'G城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'G城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'G城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'G城市名', 'picture': '../../images/community/community-icon.png' }] },
+      { "name": "H", "child": [{ cityname: 'H城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'H城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'H城市名', 'picture': '../../images/community/community-icon.png' }, { cityname: 'H城市名', 'picture': '../../images/community/community-icon.png' }] },
+    ]
   },
-  letterSel: function (e) { 
-    var letterIndex = e.changedTouches['0'].pageY / 20,
-      index = parseInt(letterIndex),
-      letter = this.data.letterlist[index];
+
+  onLoad(options) {
     this.setData({
-      scrollIntoId: letter
-    })
-    wx.showToast({
-      title: letter
-    })
+      currentTab: options.type
+    });
   },
   letterSelstart: function (e) {
     var letter = e.target.dataset.id

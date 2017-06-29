@@ -9,11 +9,11 @@
     <view class="community-top">
        <text class="top-title">社区列表</text>
     </view>
-    <view class="tabcon-item" data-current="0" bindtap="selCommunity">
+    <view class="tabcon-item" data-current="1" bindtap="selCommunity">
       <image class="tabcon-img" src="../../images/community/allcity.png"></image>
       <text class="city-tablist">所有城市</text>
     </view>
-    <view class="tabcon-item" data-current="1" bindtap="selCommunity">
+    <view class="tabcon-item" data-current="2" bindtap="selCommunity">
       <image  class="tabcon-img" src="../../images/community/allschool.png"></image>
       <text class="city-tablist">所有学校</text>
     </view>
@@ -24,7 +24,8 @@
     <view class="community-top">
        <text class="top-title">我关注的社区</text>
     </view>
-     <view class="tab-myattention" wx:for="{{myattentionList}}" wx:key="*this">
+    <view wx:if="{{attentionlen==0}}" class="no-attention">您还没有关注任何社区</view>
+    <view wx:if="{{attentionLen!=0}}" class="tab-myattention" wx:for="{{myattentionList}}" wx:key="*this">
             <view class="attention-left">
                 <image class="left-image" src="../../images/index/community-icon.png"></image>
             </view>
@@ -35,7 +36,7 @@
             <view class="attention-right">
                 <view class="attention-num">{{item.attentionNum}}人关注</view>
             </view>
-        </view>
+     </view>
     <view class="white-space"></view> 
   </view>
 
@@ -43,7 +44,7 @@
     <view class="community-top">
        <text class="top-title">你可能感兴趣的社区</text>
     </view>
-    <view class="tab-myattention" wx:for="{{myattentionList}}" wx:key="*this">
+    <view class="tab-myattention" wx:for="{{myinterestList}}" wx:key="*this">
             <view class="attention-left">
                 <image class="left-image" src="../../images/index/community-icon.png"></image>
             </view>

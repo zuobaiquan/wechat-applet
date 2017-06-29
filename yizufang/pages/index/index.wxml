@@ -29,7 +29,7 @@
   </view>
   <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
       <swiper-item>
-          <view class="tab-houselist" wx:for="{{houseList}}" wx:key="*this">
+          <view  class="tab-houselist" wx:for="{{houseList}}" wx:key="*this">
             <image src="{{item.url}}" class="tab-house" />
             <image class="right-collect" src="../../images/index/icon-collect.png"></image>
             <view class="tab-housedetail">
@@ -85,5 +85,4 @@
         </view>
       </swiper-item>
   </swiper>
-    
 </view>
