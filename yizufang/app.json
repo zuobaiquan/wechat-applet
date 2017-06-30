@@ -1,11 +1,19 @@
 {
   "pages": [
-    "pages/communitydetail/communitydetail",
     "pages/index/index",
+    "pages/rentdetail/rentdetail",
+    "pages/addroommate/addroommate",
+    "pages/communitydetail/communitydetail",
+    "pages/roomlist/roomlist",
+    "pages/houstlist/houstlist",
+    
+    "pages/community/community",
+    
+    
+    
     
     "pages/map/map",
     "pages/selcommunity/selcommunity",
-    "pages/community/community",
     
     "pages/selcity/selcity",
     "pages/searchbox/searchbox",
@@ -20,8 +28,7 @@
     "backgroundTextStyle": "dark",
     "enablePullDownRefresh": false
   },
-  "tabBar":
-   {
+  "tabBar": {
     "color": "#ccc",
     "selectedColor": "#35495e",
     "borderStyle": "white",

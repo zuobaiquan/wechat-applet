@@ -1,7 +1,7 @@
 <view class="container">
   <view class="deatil-top">
       <text class="deatil-title">华盛顿大学</text>
-      <text  class="deatil-attend">+ 关注</text>
+      <text class="{{isAttend==false ? 'deatil-attend' : 'deatil-noattend'}}" bindtap="changeAttend" data-state="{{isAttend}}">{{attendText}}</text>
   </view>
   
   <scroll-view scroll-y style="margin-bottom:{{noticeBottom}}rpx">
@@ -12,7 +12,7 @@
         </view>
         <view class="item-content">
             <view class="item-nickname">{{item.nickname}}<text class="item-slot">●</text>求租</view>
-            <view class="rent-content">
+            <view class="rent-content" data-type="1" bindtap="detailRent">
                 <view class="rent-left">
                   <view class="left-con">城市：<text class="left-condatail">{{item.city}}</text></view>
                   <view class="left-con">租金：<text class="left-condatail">{{item.price}}</text></view>
@@ -55,7 +55,7 @@
         </view>
         <view class="item-content">
             <view class="item-nickname">{{item.nickname}}<text class="item-slot">●</text>找室友</view>
-            <view class="rent-content">
+            <view class="rent-content" data-type="3" bindtap="detailRent">
                 <view class="rent-left">
                   <view class="left-con">城市：<text class="left-condatail">{{item.city}}</text></view>
                   <view class="left-con">性别：<text class="left-condatail">{{item.sex}}</text></view>
@@ -93,7 +93,7 @@
         <image bindtap="hideMore" class="send-more" src="../../images/community/send-more.png"></image>
     </view>
     <view class="more-itemlist">
-        <view class="item">
+        <view class="item" bindtap="sendHouse">
           <image class="item-img" src="../../images/community/fangyuan.png"></image>
           <view>房源</view>
         </view>
@@ -101,7 +101,7 @@
           <image class="item-img" src="../../images/community/qiuzu.png"></image>
           <view>求租</view>
         </view>
-        <view class="item">
+        <view class="item" bindtap="sendRoom">
           <image class="item-img" src="../../images/community/zhaoshiyou.png"></image>
           <view>找室友</view>
         </view>

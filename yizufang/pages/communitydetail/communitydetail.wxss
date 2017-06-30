@@ -21,6 +21,18 @@
   color:#ffffff;
   text-align: center;
 }
+.deatil-top .deatil-noattend{
+  margin:15rpx 0;
+  float: right;
+  background:#dfdfdf;
+  border-radius:10rpx;
+  width:180rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  font-size:32rpx;
+  color:#ffffff;
+  text-align: center;
+}
 
 
 .itemtype1,.itemtype2,.itemtype3,.itemtype4{
