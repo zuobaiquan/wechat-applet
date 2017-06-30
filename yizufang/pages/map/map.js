@@ -45,24 +45,31 @@ Page({
   onLoad () {
     var that=this;
     //-73.949658,40.936027
+    //138.903588,35.851656
     wx.openLocation({
-      type: 'wgs84',
-      success: function (res) {
-        console.info(res);
-        that.setData({
-          longitude: '-73.949658',
-          latitude: '40.936027',
-          // 'map.markers': [{
-          //   latitude: res.latitude,
-          //   longitude: res.longitude,
-          //   name: 'titile',
-          //   desc: 'jjjdjdjdjdjjd'
-          // }],
-          // 'map.hasMarkers': true//解决方案    
-        });
-        //console.log(that.data.map.markers);  
-      }
+      longitude: '121.499745',
+      latitude: '39.019686',
+      scale: 7,
+      name: 'test',
     })
+    // wx.openLocation({
+    //   type: 'wgs84',
+    //   success: function (res) {
+    //     console.info(res);
+    //     that.setData({
+    //       longitude: '-73.949658',
+    //       latitude: '40.936027',
+    //       // 'map.markers': [{
+    //       //   latitude: res.latitude,
+    //       //   longitude: res.longitude,
+    //       //   name: 'titile',
+    //       //   desc: 'jjjdjdjdjdjjd'
+    //       // }],
+    //       // 'map.hasMarkers': true//解决方案    
+    //     });
+    //     //console.log(that.data.map.markers);  
+    //   }
+    // })
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
