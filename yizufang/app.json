@@ -1,17 +1,16 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/rentdetail/rentdetail",
-    "pages/addroommate/addroommate",
     "pages/communitydetail/communitydetail",
+    "pages/addroommate/addroommate",
+    "pages/index/index",
+    
+    
+    
     "pages/roomlist/roomlist",
     "pages/houstlist/houstlist",
     
     "pages/community/community",
-    
-    
-    
-    
     "pages/map/map",
     "pages/selcommunity/selcommunity",
     

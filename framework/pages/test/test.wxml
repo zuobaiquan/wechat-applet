@@ -1,0 +1,19 @@
+<!--pages/test/test.wxml-->
+<view class="b1" hidden="{{flag}}"> 
+   <view class="t_w"> 
+      <view class="b2"> 
+          
+        <view class="v1">由于您周边3公里有没有指尖快递服务站，指尖快递将无法为您提供上门取件服务。您可以试试拨打电话或网上预约快递公司。</view> 
+        <view class="btn1" bindtap="b"> 
+          <p class="p1">拨打电话</p> 
+          <p class="p2">可拨打电话直接与快递公司联系哦</p> 
+        </view> 
+        <view class="btn2" bindtap="b"> 
+          <p class="p1">网上预约快递公司</p> 
+          <p class="p2">快递公司可能无法及时响应，请耐心等待哦</p> 
+        </view> 
+      </view> 
+   </view> 
+</view> 
+  
+<view bindtap="a">显示</view>

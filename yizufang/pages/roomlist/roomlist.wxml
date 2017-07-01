@@ -1,7 +1,7 @@
 <!--pages/roomlist/roomlist.wxml-->
 <view class="container">
   <view  class="tab-houselist new-houselist">
-    <view class="new-box">
+    <view class="new-box" bindtap="addroomMate">
       <image src="../../images/community/newhouse-add.png" class="newhouse-add" />
       <view>新建找室友消息</view>
     </view>

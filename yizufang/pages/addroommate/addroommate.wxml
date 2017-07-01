@@ -22,7 +22,10 @@
   </view>
   <view class="detail-item">
        <text class="item-name">租金</text>
-       <text class="item-res">您期望的租金</text> 
+       <view  class="item-rentprice">
+          <input bindblur="verifyPrice" type="digit" class="rentprice-input" placeholder-style="color:#4b474c;" placeholder="您期望的租金" />
+          <view bindtap="showCartDetail" class="rentprice-type">{{letter}}/{{unit}}<view class="choose-icon"></view></view>
+       </view>
   </view>
   <view class="detail-item">
        <text class="item-name">起租时间*</text>
@@ -36,18 +39,37 @@
   </view>
   <view class="detail-item">
        <text class="item-name">邮箱*</text>
-       <text class="item-res">xxxxxx@outlook.com</text> 
+       <input bindblur="verifyEmail" placeholder-style="color:#4b474c;" placeholder="xxxxxx@outlook.com" />
   </view>
   <view class="detail-item">
        <text class="item-name">其他联系方式</text>
-       <text class="item-res">您的电话或者其他联系方式</text> 
+       <input placeholder-style="color:#4b474c;" placeholder="您的电话或者其他联系方式" />
   </view>
   <view class="detail-item">
        <text class="item-name">要求</text>
-       <input style="display:inline-block;" type="text" placeholder="对未来室友的期望，对房屋的要求等" />
+       <input placeholder-style="color:#4b474c;" placeholder="对未来室友的期望，对房屋的要求等" />
   </view>
   <view class="save-box">
     <view class="btn-box btn-save" bindtap="saveResultLook">保存并预览</view>
     <view class="btn-box btn-send" bindtap="saveResult">发送</view>
   </view>
 </view>
+
+<view hidden="{{!showCartDetail}}">
+    <view class="mask" bindtap="hideCartDetail"></view>
+    <view class="selrent-box">
+      <view class="selconfirm-box">
+        <text class="selrent-cancel" bindtap="selrentCancel">取消</text>
+        <text class="selrent-confirm" bindtap="selrentConfirm">确定</text>
+      </view>
+      <picker-view class="selrent-price" value="{{value}}" bindchange="bindChange">
+          <picker-view-column>
+            <view wx:for="{{priceLet}}" wx:key="{{$index}}" style="line-height:70rpx">{{item}}</view>
+          </picker-view-column>
+          <picker-view-column>
+            <view wx:for="{{priceUnit}}" wx:key="{{$index}}" style="line-height: 70rpx">{{item}}</view>
+          </picker-view-column>
+      </picker-view>
+    </view>
+  </view>
+

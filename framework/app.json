@@ -1,7 +1,9 @@
 {
   "pages": [
+    "pages/test/test",
     "pages/index/index",
     "pages/profile/profile"
+    
   ],
   "window": {
     "navigationBarBackgroundColor": "#35495e",

@@ -9,7 +9,11 @@ Page({
   onLoad: function (options) {
 
   },
-
+  addroomMate(){
+    wx.navigateTo({
+      url: '../addroommate/addroommate'
+    })
+  }
 
 
 })

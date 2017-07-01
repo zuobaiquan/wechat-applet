@@ -1,16 +1,16 @@
 // pages/addroommate/addroommate.js
 const util = require('../../utils/util.js');
-console.log(util);
 Page({
   data: {
+    priceLet: ['USD', 'CAD'],
+    priceUnit: ['月','天'],
+    letter:'USD',
+    unit:'月',
+    rentpValue:[],
     currentMatesex:1,
     currentSex:1,
     dateStart: util.formatDate(new Date()),
-    // rentPrice:{
-    //   letter:['USD','CAD'],
-    //   unit:['月','天']
-    // },
-    // rentData: '您期望的租金',
+    showCartDetail: false
   },
   onLoad: function (options) {
     
@@ -30,11 +30,36 @@ Page({
       dateStart: e.detail.value
     })
   },
-  // bindrentChange(e){
-  //   this.setData({
-  //     rentData: e.detail.value
-  //   })
-  // }
+  bindChange: function (e) {
+    this.setData({
+      rentpValue: e.detail.value
+    })
+  },
+  selrentConfirm(){
+    var val1 = this.data.rentpValue[0], val2 = this.data.rentpValue[1];
+    this.setData({
+      letter: this.data.priceLet[val1] || this.data.priceLet[0],
+      unit: this.data.priceUnit[val2] || this.data.priceUnit[0],
+      showCartDetail: false
+    })
+  },
+  selrentCancel(){
+    this.setData({
+      showCartDetail: false
+    });
+  },
+ /**
+ * 验证表单
+ */
+  verifyEmail(e){
+    util.verifyForm.isEmail(e.detail.value);
+  },
+  verifyPrice(e){
+    util.verifyForm.isEmpty(e.detail.value,"租金不能为空");
+  }
+
+
+  ,
   saveResultLook(){
     wx.navigateTo({
       url: '../rentdetail/rentdetail?type=3&look=true'
@@ -53,5 +78,16 @@ Page({
     //     }
     //   }
     // })
-  }
+  },
+  //显示隐藏购物车
+  showCartDetail: function () {
+    this.setData({
+      showCartDetail: !this.data.showCartDetail
+    });
+  },
+  hideCartDetail: function () {
+    this.setData({
+      showCartDetail: false
+    });
+  },
 })

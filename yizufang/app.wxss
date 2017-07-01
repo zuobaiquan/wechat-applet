@@ -8,10 +8,24 @@ page {
   /*主题颜色*/
   color:#4b474c;
 }
+input{
+ overflow: visible;
+ display:inline-block;
+ width:460rpx;
+}
+/*textarea{
+  position:static;
+  display:inline-block;
+  width:460rpx;
+}*/
 /*公共样式*/
 .container{
   border-top:1rpx solid #DFDFDF;
 }
+
+/*遮挡层*/
+.mask{position: fixed;background: rgba(0,0,0,0.5);left: 0;top: 0;width: 100%;height:100%;z-index: 99}
+
 
 
 /*房源样式，求租找室友*/

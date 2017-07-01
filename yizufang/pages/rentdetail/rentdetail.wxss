@@ -3,6 +3,9 @@
   height:auto;
   width:100%;
 }
+.save-lookimg{
+  height:70rpx;
+}
 .save-tip{
   display: inline-block;
   margin:20rpx 0 0 34rpx;
