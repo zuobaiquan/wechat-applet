@@ -8,7 +8,7 @@
   <view wx:for="{{chartlist}}" wx:for-item="item" wx:key="$index">
      <view wx:if="{{item.type==1}}" class="itemtype1">
         <view class="item-imgcon">
-          <image class="item-avator" src="{{item.avator}}"></image>
+          <navigator hover-stay-time='0' url="../person/person"><image class="item-avator" src="{{item.avator}}"></image></navigator>
         </view>
         <view class="item-content">
             <view class="item-nickname">{{item.nickname}}<text class="item-slot">●</text>求租</view>
@@ -29,7 +29,7 @@
      </view>
      <view wx:if="{{item.type==2}}" class="itemtype2">
         <view class="item-imgcon">
-          <image class="item-avator" src="{{item.avator}}"></image>
+          <navigator hover-stay-time='0' url="../person/person"><image class="item-avator" src="{{item.avator}}"></image></navigator>
         </view>
         <view class="item-content">
             <view class="item-nickname">{{item.nickname}}<text class="item-slot">●</text>房源</view>
@@ -51,7 +51,7 @@
      </view>
      <view wx:if="{{item.type==3}}" class="itemtype3">
         <view class="item-imgcon">
-          <image class="item-avator" src="{{item.avator}}"></image>
+          <navigator hover-stay-time='0' url="../person/person"><image class="item-avator" src="{{item.avator}}"></image></navigator>
         </view>
         <view class="item-content">
             <view class="item-nickname">{{item.nickname}}<text class="item-slot">●</text>找室友</view>
@@ -72,7 +72,7 @@
      </view>
      <view wx:if="{{item.type==4}}" class="itemtype4">
         <view class="item-imgcon">
-          <image class="item-avator" src="{{item.avator}}"></image>
+          <navigator hover-stay-time='0' url="../person/person"><image class="item-avator" src="{{item.avator}}"></image></navigator>
         </view>
         <view class="item-content">
             <view class="item-nickname">{{item.nickname}}</view>
@@ -93,19 +93,19 @@
         <image bindtap="hideMore" class="send-more" src="../images/send-more.png"></image>
     </view>
     <view class="more-itemlist">
-        <view class="item" bindtap="sendHouse">
+        <view class="item" data-currenttype="1" bindtap="sendInfo">
           <image class="item-img" src="../images/fangyuan.png"></image>
           <view>房源</view>
         </view>
-        <view class="item">
+        <view class="item" data-currenttype="2" bindtap="sendInfo">
           <image class="item-img" src="../images/qiuzu.png"></image>
           <view>求租</view>
         </view>
-        <view class="item" bindtap="sendRoom">
+        <view class="item" data-currenttype="3" bindtap="sendInfo">
           <image class="item-img" src="../images/zhaoshiyou.png"></image>
           <view>找室友</view>
         </view>
-        <view class="item">
+        <view class="item" bindtap="sendImginfo">
           <image class="item-img" src="../images/tupian.png"></image>
           <view>图片</view>
         </view>

@@ -44,28 +44,18 @@ Page({
   detailRent(e){
     var type = e.currentTarget.dataset.type;
     wx.navigateTo({
-      url: '../rentdetail/rentdetail?type=' + type
+      url: `../rentdetail/rentdetail?type=${type}`
     })
   },
-  sendHouse(){
-    wx.showModal({
-      title: '确定',
-      confirmText:'发送',
-      confirmColor:"#f47a20",
-      cancelColor:'#4b474c',
-      content: "发送到以下社区： 华盛顿大学",
-      success: function (res) {
-        if (res.confirm) {
-          wx.navigateTo({
-            url: '../houstlist/houstlist'
-          })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-  },
-  sendRoom(){
+  sendInfo(e){
+    var index = e.currentTarget.dataset.currenttype,url='';
+    index = parseInt(index);
+    switch (index){
+      case 1:url='../houstlist/houstlist';break;
+      case 2: url = '../roomlist/roomlist?type=2'; break;
+      case 3: url = '../roomlist/roomlist?type=3'; break;
+      default:console.log('错误');
+    }
     wx.showModal({
       title: '确定',
       confirmText: '发送',
@@ -75,11 +65,22 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.navigateTo({
-            url: '../roomlist/roomlist'
+            url: url
           })
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
+      }
+    })
+  },
+  sendImginfo(){
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths
       }
     })
   }

@@ -1,15 +1,18 @@
 {
   "pages": [
-    "pages/Index/map/map",
-    "pages/Community/community/community",
+    
     "pages/Index/index/index",
+    "pages/Index/map/map",
     "pages/Index/selcity/selcity",
     "pages/Index/searchbox/searchbox",
     
-    
-    "pages/Community/rentdetail/rentdetail","pages/Community/communitydetail/communitydetail",
+    "pages/Community/community/community",
+    "pages/Community/communitydetail/communitydetail",
+    "pages/Community/person/person",
+    "pages/Community/rentdetail/rentdetail",
     "pages/Community/addroommate/addroommate",
     "pages/Community/roomlist/roomlist",
+    
     "pages/Community/houstlist/houstlist",
     "pages/Community/selcommunity/selcommunity",
     

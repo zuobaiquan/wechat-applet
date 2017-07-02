@@ -1,18 +1,18 @@
-<!--pages/addroommate/addroommate.wxml-->
+
 <view class="container">
 
   <view class="detail-item">
        <text class="item-name">城市*</text>
        <text class="item-res">西雅图</text> 
   </view>
-  <view class="detail-item">
+  <view  wx:if="{{nowType==3}}" class="detail-item">
        <text class="item-name">我的性别*</text>
        <view class="item-res res-sex">
           <text class="sex-sel {{currentSex==1?'current-matesel':''}}" data-sex="1" bindtap="selSex">男</text>
           <text class="sex-sel {{currentSex==2?'current-matesel':''}}" data-sex="2" bindtap="selSex">女</text>
        </view>
   </view>
-  <view class="detail-item">
+  <view wx:if="{{nowType==3}}" class="detail-item">
        <text class="item-name">室友性别*</text>
        <view class="item-res res-sex">
           <text class="sex-sel {{currentMatesex==1?'current-matesel':''}}" data-sex="1" bindtap="selMatesex">男</text>
@@ -29,13 +29,15 @@
   </view>
   <view class="detail-item">
        <text class="item-name">起租时间*</text>
-       <picker style="display:inline-block" mode="date" value="{{dateStart}}" bindchange="bindDateChange">  
+       <picker style="display:inline-block" mode="date" value="{{dateStart}}" bindchange="bindDateCgstart">  
           <text>{{dateStart}}</text>  
        </picker>
   </view>
-  <view wx:if="{{detailType==3}}" class="detail-item">
+  <view wx:if="{{nowType==2}}" class="detail-item">
        <text class="item-name">结束时间</text>
-       <text class="item-res">{{rentDatail.end}}</text> 
+       <picker style="display:inline-block" mode="date" value="{{dateEnd}}" bindchange="bindDateCgend">  
+          <text>{{dateEnd}}</text>  
+       </picker>
   </view>
   <view class="detail-item">
        <text class="item-name">邮箱*</text>
@@ -47,7 +49,8 @@
   </view>
   <view class="detail-item">
        <text class="item-name">要求</text>
-       <input placeholder-style="color:#4b474c;" placeholder="对未来室友的期望，对房屋的要求等" />
+       <input  wx:if="{{nowType==2}}" placeholder-style="color:#4b474c;" placeholder="对房屋具体的要求等" />
+       <input  wx:if="{{nowType==3}}" placeholder-style="color:#4b474c;" placeholder="对未来室友的期望，对房屋的要求等" />
   </view>
   <view class="save-box">
     <view class="btn-box btn-save" bindtap="saveResultLook">保存并预览</view>

@@ -56,7 +56,7 @@
   <view wx:if="{{!showContract}}" class="detail-bottom">
       <view class="btn-phone" bindtap="getContract">获取联系方式</view>
   </view>
-  <view bindtap="onShareAppMessage" class="detail-share" style="position:fixed;bottom:{{bottomlen}};right:30rpx;">
+  <view wx:if="{{!islook}}" bindtap="onShareAppMessage" class="detail-share" style="position:fixed;bottom:{{bottomlen}};right:30rpx;">
       <image class="share-img" src="../images/detail-share.png"></image>
       <view class="btn-share">转发分享</view>
   </view>

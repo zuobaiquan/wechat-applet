@@ -6,7 +6,6 @@
   </view>
 
   <view wx:if="{{issearch==true}}" class="list-city" wx:for="{{searchList}}" wx:key="$index" bindtap="listDetail">
-  
       <view class="city-left">
           <image class="left-image" src="../images/community-icon.png"></image>
       </view>
@@ -37,7 +36,7 @@
        <text class="top-title">我关注的社区</text>
     </view>
     <view wx:if="{{attentionlen==0}}" class="no-attention">您还没有关注任何社区</view>
-    <view wx:if="{{attentionLen!=0}}" class="tab-myattention" wx:for="{{myattentionList}}" wx:key="$index">
+    <view wx:if="{{attentionLen!=0}}" class="tab-myattention" wx:for="{{myattentionList}}" wx:key="$index" bindtap="listDetail">
             <view class="attention-left">
                 <image class="left-image" src="../images/community-icon.png"></image>
             </view>
@@ -56,7 +55,7 @@
     <view class="community-top">
        <text class="top-title">你可能感兴趣的社区</text>
     </view>
-    <view class="tab-myattention" wx:for="{{myinterestList}}" wx:key="$index">
+    <view class="tab-myattention" wx:for="{{myinterestList}}" wx:key="$index" bindtap="listDetail">
             <view class="attention-left">
                 <image class="left-image" src="../images/community-icon.png"></image>
             </view>

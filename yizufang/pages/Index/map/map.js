@@ -10,6 +10,14 @@ Page({
     houseList:[],
     markers:[],
     houseId:-1,
+    calloutold:{
+      bgColor:'#ffffff',
+      color: '#f47a20'
+    },
+    calloutnew: {
+      bgColor: '#f47a20',
+      color: '#ffffff'
+    }
   },
 
   onLoad () {
@@ -30,8 +38,11 @@ Page({
           id: 3, latitude: 31.268886, longitude: 120.575316,callout: { content: '$3150', bgColor: that.data.markersBg, color: that.data.calloutColor, padding: 4, fontSize: '13', borderRadius: 5, display: 'ALWAYS' }
       },
         {
-          id: 4, latitude: 31.298886,longitude: 120.586312,callout: { content: '$1250', bgColor: that.data.markersBg, color: that.data.calloutColor, padding: 4, fontSize: '13', borderRadius: 5, display: 'ALWAYS' }
-      }]
+          id: 4, latitude: 31.298886, longitude: 120.586312,callout: { content: '$1250', bgColor: that.data.markersBg, color: that.data.calloutColor, padding: 4, fontSize: '13', borderRadius: 5, display: 'ALWAYS' }
+        }, 
+        // {
+        //   id: 5, label: { color: '#f47a20', fontSize: '13', content: '我是华盛顿大学', x: '31.308886', y: '120.586312' }, iconPath:'../images/mapmarker1.png',height:24,width:34, latitude: 31.308886, longitude: 120.586312, title:'华盛顿大学'}
+        ]
     })
     wx.getLocation({
       type: 'wgs84',
@@ -55,12 +66,10 @@ Page({
     var that = this;
     for (let x of that.data.markers) {
       if (x.id == e.markerId){
-        that.data.markers[x.id].callout['bgColor'] = '#f47a20';
-        that.data.markers[x.id].callout['color'] = '#ffffff';
+        Object.assign(that.data.markers[x.id].callout, that.data.calloutnew);
       }
       else{
-        that.data.markers[x.id].callout['bgColor'] = '#ffffff';
-        that.data.markers[x.id].callout['color'] = '#f47a20';
+        Object.assign(that.data.markers[x.id].callout,that.data.calloutold);
       }
     }
     that.setData({
@@ -88,13 +97,10 @@ Page({
       }
     });
     for (let x of that.data.markers) {
-      that.data.markers[x.id].callout['bgColor'] = '#ffffff';
-      that.data.markers[x.id].callout['color'] = '#f47a20';
+      Object.assign(that.data.markers[x.id].callout,that.data.calloutold);
     }
     that.setData({
       markers: this.data.markers
     });
   }
-  
-  
 })

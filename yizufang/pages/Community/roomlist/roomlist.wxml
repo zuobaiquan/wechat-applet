@@ -3,16 +3,19 @@
   <view  class="tab-houselist new-houselist">
     <view class="new-box" bindtap="addroomMate">
       <image src="../images/newhouse-add.png" class="newhouse-add" />
-      <view>新建找室友消息</view>
+      <view wx:if="{{nowType==2}}">新建求租消息</view>
+      <view wx:if="{{nowType==3}}">新建找室友消息</view>
     </view>
   </view>
-  <view class="now-house">现有找室友消息</view>
+  <view wx:if="{{nowType==2}}" class="now-house">现有求租消息</view>
+  <view wx:if="{{nowType==3}}" class="now-house">现有找室友消息</view>
   <view class="tab-houselist tab-roommate" wx:for="{{roomMate}}" wx:key="*this">
       <view class="roomate-middle">
         <view class="middle-item">城市：<text class="detail-value">{{item.city}}</text></view>
-        <view class="middle-item">性别：<text class="detail-value"> {{item.sex}}</text> </view>
+        <view wx:if="{{nowType==3}}" class="middle-item">性别：<text class="detail-value"> {{item.sex}}</text> </view>
         <view class="middle-item">租金：<text class="detail-value">{{item.price}}</text></view>
         <view class="middle-item">起租时间：<text class="detail-value">{{item.startTime}}</text></view>
+        <view wx:if="{{nowType==2}}" class="middle-item">结束时间：<text class="detail-value">{{item.endTime}}</text></view>
         <view class="middle-item">要求：<text class="detail-value">{{item.req}}</text></view>
       </view>
       <view class="roomate-right">

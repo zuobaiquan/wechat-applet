@@ -22,7 +22,7 @@ Page({
   selCommunity:function(e){
     var index = e.currentTarget.dataset.current;
     wx.navigateTo({
-      url: '../selcommunity/selcommunity?type=' + index
+      url: `../selcommunity/selcommunity?type=${index}`
     });
   },
   searchChange(e) {

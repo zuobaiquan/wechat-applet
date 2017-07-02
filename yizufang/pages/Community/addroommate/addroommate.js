@@ -2,6 +2,7 @@
 const util = require('../../../utils/util.js');
 Page({
   data: {
+    nowType:2,
     priceLet: ['USD', 'CAD'],
     priceUnit: ['月','天'],
     letter:'USD',
@@ -10,10 +11,23 @@ Page({
     currentMatesex:1,
     currentSex:1,
     dateStart: util.formatDate(new Date()),
+    dateEnd: util.formatDate(new Date()),
     showCartDetail: false
   },
   onLoad: function (options) {
-    
+    this.setData({
+      nowType: options.type
+    });
+    if (options.type == 3) {
+      wx.setNavigationBarTitle({
+        title: '新建找室友'
+      })
+    }
+    else {
+      wx.setNavigationBarTitle({
+        title: '新建求租'
+      })
+    }
   },
   selMatesex(e){
     this.setData({
@@ -25,9 +39,14 @@ Page({
       currentSex: e.currentTarget.dataset.sex
     });
   },
-  bindDateChange(e){
+  bindDateCgstart(e){
     this.setData({
       dateStart: e.detail.value
+    })
+  },
+  bindDateCgend(e) {
+    this.setData({
+      dateEnd: e.detail.value
     })
   },
   bindChange: function (e) {
