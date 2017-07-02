@@ -9,7 +9,7 @@
   </view>
   <view wx:if="{{nowType==2}}" class="now-house">现有求租消息</view>
   <view wx:if="{{nowType==3}}" class="now-house">现有找室友消息</view>
-  <view class="tab-houselist tab-roommate" wx:for="{{roomMate}}" wx:key="*this">
+  <view class="tab-houselist tab-roommate" wx:for="{{roomMate}}" wx:key="$index">
       <view class="roomate-middle">
         <view class="middle-item">城市：<text class="detail-value">{{item.city}}</text></view>
         <view wx:if="{{nowType==3}}" class="middle-item">性别：<text class="detail-value"> {{item.sex}}</text> </view>

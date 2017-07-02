@@ -31,7 +31,7 @@
       <swiper-item>
           <view  class="tab-houselist" wx:for="{{houseList}}" wx:key="$index">
             <image src="{{item.url}}" class="tab-house" />
-            <image class="right-collect" src="../images/icon-collect.png"></image>
+            <image class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
             <view class="tab-housedetail">
                <view class="housedetail">
                 <text class="detail-left">{{item.title}}</text>
@@ -59,7 +59,7 @@
               <view class="middle-item">要求：<text class="detail-value">{{item.req}}</text></view>
             </view>
             <view class="roomate-right">
-                <image class="right-collect" src="../images/icon-collect.png"></image>
+                <image class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
                 <view class="right-icon"></view>
             </view>
         </view>
@@ -79,7 +79,7 @@
               <view class="middle-item">要求：<text class="detail-value">{{item.req}}</text></view>
             </view>
             <view class="roomate-right">
-                <image class="right-collect" src="../images/icon-collect.png"></image>
+                <image class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
                 <view class="right-icon"></view>
             </view>
         </view>

@@ -21,7 +21,7 @@
                   <view class="left-con">要求：<text class="left-condatail">{{item.req}}</text></view>
                 </view>
                 <view class="rent-right">
-                    <image class="right-collect" src="../images/icon-collect.png"></image>
+                    <image class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
                     <view class="right-icon"></view>
                 </view>
             </view>
@@ -35,7 +35,7 @@
             <view class="item-nickname">{{item.nickname}}<text class="item-slot">●</text>房源</view>
             <view class="rent-content typelist2">
                   <image style="width:546rpx;" class="type-renthouse" src="{{item.url}}"></image>
-                  <image class="right-collect" src="../images/icon-collect.png"></image>
+                  <image class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
                   <view class="collect-bottom">
                       <view class="housedetail">
                         <text class="detail-left">{{item.typename}}</text>
@@ -64,7 +64,7 @@
                   <view class="left-con">要求：<text class="left-condatail">{{item.req}}</text></view>
                 </view>
                 <view class="rent-right">
-                    <image class="right-collect" src="../images/icon-collect.png"></image>
+                    <image class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
                     <view class="right-icon"></view>
                 </view>
             </view>

@@ -10,7 +10,7 @@
       <text>{{rentDatail.nickname}} 发布于3天前</text>
       <view class="publish-right">
         <text>浏览次数{{rentDatail.hitsNum}}</text>
-        <image class="rightcollect" src="../images/icon-collect.png"></image>
+        <image class="rightcollect" src="/images/icon-collect.png"></image>
       </view>
     </view>
   </view>

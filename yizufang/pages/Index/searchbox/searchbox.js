@@ -17,11 +17,11 @@ Page({
     currentTab:2,
     communityList:['西雅图','华盛顿大学','其他相关社区'],
     // communityList: [],
-    // houseList: [{ title: 'U-District附近三层别墅', url: '../../images/index/houselist1.png', price: "999 USD/月", type: '独栋别墅', addr: 'Seattle，WA', detail: '4卧 2卫浴' }, { title: '首页房源标题2', url: '../../images/index/houseno-img.png', price: "2199999 USD/天", type: '联排别墅', addr: 'Seattle，WA', detail: '3卧 1卫浴' }],
+    // houseList: [{ title: 'U-District附近三层别墅',isCollect:1, url: '../../images/index/houselist1.png', price: "999 USD/月", type: '独栋别墅', addr: 'Seattle，WA', detail: '4卧 2卫浴' }, { title: '首页房源标题2',isCollect:1, url: '../../images/index/houseno-img.png', price: "2199999 USD/天", type: '联排别墅', addr: 'Seattle，WA', detail: '3卧 1卫浴' }],
     houseList:[],
-    rentMate: [{ url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', nickname: '小明', city: '西雅图', price: '1000 USD/月', startTime: '2017-06-01', endTime: '2018-06-01', req: '没有任何要求' }, { url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', nickname: '大明', city: '西雅图22', price: '1200 USD/月', startTime: '2017-06-12', endTime: '2018-06-18', req: '有任何要求' }],
+    rentMate: [{ url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', isCollect: 1, nickname: '小明', city: '西雅图', price: '1000 USD/月', startTime: '2017-06-01', endTime: '2018-06-01', req: '没有任何要求' }, { url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', isCollect: 0, nickname: '大明', city: '西雅图22', price: '1200 USD/月', startTime: '2017-06-12', endTime: '2018-06-18', req: '有任何要求' }],
     // rentMate:[],
-    roomMate: [{ url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', nickname: '小明', city: '西雅图', sex: '本人女,希望室友性别女', price: '1000 USD/月', startTime: '2017-06-01', req: '我喜欢猫的，希望x喜欢猫' }, { url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', nickname: '大明', city: '西雅图22', sex: '本人男,希望室友性别男', price: '1200 USD/月', startTime: '2017-06-12', endTime: '2018-06-18', req: '有任何要求' }],
+    roomMate: [{ url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', isCollect: 1, nickname: '小明', city: '西雅图', sex: '本人女,希望室友性别女', price: '1000 USD/月', startTime: '2017-06-01', req: '我喜欢猫的，希望x喜欢猫' }, { url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', isCollect: 1, nickname: '大明', city: '西雅图22', sex: '本人男,希望室友性别男', price: '1200 USD/月', startTime: '2017-06-12', endTime: '2018-06-18', req: '有任何要求' }],
     // roomMate: []
   },
   onLoad() {

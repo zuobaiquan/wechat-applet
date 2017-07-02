@@ -12,7 +12,7 @@ Page({
     currentSex:1,
     dateStart: util.formatDate(new Date()),
     dateEnd: util.formatDate(new Date()),
-    showCartDetail: false
+    showrentDetail: false
   },
   onLoad: function (options) {
     this.setData({
@@ -59,12 +59,12 @@ Page({
     this.setData({
       letter: this.data.priceLet[val1] || this.data.priceLet[0],
       unit: this.data.priceUnit[val2] || this.data.priceUnit[0],
-      showCartDetail: false
+      showrentDetail: false
     })
   },
   selrentCancel(){
     this.setData({
-      showCartDetail: false
+      showrentDetail: false
     });
   },
  /**
@@ -98,15 +98,14 @@ Page({
     //   }
     // })
   },
-  //显示隐藏购物车
-  showCartDetail: function () {
+  showrentDetail: function () {
     this.setData({
-      showCartDetail: !this.data.showCartDetail
+      showrentDetail: !this.data.showrentDetail
     });
   },
-  hideCartDetail: function () {
+  hiderentDetail: function () {
     this.setData({
-      showCartDetail: false
+      showrentDetail: false
     });
   },
 })

@@ -24,7 +24,7 @@
        <text class="item-name">租金</text>
        <view  class="item-rentprice">
           <input bindblur="verifyPrice" type="digit" class="rentprice-input" placeholder-style="color:#4b474c;" placeholder="您期望的租金" />
-          <view bindtap="showCartDetail" class="rentprice-type">{{letter}}/{{unit}}<view class="choose-icon"></view></view>
+          <view bindtap="showrentDetail" class="rentprice-type">{{letter}}/{{unit}}<view class="choose-icon"></view></view>
        </view>
   </view>
   <view class="detail-item">
@@ -58,8 +58,8 @@
   </view>
 </view>
 
-<view hidden="{{!showCartDetail}}">
-    <view class="mask" bindtap="hideCartDetail"></view>
+<view hidden="{{!showrentDetail}}">
+    <view class="mask" bindtap="hiderentDetail"></view>
     <view class="selrent-box">
       <view class="selconfirm-box">
         <text class="selrent-cancel" bindtap="selrentCancel">取消</text>

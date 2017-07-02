@@ -46,8 +46,8 @@ var verifyForm={
   }
 }
 
-function rightIdcard(idcard) {
+function hideIdcard(idcard) {
   return idcard.replace(idcard.substr(6, 8), "******");
 }
 
-module.exports = { formatDate, verifyForm, rightIdcard }
+module.exports = { formatDate, verifyForm, hideIdcard }
