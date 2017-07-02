@@ -1,23 +1,21 @@
 {
   "pages": [
-    "pages/rentdetail/rentdetail",
-    "pages/communitydetail/communitydetail",
-    "pages/addroommate/addroommate",
-    "pages/index/index",
+    "pages/Index/map/map",
+    "pages/Community/community/community",
+    "pages/Index/index/index",
+    "pages/Index/selcity/selcity",
+    "pages/Index/searchbox/searchbox",
     
     
+    "pages/Community/rentdetail/rentdetail","pages/Community/communitydetail/communitydetail",
+    "pages/Community/addroommate/addroommate",
+    "pages/Community/roomlist/roomlist",
+    "pages/Community/houstlist/houstlist",
+    "pages/Community/selcommunity/selcommunity",
     
-    "pages/roomlist/roomlist",
-    "pages/houstlist/houstlist",
     
-    "pages/community/community",
-    "pages/map/map",
-    "pages/selcommunity/selcommunity",
-    
-    "pages/selcity/selcity",
-    "pages/searchbox/searchbox",
-    "pages/mycenter/mycenter",
-    "pages/personal/personal"
+    "pages/Mycenter/mycenter/mycenter",
+    "pages/Personal/personal/personal"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
@@ -35,25 +33,25 @@
     "list": [
       {
         "text": "首页",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/Index/index/index",
         "iconPath": "images/house-index.png",
         "selectedIconPath": "images/house-index-active.png"
       },
       {
         "text": "社区",
-        "pagePath": "pages/community/community",
+        "pagePath": "pages/Community/community/community",
         "iconPath": "images/community.png",
         "selectedIconPath": "images/community-active.png"
       },
       {
         "text": "我的",
-        "pagePath": "pages/mycenter/mycenter",
+        "pagePath": "pages/Mycenter/mycenter/mycenter",
         "iconPath": "images/mycenter.png",
         "selectedIconPath": "images/mycenter-active.png"
       },
       {
         "text": "账户",
-        "pagePath": "pages/personal/personal",
+        "pagePath": "pages/Personal/personal/personal",
         "iconPath": "images/personal.png",
         "selectedIconPath": "images/personal-active.png"
       }
