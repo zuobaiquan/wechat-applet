@@ -1,0 +1,46 @@
+
+
+.city-tabcon .tabcon-item{
+  width:25%;
+  float: left;
+  color:#999999;
+
+}
+.city-tabcon .selcity-tablist{
+  margin:0 auto;
+  margin-bottom:30rpx;
+  font-size: 32rpx;
+  height:68rpx;
+  line-height: 68rpx;
+  text-align: center;
+}
+.show-tab{
+  background:#f47a20;
+  color:#f6f6f6;
+}
+
+.show-content{
+  display: block;
+  margin-bottom:50rpx;
+}
+.hidden-content{
+  display: none;
+}
+
+
+.detail-item{
+  margin:0 34rpx;
+  border-bottom:2rpx solid #dfdfdf;
+}
+.detail-item .item-name{
+  display: inline-block;
+  width:210rpx;
+  height:120rpx;
+  line-height: 120rpx;
+  font-weight:bold;
+}
+.detail-item .item-input{
+  display: inline-block;
+}
+
+
