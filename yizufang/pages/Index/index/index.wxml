@@ -29,7 +29,7 @@
   </view>
   <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
       <swiper-item>
-          <view  class="tab-houselist" wx:for="{{houseList}}" wx:key="$index">
+          <view bindtap="detailHouse"  class="tab-houselist" wx:for="{{houseList}}" wx:key="$index">
             <image src="{{item.url}}" class="tab-house" />
             <image class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
             <view class="tab-housedetail">
@@ -45,7 +45,7 @@
           </view>
       </swiper-item>
       <swiper-item>
-        <view class="tab-houselist tab-roommate" wx:for="{{rentMate}}" wx:key="$index">
+        <view bindtap="detailDent"  class="tab-houselist tab-roommate" wx:for="{{rentMate}}" wx:key="$index">
             <view class="roomate-left">
                 <image class="left-image" src="{{item.url}}"></image>
                 <text class="left-nickname">{{item.nickname}}</text>
@@ -65,7 +65,7 @@
         </view>
       </swiper-item>
       <swiper-item>
-        <view class="tab-houselist tab-roommate" wx:for="{{roomMate}}" wx:key="$index">
+        <view bindtap="detailRoom"  class="tab-houselist tab-roommate" wx:for="{{roomMate}}" wx:key="$index">
             <view class="roomate-left">
                 <image class="left-image" src="{{item.url}}"></image>
                 <text class="left-nickname">{{item.nickname}}</text>

@@ -49,6 +49,21 @@ Page({
     wx.navigateTo({
       url: '../map/map'
     })
+  },
+  detailHouse(){
+    wx.navigateTo({
+      url: '../../Mycenter/housedetail/housedetail'
+    })
+  },
+  detailDent(){
+    wx.navigateTo({
+      url: '../../Community/rentdetail/rentdetail?type=2&look=false'
+    })
+  },
+  detailRoom(){
+    wx.navigateTo({
+      url: '../../Community/rentdetail/rentdetail?type=3&look=false'
+    })
   }
 
 

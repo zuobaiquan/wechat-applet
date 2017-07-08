@@ -1,0 +1,67 @@
+/* pages/Personal/bindmail/bindmail.wxss */
+.yz-logo{
+  height:auto;
+  width:100%;
+  margin:80rpx auto 0;
+  text-align: center;
+}
+.yz-logo .logo-img{
+  height:138rpx;
+  width:138rpx;
+}
+.mail-itemlist{
+  margin:0 90rpx;
+}
+.item-list{
+  height:128rpx;
+  line-height:128rpx;
+  border-bottom:2rpx solid #dfdfdf;
+}
+.item-list .item-text{
+  width:130rpx;
+  display: inline-block;
+  padding-left:30rpx;
+  font-weight: bold;
+}
+.item-list .text-input1{
+  width:390rpx;
+}
+.item-list .text-input2{
+  width:275rpx;
+}
+.item-list .yzm-box{
+  padding:8rpx 16rpx;
+  background:#f47a20;
+  border-radius:30rpx;
+  font-size:24rpx;
+  color:#ffffff;
+}
+.item-list .item-passright{
+  margin-right:10rpx;
+  float: right;
+}
+.item-passright .passright-img1{
+  width:42rpx;
+  height:24rpx;
+}
+.item-passright .passright-img2{
+  margin-left:24rpx;
+  width:28rpx;
+  height:20rpx;
+}
+
+
+.protocol-box{
+  width:80%;
+  margin:56rpx auto;
+  font-size:26rpx;
+}
+.protocol-box .protocol-con{
+  text-decoration: underline;
+}
+.protocol-img{
+  margin-right:22rpx;
+  width:36rpx;
+  height:36rpx;
+  vertical-align: bottom;
+}

@@ -1,55 +1,78 @@
 <view class="container">
-<view class="city-tabcon">
-  <view class="tabcon-item">
-    <view class="selcity-tablist {{currentTab==1 ? 'show-tab' : ''}}" data-current="1" bindtap="selectedTab">基本信息</view>
+  <view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">我的发布</view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">我的收藏</view>
   </view>
-  <view class="tabcon-item">
-    <view class="selcity-tablist {{currentTab==2 ? 'show-tab' : ''}}" data-current="2" bindtap="selectedTab">租金租期</view>
-  </view>
-  <view class="tabcon-item">
-    <view class="selcity-tablist {{currentTab==3 ? 'show-tab' : ''}}" data-current="3" bindtap="selectedTab">设施/须知</view>
-  </view>
-  <view class="tabcon-item">
-    <view class="selcity-tablist {{currentTab==4 ? 'show-tab' : ''}}" data-current="4" bindtap="selectedTab">补充说明</view>
-  </view>
-</view>
-
-<view class="search-item {{currentTab==1 ? 'show-content' : 'hidden-content'}}">
-  <view class="detail-item">
-        <text class="item-name">房源标题*</text>
-        <view  class="item-input">
-            <input bindblur="verifyTitle" type="text" placeholder-style="color:#999999;" placeholder="简单描述您的房源" />
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+      <swiper-item>
+          <view wx-if="{{chartlist.length!=0}}" wx:for="{{chartlist}}" wx:key="$index">
+            <view wx:if="{{item.type==1}}" class="tab-houselist {{item.status==1?'':'unpublish'}}">
+              <image src="{{item.url}}" class="tab-house" />
+              <view class="tab-housedetail">
+                  <view class="housedetail">
+                  <text class="detail-left">{{item.title}}</text>
+                  <text class="detail-right">{{item.price}}</text>
+                  </view>
+                  <view class="housedetail">
+                  <text class="detail-left detail-spc">{{item.typename}}<text class="detail-type">|</text>{{item.addr}}</text>
+                  <text class="detail-right detail-spc">{{item.detail}}</text>
+                  </view>
+              </view>
+              <view wx:if="{{item.status==0}}" class="unpublish-text">未发布</view>
+            </view>
+            <view  wx:if="{{item.type==2}}" class="tab-houselist tab-roommate">
+                <view class="roomate-middle">
+                  <view class="middle-item">城市：<text class="detail-value">{{item.city}}</text></view>
+                  <view class="middle-item">性别：<text class="detail-value"> {{item.sex}}</text> </view>
+                  <view class="middle-item">租金：<text class="detail-value">{{item.price}}</text></view>
+                  <view class="middle-item">起租时间：<text class="detail-value">{{item.startTime}}</text></view>
+                  <view class="middle-item">要求：<text class="detail-value">{{item.req}}</text></view>
+                </view>
+                <view class="roomate-right">
+                    <view class="right-icon"></view>
+                </view>
+                <view wx:if="{{item.status==0}}" class="unpublish-text">未发布</view>
+            </view>
+          </view>
+          <view class="publish-none" wx-if="{{chartlist.length==0}}">
+          您还没有发布任何消息，快点击下方的+号创建第一条消息吧！
+          </view>
+      </swiper-item>
+      <swiper-item>
+        <view class="tab-houselist tab-roommate" wx:for="{{rentMate}}" wx:key="$index">
+            <view class="roomate-left">
+                <image class="left-image" src="{{item.url}}"></image>
+                <text class="left-nickname">{{item.nickname}}</text>
+                <text class="left-nickname left-reason">求租</text>
+            </view>
+            <view class="roomate-middle">
+              <view class="middle-item">城市：<text class="detail-value">{{item.city}}</text></view>
+              <view class="middle-item">租金：<text class="detail-value"> {{item.price}}</text> </view>
+              <view class="middle-item">起租时间：<text class="detail-value">{{item.startTime}}</text></view>
+              <view class="middle-item">结束时间：<text class="detail-value">{{item.endTime}}</text></view>
+              <view class="middle-item">要求：<text class="detail-value">{{item.req}}</text></view>
+            </view>
+            <view class="roomate-right">
+                <image class="right-collect" src="/images/icon-collect.png"></image>
+                <view class="right-icon"></view>
+            </view>
         </view>
+      </swiper-item>
+  </swiper>
+  <view hidden="{{!showrentDetail}}" class="mask" bindtap="hiderentDetail"></view>
+  <view hidden="{{!showrentDetail}}" class="publish-list">
+     <view class="item" data-currenttype="1" bindtap="sendInfo">
+        <image class="item-img" src="../../Community/images/fangyuan.png"></image>
+        <view>房源</view>
+      </view>
+      <view class="item" data-currenttype="2" bindtap="sendInfo">
+        <image class="item-img" src="../../Community/images/qiuzu.png"></image>
+        <view>求租</view>
+      </view>
+      <view class="item" data-currenttype="3" bindtap="sendInfo">
+        <image class="item-img" src="../../Community/images/zhaoshiyou.png"></image>
+        <view>找室友</view>
+      </view>
   </view>
-  <view class="detail-item">
-        <text class="item-name">房屋类型*</text>
-        <view class="item-input">
-            
-        </view>
+  <view bindtap="showrentDetail" class="publish-more"><image src="../images/addmoretag.png" class="more-tag {{showrentDetail==true?'publish-cancel':''}}">+</image></view>
   </view>
-  <view class="detail-item">
-        <text class="item-name">邮箱*</text>
-        <view  class="item-input">
-            <input bindblur="verifyEmail" type="text" placeholder-style="color:#999999;" placeholder="xxxxxxx@outlook.com" />
-        </view>
-  </view>
-  <view class="detail-item">
-        <text class="item-name">其他联系方式</text>
-        <view  class="item-input">
-            <input type="text" placeholder-style="color:#999999;" placeholder="选填" />
-        </view>
-  </view>
-</view>
-
-<view class="search-item {{currentTab==2 ? 'show-content' : 'hidden-content'}}">
-租金租期
-</view>
-<view class="search-item {{currentTab==3 ? 'show-content' : 'hidden-content'}}">
-设施/须知
-</view>
-<view class="search-item {{currentTab==4 ? 'show-content' : 'hidden-content'}}">
-补充说明
-</view>
-
-
-</view>

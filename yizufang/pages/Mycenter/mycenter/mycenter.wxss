@@ -1,46 +1,103 @@
 
-
-.city-tabcon .tabcon-item{
-  width:25%;
-  float: left;
-  color:#999999;
-
+.swiper-tab{  
+    width: 70%;
+    margin:0 auto;
+    text-align: center; 
+    height:80rpx; 
+    line-height: 90rpx;
+    display: flex;
+    justify-content:space-between;
+}  
+.swiper-tab-list{
+  font-size: 32rpx;  
+  display: inline-block;  
+  padding:0 10rpx;
+  color: #777777;  
+}  
+.detail-type{
+  margin:0 16rpx;
 }
-.city-tabcon .selcity-tablist{
-  margin:0 auto;
-  margin-bottom:30rpx;
-  font-size: 32rpx;
-  height:68rpx;
-  line-height: 68rpx;
+
+
+.tab-roommate{
+  background:#f6f6f6;
+  border-radius:0;
+  margin:20rpx 0;
+  padding:0 40rpx;
+}
+.tab-roommate .roomate-middle{
+  width:95%;
+  height:206rpx;
+}
+
+.tab-roommate .roomate-right{
+  width:5%;
+}
+.unpublish{
+  background-color:rgba(255,255,255,0.5);
+  z-index:999;
+}
+.unpublish-text{
+  position: absolute;
+  top:50%;
+  left:50%;
+  margin-left:-25rpx;
+  margin-top:-25rpx;
+  color:#ffffff;
+  font-size:36rpx;
+}
+
+.publish-more{
+  position: fixed;
+  bottom:26rpx;
+  left:50%;
+  height:120rpx;
+  width:120rpx;
+  border-radius:50%;
+  background:#f47a20;
+  text-align: center;
+  transform: translate(-50%,0);
+  z-index: 9999;
+}
+.publish-more .more-tag{
+  margin:20rpx 0;
+  display: inline-block;
+  width:80rpx;
+  height:80rpx;
+}
+
+.publish-none{
+  width:450rpx;
+  height:auto;
+  margin: 290rpx auto;
+  font-size:32rpx;
+  color:#999999;
+}
+
+.publish-list{
+  position: fixed;
+  bottom:160rpx;
+  left:50%;
+  height:214rpx;
+  width:88%;
+  border:2px solid #f47a20;
+  background: #ffffff;
+  border-radius: 10rpx;
+  text-align: center;
+  transform: translate(-50%,0);
+  z-index: 9999;
+}
+
+.publish-list .item{
+  width:33.33%;
+  margin-top:40rpx;
+  float: left;
   text-align: center;
 }
-.show-tab{
-  background:#f47a20;
-  color:#f6f6f6;
+.publish-list .item-img{
+  height:100rpx;
+  width:100rpx;
 }
-
-.show-content{
-  display: block;
-  margin-bottom:50rpx;
+.publish-more .publish-cancel{
+  transform:rotate(45deg);
 }
-.hidden-content{
-  display: none;
-}
-
-
-.detail-item{
-  margin:0 34rpx;
-  border-bottom:2rpx solid #dfdfdf;
-}
-.detail-item .item-name{
-  display: inline-block;
-  width:210rpx;
-  height:120rpx;
-  line-height: 120rpx;
-  font-weight:bold;
-}
-.detail-item .item-input{
-  display: inline-block;
-}
-
-

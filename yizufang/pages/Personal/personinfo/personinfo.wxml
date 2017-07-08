@@ -1,0 +1,38 @@
+
+<view class="container">
+  <view class="yz-logo">
+      <view class="person-box">
+        <image class="logo-img" src="../images/person-avatar.png"></image>
+        <text class="person-tips">点击编辑个人头像</text>
+      </view>
+      
+  </view>
+  <view class="detail-item">
+       <text class="item-name">昵称</text>
+       <text class="item-res">易租客xxxxx</text> 
+  </view>
+  <view class="detail-item">
+       <text class="item-name">性别</text>
+       <view class="item-res res-sex">
+          <text class="sex-sel {{currentMatesex==1?'current-matesel':''}}" data-sex="1" bindtap="selMatesex">男</text>
+          <text class="sex-sel {{currentMatesex==2?'current-matesel':''}}" data-sex="2" bindtap="selMatesex">女</text>
+          <text class="sex-sel {{currentMatesex==3?'current-matesel':''}}" data-sex="3" bindtap="selMatesex" style="margin-right:0;">保密</text>
+       </view>
+  </view>
+  <view class="detail-item">
+       <text class="item-name">邮箱</text>
+       <input class="item-input" bindblur="verifyEmail" placeholder-style="color:#4b474c;" placeholder="xxxxxx@outlook.com" />
+  </view>
+  <view class="detail-item">
+       <text class="item-name">电话</text>
+       <input class="item-input" bindblur="verifyEmail" placeholder-style="color:#4b474c;" placeholder="2066580000" />
+  </view>
+  <view class="detail-item">
+       <text class="item-name">其他联系方式</text>
+       <input class="item-input" placeholder-style="color:#4b474c;" placeholder="wechat test0804" />
+  </view>
+  
+  <view class="save-box">
+    <view class="btn-box btn-send" bindtap="saveResult">保存</view>
+  </view>
+</view>
