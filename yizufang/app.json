@@ -1,7 +1,8 @@
 {
   "pages": [
-    
     "pages/Index/index/index",
+    "pages/Mycenter/housedetail/housedetail",
+    
     "pages/Mycenter/addhouseimg/addhouseimg",
     "pages/Mycenter/mycenter/mycenter",
     "pages/Personal/personal/personal",
@@ -12,10 +13,9 @@
     
     
     "pages/Mycenter/addnew/addnew",
-    "pages/Index/index/index",
     
     
-    "pages/Mycenter/housedetail/housedetail",
+    
   
     "pages/Mycenter/addhouse/addhouse",
     

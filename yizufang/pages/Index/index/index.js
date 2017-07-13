@@ -6,7 +6,7 @@ Page({
     swiperList: [{ num: 888, title: "华盛顿大学", url: '../images/middle-img1.jpg' }, { num: 999, title: "西雅图", url: '../images/middle-img2.jpg' }, { num: 666, title: "西雅图2", url: '../images/middle-img2.jpg' }],
     houseList: [{ title: 'U-District附近三层别墅', isCollect: 1, url: '../images/houselist1.png', price: "999 USD/月", type: '独栋别墅', addr: 'Seattle，WA', detail: '4卧 2卫浴' }, { title: '首页房源标题2', isCollect: 0,url:'../images/houseno-img.png', price: "2199999 USD/天", type: '联排别墅', addr: 'Seattle，WA', detail: '3卧 1卫浴' }],
     rentMate: [{ url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', isCollect: 0, nickname: '小明', city: '西雅图', price: '1000 USD/月', startTime: '2017-06-01', endTime: '2018-06-01', req: '没有任何要求' }, { url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', isCollect: 1, nickname: '大明',  city: '西雅图22', price: '1200 USD/月', startTime: '2017-06-12', endTime: '2018-06-18', req: '有任何要求' }],
-    roomMate: [{ url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', isCollect: 1, nickname: '小明', city: '西雅图', sex: '本人女,希望室友性别女', price: '1000 USD/月', startTime: '2017-06-01', req: '我喜欢猫的，希望x喜欢猫' }, { url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', isCollect: 1, nickname: '大明', city: '西雅图22', sex: '本人男,希望室友性别男', price: '1200 USD/月', startTime: '2017-06-12', endTime: '2018-06-18', req: '有任何要求' }],
+    roomMate: [{ url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', isCollect: 1, nickname: '小明', city: '西雅图', sex: '本人女,希望室友性别女', price: '1000 USD/月', startTime: '2017-06-01', req: '我喜欢猫的，希望x喜欢猫' }, { url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', isCollect: 1, nickname: '大明', city: '西雅图22', sex: '本人男,希望室友性别男', price: '1200 USD/月', startTime: '2017-06-12', endTime: '2018-06-18', req: '有任何要求' }, { url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', isCollect: 1, nickname: '大明', city: '西雅图22', sex: '本人男,希望室友性别男', price: '1200 USD/月', startTime: '2017-06-12', endTime: '2018-06-18', req: '有任何要求' }],
     // 页面配置  
     winWidth: 0,
     winHeight: 0,
@@ -14,23 +14,37 @@ Page({
     currentTab: 0  
   },
   onLoad () {
-    var that = this; 
+    var that = this;
     that.setData({
-      winWidth: 400,
-      winHeight: 400
+      winWidth: '100%',
+      winHeight: that.data.houseList.length*183+13
     });
   },
   bindChange: function (e) {
     var that = this;
-    that.setData({ currentTab: e.detail.current });
+    //console.log(e.detail.current);
+    that.setData({ 
+      currentTab: e.detail.current
+    });
   },  
   swichNav: function (e) {
     var that = this;
-    if (this.data.currentTab === e.target.dataset.current) {
+    var index = parseInt(e.target.dataset.current);
+    if (this.data.currentTab === index) {
       return false;
     } else {
+      if (index == 1) {
+        var wsiperLen = that.data.rentMate.length * 183 + 13;
+      }
+      else if (index == 2) {
+        var wsiperLen = that.data.roomMate.length * 183 + 13;
+      }
+      else {
+        var wsiperLen = that.data.houseList.length * 183 + 13;
+      }
       that.setData({
-        currentTab: e.target.dataset.current
+        currentTab: e.target.dataset.current,
+        winHeight: wsiperLen 
       })
     }
   },

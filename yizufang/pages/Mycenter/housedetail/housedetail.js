@@ -2,6 +2,7 @@
 Page({
 
   data: {
+    swiperList: [{ url: '../images/middle-img1.jpg' }, {  url: '../images/middle-img1.jpg' }, { url: '../images/middle-img1.jpg' }],
     showContract: false,
     detailType: 1,
     bottomlen: '100rpx',

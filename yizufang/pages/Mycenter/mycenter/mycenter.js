@@ -3,10 +3,10 @@ Page({
   data: {
     chartlist: [
        { type: 1,status:1, avator: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2406161785,701397900&fm=5', title: 'UW附近2b1b整套出租', url: '../images/houselist1.png', price: "999 USD/月", typename: '独栋别墅', addr: 'Seattle，WA', detail: '4卧 2卫浴' },
-      //  { type: 1, status: 0, avator: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2406161785,701397900&fm=5', title: '哈哈哈近2b1b整套出租', url: '../images/houselist1.png', price: "888 USD/月", typename: '独栋别墅', addr: 'Seattle，WA', detail: '2卧 2卫浴' },
-      //  { type: 1, status: 1, avator: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2406161785,701397900&fm=5', title: '哈哈哈近2b1b整套出租', url: '../images/houselist1.png', price: "888 USD/月", typename: '独栋别墅', addr: 'Seattle，WA', detail: '2卧 2卫浴' },
-      // { type: 2, status: 0, city: '西雅图0', sex: '本人女希望室友性别女0', price: "600 USD/月", startTime: '2017-06-01', req: '我喜欢猫的，希望x喜欢猫' },
-      // { type: 2, status: 1, city: '西雅图1', sex: '本人女希望室友性别女1', price: "600 USD/月", startTime: '2017-06-01', req: '我喜欢猫的，希望x喜欢猫' }
+       { type: 1, status: 0, avator: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2406161785,701397900&fm=5', title: '哈哈哈近2b1b整套出租', url: '../images/houselist1.png', price: "888 USD/月", typename: '独栋别墅', addr: 'Seattle，WA', detail: '2卧 2卫浴' },
+       { type: 1, status: 1, avator: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2406161785,701397900&fm=5', title: '哈哈哈近2b1b整套出租', url: '../images/houselist1.png', price: "888 USD/月", typename: '独栋别墅', addr: 'Seattle，WA', detail: '2卧 2卫浴' },
+       { type: 2, status: 0, city: '西雅图0', sex: '本人女希望室友性别女0', price: "600 USD/月", startTime: '2017-06-01', req: '我喜欢猫的，希望x喜欢猫' },
+       { type: 2, status: 1, city: '西雅图1', sex: '本人女希望室友性别女1', price: "600 USD/月", startTime: '2017-06-01', req: '我喜欢猫的，希望x喜欢猫' }
      ],
     // 页面配置  
     winWidth: 0,
@@ -18,8 +18,8 @@ Page({
   onLoad() {
     var that = this;
     that.setData({
-      winWidth: 400,
-      winHeight: 400
+      winWidth: '100%',
+      winHeight: that.data.chartlist.length*183
     });
   },
   bindChange: function (e) {

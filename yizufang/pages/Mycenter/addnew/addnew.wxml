@@ -86,7 +86,7 @@
   </view>
   <view class="detail-item">
       <text class="item-name">结束日期</text>
-      <picker style="display:inline-block" mode="date" value="{{dateStart}}" bindchange="bindDateCgstart">  
+      <picker style="display:inline-block" mode="date" value="{{dateEnd}}" bindchange="bindDateCgend">  
           <text>{{dateEnd}}</text>  
        </picker>
   </view>

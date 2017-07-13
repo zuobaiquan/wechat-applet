@@ -1,5 +1,14 @@
 <!--rentdetail.wxml-->
 <view class="container">
+  <swiper indicator-dots="true" autoplay="auto" circular="true" indicator-color="#dfdfdf" indicator-active-color="#f47a20" interval="5000" duration="1000">
+      <swiper-item wx:for="{{swiperList}}" wx:key="$index">
+            <image src="{{item.url}}" class="slide-image"/>
+      </swiper-item>
+  </swiper>
+
+
+
+
   <view class="publish-top">
     <view class="top-con">
       <image class="publish-avator" src="{{rentDatail.avator}}"></image>
@@ -8,6 +17,16 @@
         <text>浏览次数{{rentDatail.hitsNum}}</text>
         <image class="rightcollect" src="/images/icon-collect.png"></image>
       </view>
+    </view>
+    <view class="house-info">
+       <view class="info-left">
+          <text class="info-name">U-District 附近三层别墅</text>
+          <text class="info-addr">独栋别墅 | Seattle, WA</text>
+       </view>
+       <view class="info-right">
+          <text class="info-price">9 USD/月</text>
+          <text class="info-addr">4 卧 2 卫浴</text>
+       </view>
     </view>
   </view>
   
@@ -31,20 +50,20 @@
     <view class="detail-item detail-sheshi">
       <view class="extrl-contract">设施/须知</view>
         <view class="box-item3">
-          <image class="item3-img" src="../images/chongwu.png"></image>
-          <text class="item3-text">禁养宠物</text>
+          <image class="item3-img" src="../images/jiaju.png"></image>
+          <text class="item3-text">家具</text>
         </view>
         <view class="box-item3">
-          <image class="item3-img" src="../images/chongwu.png"></image>
-          <text class="item3-text">禁养宠物</text>
+          <image class="item3-img" src="../images/dianshi.png"></image>
+          <text class="item3-text">电视</text>
         </view>
         <view class="box-item3">
-          <image class="item3-img" src="../images/chongwu.png"></image>
-          <text class="item3-text">禁养宠物</text>
+          <image class="item3-img" src="../images/wifi.png"></image>
+          <text class="item3-text">无线网络</text>
         </view>
         <view class="box-item3">
-          <image class="item3-img" src="../images/chongwu.png"></image>
-          <text class="item3-text">禁养宠物</text>
+          <image class="item3-img" src="../images/xiyiji.png"></image>
+          <text class="item3-text">洗衣机</text>
         </view>
     </view>
   </view>
@@ -53,12 +72,8 @@
         <view class="extrl-contract">补充说明</view>
         <text class="extral-detail">该三层别墅适合一大群朋友住，新修的。很棒。离学校只要5分钟距离。</text>
     </view>
-    <view class="detail-item">
-        <text class="item-name">其他联系方式</text>
-        <text class="item-res">电话{{rentDatail.tel}}，微信{{rentDatail.wechat}}      </text> 
-        </view>
   </view>
-  <view class="contract-box" wx:if="{{showContract}}">
+  <view class="contract-box contract-sp" wx:if="{{showContract}}">
     <view class="detail-item">
         <view class="extrl-contract">联系方式</view>
         <text class="item-name">邮箱</text>
@@ -66,9 +81,9 @@
     </view>
     <view class="detail-item">
         <text class="item-name">其他联系方式</text>
-        <text class="item-res">电话{{rentDatail.tel}}，微信{{rentDatail.wechat}}      </text> 
-  </view>      
-  </view>
+        <text class="item-res">电话{{rentDatail.tel}}，微信{{rentDatail.wechat}}      </text>
+</view>        
+  </view>  
   <view wx:if="{{!showContract}}" class="detail-bottom">
       <view class="btn-phone" bindtap="getContract">获取联系方式</view>
   </view>
