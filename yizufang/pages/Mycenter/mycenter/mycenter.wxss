@@ -18,7 +18,9 @@
   margin:0 16rpx;
 }
 
-
+.tab-houselist{
+  position: relative;
+}
 .tab-roommate{
   background:#f6f6f6;
   border-radius:0;
@@ -34,8 +36,12 @@
   width:5%;
 }
 .unpublish{
-  background-color:rgba(255,255,255,0.5);
-  z-index:999;
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:340rpx;
+  background:rgba(0,0,0,0.6);
 }
 .unpublish-text{
   position: absolute;

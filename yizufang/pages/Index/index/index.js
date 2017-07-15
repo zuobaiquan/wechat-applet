@@ -17,34 +17,36 @@ Page({
     var that = this;
     that.setData({
       winWidth: '100%',
-      winHeight: that.data.houseList.length*183+13
+      winHeight: that.data.houseList.length * 366 + 26
     });
   },
   bindChange: function (e) {
     var that = this;
-    //console.log(e.detail.current);
-    that.setData({ 
-      currentTab: e.detail.current
-    });
+    var index = parseInt(e.detail.current);
+    this.tabHeight(that,index);
   },  
   swichNav: function (e) {
     var that = this;
     var index = parseInt(e.target.dataset.current);
-    if (this.data.currentTab === index) {
+    this.tabHeight(that,index);
+  },
+  tabHeight:function(that,index) {
+    if (that.data.currentTab === index) {
       return false;
-    } else {
+    }
+    else {
       if (index == 1) {
-        var wsiperLen = that.data.rentMate.length * 183 + 13;
+        var wsiperLen = that.data.rentMate.length * 366 + 26;
       }
       else if (index == 2) {
-        var wsiperLen = that.data.roomMate.length * 183 + 13;
+        var wsiperLen = that.data.roomMate.length * 366 + 26;
       }
       else {
-        var wsiperLen = that.data.houseList.length * 183 + 13;
+        var wsiperLen = that.data.houseList.length * 366 + 26;
       }
       that.setData({
-        currentTab: e.target.dataset.current,
-        winHeight: wsiperLen 
+        currentTab: index,
+        winHeight: wsiperLen
       })
     }
   },

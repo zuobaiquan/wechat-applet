@@ -1,24 +1,24 @@
 <view class="container">
-<view class="city-tabcon">
-  <view class="tabcon-item">
-    <view class="selcity-tablist {{currentTab==1 ? 'show-tab' : ''}}" data-current="1" bindtap="selectedTab">基本信息</view>
+  <view class="city-tabcon">
+    <view class="tabcon-item">
+      <view class="selcity-tablist {{currentTab==1 ? 'show-tab' : ''}}" data-current="1" bindtap="selectedTab">基本信息</view>
+    </view>
+    <view class="tabcon-item">
+      <view class="selcity-tablist {{currentTab==2 ? 'show-tab' : ''}}" data-current="2" bindtap="selectedTab">租金租期</view>
+    </view>
+    <view class="tabcon-item">
+      <view class="selcity-tablist {{currentTab==3 ? 'show-tab' : ''}}" data-current="3" bindtap="selectedTab">设施/须知</view>
+    </view>
+    <view class="tabcon-item">
+      <view class="selcity-tablist {{currentTab==4 ? 'show-tab' : ''}}" data-current="4" bindtap="selectedTab">补充说明</view>
+    </view>
   </view>
-  <view class="tabcon-item">
-    <view class="selcity-tablist {{currentTab==2 ? 'show-tab' : ''}}" data-current="2" bindtap="selectedTab">租金租期</view>
-  </view>
-  <view class="tabcon-item">
-    <view class="selcity-tablist {{currentTab==3 ? 'show-tab' : ''}}" data-current="3" bindtap="selectedTab">设施/须知</view>
-  </view>
-  <view class="tabcon-item">
-    <view class="selcity-tablist {{currentTab==4 ? 'show-tab' : ''}}" data-current="4" bindtap="selectedTab">补充说明</view>
-  </view>
-</view>
 
 <view class="search-item {{currentTab==1 ? 'show-content' : 'hidden-content'}}">
   <view class="detail-item">
         <text class="item-name">房源标题*</text>
         <view class="item-input">
-            <input bindblur="verifyTitle" type="text" placeholder-style="color:#999999;" placeholder="简单描述您的房源" />
+            <input class="input-housetitle"  bindblur="verifyTitle" type="text" placeholder-style="color:#999999;" placeholder="简单描述您的房源" />
         </view>
   </view>
   <view class="detail-item" style="overflow:hidden">
@@ -66,11 +66,11 @@
   </view>
   <view class="detail-item">
        <text class="item-name">邮箱*</text>
-       <input bindblur="verifyEmail" placeholder-style="color:#4b474c;" placeholder="xxxxxx@outlook.com" />
+       <input class="input-contract" bindblur="verifyEmail" placeholder-style="color:#4b474c;" placeholder="xxxxxx@outlook.com" />
   </view>
   <view class="detail-item">
        <text class="item-name">其他联系方式</text>
-       <input placeholder-style="color:#4b474c;" placeholder="您的电话或者其他联系方式" />
+       <input class="input-contract" placeholder-style="color:#4b474c;" placeholder="您的电话或者其他联系方式" />
   </view>
   <view class="save-box mycenter-save">
     <view class="btn-box btn-send" bindtap="saveResult">下一步</view>

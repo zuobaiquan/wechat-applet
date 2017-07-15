@@ -19,7 +19,7 @@ Page({
     var that = this;
     that.setData({
       winWidth: '100%',
-      winHeight: that.data.chartlist.length*183
+      winHeight: that.data.chartlist.length*366
     });
   },
   bindChange: function (e) {

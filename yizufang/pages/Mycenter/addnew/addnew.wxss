@@ -1,14 +1,15 @@
 
-
+.city-tabcon{
+  overflow: hidden;
+  margin-bottom:30rpx;
+}
 .city-tabcon .tabcon-item{
   width:25%;
   float: left;
   color:#999999;
-
 }
 .city-tabcon .selcity-tablist{
   margin:0 auto;
-  margin-bottom:30rpx;
   font-size: 32rpx;
   height:68rpx;
   line-height: 68rpx;
@@ -39,6 +40,13 @@
   line-height: 120rpx;
   font-weight:bold;
 }
+.detail-item .input-contract{
+  /*左边的宽度设置好了，居然不对齐！！！ */
+  padding-left:8rpx;
+}
+.input-housetitle{
+  padding-left:4rpx;
+}
 .item-addrname{
   float: left;
   width:210rpx;
@@ -50,6 +58,7 @@
   color:#f47a20;
 }
 .detail-item .item-input{
+  text-align: left;
   display: inline-block;
 }
 .item-address{
@@ -97,25 +106,29 @@
 
 
 .item-countbox{
+  margin-left:10rpx;
   display: inline-block;
   width: 200rpx;
   font-size:28rpx;
 }
 .item-countbox text{
   display: inline-block;
-  text-align: center;
+  
   height:120rpx;
   line-height:120rpx;
 }
 .item-count-down{
+  text-align: left;
   font-size: 48rpx;
   width: 50rpx;
 }
 .item-count-add{
+  text-align: right;
   font-size: 40rpx;
   width: 50rpx;
 }
 .item-count-num{
+  text-align: center;
   font-size:28rpx;
   width: 100rpx;
   color:#999999;

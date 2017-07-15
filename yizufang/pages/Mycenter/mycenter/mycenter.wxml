@@ -3,10 +3,10 @@
     <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">我的发布</view>
     <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">我的收藏</view>
   </view>
-  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight}}px" bindchange="bindChange">
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight}}rpx" bindchange="bindChange">
       <swiper-item>
           <view wx-if="{{chartlist.length!=0}}" wx:for="{{chartlist}}" wx:key="$index">
-            <view wx:if="{{item.type==1}}" class="tab-houselist {{item.status==1?'':'unpublish'}}">
+            <view wx:if="{{item.type==1}}" class="tab-houselist">
               <image src="{{item.url}}" class="tab-house" />
               <view class="tab-housedetail">
                   <view class="housedetail">
@@ -18,7 +18,9 @@
                   <text class="detail-right detail-spc">{{item.detail}}</text>
                   </view>
               </view>
-              <view wx:if="{{item.status==0}}" class="unpublish-text">未发布</view>
+              <view class="unpublish" wx:if="{{item.status==0}}" >
+                 <view class="unpublish-text">未发布</view>
+              </view>
             </view>
             <view  wx:if="{{item.type==2}}" class="tab-houselist tab-roommate">
                 <view class="roomate-middle">
@@ -31,7 +33,9 @@
                 <view class="roomate-right">
                     <view class="right-icon"></view>
                 </view>
-                <view wx:if="{{item.status==0}}" class="unpublish-text">未发布</view>
+                <view class="unpublish" wx:if="{{item.status==0}}">
+                 <view class="unpublish-text">未发布</view>
+              </view>
             </view>
           </view>
           <view class="publish-none" wx-if="{{chartlist.length==0}}">

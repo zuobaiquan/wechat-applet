@@ -6,7 +6,7 @@
         <view class="person-info">完善个人资料</view>
      </view>
      <view class="top-center">
-        <text>为了让我们更好地为您服务，请您先绑定邮箱喔。</text>
+        <view class="bindmail-text">为了让我们更好地为您服务，请您</view><view>先绑定邮箱喔。</view>
         <text class="bind-box" bindtap="bindEmail">绑定邮箱</text>
      </view>
   </view>

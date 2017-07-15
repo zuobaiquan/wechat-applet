@@ -50,8 +50,8 @@ page{
 }
 .letterlist .letter{
   width: 52rpx;
-  height: 20px;
-  line-height: 20px;
+  height: 40rpx;
+  line-height: 40rpx;
 }
 .list-typelist{
   margin:0 42rpx;

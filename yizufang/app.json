@@ -2,48 +2,31 @@
   "pages": [
     "pages/Index/index/index",
     "pages/Mycenter/housedetail/housedetail",
-    
     "pages/Mycenter/addhouseimg/addhouseimg",
     "pages/Mycenter/mycenter/mycenter",
     "pages/Personal/personal/personal",
     "pages/Personal/bindmail/bindmail",
     "pages/Personal/personinfo/personinfo",
-    
     "pages/Personal/feedback/feedback",
-    
-    
     "pages/Mycenter/addnew/addnew",
-    
-    
-    
-  
     "pages/Mycenter/addhouse/addhouse",
-    
-    
-    
     "pages/Index/map/map",
     "pages/Index/selcity/selcity",
     "pages/Index/searchbox/searchbox",
-    
     "pages/Community/community/community",
     "pages/Community/communitydetail/communitydetail",
     "pages/Community/person/person",
     "pages/Community/rentdetail/rentdetail",
     "pages/Community/addroommate/addroommate",
     "pages/Community/roomlist/roomlist",
-    
     "pages/Community/houstlist/houstlist",
     "pages/Community/selcommunity/selcommunity"
-    
-    
-    
-    
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "首页",
-    "backgroundColor": "#000000",
+    "backgroundColor": "#ffffff",
     "backgroundTextStyle": "dark",
     "enablePullDownRefresh": false
   },
