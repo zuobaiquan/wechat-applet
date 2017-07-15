@@ -123,6 +123,16 @@
   transform: translate(-50%,0);
   text-align: center;
 }
+.contract-content .content-button{
+  margin:8rpx auto;
+  padding:8rpx 0;
+  width:54rpx;
+  height:38rpx;
+  background: #0CB806;
+  border-radius: 50%;
+  text-align: center;
+}
+
 .contract-content .contract-img{
   margin:10rpx 20rpx;
   width:56rpx;

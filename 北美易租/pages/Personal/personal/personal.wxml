@@ -30,8 +30,12 @@
   </view>
   <view class="contract-box">
      <view class="contract-content">
-        <image class="contract-img" src="../images/contract.png"></image>
-        <text class="contract-text">联系客服</text>
+       <view class="content-button">
+          <contact-button  type="default-light" size="20" session-from="weapp">
+          </contact-button>
+       </view>
+        
+      <text class="contract-text">联系客服</text>
      </view>
   </view>
 </view>
