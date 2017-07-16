@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/Index/index/index",
     "pages/Index/map/map",
     "pages/Index/selcity/selcity",
@@ -13,8 +12,8 @@
     "pages/Community/roomlist/roomlist",
     "pages/Community/houstlist/houstlist",
     "pages/Community/selcommunity/selcommunity",
-    "pages/Mycenter/housedetail/housedetail",
     "pages/Mycenter/addhouseimg/addhouseimg",
+    "pages/Mycenter/housedetail/housedetail",
     "pages/Mycenter/mycenter/mycenter",
     "pages/Mycenter/addnew/addnew",
     "pages/Mycenter/addhouse/addhouse",
@@ -22,7 +21,6 @@
     "pages/Personal/bindmail/bindmail",
     "pages/Personal/personinfo/personinfo",
     "pages/Personal/feedback/feedback"
-    
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
@@ -33,10 +31,9 @@
     "enablePullDownRefresh": false
   },
   "tabBar": {
-    "color": "#ccc",
-    "selectedColor": "#35495e",
-    "borderStyle": "white",
-    "backgroundColor": "#f9f9f9",
+    "color": "#4b474c",
+    "selectedColor": "#f47a20",
+    "backgroundColor": "#ffffff",
     "list": [
       {
         "text": "首页",

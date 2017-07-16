@@ -13,12 +13,14 @@
   <view class="middle-imgbox">
       <swiper indicator-dots="true" autoplay="auto" circular="true" indicator-color="#dfdfdf" indicator-active-color="#f47a20" interval="5000" duration="1000">
           <swiper-item wx:for="{{swiperList}}" wx:key="$index">
-              <view class="imgbox-textcon">
+             <view class="imgbox-list">
+                <view class="imgbox-textcon">
                   <text class="img-toptext">社区</text>
                   <text class="img-filltext">{{item.title}}</text>
                   <text class="notice-num">有{{item.num}}条新信息</text>
                 </view>
-                <image src="{{item.url}}" class="slide-image" width="355" height="150"/>
+             </view>
+             <image src="{{item.url}}" class="slide-image" width="355" height="150"/>
           </swiper-item>
       </swiper>
   </view>
@@ -45,7 +47,7 @@
           </view>
       </swiper-item>
       <swiper-item>
-        <view bindtap="detailDent"  class="tab-houselist tab-roommate" wx:for="{{rentMate}}" wx:key="$index">
+        <view bindtap="detailRent"  class="tab-houselist tab-roommate" wx:for="{{rentMate}}" wx:key="$index">
             <view class="roomate-left">
                 <image class="left-image" src="{{item.url}}"></image>
                 <text class="left-nickname">{{item.nickname}}</text>

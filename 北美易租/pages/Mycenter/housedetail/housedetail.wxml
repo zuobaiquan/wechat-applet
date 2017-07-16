@@ -42,9 +42,9 @@
        <text class="item-name">其他费用</text>
        <text class="item-res">包水电</text> 
   </view>
-  <view class="detail-item">
-       <text class="item-name">房源地址</text>
-       <text class="item-res house-addr">4588 18th Ave NE, Seattle, WA 98105</text> 
+  <view class="detail-item addr-detail">
+       <text class="addr-name">房源地址</text>
+       <view class="house-addr">4588 18th Ave NE, Seattle, WA 98105</view>
   </view>
   <view class="contract-box sheshi-sp">
     <view class="detail-item detail-sheshi">

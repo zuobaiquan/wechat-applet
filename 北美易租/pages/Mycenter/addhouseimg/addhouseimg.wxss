@@ -41,6 +41,7 @@
   width:312rpx;
   height:200rpx;
   float: left;
+  overflow: hidden;
 }
 .imgsmall-box{
   position:relative;

@@ -1,4 +1,3 @@
-
 .swiper-tab{  
     width: 70%;
     margin:0 auto;
@@ -18,41 +17,51 @@
   margin:0 16rpx;
 }
 
+.show-content{
+  display: block;
+  margin-bottom:50rpx;
+}
+.hidden-content{
+  display: none;
+}
+
 .tab-houselist{
   position: relative;
 }
 .tab-roommate{
+  width:100%;
   background:#f6f6f6;
   border-radius:0;
+  margin:0;
+}
+.collect-box .tab-roommate{
   margin:20rpx 0;
-  padding:0 40rpx;
 }
 .tab-roommate .roomate-middle{
-  width:95%;
+  padding-left:40rpx;
+  width:80%;
   height:206rpx;
 }
-
 .tab-roommate .roomate-right{
-  width:5%;
+  width:14%;
 }
+
 .unpublish{
   position: absolute;
   top:0;
   left:0;
   width:100%;
   height:340rpx;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.5);
 }
 .unpublish-text{
   position: absolute;
   top:50%;
   left:50%;
-  margin-left:-25rpx;
-  margin-top:-25rpx;
+  transform: translate(-50%,-50%);
   color:#ffffff;
   font-size:36rpx;
 }
-
 .publish-more{
   position: fixed;
   bottom:26rpx;
@@ -71,7 +80,6 @@
   width:80rpx;
   height:80rpx;
 }
-
 .publish-none{
   width:450rpx;
   height:auto;
@@ -79,7 +87,6 @@
   font-size:32rpx;
   color:#999999;
 }
-
 .publish-list{
   position: fixed;
   bottom:160rpx;
@@ -93,7 +100,6 @@
   transform: translate(-50%,0);
   z-index: 9999;
 }
-
 .publish-list .item{
   width:33.33%;
   margin-top:40rpx;
@@ -106,4 +112,25 @@
 }
 .publish-more .publish-cancel{
   transform:rotate(45deg);
+}
+
+.listdel{
+  position: absolute;
+  top:0;
+}
+.listdel.txt{
+  width: 100%;
+  height:340rpx;
+  z-index: 5;
+  transition: left 0.2s ease-in-out;
+}
+.listdel.deltext{
+  background-color: #F43530;
+  width: 182rpx;
+  height:340rpx;
+  line-height:340rpx;
+  text-align: center;
+  z-index: 4;
+  right: 0;
+  color: #fff;
 }

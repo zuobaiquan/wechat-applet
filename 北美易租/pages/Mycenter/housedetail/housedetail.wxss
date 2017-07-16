@@ -86,11 +86,18 @@ swiper{
   margin:0 34rpx;
   border-bottom:2rpx solid #dfdfdf;
 }
-.detail-item .house-addr{
-  display: inline-block;
+.addr-detail{
+  overflow: hidden;
+  padding:36rpx 0;
+}
+.addr-detail .addr-name{
+  width:220rpx;
+  float: left;
+  
+}
+.addr-detail .house-addr{
+  float: left;
   width:420rpx;
-  height:120rpx;
-
 }
 
 .detail-item .item-name{

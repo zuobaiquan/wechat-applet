@@ -173,6 +173,7 @@
   width:72%;
   height:56rpx;
   float: left;
+  overflow: hidden;
 }
 .send-confirm{
   font-size:28rpx;
