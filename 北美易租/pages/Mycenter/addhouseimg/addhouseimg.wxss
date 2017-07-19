@@ -35,6 +35,7 @@
 .house-imgbig{
   width:100%;
   height:484rpx;
+  object-fit: cover;
 }
 
 .house-imgsmall{
@@ -42,6 +43,7 @@
   height:200rpx;
   float: left;
   overflow: hidden;
+  object-fit: cover;
 }
 .imgsmall-box{
   position:relative;
