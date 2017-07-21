@@ -9,7 +9,7 @@ Page({
       "http://oowi4z51w.bkt.clouddn.com/xq8puz5czg525c36zc2l0udi"]
   },
   onLoad: function (options) {
-  
+
   },
   deleteItemimg(e){
     const index = e.currentTarget.dataset.index;
@@ -79,12 +79,12 @@ Page({
             houseImg: that.data.houseImg
           });
         }
-        else {  
+        else {
           this.uploadEach(filePaths, successUp, failUp, i, length);
         }
       },
     });
-  },  
+  },
 
   chooseWxImage: function (type) {
     var that = this;
@@ -93,11 +93,11 @@ Page({
       sizeType: ['original', 'compressed'],
       sourceType: [type],
       success: function (res) {
-        var successUp = 0; //成功个数  
-        var failUp = 0; //失败个数  
-        var length = res.tempFilePaths.length; //总共个数  
-        var i = 0; //第几个 
-        that.uploadEach(res.tempFilePaths, successUp, failUp, i, length);  
+        var successUp = 0; //成功个数
+        var failUp = 0; //失败个数
+        var length = res.tempFilePaths.length; //总共个数
+        var i = 0; //第几个
+        that.uploadEach(res.tempFilePaths, successUp, failUp, i, length);
       }
     })
   }

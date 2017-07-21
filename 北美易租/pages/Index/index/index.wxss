@@ -1,4 +1,14 @@
-
+page {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100%;
+}
 .search-box{
   height:90rpx;
   line-height: 90rpx;
@@ -101,16 +111,16 @@
   height:340rpx;
 }
 
-.swiper-tab{  
+.swiper-tab{
     width: 76%;
     margin:0 auto;
-    text-align: center; 
-    height:64rpx; 
+    text-align: center;
+    height:64rpx;
     line-height: 64rpx;
-}  
-.swiper-tab-list{  
-    font-size: 30rpx;  
-    display: inline-block;  
+}
+.swiper-tab-list{
+    font-size: 30rpx;
+    display: inline-block;
     width:33.33%;
-    color: #777777;  
-}  
+    color: #777777;
+}

@@ -7,13 +7,13 @@
       <view wx:if="{{houseImg.length!=0}}" wx:key="$index" wx:for="{{houseImg}}" wx:for-item="group" wx:for-index="index">
           <view wx:if="{{index==0}}">
               <view class="house-imgbigbox">
-                  <image src="{{group}}" class="house-imgbig" />
+                  <image src="{{group}}" class="house-imgbig" mode="aspectFill"/>
                   <image class="box-delete box-bigdelete" data-index="{{index}}" bindtap="deleteItemimg" src="../images/addmoreimg.png"></image>
               </view>
           </view>
           <view wx:if="{{index>0}}">
               <view class="imgsmall-box">
-                <image src="{{group}}" class="house-imgsmall"></image>
+                <image src="{{group}}" class="house-imgsmall" mode="aspectFill"></image>
                   <image class="box-delete" data-index="{{index}}" bindtap="deleteItemimg" src="../images/addmoreimg.png"></image>
               </view>
           </view>
