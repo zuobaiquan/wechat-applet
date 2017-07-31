@@ -8,13 +8,17 @@ function formatDate(date) {
   return [year, month, day].join('-');
 }
 var verifyForm={
-  isEmpty: function (option,tips){
+  isEmpty: function (option, tips, _that){
     if (option == "") {
-      wx.showToast({
-        title: tips,
-        icon: 'success',
-        duration: 1500
-      })
+      _that.setData({
+        showTips: true,
+        tipsInfo: tips,
+      });
+      setTimeout(()=>{
+        _that.setData({
+          showTips: false,
+        });
+      }, 2000)
       return false;
     }
     else {
@@ -22,22 +26,30 @@ var verifyForm={
     }
   },
   //邮箱
-  isEmail :function (email) {
+  isEmail: function (email, _that) {
     var reg = new RegExp('^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$');
     if (email=="") {
-      wx.showToast({
-        title: '邮箱不能为空',
-        icon: 'success',
-        duration: 1000
-      })
+      _that.setData({
+        showTips: true,
+        tipsInfo: '邮箱不能为空',
+      });
+      setTimeout(()=>{
+        _that.setData({
+          showTips: false,
+        });
+      }, 2000)
       return false;
     }
     if(!reg.test(email)) {
-      wx.showToast({
-        title: '邮箱格式错误',
-        icon: 'success',
-        duration: 1000,
-      })
+      _that.setData({
+        showTips: true,
+        tipsInfo: '邮箱格式不正确',
+      });
+      setTimeout(()=>{
+        _that.setData({
+          showTips: false,
+        });
+      }, 2000)
       return false;
     }
     else {
@@ -45,7 +57,6 @@ var verifyForm={
     }
   }
 }
-
 function hideIdcard(idcard) {
   return idcard.replace(idcard.substr(6, 8), "******");
 }

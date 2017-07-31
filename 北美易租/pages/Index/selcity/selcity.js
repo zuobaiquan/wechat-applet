@@ -6,10 +6,10 @@ Page({
   data: {
     currentTab: 1,
     isShowToast: false,
-    letterlist: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
-    scrollIntoId: 'A',
+    letterlist: ['AA','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+    scrollIntoId: 'AA',
     cityList: [
-      // { "name": "热门城市", "child": [{ cityname: '西雅图', 'statename': '华盛顿州' }, { cityname: '洛杉矶', 'statename': '加利福尼亚州' }, { cityname: '旧金山', 'statename': '加利福尼亚州' }, { cityname: '芝加哥', 'statename': '伊利诺伊州' }, { cityname: '纽约', 'statename': '纽约州' }] },
+      { "name": "AA", "child": [{ cityname: '西雅图', 'statename': '华盛顿州' }, { cityname: '洛杉矶', 'statename': '加利福尼亚州' }, { cityname: '旧金山', 'statename': '加利福尼亚州' }, { cityname: '芝加哥', 'statename': '伊利诺伊州' }, { cityname: '纽约', 'statename': '纽约州' }] },
       { "name": "A", "child": [{ cityname: 'A美国城市名1', 'statename': '华盛顿州' }, { cityname: 'A美国城市名1', 'statename': '所在州' }, { cityname: 'A美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'A美国城市名1', 'statename': '所在州' }] },
       { "name": "B", "child": [{ cityname: 'B美国城市名1', 'statename': '华盛顿州' }, { cityname: 'B美国城市名1', 'statename': '所在州' }, { cityname: 'B美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'B美国城市名1', 'statename': '所在州' }] },
       { "name": "C", "child": [{ cityname: 'C美国城市名1', 'statename': '华盛顿州' }, { cityname: 'C美国城市名1', 'statename': '所在州' }, { cityname: 'C美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'C美国城市名1', 'statename': '所在州' }] },
@@ -24,7 +24,7 @@ Page({
       { "name": "M", "child": [{ cityname: 'M美国城市名1', 'statename': '华盛顿州' }, { cityname: 'M美国城市名1', 'statename': '所在州' }, { cityname: 'M美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'M美国城市名1', 'statename': '所在州' }] }]
   },
   letterSelstart: function (e) {
-    var letter = e.target.dataset.id
+    var letter = e.target.dataset.id;
     this.setData({
       scrollIntoId: letter,
       isShowToast: true,

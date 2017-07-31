@@ -5,7 +5,7 @@
       <icon class="serach-icon" type="search" size="18" color="#4b474c" />
       <view class="search-list" bindtap="cancelSearch">列表</view>
   </view>
-  <map id="myMap" scale="{{scale}}" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" bindcallouttap="markertap" style="height:{{windowHeight}}px" bindmarkertap="markertap" />
+  <map id="yzwMap" scale="{{scale}}" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" bindcallouttap="markertap" style="height:{{windowHeight}}px" bindmarkertap="markertap" />
 
   <view wx:if="{{showhouseInfo}}" wx:for="{{houseList}}" wx:key="{{$index}}" class="tab-houselist" wx:if="{{item.id==houseId}}">
     <view class="hidden-arrow" bindtap="hiddenHouse"></view>

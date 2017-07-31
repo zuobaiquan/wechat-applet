@@ -1,6 +1,6 @@
 
 // 七牛相关参数
-import { IMAGE_UPLOAD } from '../../../utils/constant';
+import { configApi } from '../../../utils/constant';
 
 Page({
   data: {
@@ -39,17 +39,17 @@ Page({
     var that=this;
     var fileName = Math.random().toString(36).substr(2);
     wx.uploadFile({
-      url: IMAGE_UPLOAD.uploadUrl,
+      url: configApi.IMAGE_UPLOAD.uploadUrl,
       filePath: filePaths[i],
       name: 'file',
       formData: {
-        'token': IMAGE_UPLOAD.token,
+        'token': configApi.IMAGE_UPLOAD.token,
         key: fileName
       },
       success: (res) => {
         var dataString = res.data;
         var dataObject = JSON.parse(dataString);
-        var imageUrl = IMAGE_UPLOAD.baselink + dataObject.key;
+        var imageUrl = configApi.IMAGE_UPLOAD.baselink + dataObject.key;
         that.data.houseImg.push(imageUrl);
         successUp++;
       },

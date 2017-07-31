@@ -39,6 +39,7 @@
     <view wx:if="{{attentionLen!=0}}" class="tab-myattention" wx:for="{{myattentionList}}" wx:key="$index" bindtap="listDetail">
             <view class="attention-left">
                 <image class="left-image" src="../images/community-icon.png"></image>
+                <text wx-if="{{item.islook==0}}" class="attention-look"></text>
             </view>
             <view class="attention-middle">
               <view class="middle-itemname">{{item.name}}</view>
@@ -48,6 +49,7 @@
                 <view class="attention-num">{{item.attentionNum}}人关注</view>
             </view>
      </view>
+     <view class="attention-more">更多…</view>
     <view class="white-space"></view> 
   </view>
 

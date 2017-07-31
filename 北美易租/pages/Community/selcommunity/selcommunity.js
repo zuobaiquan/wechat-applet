@@ -6,9 +6,10 @@ Page({
   data: {
     currentTab: 1,
     isShowToast: false,
-    letterlist: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
-    scrollIntoId: 'A',
+    letterlist: ['AA','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+    scrollIntoId: 'AA',
     cityList: [
+      { "name": "AA", "child": [{ cityname: '热门1', 'picture': '../images/community-icon.png' }, { cityname: '热门2', 'picture': '../images/community-icon.png' }, { cityname: '热门3', 'picture': '../images/community-icon.png' }, { cityname: '热门4', 'picture': '../images/community-icon.png' }, { cityname: '热门5', 'picture': '../images/community-icon.png' }] },
       { "name": "A", "child": [{ cityname: 'A城市名', 'picture': '../images/community-icon.png' }, { cityname: 'A城市名', 'picture': '../images/community-icon.png' }, { cityname: 'A城市名', 'picture': '../images/community-icon.png' }, { cityname: 'A城市名', 'picture': '../images/community-icon.png' }, { cityname: 'A城市名', 'picture': '../images/community-icon.png' }] },
       { "name": "B", "child": [{ cityname: 'B城市名', 'picture': '../images/community-icon.png' }, { cityname: 'B城市名', 'picture': '../images/community-icon.png' }, { cityname: 'B城市名', 'picture': '../images/community-icon.png' }, { cityname: 'B城市名', 'picture': '../images/community-icon.png' }, { cityname: 'B城市名', 'picture': '../images/community-icon.png' }] },
       { "name": "C", "child": [{ cityname: 'C城市名', 'picture': '../images/community-icon.png' }, { cityname: 'C城市名', 'picture': '../images/community-icon.png' }, { cityname: 'C城市名', 'picture': '../images/community-icon.png' }, { cityname: 'C城市名', 'picture': '../images/community-icon.png' }] },
@@ -48,8 +49,6 @@ Page({
         currentTab: index
       })
     }
-
-
   },
 
 })

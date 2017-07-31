@@ -39,20 +39,39 @@
 }
 
 .tab-myattention{
-  margin:20rpx;
+  margin:20rpx 40rpx 20rpx 20rpx;
   height:86rpx;
 }
 .tab-myattention .attention-left{
   width:18%;
   float: left;
   text-align: center;
+  position: relative;
 }
 .attention-left .left-image{
   width:80rpx;
   height:86rpx;
 }
+.attention-left .attention-look{
+  position: absolute;
+  top:0;
+  right:0;
+  transform: translate(-60%,-40%); 
+  background: #f43530;
+  width:22rpx;
+  height:22rpx;
+  display: inline-block;
+  border-radius: 50%;
+}
+.attention-more{
+  padding:0 34rpx 20rpx 0;
+  height:40rpx;
+  line-height: 40rpx;
+  text-align: right;
+  color:#999999;
+}
 .tab-myattention .attention-middle{
-  width:64%;
+  width:62%;
   float: left;
   color:#323232;
 }
@@ -73,8 +92,9 @@
   color:#999999;
 }
 .tab-myattention .attention-right{
-  width:18%;
+  width:20%;
   float: left;
+  text-align: right;
 }
 
 .attention-right .attention-num{

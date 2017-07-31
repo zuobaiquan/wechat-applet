@@ -1,4 +1,5 @@
-const wechat = require('../../../utils/wechat.js')
+const apiRequest = require('../../../utils/apiRequest.js');
+
 var houseList = [{
     title: 'U-District附近三层别墅',
     isCollect: 1,
@@ -21,6 +22,8 @@ Page({
     data: {
         isLoading: false,
         isRefreshing: false,
+        showTips:false,
+        tipsInfo:'收藏成功',
         swiperList: [{
             num: 888,
             title: "华盛顿大学",
@@ -104,10 +107,35 @@ Page({
         winWidth: 0,
         winHeight: 0,
         // tab切换
-        currentTab: 0
+        currentTab: 0,
+        curLatitude:'',
+        curLongitude:''  
     },
     onLoad() {
-        var that = this;
+        var that=this;
+        wx.getLocation({
+          type: 'wgs84',
+          success: function (res) {
+            // console.info(res);
+            that.setData({
+              curLatitude: res.latitude,
+              curLongitude: res.longitude
+            });
+            let params = {
+              cityid: 1,
+              research: "",
+              longitude: that.data.curLatitude,
+              latitude: that.data.curLongitude,
+              page: 1,
+              size:10
+            }
+            apiRequest.post('/pub/homePage/houses-resource/', params)
+              .then(function (res) {
+                console.log(res.data);
+                return res.data;
+            })
+          }
+        })
         that.setData({
             winWidth: '100%',
             winHeight: that.data.houseList.length * 366 + 26
@@ -138,13 +166,29 @@ Page({
             winHeight: wsiperLen
         })
     },
-
-    selectPlace: function(event) {
+    handelCollect(e){
+      var _that=this;
+      let collectTag = parseInt(e.target.dataset.iscollect);
+      var _tips ='取消成功';
+      if (collectTag == 0) {
+        var _tips = '收藏成功';
+      }
+      _that.setData({
+        showTips: true,
+        tipsInfo: _tips,
+      });
+      setTimeout(function () {
+        _that.setData({
+          showTips: false,
+        });
+      }, 2000)
+    },
+    selectPlace: function() {
         wx.navigateTo({
             url: '../selcity/selcity'
         })
     },
-    selectKeyword: function(event) {
+    selectKeyword: function() {
         wx.navigateTo({
             url: '../searchbox/searchbox'
         })
@@ -170,7 +214,7 @@ Page({
         })
     },
     handleLoadMore: function() {
-        console.log('load more');
+        //console.log('load more');
         this.setData({
             isLoading: true
         })
@@ -180,11 +224,11 @@ Page({
                 isLoading: false,
             });
             this.tabHeight(this, sourseSwiperIndex);
-            console.log('houseList', this.data.houseList);
+            //console.log('houseList', this.data.houseList);
         }).bind(this), 2000)
     },
     handleRefresh: function() {
-        console.log('pull down');
+        //console.log('pull down');
         this.setData({
             isRefreshing: true
         })

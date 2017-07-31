@@ -1,7 +1,7 @@
 <view class="container">
     <scroll-view scroll-y="true" lower-threshold="100" bindscrolltolower="handleLoadMore" bindscrolltoupper="handleRefresh" style="height:100%;">
         <view wx:if="{{isRefreshing}}" class="load-more">
-            <image src="../../../images/loading.gif"></image>数据加载中
+            <image src="../../../images/loading.gif"></image>下拉刷新
         </view>
         <view class="search-box">
             <view class="search-con">
@@ -37,7 +37,7 @@
             <swiper-item id="sitem-1">
                 <view bindtap="detailHouse" class="tab-houselist" wx:for="{{houseList}}" wx:key="$index">
                     <image src="{{item.url}}" class="tab-house" />
-                    <image class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+                    <image data-iscollect="{{item.isCollect}}" catchtap="handelCollect" class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
                     <view class="tab-housedetail">
                         <view class="housedetail">
                             <text class="detail-left">{{item.title}}</text>
@@ -65,7 +65,7 @@
                         <view class="middle-item">要求：<text class="detail-value">{{item.req}}</text></view>
                     </view>
                     <view class="roomate-right">
-                        <image class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+                        <image data-iscollect="{{item.isCollect}}" catchtap="handelCollect"  class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
                         <view class="right-icon"></view>
                     </view>
                 </view>
@@ -85,14 +85,18 @@
                         <view class="middle-item">要求：<text class="detail-value">{{item.req}}</text></view>
                     </view>
                     <view class="roomate-right">
-                        <image class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+                        <image data-iscollect="{{item.isCollect}}" catchtap="handelCollect"  class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
                         <view class="right-icon"></view>
                     </view>
                 </view>
             </swiper-item>
         </swiper>
         <view wx:if="{{isLoading}}" class="load-more">
-            <image src="../../../images/loading.gif"></image>数据加载中
+            <image src="../../../images/loading.gif"></image>上拉加载更多
         </view>
     </scroll-view>
+    <view wx:if="{{showTips}}" class="show-tips">
+      <image class="collect-right" src="../../../images/collect-right.png"></image>
+      <text class="tips-info">{{tipsInfo}}</text>
+    </view>
 </view>

@@ -58,6 +58,10 @@
   </view>
 </view>
 
+<view wx:if="{{showTips}}" class="show-tips">
+  <image class="collect-right collect-error" src="../../../images/collect-error.png"></image>
+  <text class="tips-info">{{tipsInfo}}</text>
+</view>
 <view hidden="{{!showrentDetail}}">
     <view class="mask" bindtap="hiderentDetail"></view>
     <view class="selrent-box">

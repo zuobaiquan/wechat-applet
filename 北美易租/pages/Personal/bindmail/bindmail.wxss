@@ -27,7 +27,7 @@
   width:390rpx;
 }
 .item-list .text-input2{
-  width:275rpx;
+  width:260rpx;
 }
 .item-list .yzm-box{
   padding:8rpx 16rpx;
@@ -64,4 +64,36 @@
   width:36rpx;
   height:36rpx;
   vertical-align: bottom;
+}
+
+.email-tips{
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  width:66.7%;
+  height:294rpx;
+  background:#ffffff;
+  border-radius:16rpx;
+  z-index:888;
+  text-align: center;
+}
+.email-tips .email-exist{
+  display: block;
+  font-size: 32rpx;
+  margin-top:30rpx;
+}
+.email-tips .email-error{
+  margin:32rpx 48rpx;
+  display: block;
+  font-size:28rpx;
+  color:#999999;
+}
+.email-tips .email-confirm{
+  height:80rpx;
+  line-height: 80rpx;
+  display: block;
+  border-top:2rpx solid #dfdfdf;
+  font-size:32rpx;
+  color:#f47a20;
 }

@@ -12,7 +12,8 @@ Page({
     currentSex:1,
     dateStart: util.formatDate(new Date()),
     dateEnd: util.formatDate(new Date()),
-    showrentDetail: false
+    showrentDetail: false,
+    showTips:false,
   },
   onLoad: function (options) {
     this.setData({
@@ -71,14 +72,11 @@ Page({
  * 验证表单
  */
   verifyEmail(e){
-    util.verifyForm.isEmail(e.detail.value);
+    util.verifyForm.isEmail(e.detail.value,this);
   },
   verifyPrice(e){
-    util.verifyForm.isEmpty(e.detail.value,"租金不能为空");
-  }
-
-
-  ,
+    util.verifyForm.isEmpty(e.detail.value,"租金不能为空",this);
+  },
   saveResultLook(){
     wx.navigateTo({
       url: '../rentdetail/rentdetail?type=3&look=true'

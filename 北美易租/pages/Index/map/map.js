@@ -167,6 +167,11 @@ Page({
             }
         })
     },
+    onShow: function () {
+      // 1.创建地图上下文，移动当前位置到地图中心
+      this.mapCtx = wx.createMapContext("yzwMap");
+      this.mapCtx.moveToLocation()
+    },
     markertap: function(e) {
         var that = this;
         for (let x of that.data.markers) {

@@ -49,7 +49,7 @@
       <view wx-if="{{rentMate.length!=0}}" wx:for="{{collectList}}" wx:key="$index">
         <view wx:if="{{item.type==1}}" class="tab-houselist">
           <image src="{{item.url}}" class="tab-house" />
-          <image class="right-collect" src="/images/icon-collected.png"></image>
+          <image data-iscollect="{{item.isCollect}}" catchtap="handelCollect" class="right-collect" src="/images/icon-collected.png"></image>
           <view class="tab-housedetail">
               <view class="housedetail">
               <text class="detail-left">{{item.title}}</text>
@@ -78,6 +78,10 @@
         <view class="publish-none" wx-if="{{collectList.length==0}}">
         您还没有收藏任何消息，快去<view>首页/社区逛逛吧！</view>
         </view>
+  </view>
+  <view wx:if="{{showTips}}" class="show-tips">
+    <image class="collect-right" src="../../../images/collect-right.png"></image>
+    <text class="tips-info">取消成功</text>
   </view>
   <view hidden="{{!showrentDetail}}" class="mask" bindtap="hiderentDetail"></view>
   <view hidden="{{!showrentDetail}}" class="publish-list">
