@@ -1,31 +1,41 @@
 //index.js
 //获取应用实例
-var app = getApp()
-
+var app = getApp();
 const apiRequest = require('../../../utils/apiRequest.js');
+var countryList;
 Page({
   data: {
     currentTab: 1,
     isShowToast: false,
-    letterlist: ['AA', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
-    scrollIntoId: 'AA',
-    cityList: [
-      { "name": "AA", "child": [{ cityname: '西雅图', 'statename': '华盛顿州' }, { cityname: '洛杉矶', 'statename': '加利福尼亚州' }, { cityname: '旧金山', 'statename': '加利福尼亚州' }, { cityname: '芝加哥', 'statename': '伊利诺伊州' }, { cityname: '纽约', 'statename': '纽约州' }] },
-      { "name": "A", "child": [{ cityname: 'A美国城市名1', 'statename': '华盛顿州' }, { cityname: 'A美国城市名1', 'statename': '所在州' }, { cityname: 'A美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'A美国城市名1', 'statename': '所在州' }] },
-      { "name": "B", "child": [{ cityname: 'B美国城市名1', 'statename': '华盛顿州' }, { cityname: 'B美国城市名1', 'statename': '所在州' }, { cityname: 'B美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'B美国城市名1', 'statename': '所在州' }] },
-      { "name": "D", "child": [{ cityname: 'D美国城市名1', 'statename': '华盛顿州' }, { cityname: 'D美国城市名1', 'statename': '所在州' }, { cityname: 'D美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'D美国城市名1', 'statename': '所在州' }] },
-      { "name": "E", "child": [{ cityname: 'E美国城市名1', 'statename': '华盛顿州' }, { cityname: 'E美国城市名1', 'statename': '所在州' }, { cityname: 'E美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'E美国城市名1', 'statename': '所在州' }] },
-      { "name": "F", "child": [{ cityname: 'F美国城市名1', 'statename': '华盛顿州' }, { cityname: 'F美国城市名1', 'statename': '所在州' }, { cityname: 'F美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'F美国城市名1', 'statename': '所在州' }] },
-      { "name": "G", "child": [{ cityname: 'G美国城市名1', 'statename': '华盛顿州' }, { cityname: 'G美国城市名1', 'statename': '所在州' }, { cityname: 'G美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'G美国城市名1', 'statename': '所在州' }] },
-      { "name": "H", "child": [{ cityname: 'H美国城市名1', 'statename': '华盛顿州' }, { cityname: 'H美国城市名1', 'statename': '所在州' }, { cityname: 'H美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'H美国城市名1', 'statename': '所在州' }] },
-      { "name": "I", "child": [{ cityname: 'I美国城市名1', 'statename': '华盛顿州' }, { cityname: 'I美国城市名1', 'statename': '所在州' }, { cityname: 'I美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'I美国城市名1', 'statename': '所在州' }] },
-      { "name": "J", "child": [{ cityname: 'J美国城市名1', 'statename': '华盛顿州' }, { cityname: 'J美国城市名1', 'statename': '所在州' }, { cityname: 'J美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'J美国城市名1', 'statename': '所在州' }] },
-      { "name": "K", "child": [{ cityname: 'K美国城市名1', 'statename': '华盛顿州' }, { cityname: 'K美国城市名1', 'statename': '所在州' }, { cityname: 'K美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'K美国城市名1', 'statename': '所在州' }] },
-      { "name": "M", "child": [{ cityname: 'M美国城市名1', 'statename': '华盛顿州' }, { cityname: 'M美国城市名1', 'statename': '所在州' }, { cityname: 'M美国城市名1', 'statename': '所在州' }, { cityname: '芝加哥', 'statename': '所在州' }, { cityname: 'M美国城市名1', 'statename': '所在州' }] }]
+    // countryList:[{nameCn:'美国'},{nameCn:'中国'},{nameCn:'迦南达'},{nameCn:'越南'},{nameCn:'北极'},{nameCn:'英国'},{nameCn:'新加坡'}]
   },
   onLoad() {
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res.windowWidth)
+        that.setData({
+          'windowWidth': res.windowWidth
+        })
+      }
+    })
+    var getCityByCountry = function (index, countryId) {
+      apiRequest.post('pub/homePage/country-cityList', {
+        countryId: countryId
+      }).then(function (res) {
+        countryList[index].cityList = res.data.data;
+        that.setData({
+          'countryList': countryList
+        });
+        console.log('countryList', countryList);
+      })
+    }
     apiRequest.post('pub/homePage/country', null).then(function (res) {
-      console.log('yyy');
+      console.log('country', res.data);
+      countryList = res.data.data;
+      for (var i = 0, list = res.data.data, len = list.length; i < list.length; i++) {
+        getCityByCountry(i, list[i].id);
+      }
     })
   },
   letterSelstart: function (e) {
@@ -54,5 +64,55 @@ Page({
 
 
   },
+  search: function (e) {
+    var searchContent = e.detail.value;
+    var searchResult = [];
+    if (searchContent) {
+      for (var i = 0, len = countryList.length; i < len; i++) {
+        var getResult = function (i, name) {
+          searchResult[i] = {
+            cityList: {}
+          };
+          searchResult[i].cityList[name] = [];
+          searchResult[i].nameCn = countryList[i].nameCn;
+          for (var j = 0, list = countryList[i].cityList[name], length = list.length; j < length; j++) {
+            if (list[j].nameCn.indexOf(searchContent) > -1 || list[j].nameEn.indexOf(searchContent) > -1) {
+              searchResult[i].cityList[name].push(list[j]);
+            }
+          }
+        }
+        getResult(i, 'hotCityList');
+        getResult(i, 'orderCityList');
+      }
+      this.setData({
+        'countryList': searchResult
+      })
+    } else {
+      this.setData({
+        'countryList': countryList
+      })
+    }
 
+  },
+  selectCity: function (e) {
+    var locationInfo = e.currentTarget.dataset.current.split(',');
+    wx.setStorage({
+      key: "selectLocation",
+      data: {
+        countryId: locationInfo[0],
+        countryName: locationInfo[1],
+        cityId: locationInfo[2],
+        cityName: locationInfo[3]
+      }
+    })
+    wx.getStorage({
+      key: 'selectLocation',
+      success: function (res) {
+        console.log('selectLocation', res.data);
+      }
+    })
+    wx.reLaunch({
+      url: '../index/index'
+    });
+  }
 })

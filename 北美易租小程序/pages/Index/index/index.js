@@ -1,26 +1,8 @@
 const apiRequest = require('../../../utils/apiRequest.js');
 var QQMapWX = require('../../../utils/qqmap-wx-jssdk.min.js');
 var qqmapsdk;
-import {
-  configApi
-} from '../../../utils/constant';
-var houseList = [{
-  title: 'U-District附近三层别墅',
-  isCollect: 1,
-  url: '../images/houselist1.png',
-  price: "999 USD/月",
-  type: '独栋别墅',
-  addr: 'Seattle，WA',
-  detail: '4卧 2卫浴'
-}, {
-  title: '首页房源标题2',
-  isCollect: 0,
-  url: '../images/houseno-img.png',
-  price: "2199999 USD/天",
-  type: '联排别墅',
-  addr: 'Seattle，WA',
-  detail: '3卧 1卫浴'
-}];
+import {configApi} from '../../../utils/constant';
+
 var sourseSwiperIndex;
 Page({
   data: {
@@ -34,7 +16,6 @@ Page({
     roomMate:[],
     winWidth: 0,
     winHeight: 0,
-    // tab切换
     currentTab: 0,
     curLatitude: '',
     curLongitude: '',
@@ -44,6 +25,16 @@ Page({
   onLoad() {
     wx.showLoading({
       title: '加载中',
+    })
+    var selectLocation, userLocation;
+    wx.getStorage({
+      key: 'selectLocation',
+      success: function (res) {
+        selectLocation = res.data;
+        if (selectLocation) {
+          that.setData({ 'selectLocation': selectLocation })
+        }
+      }
     })
     var that = this;
     var getLocationCallback = function (res) {
@@ -55,6 +46,17 @@ Page({
         longitude: res.data.data.longitude,
         latitude: res.data.data.latitude
       }
+      wx.setStorage({
+        key: "userLocation",
+        data: res.data.data
+      })
+      wx.getStorage({
+        key: 'userLocation',
+        success: function (res) {
+          userLocation = res.data;
+          that.setData({ 'userLocation': userLocation })
+        }
+      })
       apiRequest.post('pub/homePage/banner', params2)
         .then(function (res) {
           that.setData({
@@ -74,7 +76,8 @@ Page({
       apiRequest.post('pub/homePage/houses-resource', params)
         .then(function (res) {
           that.setData({
-            houseList: res.data.data.list
+            houseList: res.data.data.list,
+            winHeight: res.data.data.list.length * 366 + 26
           });
         })
     }
@@ -113,11 +116,9 @@ Page({
           curLatitude: res.latitude,
           curLongitude: res.longitude
         });
-        // 实例化API核心类
         qqmapsdk = new QQMapWX({
           key: configApi.QQMapWX_KEY
         });
-        //逆地址解析
         qqmapsdk.reverseGeocoder({
           location: {
             latitude: that.data.curLatitude,

@@ -1,36 +1,35 @@
 <view class="search-textcon">
-      <input class="search-text" type="text" placeholder="搜索城市名" />
+      <input class="search-text" type="text" placeholder="搜索城市名" confirm-type="search" bindconfirm="search"/>
       <icon class="serach-icon" type="search" size="18" color="#4b474c" />
 </view>
 <view class="city-tabcon">
-  <view class="tabcon-item">
-    <view class="selcity-tablist {{currentTab==1 ? 'show-tab' : ''}}" data-current="1" bindtap="selectedTab">美国</view>
-  </view>
-  <view class="tabcon-item">
-    <view class="selcity-tablist {{currentTab==2 ? 'show-tab' : ''}}" data-current="2" bindtap="selectedTab">加拿大</view>
-  </view>
+<scroll-view scroll-x="true" class="recommend_scroll_x_box">
+      <view class="tabcon-item" wx:for="{{countryList}}" wx:for-index="idx" style="width:{{countryList.length>4?windowWidth/4.5:windowWidth/countryList.length}}px">
+        <view class="selcity-tablist {{currentTab==(idx+1) ? 'show-tab' : ''}}" data-current="{{idx+1}}" bindtap="selectedTab">{{item.nameCn}}</view>
+      </view>
+ </scroll-view>
 </view>
-
-<view class="search-item {{currentTab==1 ? 'show-content' : 'hidden-content'}}">
+<view wx:for="{{countryList}}" wx:for-index="outerIdx" class="search-item {{currentTab==(outerIdx+1) ? 'show-content' : 'hidden-content'}}" >
   <scroll-view class="scroll-container">
       <scroll-view class="scroll-view" scroll-y="true" scroll-into-view="{{scrollIntoId}}">
-          <view wx:for="{{cityList}}" wx:key="city" wx:for-item="city">
-              <view class="list-typename" id="{{city.name}}">{{city.name=='AA'?'热门':city.name}}</view>
-              <view class="list-typelist" wx:for="{{city.child}}" wx:key="cityitem" wx:for-item="cityitem">{{cityitem.cityname}}<text class="text-state"> {{cityitem.statename}}</text></view>
+          <view wx:if="{{item.cityList.hotCityList.length}}" id="AA">
+              <view class="list-typename">热门城市</view>
+              <view class="list-typelist" wx:for="{{item.cityList.hotCityList}}" wx:key="city" wx:for-item="city" bindtap="selectCity" wx:for-index="idx" data-current="{{item.id+','+item.nameCn+','+city.id+','+city.nameCn}}">{{city.nameCn}}<text class="text-state"> {{city.statename}}</text></view>
           </view>
+          <view wx:for="{{item.cityList.orderCityList}}" wx:key="orderCity" wx:for-item="orderCity" wx:for-index="idx">
+              <view class="list-typename" id="{{orderCity.prefix}}" wx:if="{{item.cityList.orderCityList[idx].prefix!=item.cityList.orderCityList[idx-1].prefix}}">{{orderCity.prefix}}</view>
+              <view class="list-typelist" bindtap="selectCity" data-current="{{item.id+','+item.nameCn+','+orderCity.id+','+orderCity.nameCn}}">{{orderCity.nameCn}}<text class="text-state"> {{orderCity.statename}}</text></view>
+          </view>
+            <view style="height:600px"></view>
       </scroll-view>
       <view class="letterlist" bindtouchstart="letterSelstart">
-          <view class="letter" wx:for="{{letterlist}}" wx:key="*this" data-id="{{item}}">{{item=="AA"?'热门':item}}</view>
+          <view class="letter" wx:if="{{item.cityList.hotCityList.length}}" data-id="AA">热门</view>
+          <view class="letter" wx:for="{{item.cityList.orderCityList}}" wx:key="*this" data-id="{{orderCity.prefix}}" wx:for-item="orderCity" wx:for-index="idx" wx:if="{{item.cityList.orderCityList[idx].prefix!=item.cityList.orderCityList[idx-1].prefix}}">{{orderCity.prefix}}</view>
       </view>
+
   </scroll-view>
 </view>
-
-<view class="search-item {{currentTab==2 ? 'show-content' : 'hidden-content'}}">
-我是加拿大
-</view>
-
-
-<view class="toast-box" wx:if="{{isShowToast}}">  
+<view class="toast-box" wx:if="{{isShowToast}}">
   <view class="toast-content">
     <view class="toast-text">{{scrollIntoId=="AA"?'热门':scrollIntoId}}</view>
   </view>

@@ -43,7 +43,8 @@ page {
   height:32rpx;
 }
 .search-textcon .search-text{
-  width:430rpx;
+  min-width:400rpx;
+  max-width:430rpx;
   border:1px solid #4b474c;
   border-radius:10px;
   font-size:28rpx;
@@ -106,6 +107,7 @@ page {
 }
 .middle-imgbox swiper{
   height:340rpx;
+  width:100%;
 }
 .middle-imgbox .tab-houselist,.middle-imgbox .tab-roommate{
   margin:0;

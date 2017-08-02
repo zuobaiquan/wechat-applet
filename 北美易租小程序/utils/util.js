@@ -1,4 +1,6 @@
 var QQMapWX = require('./qqmap-wx-jssdk.min.js');
+var configApi = require('./constant.js');
+console.log(configApi);
 var qqmapsdk;
 function formatDate(date) {
   var year = date.getFullYear();
@@ -96,7 +98,7 @@ var verifyForm={
 var getAddressDetail = function (that) {
   // 实例化API核心类
   qqmapsdk = new QQMapWX({
-    key: 'PDZBZ-J6E33-Z7S37-Y24SX-K43EZ-7XF3W'
+    key: configApi.configApi.QQMapWX_KEY
   });
   //逆地址解析
   qqmapsdk.reverseGeocoder({
