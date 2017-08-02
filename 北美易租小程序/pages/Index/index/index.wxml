@@ -1,0 +1,160 @@
+<view class="container">
+  <scroll-view scroll-y="true" lower-threshold="100" bindscrolltolower="handleLoadMore" bindscrolltoupper="handleRefresh" style="height:100%;">
+    <view wx:if="{{isRefreshing}}" class="load-more">
+      <image src="../../../images/loading.gif"></image>下拉刷新
+    </view>
+    <view class="search-box">
+      <view class="search-con">
+        <text class="search-place" bindtap="selectPlace">西雅图</text>
+        <view class="search-placeicon"></view>
+      </view>
+      <view class="search-textcon">
+        <input class="search-text" bindfocus="selectKeyword" type="text" placeholder="搜索关键字，如城市或学校名等" />
+        <icon class="serach-icon" type="search" size="18" color="#4b474c" />
+      </view>
+      <image bindtap="searchMap" class="serach-righticon" src="../images/mappoint.png"></image>
+    </view>
+    <view class="middle-imgbox">
+      <swiper indicator-dots="true" autoplay="auto" circular="true" indicator-color="#dfdfdf" indicator-active-color="#f47a20" interval="5000" duration="800">
+        <swiper-item wx:for="{{swiperList}}" wx:key="$index">
+            <view wx:if="{{item.contentType ==0}}">
+              <view class="imgbox-list">
+                <view class="imgbox-textcon">
+                  <text class="img-toptext">社区</text>
+                  <text class="img-filltext">{{item.description }}</text>
+                  <text class="notice-num">有{{item.unReadCount}}条新信息</text>
+                </view>
+              </view>
+              <image src="{{'http://oshsvxlu9.bkt.clouddn.com/'+item.imageUrl}}" class="slide-image" /> 
+            </view>
+            <view wx:if="{{item.contentType ==1}}" bindtap="detailHouse" class="tab-houselist" data-houseid="{{item.house.id}}">
+              <image src="{{item.house.defaultImageUrl}}" class="tab-house" />
+              <image data-iscollect="{{item.isCancelled}}" catchtap="handelCollect" class="right-collect" src="{{item.isCancelled==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+              <view class="tab-housedetail">
+                <view class="housedetail">
+                  <text class="detail-left">{{item.house.title}}</text>
+                  <text class="detail-right"><text class="rent-ammout">{{item.house.rentAmount}}</text> {{item.house.currencyName}}/{{item.house.periodName}}</text>
+                </view>
+                <view class="housedetail">
+                  <text class="detail-left detail-spc">{{item.house.typeName}}<text class="detail-type">|</text>{{item.house.stateNameCn}}{{item.house.addressStreet}}{{item.house.addressOptional}}</text>
+                  <text class="detail-right detail-spc">{{item.house.bedroomCount}}卧 {{item.house.bathroomCount}}卫浴</text>
+                </view>
+              </view>
+            </view>
+            <view wx:if="{{item.contentType ==2}}" bindtap="detailRoom" class="tab-houselist tab-roommate" data-roomid="{{item.lookForRoommate.id}}">
+              <view class="roomate-left">
+                <image class="left-image" src="{{item.lookForRoommate.portraitUrl}}"></image>
+                <text class="left-nickname">{{item.lookForRoommate.nickname}}</text>
+                <text class="left-nickname left-reason">找室友</text>
+              </view>
+              <view class="roomate-middle">
+                <view class="middle-item">城市：<text class="detail-value">{{item.lookForRoommate.city.nameCn}}</text></view>
+                <view class="middle-item">性别：<text class="detail-value">{{item.lookForRoommate.myGender==0?"男":(item.lookForRoommate.myGender==1?"女":'男女不限')}}</text> </view>
+                <view class="middle-item">起租时间：<text class="detail-value">{{item.lookForRoommate.startDate}}</text></view>
+                <view class="middle-item">结束时间：<text class="detail-value">{{item.lookForRoommate.endDate}}</text></view>
+                <view class="middle-item">要求：<text class="detail-value">{{item.lookForRoommate.requirement}}</text></view>
+              </view>
+              <view class="roomate-right">
+                <image data-iscollect="{{item.isCancelled}}" catchtap="handelCollect"  class="right-collect" src="{{item.isCancelled==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+                <view class="right-icon"></view>
+              </view>
+            </view>
+            <view wx:if="{{item.contentType ==3}}" bindtap="detailRent" class="tab-houselist tab-roommate" data-rentid="{{item.lookForHouse.id}}">
+              <view class="roomate-left">
+                <image class="left-image" src="{{item.lookForHouse.portraitUrl}}"></image>
+                <text class="left-nickname">{{item.lookForHouse.nickname}}</text>
+                <text class="left-nickname left-reason">求租</text>
+              </view>
+              <view class="roomate-middle">
+                <view class="middle-item">城市：<text class="detail-value">{{item.lookForHouse.city.nameCn}}</text></view>
+                <view class="middle-item">租金：<text class="detail-value"> {{item.lookForHouse.rentAmount}} {{item.lookForHouse.currencyName}}/{{item.lookForHouse.periodName}}</text> </view>
+                <view class="middle-item">起租时间：<text class="detail-value">{{item.lookForHouse.startDate}}</text></view>
+                <view class="middle-item">结束时间：<text class="detail-value">{{item.lookForHouse.endDate}}</text></view>
+                <view class="middle-item">要求：<text class="detail-value">{{item.lookForHouse.requirement}}</text></view>
+              </view>
+              <view class="roomate-right">
+                <image data-iscollect="{{item.isCancelled}}" catchtap="handelCollect"  class="right-collect" src="{{item.isCancelled==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+                <view class="right-icon"></view>
+              </view>
+            </view>
+            <view wx:if="{{item.contentType ==4}}" class="contentType-img">
+              <image src="{{'http://oshsvxlu9.bkt.clouddn.com/'+item.imageUrl}}" class="slide-image" width="355" height="150" /> 
+            </view>
+            <view wx:if="{{item.contentType ==5}}" class="contentType-img">
+              <image src="{{'http://oshsvxlu9.bkt.clouddn.com/'+item.imageUrl}}" class="slide-image" width="355" height="150" /> 
+            </view>
+        </swiper-item>
+      </swiper>
+    </view>
+    <view class="swiper-tab">
+      <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">房源</view>
+      <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">求租</view>
+      <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">找室友</view>
+    </view>
+    <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight}}rpx" bindchange="bindChange">
+      <swiper-item>
+        <view bindtap="detailHouse" class="tab-houselist" wx:for="{{houseList}}" wx:key="$index" data-houseid="{{item.id}}">
+          <image src="{{item.defaultImageUrl}}" class="tab-house" />
+          <image data-iscollect="{{item.isCollected}}" catchtap="handelCollect" class="right-collect" src="{{item.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+          <view class="tab-housedetail">
+            <view class="housedetail">
+              <text class="detail-left">{{item.title}}</text>
+              <text class="detail-right"><text class="rent-ammout">{{item.rentAmount}}</text> {{item.currencyName}}/{{item.periodName}}</text>
+            </view>
+            <view class="housedetail">
+              <text class="detail-left detail-spc">{{item.typeName}}<text class="detail-type">|</text>{{item.nameCn}},{{item.stateNameCn}}</text>
+              <text class="detail-right detail-spc">{{item.bedroomCount}}卧 {{item.bathroomCount}}卫浴</text>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view bindtap="detailRent" class="tab-houselist tab-roommate" wx:for="{{rentMate}}" wx:key="$index" data-rentid="{{item.id}}">
+          <view class="roomate-left">
+            <image class="left-image" src="{{item.portraitUrl}}"></image>
+            <text class="left-nickname">{{item.nickName}}</text>
+            <text class="left-nickname left-reason">求租</text>
+          </view>
+          <view class="roomate-middle">
+            <view class="middle-item">城市：<text class="detail-value">{{item.nameCn}}</text></view>
+            <view class="middle-item">租金：<text class="detail-value">{{item.rentAmount}} {{item.currencyName}}/{{item.periodName}}</text> </view>
+            <view class="middle-item">起租时间：<text class="detail-value">{{item.startDate}}</text></view>
+            <view class="middle-item">结束时间：<text class="detail-value">{{item.endDate}}</text></view>
+            <view class="middle-item">要求：<text class="detail-value">{{item.requirement}}</text></view>
+          </view>
+          <view class="roomate-right">
+            <image data-iscollect="{{item.isCollected}}" catchtap="handelCollect"  class="right-collect" src="{{item.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+            <view class="right-icon"></view>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view bindtap="detailRoom" class="tab-houselist tab-roommate" wx:for="{{roomMate}}" wx:key="$index" data-roomid="{{item.id}}">
+          <view class="roomate-left">
+            <image class="left-image" src="{{item.portraitUrl}}"></image>
+            <text class="left-nickname">{{item.nickName}}</text>
+            <text class="left-nickname left-reason">求租</text>
+          </view>
+          <view class="roomate-middle">
+            <view class="middle-item">城市：<text class="detail-value">{{item.nameCn}}</text></view>
+            <view class="middle-item">性别：<text class="detail-value">{{item.roommateGender==0?"男":(item.roommateGender==1?"女":'保密')}}</text> </view>
+            <view class="middle-item">租金：<text class="detail-value">{{item.rentAmount}} {{item.currencyName}}/{{item.periodName}}</text></view>
+            <view class="middle-item">起租时间：<text class="detail-value">{{item.startDate}}</text></view>
+            <view class="middle-item">要求：<text class="detail-value">{{item.requirement}}</text></view>
+          </view>
+          <view class="roomate-right">
+            <image data-iscollect="{{item.isCollected}}" catchtap="handelCollect"  class="right-collect" src="{{item.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+            <view class="right-icon"></view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+    <!-- <view wx:if="{{isLoading}}" class="load-more">
+      <image src="../../../images/loading.gif"></image>上拉加载更多
+    </view> -->
+  </scroll-view>
+  <view wx:if="{{showTips}}" class="show-tips">
+    <image class="collect-right" src="../../../images/collect-right.png"></image>
+    <text class="tips-info">{{tipsInfo}}</text>
+  </view>
+</view>

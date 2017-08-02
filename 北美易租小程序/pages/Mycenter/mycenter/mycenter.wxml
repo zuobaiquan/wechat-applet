@@ -1,0 +1,102 @@
+<view class="container">
+  <view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="selectedTab">我的发布</view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="selectedTab">我的收藏</view>
+  </view>
+  <view class="search-item {{currentTab==0 ? 'show-content' : 'hidden-content'}}">
+    <view wx-if="{{chartlist.length!=0}}" class="tab-houselist" wx:for="{{chartlist}}" wx:key="{{index}}">
+         <view wx:if="{{item.type==1}}" bindtap="detailHouse" bindtouchstart="touchStart" 
+    bindtouchmove="touchMove" bindtouchend="touchEnd" data-index="{{index}}" style="{{item.txtStyle}}" class="listdel txt">
+          <image src="{{item.url}}" class="tab-house"></image>
+          <view class="tab-housedetail">
+              <view class="housedetail">
+              <text class="detail-left">{{item.title}}</text>
+              <text class="detail-right">{{item.price}}</text>
+              </view>
+              <view class="housedetail">
+              <text class="detail-left detail-spc">{{item.typename}}<text class="detail-type">|</text>{{item.addr}}</text>
+              <text class="detail-right detail-spc">{{item.detail}}</text>
+              </view>
+          </view>
+          <view class="unpublish" wx:if="{{item.status==0}}" >
+              <view class="unpublish-text">未发布</view>
+          </view>
+        </view>
+        <view data-index="{{index}}" data-listtype="{{item.type}}" bindtap="delItem" class="listdel deltext">删除</view> 
+        <view bindtap="detailRentroom" data-listtype="{{item.type}}" wx:if="{{item.type==2||item.type==3}}" bindtouchstart="touchStart" 
+    bindtouchmove="touchMove" bindtouchend="touchEnd" data-index="{{index}}" style="{{item.txtStyle}}" class="tab-houselist tab-roommate listdel txt">
+            <view class="roomate-middle">
+              <view class="middle-item">城市：<text class="detail-value">{{item.city}}</text></view>
+              <view wx:if="{{item.type==2}}" class="middle-item">性别：<text class="detail-value"> {{item.sex}}</text> </view>
+              <view class="middle-item">租金：<text class="detail-value">{{item.price}}</text></view>
+              <view class="middle-item">起租时间：<text class="detail-value">{{item.startTime}}</text></view>
+              <view wx:if="{{item.type==3}}" class="middle-item">结束时间：<text class="detail-value">{{item.endTime}}</text></view>
+              <view class="middle-item">要求：<text class="detail-value">{{item.req}}</text></view>
+            </view>
+            <view class="roomate-right">
+                <view class="right-icon"></view>
+            </view>
+            <view class="unpublish" wx:if="{{item.status==0}}">
+              <view class="unpublish-text">未发布</view>
+             </view>
+            </view>
+          </view>
+        <view class="publish-none" wx-if="{{chartlist.length==0}}">
+        您还没有发布任何消息，快点击下方的+号创建第一条消息吧！
+        </view>
+    </view>
+  <view class="search-item collect-box {{currentTab==1 ? 'show-content' : 'hidden-content'}}">
+      <view wx-if="{{rentMate.length!=0}}" wx:for="{{collectList}}" wx:key="$index">
+        <view wx:if="{{item.type==1}}" class="tab-houselist">
+          <image src="{{item.url}}" class="tab-house" />
+          <image data-iscollect="{{item.isCollect}}" catchtap="handelCollect" class="right-collect" src="/images/icon-collected.png"></image>
+          <view class="tab-housedetail">
+              <view class="housedetail">
+              <text class="detail-left">{{item.title}}</text>
+              <text class="detail-right">{{item.price}}</text>
+              </view>
+              <view class="housedetail">
+              <text class="detail-left detail-spc">{{item.typename}}<text class="detail-type">|</text>{{item.addr}}</text>
+              <text class="detail-right detail-spc">{{item.detail}}</text>
+              </view>
+          </view>
+        </view>
+        <view  wx:if="{{item.type==2}}" class="tab-houselist tab-roommate">
+            <view class="roomate-middle">
+              <view class="middle-item">城市：<text class="detail-value">{{item.city}}</text></view>
+              <view class="middle-item">性别：<text class="detail-value"> {{item.sex}}</text> </view>
+              <view class="middle-item">租金：<text class="detail-value">{{item.price}}</text></view>
+              <view class="middle-item">起租时间：<text class="detail-value">{{item.startTime}}</text></view>
+              <view class="middle-item">要求：<text class="detail-value">{{item.req}}</text></view>
+            </view>
+            <view class="roomate-right">
+                <image class="right-collect" src="/images/icon-collected.png"></image>
+                <view class="right-icon"></view>
+            </view>
+          </view>
+        </view>
+        <view class="publish-none" wx-if="{{collectList.length==0}}">
+        您还没有收藏任何消息，快去<view>首页/社区逛逛吧！</view>
+        </view>
+  </view>
+  <view wx:if="{{showTips}}" class="show-tips">
+    <image class="collect-right" src="../../../images/collect-right.png"></image>
+    <text class="tips-info">取消成功</text>
+  </view>
+  <view hidden="{{!showrentDetail}}" class="mask" bindtap="hiderentDetail"></view>
+  <view hidden="{{!showrentDetail}}" class="publish-list">
+     <view class="item" data-currenttype="1" bindtap="sendInfo">
+        <image class="item-img" src="../../Community/images/fangyuan.png"></image>
+        <view>房源</view>
+      </view>
+      <view class="item" data-currenttype="2" bindtap="sendInfo">
+        <image class="item-img" src="../../Community/images/qiuzu.png"></image>
+        <view>求租</view>
+      </view>
+      <view class="item" data-currenttype="3" bindtap="sendInfo">
+        <image class="item-img" src="../../Community/images/zhaoshiyou.png"></image>
+        <view>找室友</view>
+      </view>
+  </view>
+  <view bindtap="showrentDetail" class="publish-more"><image src="../images/addmoretag.png" class="more-tag {{showrentDetail==true?'publish-cancel':''}}">+</image></view>
+  </view>

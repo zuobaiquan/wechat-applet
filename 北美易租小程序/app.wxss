@@ -1,0 +1,398 @@
+page {
+  font-family: -apple-system-font, 'Helvetica Neue', Helvetica, 'Microsoft YaHei', sans-serif;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  /*默认字体*/
+  font-size:28rpx;
+  /*主题颜色*/
+  color:#4b474c;
+}
+input{
+ overflow: visible;
+ display:inline-block;
+ width:460rpx;
+}
+/*textarea{
+  position:static;
+  display:inline-block;
+  width:460rpx;
+}*/
+/*公共样式*/
+.container{
+  border-top:1rpx solid #DFDFDF;
+}
+
+/*遮挡层*/
+.mask{position: fixed;background: rgba(0,0,0,0.5);left: 0;top: 0;width: 100%;height:100%;z-index: 99}
+
+/*提示信息框start*/
+.show-tips{
+  position: absolute;
+  top:50%;
+  left:50%;
+  height:120rpx;
+  width:240rpx;
+  border-radius: 20rpx;
+  transform: translate(-50%,-50%);
+  background: rgba(17, 17, 17, 0.7);
+  color:#ffffff;
+  text-align: center;
+  padding:60rpx 0;
+  z-index:9999;
+}
+.show-tips .collect-right{
+  width:100rpx;
+  height:72rpx;
+}
+.show-tips .collect-error{
+  width:74rpx;
+  height:74rpx;
+}
+.show-tips .tips-info{
+  margin:20rpx 0;
+  display: block;
+  color:#ffffff;
+  font-size: 32rpx;
+}
+/*提示信息框end*/
+
+
+/* 按照字母城市排序start */
+.letterlist{
+  position: fixed;
+  top: 178rpx;
+  right: 10rpx;
+  width: 52rpx;
+  z-index: 9;
+  text-align: center;
+}
+.letterlist .letter{
+  width: 52rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+} 
+.letterlist .letter:first-child{
+  width:60rpx;
+  font-size: 24rpx;
+}
+
+.list-typelist{
+  margin:0 42rpx;
+  text-align: left;
+  height:76rpx;
+  line-height: 76rpx;
+  border-bottom:4rpx solid #dfdfdf;
+}
+.list-typename{
+  padding-left:42rpx;
+  margin-top: 20rpx;
+  background:#f6f6f6;
+  width:100%;
+  text-align: left;
+  height:74rpx;
+  line-height: 74rpx;
+}
+.list-typelist .text-state{
+  color:#dfdfdf;
+}
+/* 按照字母城市排序end */
+
+/*房源样式，求租找室友*/
+/* start */
+.tab-houselist{
+  position: relative;
+  height:340rpx;
+  margin-top:26rpx;
+}
+.tab-houselist .tab-house{
+   width:100%;
+   height:340rpx;
+}
+.tab-houselist .tab-housedetail{
+  position: absolute;
+  bottom: 0;
+  left:0;
+  height:100rpx;
+  width:100%;
+  background: rgba(255,255,255,0.5);
+}
+.tab-housedetail .housedetail{
+  margin:8rpx 24rpx;
+  font-size:32rpx;
+  color:#4b474c;
+  height:50rpx;
+  line-height: 50rpx;
+}
+.housedetail .detail-left{
+  float:left;
+  font-weight:bold;
+}
+.detail-type{
+  padding:0 8rpx;
+}
+.housedetail .detail-right{
+  float: right;
+}
+.detail-right .rent-ammout{
+  color:#F37C24;
+}
+.housedetail .detail-spc{
+  font-size:28rpx;
+  line-height: 20rpx;
+  font-weight:normal;
+}
+
+
+.tab-roommate{
+  background:#f6f6f6;
+  border-radius:8px;
+  margin:20rpx;
+}
+.tab-roommate .roomate-left{
+  width:30%;
+  height:340rpx;
+  float: left;
+  text-align: center;
+}
+.roomate-left .left-image{
+  width:120rpx;
+  height:120rpx;
+  display: block;
+  border-radius: 50%;
+  margin:0 auto;
+  margin-top:72rpx;
+  margin-bottom: 8rpx;
+}
+.roomate-left .left-nickname{
+  display: block;
+  font-size:28rpx;
+  color:#4b474c;
+}
+.roomate-left .left-reason{
+  color:#999999;
+}
+
+.tab-roommate .roomate-middle{
+  width:55%;
+  margin:72rpx 0 62rpx 0;
+  float: left;
+  color:#323232;
+}
+
+.roomate-middle .middle-item{
+  font-size:28rpx;
+  font-weight:bold;
+  text-align: left;
+  height:42rpx;
+  line-height: 42rpx;
+}
+.middle-item .detail-value{
+  font-weight:normal;
+}
+
+
+
+
+.tab-roommate .roomate-right{
+  width:15%;
+  height:340rpx;
+  float: left;
+  position: relative;
+  text-align: right;
+}
+.right-collect{
+  position: absolute;
+  top:24rpx;
+  right:24rpx;
+  width:48rpx;
+  height:46rpx;
+}
+.roomate-right .right-icon{
+  margin:160rpx 0;
+  margin-right:44rpx;
+  display: inline-block;
+  width: 20rpx;
+  height: 20rpx;
+  border: solid #999999;
+  border-width: 2rpx 2rpx 0 0;
+  -webkit-transform:rotate(45deg);
+  transform:rotate(45deg);
+}
+/*房源样式，求租找室友*/
+/* end */
+
+/*搜索框样式，start*/
+.search-textcon{
+  position:relative;
+  margin:14rpx 30rpx;
+}
+.search-textcon .serach-icon{
+  position:absolute;
+  left:16rpx;
+  top:7rpx;
+  width:34rpx;
+  height:32rpx;
+}
+.search-textcon .search-text{
+  width:90%;
+  border:1px solid #4b474c;
+  border-radius:10px;
+  font-size:28rpx;
+  color:#999999;
+  height:62rpx;
+  padding-left:60rpx;
+}
+
+/*搜索框样式，end*/
+
+
+/*tab 切换样式*/
+/*start*/
+
+.on{
+  color: #f47a20;
+  border-bottom: 6rpx solid #f47a20;
+}
+.swiper-box{
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.swiper-box view{
+  text-align: center;
+}
+/*tab 切换样式*/
+/*end*/
+
+
+/*弹框start*/
+.toast-box{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 99;
+}
+.toast-content {
+  width: 60rpx;
+  padding:20rpx;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+.toast-text {
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+}
+/*弹框end*/
+
+
+/*租金表单样式start*/
+.item-rentprice{
+  display: inline-block;
+}
+.item-rentprice .rentprice-input{
+  width:300rpx;
+}
+.item-rentprice .rentprice-type{
+  line-height: 52rpx;
+  float: right;
+}
+.item-rentprice .choose-icon{
+  margin:0 0 4rpx 18rpx;
+  display: inline-block;
+  width: 16rpx;
+  height: 16rpx;
+  border: solid #4b474c;
+  border-width: 2rpx 2rpx 0 0;
+  -webkit-transform:rotate(135deg);
+  transform:rotate(135deg);
+}
+/*租金表单样式end*/
+
+/*租金底部弹框样式start*/
+.selrent-box{
+  position: fixed;
+  left: 0;
+  bottom: 0rpx;
+  width: 100%;
+  background: #f7f7f7;
+  z-index:999999;
+  height:420rpx;
+  background: #ffffff;
+}
+.selrent-box .selconfirm-box{
+  font-size:32rpx;
+  width:100%;
+  height:80rpx;
+  border-bottom:2rpx solid #dfdfdf;
+}
+.selconfirm-box .selrent-cancel{
+  display: block;
+  float: left;
+  margin-left:60rpx;
+  height:80rpx;
+  line-height:80rpx;
+}
+.selconfirm-box .selrent-confirm{
+  display: block;
+  float: right;
+  height:80rpx;
+  line-height:80rpx;
+  margin-right:60rpx;
+  color:#09bb07;
+}
+.selrent-box .selrent-price{
+  height: 150px;
+  width: 100%;
+  text-align:center;
+  background: #ffffff;
+  margin:0 auto;
+  font-size:32rpx;
+  z-index:9999;
+}
+/*租金底部弹框样式end*/
+
+/*保存box*/
+.save-box{
+  height:auto;
+  width:100%;
+}
+.save-box .btn-box{
+  width:84%;
+  margin:0 auto;
+  height:70rpx;
+  line-height:70rpx;
+  border-radius:5px;
+  font-size:32rpx;
+  text-align: center;
+}
+.save-box .btn-save{
+  background:#dfdfdf;
+  margin-bottom:10rpx;
+  margin-top:80rpx;
+}
+.save-box .btn-send{
+  margin-bottom:64rpx;
+  background:#f47a20;
+  color:#ffffff;
+}
+.load-more{
+    font-size: 30rpx;
+    color: #999;
+    text-align: center;
+    padding: 20rpx;
+}
+.load-more image{
+    width: 50rpx;
+    height: 50rpx;
+    vertical-align: middle;
+    margin-right: 20rpx;
+    margin-top: -2rpx;
+}

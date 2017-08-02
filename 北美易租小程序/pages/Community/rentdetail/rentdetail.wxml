@@ -1,0 +1,63 @@
+<!--rentdetail.wxml-->
+<view class="container">
+  <!-- <view class="save-lookimg" wx:if="{{islook}}">
+    <text class="save-tip">是否生成图片保存到相册？</text>
+    <text class="save-img" bindtap="captureSave">一键生成</text>
+  </view> -->
+  <view class="publish-top">
+    <view class="top-con">
+      <image class="publish-avator" src="{{rentDatail.portraitUrl}}"></image>
+      <text>{{rentDatail.nickname}} 发布于{{updateTime}}</text>
+      <view class="publish-right">
+        <text>浏览次数{{rentDatail.viewCount}}</text>
+        <image class="rightcollect" src="{{rentDatail.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+      </view>
+    </view>
+  </view>
+  <view class="detail-item">
+       <text class="item-name">城市</text>
+       <text class="item-res">{{rentDatail.nameCn}}</text> 
+  </view>
+  <view wx:if="{{detailType==3}}" class="detail-item">
+       <text class="item-name">我的性别</text>
+       <text class="item-res">{{rentDatail.myGender==0?"男":(rentDatail.myGender==1?"女":'保密')}}</text> 
+  </view>
+  <view wx:if="{{detailType==3}}" class="detail-item">
+       <text class="item-name">室友性别</text>
+       <text class="item-res">{{rentDatail.roommateGender==0?"男":(rentDatail.roommateGender==1?"女":'男女不限')}}</text> 
+  </view>
+  <view class="detail-item">
+       <text class="item-name">租金</text>
+       <text class="item-res">{{rentDatail.rentAmount}} {{rentDatail.currencyName}}/{{rentDatail.periodName}}</text> 
+  </view>
+  <view class="detail-item">
+       <text class="item-name">起租时间</text>
+       <text class="item-res">{{rentDatail.startDate}}</text> 
+  </view>
+  <view wx:if="{{detailType!=3}}" class="detail-item">
+       <text class="item-name">结束时间</text>
+       <text class="item-res">{{rentDatail.endDate}}</text> 
+  </view>
+  <view class="detail-item">
+       <text class="item-name">要求</text>
+       <text class="item-res">{{rentDatail.requirement==null?'无':rentDatail.requirement}}</text> 
+  </view>
+  <view class="contract-box" wx:if="{{showContract}}">
+    <view class="detail-item">
+        <view class="extrl-contract">联系方式</view>
+        <text class="item-name">邮箱</text>
+        <text class="item-res">{{rentDatail.contactEmail==null?'无':rentDatail.contactEmail}}</text> 
+    </view>
+    <view class="detail-item">
+        <text class="item-name">其他联系方式</text>
+        <text class="item-res">{{rentDatail.contactOther==null?'无':rentDatail.contactOther}}</text> 
+  </view>      
+  </view>
+  <view wx:if="{{!showContract}}" class="detail-bottom">
+      <view class="btn-phone" bindtap="getContract">获取联系方式</view>
+  </view>
+  <view wx:if="{{!islook}}" bindtap="onShareAppMessage" class="detail-share" style="position:fixed;bottom:{{bottomlen}};right:30rpx;">
+      <image class="share-img" src="../images/detail-share.png"></image>
+      <view class="btn-share">转发分享</view>
+  </view>
+</view>

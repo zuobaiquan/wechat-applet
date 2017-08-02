@@ -1,0 +1,41 @@
+<view class="container">
+  <view class="person-top {{!isBindmail?'isbind-mail':''}}">
+     <image class="top-left" src="../images/person-avatar.png"></image>
+     <view class="top-right">
+        <text class="person-name">易租客xxxxx</text>
+        <view class="person-info">完善个人资料</view>
+     </view>
+     <view class="top-center">
+        <view class="bindmail-text">为了让我们更好地为您服务，请您</view><view>先绑定邮箱喔。</view>
+        <text class="bind-box" bindtap="bindEmail">绑定邮箱</text>
+     </view>
+  </view>
+  <view class="person-list">
+     <view class="list-item" wx:if="{{isBindmail}}">
+        <text>修改密码</text>
+        <image class="item-img item-rimg1" src="../images/resetpass.png"></image>
+     </view>
+     <view class="list-item" bindtap="feedBack">
+        <text>意见反馈</text>
+        <image class="item-img item-rimg2" src="../images/advicereq.png"></image>
+     </view>
+     <view class="list-item">
+        <text>关于我们</text>
+        <image class="item-img item-rimg3" src="../images/aboutus.png"></image>
+     </view>
+     <view class="list-item">
+        <text>服务协议</text>
+        <image class="item-img item-rimg4" src="../images/protocol.png"></image>
+     </view>
+  </view>
+  <view class="contract-box">
+     <view class="contract-content">
+       <view class="content-button">
+          <contact-button  type="default-light" size="20" session-from="weapp">
+          </contact-button>
+       </view>
+        
+      <text class="contract-text">联系客服</text>
+     </view>
+  </view>
+</view>

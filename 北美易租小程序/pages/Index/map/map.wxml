@@ -1,0 +1,24 @@
+
+<view class="container">
+  <view class="search-textcon">
+      <input class="search-text" bindinput="changeText" value="{{searchcon}}" type="text" placeholder="搜索关键字，如城市或学校名等" />
+      <icon class="serach-icon" type="search" size="18" color="#4b474c" />
+      <view class="search-list" bindtap="cancelSearch">列表</view>
+  </view>
+  <map id="yzwMap" scale="{{scale}}" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" bindcallouttap="markertap" style="height:{{windowHeight}}px" bindmarkertap="markertap" />
+
+  <view wx:if="{{showhouseInfo}}" wx:for="{{houseList}}" wx:key="{{$index}}" class="tab-houselist" wx:if="{{item.id==houseId}}">
+    <view class="hidden-arrow" bindtap="hiddenHouse"></view>
+    <image src="{{item.url}}" class="tab-house" />
+    <view class="tab-housedetail">
+        <view class="housedetail">
+        <text class="detail-left">{{item.title}}</text>
+        <text class="detail-right">{{item.price}}</text>
+        </view>
+        <view class="housedetail">
+        <text class="detail-left detail-spc">{{item.addr}}</text>
+        <text class="detail-right detail-spc">{{item.detail}}</text>
+        </view>
+    </view>
+    </view>
+</view>

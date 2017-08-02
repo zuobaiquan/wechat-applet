@@ -1,0 +1,114 @@
+<view class="container">
+  <view class="deatil-top">
+      <text class="deatil-title">华盛顿大学</text>
+      <text class="{{isAttend==false ? 'deatil-attend' : 'deatil-noattend'}}" bindtap="changeAttend" data-state="{{isAttend}}">{{attendText}}</text>
+  </view>
+  
+  <scroll-view scroll-y style="margin-bottom:{{noticeBottom}}rpx">
+  <view wx:for="{{chartlist}}" wx:for-item="item" wx:key="$index">
+     <view wx:if="{{item.type==1}}" class="itemtype1">
+        <view class="item-imgcon">
+          <navigator hover-stay-time='0' url="../person/person"><image class="item-avator" src="{{item.avator}}"></image></navigator>
+        </view>
+        <view class="item-content">
+            <view class="item-nickname">{{item.nickname}}<text class="item-slot">●</text>求租</view>
+            <view class="rent-content" data-type="1" bindtap="detailRent">
+                <view class="rent-left">
+                  <view class="left-con">城市：<text class="left-condatail">{{item.city}}</text></view>
+                  <view class="left-con">租金：<text class="left-condatail">{{item.price}}</text></view>
+                  <view class="left-con">起租时间：<text class="left-condatail">{{item.start}}</text></view>
+                  <view class="left-con">结束时间：<text class="left-condatail">{{item.end}}</text></view>
+                  <view class="left-con">要求：<text class="left-condatail">{{item.req}}</text></view>
+                </view>
+                <view class="rent-right">
+                    <image class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+                    <view class="right-icon"></view>
+                </view>
+            </view>
+        </view>
+     </view>
+     <view wx:if="{{item.type==2}}" class="itemtype2">
+        <view class="item-imgcon">
+          <navigator hover-stay-time='0' url="../person/person"><image class="item-avator" src="{{item.avator}}"></image></navigator>
+        </view>
+        <view class="item-content">
+            <view class="item-nickname">{{item.nickname}}<text class="item-slot">●</text>房源</view>
+            <view class="rent-content typelist2">
+                  <image style="width:546rpx;" class="type-renthouse" src="{{item.url}}"></image>
+                  <image class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+                  <view class="collect-bottom">
+                      <view class="housedetail">
+                        <text class="detail-left">{{item.typename}}</text>
+                        <text class="detail-right">{{item.price}}</text>
+                      </view>
+                      <view class="housedetail">
+                        <text class="detail-left detail-spc">{{item.addr}}</text>
+                        <text class="detail-right detail-spc">{{item.detail}}</text>
+                      </view>
+                  </view>
+            </view>
+        </view>
+     </view>
+     <view wx:if="{{item.type==3}}" class="itemtype3">
+        <view class="item-imgcon">
+          <navigator hover-stay-time='0' url="../person/person"><image class="item-avator" src="{{item.avator}}"></image></navigator>
+        </view>
+        <view class="item-content">
+            <view class="item-nickname">{{item.nickname}}<text class="item-slot">●</text>找室友</view>
+            <view class="rent-content" data-type="3" bindtap="detailRent">
+                <view class="rent-left">
+                  <view class="left-con">城市：<text class="left-condatail">{{item.city}}</text></view>
+                  <view class="left-con">性别：<text class="left-condatail">{{item.sex}}</text></view>
+                  <view class="left-con">租金：<text class="left-condatail">{{item.price}}</text></view>
+                  <view class="left-con">开始时间：<text class="left-condatail">{{item.start}}</text></view>
+                  <view class="left-con">要求：<text class="left-condatail">{{item.req}}</text></view>
+                </view>
+                <view class="rent-right">
+                    <image class="right-collect" src="{{item.isCollect==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+                    <view class="right-icon"></view>
+                </view>
+            </view>
+        </view>
+     </view>
+     <view wx:if="{{item.type==4}}" class="itemtype4">
+        <view class="item-imgcon">
+          <navigator hover-stay-time='0' url="../person/person"><image class="item-avator" src="{{item.avator}}"></image></navigator>
+        </view>
+        <view class="item-content">
+            <view class="item-nickname">{{item.nickname}}</view>
+            <view class="text-content">{{item.text}}</view>
+        </view>
+     </view>
+  </view>
+  </scroll-view>
+  <view wx:if="{{!showmore}}" class="sendmes-box">
+      <input class="sendmes-text" type="text" />
+      <text class="send-confirm">发送</text>
+      <image bindtap="sendMore" class="send-more" src="../images/send-more.png"></image>
+  </view>
+  <view wx:if="{{showmore}}" class="sendmore-box">
+    <view class="sendmore-con">
+        <input class="sendmes-text" type="text" />
+        <text class="send-confirm">发送</text>
+        <image bindtap="hideMore" class="send-more" src="../images/send-more.png"></image>
+    </view>
+    <view class="more-itemlist">
+        <view class="item" data-currenttype="1" bindtap="sendInfo">
+          <image class="item-img" src="../images/fangyuan.png"></image>
+          <view>房源</view>
+        </view>
+        <view class="item" data-currenttype="2" bindtap="sendInfo">
+          <image class="item-img" src="../images/qiuzu.png"></image>
+          <view>求租</view>
+        </view>
+        <view class="item" data-currenttype="3" bindtap="sendInfo">
+          <image class="item-img" src="../images/zhaoshiyou.png"></image>
+          <view>找室友</view>
+        </view>
+        <view class="item" bindtap="sendImginfo">
+          <image class="item-img" src="../images/tupian.png"></image>
+          <view>图片</view>
+        </view>
+    </view>  
+  </view>
+</view>

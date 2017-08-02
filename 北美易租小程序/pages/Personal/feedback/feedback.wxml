@@ -1,0 +1,7 @@
+<view class="container">
+    <view class="feedback-tips">欢迎您提出宝贵意见和建议，我们会用心对待，并用于改善我们的产品。</view> 
+    <textarea class="item4-input" bindblur="bindTextAreaBlur" placeholder="请输入您的问题和建议" />
+    <view class="save-box feedback-save">
+      <view class="btn-box btn-send" bindtap="saveResult">提交</view>
+    </view>
+  </view>

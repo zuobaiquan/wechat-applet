@@ -1,0 +1,19 @@
+{
+  "name": "weapp-demo",
+  "version": "0.1.0",
+  "description": "A demo",
+  "main": "app.js",
+  "scripts": {
+    "generate:page": "./generate page",
+    "generate:component": "./generate component"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "weapp"
+  ],
+  "author": "zuobaiquan",
+  "license": ""
+}
