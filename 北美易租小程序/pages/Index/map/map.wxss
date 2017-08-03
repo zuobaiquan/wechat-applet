@@ -10,13 +10,13 @@
   height:32rpx;
 }
 .search-textcon .search-text{
-  width:80%;
+  width:92%;
   border:1px solid #4b474c;
   border-radius:10px;
   font-size:28rpx;
   color:#4b474c;
   height:62rpx;
-  padding-left:60rpx;
+  margin: 0 auto;
 }
 .search-list{
   position:absolute;
@@ -52,4 +52,21 @@ map{
 .tab-housedetail .housedetail {
   padding:0;
   margin:6rpx 24rpx 0;
+}
+.map-right{
+    top:78rpx;
+}
+.shequ{
+    display: inline-block;
+    width: 80rpx;
+    height: 38rpx;
+    text-align: center;
+    line-height: 38rpx;
+    background: #f47a20;
+    color: #fff;
+    font-size: 24rpx;
+    border-radius: 20rpx;
+    margin-left: -4rpx;
+    margin-right: 10rpx;
+    margin-top: -3rpx;
 }

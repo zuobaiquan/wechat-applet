@@ -102,7 +102,9 @@ Page({
         countryId: locationInfo[0],
         countryName: locationInfo[1],
         cityId: locationInfo[2],
-        cityName: locationInfo[3]
+        cityName: locationInfo[3],
+        longitude: locationInfo[4],
+        latitude: locationInfo[5]
       }
     })
     wx.getStorage({

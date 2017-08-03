@@ -1,6 +1,7 @@
 {
   "pages": [
     
+    "pages/Community/selcommunity/selcommunity",
     "pages/Index/index/index",
     "pages/Index/map/map",
     "pages/Index/selcity/selcity",
@@ -12,7 +13,7 @@
     "pages/Community/addroommate/addroommate",
     "pages/Community/roomlist/roomlist",
     "pages/Community/houstlist/houstlist",
-    "pages/Community/selcommunity/selcommunity",
+    
     "pages/Mycenter/addhouseimg/addhouseimg",
     "pages/Mycenter/housedetail/housedetail",
     "pages/Mycenter/mycenter/mycenter",

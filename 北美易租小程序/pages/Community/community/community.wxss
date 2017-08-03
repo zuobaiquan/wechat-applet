@@ -71,7 +71,7 @@
   color:#999999;
 }
 .tab-myattention .attention-middle{
-  width:62%;
+  width:50%;
   float: left;
   color:#323232;
 }
@@ -92,17 +92,15 @@
   color:#999999;
 }
 .tab-myattention .attention-right{
-  width:20%;
+  width:32%;
   float: left;
   text-align: right;
 }
-
 .attention-right .attention-num{
   font-size:24rpx;
   color:#999999;
   margin-top:40rpx;
 }
-
 .no-attention{
   margin-left:42rpx;
   height:100rpx;

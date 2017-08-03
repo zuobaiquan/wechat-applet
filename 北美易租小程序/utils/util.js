@@ -12,28 +12,31 @@ function formatDate(date) {
 }
 function pubTime(ftime){
   ftime = ftime + '';
-  var nowDate = new Date();
-  var nowyear = nowDate.getFullYear();
-  var nowmonth = nowDate.getMonth() + 1;
-  var nowday = nowDate.getDate();
-  var nowhour = nowDate.getHours();
-  var arrtime = ftime.split("-");
-  var ayear = parseInt(ftime.substr(0, 4));
-  var amonth = parseInt(ftime.substr(5, 2));
-  var aday = parseInt(ftime.substr(8, 2));
-  var ahour = parseInt(ftime.substr(11, 2));
+  var nowDate = new Date(),
+      nowyear = nowDate.getFullYear(),
+      nowmonth = nowDate.getMonth() + 1,
+      nowday = nowDate.getDate(),
+      nowhour = nowDate.getHours(),
+      arrtime = ftime.split("-"),
+      ayear = parseInt(ftime.substr(0, 4)),
+      amonth = parseInt(ftime.substr(5, 2)),
+      aday = parseInt(ftime.substr(8, 2)),
+      ahour = parseInt(ftime.substr(11, 2));
   if ((ayear !== nowyear)) {
-    return (nowyear - ayear) + '年前';
+    return ftime;
   }
   if ((ayear == nowyear) && (nowmonth !== amonth)) {
-    return (nowmonth-  amonth) + '个月前';
+    return ftime;
   }
   if ((ayear == nowyear) && (nowday !== aday)) {
+    if (nowday - aday>15){
+      return ftime;
+    }
     return (nowday - aday) + '天前';
   }
   if ((nowmonth == amonth) && (nowday == aday)) {
     if (nowhour == ahour) {
-      return '1小时内'
+      return '刚刚'
     }
     else {
       return (nowhour - ahour) + '小时前';
@@ -41,6 +44,15 @@ function pubTime(ftime){
   }
   else {
     return ftime;
+  }
+}
+function handelStr(str,num){
+  str+="";
+  if (str.length > num){
+    return str.substr(0,num)+"...";
+  }
+  else{
+    return str;
   }
 }
 var verifyForm={
@@ -140,4 +152,4 @@ function hideIdcard(idcard) {
   return idcard.replace(idcard.substr(6, 8), "******");
 }
 
-module.exports = { formatDate, pubTime, verifyForm, hideIdcard, getAddressDetail }
+module.exports = { formatDate, pubTime, handelStr, verifyForm, hideIdcard, getAddressDetail }

@@ -17,6 +17,8 @@ page {
 }
 .search-con{
   float: left;
+  width:160rpx;
+  text-align: center;
 }
 
 .search-box .search-placeicon{
@@ -43,8 +45,8 @@ page {
   height:32rpx;
 }
 .search-textcon .search-text{
-  min-width:400rpx;
-  max-width:430rpx;
+  min-width:395rpx;
+  width:400rpx;
   border:1px solid #4b474c;
   border-radius:10px;
   font-size:28rpx;

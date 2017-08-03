@@ -71,7 +71,7 @@ input{
   width: 52rpx;
   height: 38rpx;
   line-height: 38rpx;
-} 
+}
 .letterlist .letter:first-child{
   width:60rpx;
   font-size: 24rpx;
@@ -115,7 +115,7 @@ input{
   left:0;
   height:100rpx;
   width:100%;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.75);
 }
 .tab-housedetail .housedetail{
   margin:8rpx 24rpx;
@@ -394,5 +394,4 @@ input{
     height: 50rpx;
     vertical-align: middle;
     margin-right: 20rpx;
-    margin-top: -2rpx;
 }

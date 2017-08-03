@@ -4,21 +4,21 @@
 </view>
 <view class="city-tabcon">
 <scroll-view scroll-x="true" class="recommend_scroll_x_box">
-      <view class="tabcon-item" wx:for="{{countryList}}" wx:for-index="idx" style="width:{{countryList.length>4?windowWidth/4.5:windowWidth/countryList.length}}px">
+      <view class="tabcon-item" wx:for="{{countryList}}" wx:for-index="idx" wx:key="$index" style="width:{{countryList.length>4?windowWidth/4.5:windowWidth/countryList.length}}px">
         <view class="selcity-tablist {{currentTab==(idx+1) ? 'show-tab' : ''}}" data-current="{{idx+1}}" bindtap="selectedTab">{{item.nameCn}}</view>
       </view>
  </scroll-view>
 </view>
-<view wx:for="{{countryList}}" wx:for-index="outerIdx" class="search-item {{currentTab==(outerIdx+1) ? 'show-content' : 'hidden-content'}}" >
+<view wx:for="{{countryList}}" wx:for-index="outerIdx" wx:key="$index" class="search-item {{currentTab==(outerIdx+1) ? 'show-content' : 'hidden-content'}}" >
   <scroll-view class="scroll-container">
       <scroll-view class="scroll-view" scroll-y="true" scroll-into-view="{{scrollIntoId}}">
           <view wx:if="{{item.cityList.hotCityList.length}}" id="AA">
               <view class="list-typename">热门城市</view>
-              <view class="list-typelist" wx:for="{{item.cityList.hotCityList}}" wx:key="city" wx:for-item="city" bindtap="selectCity" wx:for-index="idx" data-current="{{item.id+','+item.nameCn+','+city.id+','+city.nameCn}}">{{city.nameCn}}<text class="text-state"> {{city.statename}}</text></view>
+              <view class="list-typelist" wx:for="{{item.cityList.hotCityList}}" wx:key="city" wx:for-item="city" bindtap="selectCity" wx:for-index="idx" data-current="{{item.id+','+item.nameCn+','+city.id+','+city.nameCn+','+city.longitude+','+city.latitude}}">{{city.nameCn}}<text class="text-state"> {{city.statename}}</text></view>
           </view>
           <view wx:for="{{item.cityList.orderCityList}}" wx:key="orderCity" wx:for-item="orderCity" wx:for-index="idx">
               <view class="list-typename" id="{{orderCity.prefix}}" wx:if="{{item.cityList.orderCityList[idx].prefix!=item.cityList.orderCityList[idx-1].prefix}}">{{orderCity.prefix}}</view>
-              <view class="list-typelist" bindtap="selectCity" data-current="{{item.id+','+item.nameCn+','+orderCity.id+','+orderCity.nameCn}}">{{orderCity.nameCn}}<text class="text-state"> {{orderCity.statename}}</text></view>
+              <view class="list-typelist" bindtap="selectCity" data-current="{{item.id+','+item.nameCn+','+orderCity.id+','+orderCity.nameCn+','+orderCity.longitude+','+orderCity.latitude}}">{{orderCity.nameCn}}<text class="text-state"> {{orderCity.statename}}</text></view>
           </view>
             <view style="height:600px"></view>
       </scroll-view>

@@ -5,7 +5,7 @@
     </view>
     <view class="search-box">
       <view class="search-con">
-        <text class="search-place" bindtap="selectPlace">{{selectLocation.cityName||userLocation.nameCn}}</text>
+        <text class="search-place" bindtap="selectPlace">{{showCurcity}}</text>
         <view class="search-placeicon"></view>
       </view>
       <view class="search-textcon">
@@ -21,7 +21,7 @@
               <view class="imgbox-list">
                 <view class="imgbox-textcon">
                   <text class="img-toptext">社区</text>
-                  <text class="img-filltext">{{item.description }}</text>
+                  <text class="img-filltext">{{item.communityNameCn }}</text>
                   <text class="notice-num">有{{item.unReadCount}}条新信息</text>
                 </view>
               </view>

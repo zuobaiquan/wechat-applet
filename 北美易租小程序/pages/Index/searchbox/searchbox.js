@@ -1,92 +1,160 @@
-
-const wechat = require('../../../utils/wechat.js')
-
+const apiRequest = require('../../../utils/apiRequest.js');
 Page({
   data: {
-    winWidth: 0,
-    winHeight: 0,
-    //社区
     communityListlen:0,
-    // 房源
     houseListlen:0,
-    //求租
     rentMatelen: 0,
-    //找室友
-    roomMatelen:0,
-    // tab切换  
+    roomMatelen:0, 
     currentTab:2,
-    communityList:['西雅图','华盛顿大学','其他相关社区'],
-    // communityList: [],
-    // houseList: [{ title: 'U-District附近三层别墅',isCollect:1, url: '../../images/index/houselist1.png', price: "999 USD/月", type: '独栋别墅', addr: 'Seattle，WA', detail: '4卧 2卫浴' }, { title: '首页房源标题2',isCollect:1, url: '../../images/index/houseno-img.png', price: "2199999 USD/天", type: '联排别墅', addr: 'Seattle，WA', detail: '3卧 1卫浴' }],
+    communityList:[],
     houseList:[],
-    rentMate: [{ url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', isCollect: 1, nickname: '小明', city: '西雅图', price: '1000 USD/月', startTime: '2017-06-01', endTime: '2018-06-01', req: '没有任何要求' }, { url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', isCollect: 0, nickname: '大明', city: '西雅图22', price: '1200 USD/月', startTime: '2017-06-12', endTime: '2018-06-18', req: '有任何要求' }],
-    // rentMate:[],
-    roomMate: [{ url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', isCollect: 1, nickname: '小明', city: '西雅图', sex: '本人女,希望室友性别女', price: '1000 USD/月', startTime: '2017-06-01', req: '我喜欢猫的，希望x喜欢猫' }, { url: 'http://p1.qzone.la/Upload/20160402/20160402165345391387.gif', isCollect: 1, nickname: '大明', city: '西雅图22', sex: '本人男,希望室友性别男', price: '1200 USD/月', startTime: '2017-06-12', endTime: '2018-06-18', req: '有任何要求' }],
-    // roomMate: []
+    rentMate: [],
+    roomMate: [],
+    searchcon:'',
+    curLocation:{}
   },
   onLoad() {
-    communityListlen
-    var communityListlen = this.data.communityList.length;
-    var houseListlen = this.data.houseList.length;
-    var rentMatelen = this.data.rentMate.length;
-    var roomMatelen = this.data.roomMate.length;
-    var that = this;
-    console.log("houseListlen",houseListlen);
-    that.setData({
-      winWidth: 400,
-      winHeight: 400,
-      communityListlen: communityListlen,
-      houseListlen:houseListlen,
-      rentMatelen: rentMatelen,
-      roomMatelen: roomMatelen,
-    });
+    wx.showLoading({
+      title: '数据加载中',
+    })
+    var _that = this;
+    wx.getStorage({
+      key: 'userLocation',
+      success: function (res) {
+        _that.setData({ 'curLocation': res.data });
+        //数据全部加载，防止第一次切换闪屏
+        _that.getHourselist(1, 5, _that);
+        _that.getCommunity(1, 5, _that);
+        _that.getRentlist(1, 5, _that);
+        _that.getRoommatelist(1, 5, _that);
+        wx.hideLoading()
+      }
+    })
     
   },
-  bindChange: function (e) {
-    var that = this;
-    that.setData({ currentTab: e.detail.current });
-  },
-  swichNav: function (e) {
-    var that = this;
-    if (this.data.currentTab === e.target.dataset.current) {
-      return false;
-    } else {
-      that.setData({
-        currentTab: e.target.dataset.current
-      })
+  getCommunity(page, size, _that) {
+    const params1 = {
+      research: _that.data.searchcon,
+      page:page,
+      size:size
     }
+    apiRequest.post('pub/community/community-list', params1 )
+      .then(function (res) {
+        _that.setData({
+          communityList: res.data.data.list,
+          communityListlen: res.data.data.list.length
+        });
+      })
   },
+  getHourselist(page, size, _that) {
+    let params2 = {
+      cityId: "",
+      research: _that.data.searchcon,
+      latitude: "",
+      longitude: "",
+      page: page,
+      size: size
+    }
+    apiRequest.post('pub/homePage/houses-resource', params2)
+      .then(function (res) {
+        _that.setData({
+          houseList: res.data.data.list,
+          houseListlen: res.data.data.list.length
+        });
+      })
+  },
+  getRentlist(page, size, _that) {
+    let params3 = {
+      cityId: "",
+      research: _that.data.searchcon,
+      page: page,
+      size: size
+    }
+    apiRequest.post('pub/homePage/soliciting', params3)
+      .then(function (res) {
+        _that.setData({
+          rentMate: res.data.data.list,
+          rentMatelen: res.data.data.list.length
+        });
+      })
+  },
+  getRoommatelist(page, size, _that) {
+    let params4 = {
+      cityId:"",
+      research: _that.data.searchcon,
+      page: page,
+      size: size
+    }
+    apiRequest.post('pub/homePage/richmod-list', params4)
+      .then(function (res) {
+        _that.setData({
+          roomMate: res.data.data.list,
+          roomMatelen: res.data.data.list.length
+        });
+      })
+  },
+  
   changeText:function(e){
-    this.setData({
+    var _that=this;
+    _that.setData({
       searchcon: e.detail.value
     });
+    const index = parseInt(_that.data.currentTab);
+    _that.curTablist(index, _that);
+  },
+  curTablist(curtab, _that) {
+    switch (curtab) {
+      case 1:
+        _that.getCommunity(1, 5, _that); break;
+      case 2:
+        _that.getHourselist(1, 5, _that); break;
+      case 3:
+        _that.getRentlist(1, 5, _that); break;
+      case 4:
+        _that.getRoommatelist(1, 5, _that); break;
+    }
+  },
+  selectedTab: function (e) {
+    const index = parseInt(e.currentTarget.dataset.current);
+    var _that = this;
+    if (_that.data.currentTab === index) {
+      return false;
+    } else {
+      _that.setData({
+        currentTab: index
+      })
+    }
+    _that.curTablist(index, _that);
   },
   clearText:function(e){
     this.setData({
       searchcon: ""
     });
+    this.curTablist(this.data.currentTab, this);
   },
   cancelSearch:function(e){
-    console.log(2222);
     wx.reLaunch({
       url: '../index/index'
     })
   },
-  selectedTab: function (e) {
-    var index = e.currentTarget.dataset.current;
-    var that = this;
-    if (this.data.currentTab === index) {
-      return false;
-    } else {
-      that.setData({
-        currentTab: index
-      })
-    }
-    
-    
+  detailHouse(e) {
+    var houseId = e.currentTarget.dataset.houseid;
+    wx.navigateTo({
+      url: `../../Mycenter/housedetail/housedetail?houseId=${houseId}`
+    })
   },
-
-
+  detailRent(e) {
+    var rentId = e.currentTarget.dataset.rentid;
+    wx.navigateTo({
+      url: `../../Community/rentdetail/rentdetail?type=2&look=false&rentId=${rentId}`
+    })
+  },
+  detailRoom(e) {
+    var roomId = e.currentTarget.dataset.roomid;
+    wx.navigateTo({
+      url: `../../Community/rentdetail/rentdetail?type=3&look=false&roomId=${roomId}`
+    })
+  },
 })
 
 
