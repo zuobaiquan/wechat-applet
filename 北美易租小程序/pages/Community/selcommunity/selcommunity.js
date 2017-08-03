@@ -2,15 +2,13 @@
 //获取应用实例
 const apiRequest = require('../../../utils/apiRequest.js');
 var app = getApp()
-
+var cityList=[], schoolList=[];
 Page({
   data: {
     currentTab: 0,
     isShowToast: false,
     letterlist: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
-    scrollIntoId: 'A',
-    cityList: [],
-    schoolList:[]
+    scrollIntoId: 'A'
   },
 
   onLoad(options) {
@@ -67,8 +65,8 @@ Page({
           wx.hideLoading()
         })
     }
-    getCommunityData(1, 100, that.data.cityList,0);
-    getCommunityData(1, 100, that.data.schoolList,1);
+    getCommunityData(1, 100, cityList,0);
+    getCommunityData(1, 100, schoolList,1);
   },
   letterSelstart: function (e) {
     var letter = e.target.dataset.id
@@ -102,30 +100,50 @@ Page({
       child:[]
     }];
     searchResult.shift();
-    if (searchContent) {
-      for (var i = 0, len = that.data.cityList.length; i < len; i++) {
-        console.log(that.data.cityList[i]);
-        searchResult.push({
-          name:that.data.cityList[i].name
-        });
-        var tempdata = that.data.cityList[i].child;
-        for (var j = 0; j < tempdata.length;j++){
-          if (tempdata[j].cityname.indexOf(searchContent) > -1 || tempdata[j].cityname_en.indexOf(searchContent) > -1) {
-            searchResult[i].child.push({
-              cityname: tempdata[j].nameCn,
-              picture: tempdata[j].portraitUrl
-            });
+    if (searchContent!="") {
+      var getsearchRes = function (tablist) {
+        for (var i = 0, len = tablist.length; i < len; i++) {
+          var getResult = function (i) {
+            searchResult[i] = {
+              child: []
+            };
+            searchResult[i].name = tablist[i].name;
+            var tempdata = tablist[i].child;
+            for (var j = 0; j < tempdata.length; j++) {
+              if (tempdata[j].cityname.indexOf(searchContent) > -1 || tempdata[j].cityname_en.indexOf(searchContent) > -1) {
+                searchResult[i].child.push({
+                  cityname: tempdata[j].cityname,
+                  picture: tempdata[j].picture
+                });
+              }
+            }
           }
-        }  
-        
+          getResult(i);
+        }
+        return searchResult;
       }
-      this.setData({
-        'cityList': searchResult
-      })
+      console.log(that.data.currentTab);
+      if(that.data.currentTab==0){
+        this.setData({
+          cityList: getsearchRes(cityList)
+        })
+      }
+      if(that.data.currentTab == 1) {
+        this.setData({
+          schoolList: getsearchRes(schoolList)
+        })
+      }
     } else {
-      this.setData({
-        'cityList': that.data.cityList
-      })
+      if (this.data.currentTab == 0) {
+        this.setData({
+          cityList: cityList
+        })
+      }
+      if (this.data.currentTab == 1) {
+        this.setData({
+          schoolList: schoolList
+        })
+      }
     }
 
   },

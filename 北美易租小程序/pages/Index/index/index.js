@@ -30,6 +30,7 @@ Page({
     var selectLocation, userLocation;
 
     var that = this;
+
     var getLocationCallback = function (res) {
       that.setData({
         cityId: res.data.data.id
@@ -230,9 +231,6 @@ Page({
             getRoommatelist(1, 5, that);
             wx.hideLoading()
           })
-      },
-      complete() {
-
       }
     })
 

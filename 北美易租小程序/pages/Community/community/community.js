@@ -1,12 +1,11 @@
 const apiRequest = require('../../../utils/apiRequest.js');
+const APP = getApp();
 Page({
   data: {
     issearch:false,
     attentionlen:0,
     interestlen:0,
     searchList: [],
-    myattentionList: [{ islook: 1, name: '华盛顿大学社区', noticeNum: 199, attentionNum: 2 }, { islook: 0, name: '社区名', noticeNum: 199, attentionNum: 993 }, { islook: 0, name: '社区名3', noticeNum: 169, attentionNum: 67 }],
-    // myattentionList:[],
     myinterestList:[]
   },
 
@@ -14,7 +13,6 @@ Page({
     wx.showLoading({
       title: '数据加载中',
     })
-    var attentionlen = this.data.myattentionList.length;
     var interestlen = this.data.myinterestList.length;
     var that = this;
     wx.getStorage({
@@ -34,6 +32,10 @@ Page({
             wx.hideLoading()
           })
       }
+    })
+    apiRequest.postByToken('api/community/follow-list',null,APP.globalData.token).then(function(res){
+        console.log('follow-list',res);
+        that.setData({'myattentionList':res.data.data.list})
     })
   },
   selCommunity:function(e){
@@ -64,5 +66,5 @@ Page({
       url: '../communitydetail/communitydetail'
     });
   }
-  
+
 })

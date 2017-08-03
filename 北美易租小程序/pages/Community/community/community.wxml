@@ -28,15 +28,15 @@
       <image  class="tabcon-img" src="../images/allschool.png"></image>
       <text class="city-tablist">所有学校</text>
     </view>
-    <view class="white-space"></view> 
+    <view class="white-space"></view>
   </view>
 
   <view class="community-tabcon">
     <view class="community-top">
        <text class="top-title">我关注的社区</text>
     </view>
-    <view wx:if="{{attentionlen==0}}" class="no-attention">您还没有关注任何社区</view>
-    <view wx:if="{{attentionLen!=0}}" class="tab-myattention" wx:for="{{myattentionList}}" wx:key="$index" bindtap="listDetail">
+    <view wx:if="{{myattentionList.length==0}}" class="no-attention">您还没有关注任何社区</view>
+    <view wx:if="{{myattentionList.length!=0}}" class="tab-myattention" wx:for="{{myattentionList}}" wx:key="$index" bindtap="listDetail">
             <view class="attention-left">
                 <image class="left-image" src="../images/community-icon.png"></image>
                 <text wx-if="{{item.islook==0}}" class="attention-look"></text>
@@ -49,8 +49,8 @@
                 <view class="attention-num">{{item.attentionNum}}人关注</view>
             </view>
      </view>
-     <view class="attention-more">更多…</view>
-    <view class="white-space"></view> 
+     <view class="attention-more" wx:if="{{myattentionList.length!=0}}">更多…</view>
+    <view class="white-space"></view>
   </view>
 
   <view class="community-tabcon">
@@ -72,5 +72,5 @@
     </view>
    </view>
   </view>
-  
+
 </view>
