@@ -1,1 +1,20 @@
+ <!-- <template name="rentHouse" data="{{...item}}">
+    <view class="roomate-left">
+      <image class="left-image" src="{{item.portraitUrl}}"></image>
+      <text class="left-nickname">{{item.nickName}}</text>
+      <text class="left-nickname left-reason">求租</text>
+    </view>
+    <view class="roomate-middle">
+      <view class="middle-item">城市：<text class="detail-value">{{item.nameCn}}</text></view>
+      <view class="middle-item">租金：<text class="detail-value">{{item.rentAmount}} {{item.currencyName}}/{{item.periodName}}</text> </view>
+      <view class="middle-item">起租时间：<text class="detail-value">{{item.startDate}}</text></view>
+      <view class="middle-item">结束时间：<text class="detail-value">{{item.endDate}}</text></view>
+      <view class="middle-item">要求：<text class="detail-value">{{item.requirement}}</text></view>
+    </view>
+    <view class="roomate-right">
+      <image data-type="1" data-id="{{item.id}}" data-iscollect="{{item.isCollected}}" catchtap="handelCollect"  class="right-collect" src="{{item.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+      <view class="right-icon"></view>
 
+    </view>
+  </view>
+</template>  -->

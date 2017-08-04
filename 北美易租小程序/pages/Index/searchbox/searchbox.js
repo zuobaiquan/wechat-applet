@@ -108,7 +108,15 @@ Page({
   },
   clearText:function(e){
     this.setData({
-      searchcon: ""
+      searchcon: "",
+      communityListlen: -1,
+      houseListlen: -1,
+      rentMatelen: -1,
+      roomMatelen: -1,
+      communityList: [],
+      houseList: [],
+      rentMate: [],
+      roomMate: []
     });
   },
   cancelSearch:function(e){

@@ -2,7 +2,7 @@
 //获取应用实例
 const apiRequest = require('../../../utils/apiRequest.js');
 var app = getApp()
-var cityList=[], schoolList=[];
+var cityList = [], schoolList = [],getCommunityData;
 Page({
   data: {
     currentTab: 0,
@@ -20,7 +20,7 @@ Page({
     })
     
     var that=this;
-    var getCommunityData = function (page,size,listdata,currentTab){
+    getCommunityData = function (page,size,listdata,currentTab){
       let params = {
         type: currentTab,
         page: 1,
@@ -29,29 +29,32 @@ Page({
       apiRequest.post('pub/community/getCommunityListWithType', params)
         .then(function (res) {
           var resCommnunity = res.data.data.list;
-          resCommnunity.forEach((itemres) => {
-            var flag = true;
-            listdata.forEach((itemcity, j) => {
-              if (itemcity.name == itemres.prefix) {
-                flag = false;
-                listdata[j].child.push({
-                  cityname: itemres.nameCn,
-                  cityname_en: itemres.nameEn,
-                  picture: itemres.portraitUrl
+          if (listdata.length===0){
+            resCommnunity.forEach((itemres) => {
+              var flag = true;
+              listdata.forEach((itemcity, j) => {
+                if (itemcity.name == itemres.prefix) {
+                  flag = false;
+                  listdata[j].child.push({
+                    cityname: itemres.nameCn,
+                    cityname_en: itemres.nameEn,
+                    picture: itemres.portraitUrl
+                  });
+                }
+              })
+              if (flag) {
+                listdata.push({
+                  name: itemres.prefix,
+                  child: [{
+                    cityname: itemres.nameCn,
+                    cityname_en: itemres.nameEn,
+                    picture: itemres.portraitUrl
+                  }]
                 });
               }
             })
-            if (flag) {
-              listdata.push({
-                name: itemres.prefix,
-                child: [{
-                  cityname: itemres.nameCn,
-                  cityname_en: itemres.nameEn,
-                  picture: itemres.portraitUrl
-                }]
-              });
-            }
-          })
+          }
+          
           if (currentTab==0){
             that.setData({
               cityList: listdata
@@ -122,7 +125,6 @@ Page({
         }
         return searchResult;
       }
-      console.log(that.data.currentTab);
       if(that.data.currentTab==0){
         this.setData({
           cityList: getsearchRes(cityList)

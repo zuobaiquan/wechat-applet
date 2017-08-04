@@ -104,7 +104,7 @@
 
 
 <template name="emptyData">
-  <view class="empty-desc">没有在{{currentTab==1?"社区":(currentTab==2?"房源":(currentTab==3?"求租":"找室友"))}}中搜索搜搜到“{{searchcon}}”相关信息</view>
+  <view class="empty-desc">没有在{{currentTab==1?"社区":(currentTab==2?"房源":(currentTab==3?"求租":"找室友"))}}中搜索到“{{searchcon}}”相关信息</view>
     <view>你可以尝试：</view>
     <view class="empty-desclist">
       <view class="empty-desc">●<text class="list-text">搜索英文城市名，或其他译名</text></view>
