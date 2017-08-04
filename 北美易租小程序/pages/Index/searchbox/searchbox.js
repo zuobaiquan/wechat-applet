@@ -48,10 +48,7 @@ Page({
   },
   getHourselist(page, size, _that) {
     let params2 = {
-      cityId: "",
       research: _that.data.searchcon,
-      latitude: "",
-      longitude: "",
       page: page,
       size: size
     }
@@ -65,7 +62,6 @@ Page({
   },
   getRentlist(page, size, _that) {
     let params3 = {
-      cityId: "",
       research: _that.data.searchcon,
       page: page,
       size: size
@@ -80,7 +76,6 @@ Page({
   },
   getRoommatelist(page, size, _that) {
     let params4 = {
-      cityId:"",
       research: _that.data.searchcon,
       page: page,
       size: size

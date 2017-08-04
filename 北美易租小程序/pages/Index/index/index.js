@@ -1,7 +1,6 @@
 const apiRequest = require('../../../utils/apiRequest.js');
 const util = require('../../../utils/util.js');
 const APP = getApp();
-console.log(1111,APP);
 var QQMapWX = require('../../../utils/qqmap-wx-jssdk.min.js');
 var qqmapsdk;
 import { configApi } from '../../../utils/constant';
@@ -114,7 +113,6 @@ Page({
         success: function (res) {
           params = {
             cityId: res.data.cityId,
-            research: '',
             latitude: res.data.latitude,
             longitude: res.data.longitude,
             page: page,
@@ -126,7 +124,6 @@ Page({
         fail:function(err){
           params = {
             cityId: _that.data.cityId,
-            research: '',
             latitude: _that.data.curLatitude,
             longitude: _that.data.curLongitude,
             page: page,
@@ -166,7 +163,6 @@ Page({
         success: function (res) {
           params = {
             cityId: res.data.cityId,
-            research: '',
             page: page,
             size: size
           }
@@ -175,7 +171,6 @@ Page({
         fail: function (err) {
           params = {
             cityId: _that.data.cityId,
-            research: '',
             page: page,
             size: size
           }
@@ -213,7 +208,6 @@ Page({
         success: function (res) {
           params = {
             cityId: res.data.cityId,
-            research: '',
             page: page,
             size: size
           }
@@ -222,7 +216,6 @@ Page({
         fail: function (err) {
           params = {
             cityId: _that.data.cityId,
-            research: '',
             page: page,
             size: size
           }
@@ -265,7 +258,6 @@ Page({
               })
           }
         })
-
       },
       fail: function (err) {
         apiRequest.post('pub/homePage/getDefaultCity', {})
@@ -330,12 +322,7 @@ Page({
               showTips: true,
               tipsInfo: _tips,
             });
-            setTimeout(function () {
-              _that.setData({
-                showTips: false,
-              });
-            }, 1000)
-            if (typeTag==0){
+            if (typeTag == 0) {
               getHourselist(1, 10, _that);
             }
             if (typeTag == 1) {
@@ -344,6 +331,11 @@ Page({
             if (typeTag == 2) {
               getRoommatelist(1, 10, _that);
             }
+            setTimeout(function () {
+              _that.setData({
+                showTips: false,
+              });
+            }, 1000)
           })
       },fail:function(){
         wx.openSetting({

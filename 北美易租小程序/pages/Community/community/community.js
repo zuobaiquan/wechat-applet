@@ -33,10 +33,19 @@ Page({
           })
       }
     })
-    apiRequest.postByToken('api/community/follow-list',null,APP.globalData.token).then(function(res){
-        console.log('follow-list',res);
-        that.setData({'myattentionList':res.data.data.list})
+    //获取全局变量这里重启会无效，报错,修改为getStorage获取token
+    wx.getStorage({
+      key: 'yzw-token',
+      success: function (res) {
+        apiRequest.postByToken('api/community/follow-list', null, res.data).then(function (res) {
+          that.setData({ 'myattentionList': res.data.data.list })
+        })
+      },
+      fail: function () {
+        // 
+      }
     })
+    
   },
   selCommunity:function(e){
     var index = e.currentTarget.dataset.current;

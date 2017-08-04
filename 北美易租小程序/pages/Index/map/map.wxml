@@ -1,7 +1,12 @@
 <view class="container">
     <view class="search-textcon">
-        <input class="search-text" type="text" placeholder="搜索关键字，如城市或学校名等" confirm-type="search" bindconfirm="search"/>
+        <input class="search-text" type="text" placeholder="搜索关键字，如城市或学校名等" confirm-type="search" bindconfirm="search" bindfocus="showHistory" bindblur="hideHistory"/>
         <icon class="serach-icon" type="search" size="18" color="#4b474c" />
+        <view class="search-list" bindtap="cancelSearch">取消</view>
+    </view>
+    <view class="map-tip" wx:if="{{historyShow}}">
+        <view class="cur-location" bindtap="curGo"><image src="../images/Triangle.png"></image>当前位置</view>
+        <view wx:for="{{searchHistory}}">{{item}}</view>
     </view>
     <map id="yzwMap" scale="{{scale}}" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" bindcallouttap="markertap" style="height:{{windowHeight}}px" bindmarkertap="markertap" />
 

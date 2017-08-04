@@ -1,5 +1,5 @@
 const apiRequest = require('../../../utils/apiRequest.js');
-var userLocation, curLocation, selectLocation, param, location = {};
+var userLocation, curLocation, selectLocation, param, location = {},mapSearchHistroy=[];
 var reqestToMap = function(that) {
     apiRequest.post('pub/map/getInfoByMap', param).then(function(res) {
         var list = res.data.data;
@@ -190,6 +190,56 @@ Page({
         var searchContent = e.detail.value;
         param.search = searchContent;
         var that = this;
+        var setHistroy=function(data){
+            that.setData({'searchHistory':data});
+            wx.setStorage({
+              key: "mapSearchHistroy",
+              data:data
+            })
+        }
+        if(searchContent){
+            wx.getStorage({
+                key:'mapSearchHistroy',
+                success:function(res){
+                    mapSearchHistroy=res.data;
+                    if(mapSearchHistroy.length>4){
+                        mapSearchHistroy=mapSearchHistroy.slice(0,4);
+                    }
+                    mapSearchHistroy=[searchContent].concat(mapSearchHistroy);
+                    setHistroy(mapSearchHistroy);
+                },
+                fail:function(res){
+                    mapSearchHistroy=[searchContent];
+                    setHistroy(mapSearchHistroy);
+                }
+            })
+        }
+
+        this.hideHistory();
+        reqestToMap(that);
+    },
+    showHistory:function(e){
+        var that=this;
+        this.setData({'historyShow':true});
+        wx.getStorage({
+            key:'mapSearchHistroy',
+            success:function(res){
+                mapSearchHistroy=res.data;
+                that.setData({'searchHistory':mapSearchHistroy});
+            }
+        })
+        console.log('showHistory');
+    },
+    hideHistory:function(e){
+        this.setData({'historyShow':false});
+        console.log('hideHistory');
+    },
+    cancelSearch:function(e){
+        wx.navigateBack();
+    },
+    curGo:function(e){
+        var that=this;
+        param.search = '';
         reqestToMap(that);
     }
 })
