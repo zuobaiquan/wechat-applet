@@ -88,14 +88,13 @@ map {
 .map-tip {
     position: absolute;
     left: 0;
-    top: 80rpx;
+    top: 82rpx;
     width: 100%;
     z-index: 99999;
-    background: white;
+    background: #ffffff;
 }
 
 .map-tip view {
-    color: green;
     height: 48rpx;
     margin: 20rpx;
     border-bottom: 1px solid #e8e8e8;

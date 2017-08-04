@@ -88,10 +88,10 @@ Page({
         wx.getStorage({
           key: 'yzw-token',
           success: function (res) {
-            console.log(res.data);
+            //console.log(res.data);
             apiRequest.postByToken('api/homePage/houses-resource', params, res.data)
               .then(function (res) {
-                that.setData({
+                _that.setData({
                   houseList: res.data.data.list,
                   winHeight: res.data.data.list.length * 366 + 26
                 });
@@ -100,7 +100,7 @@ Page({
           fail: function () {
             apiRequest.post('pub/homePage/houses-resource', params)
               .then(function (res) {
-                that.setData({
+                _that.setData({
                   houseList: res.data.data.list,
                   winHeight: res.data.data.list.length * 366 + 26
                 });
@@ -119,7 +119,6 @@ Page({
             size: size
           }
           getHouseDataByToken();
-          
         },
         fail:function(err){
           params = {
@@ -141,7 +140,7 @@ Page({
           success: function (res) {
             apiRequest.postByToken('api/homePage/soliciting', params, res.data)
               .then(function (res) {
-                that.setData({
+                _that.setData({
                   rentMate: res.data.data.list,
                   winHeight: res.data.data.list.length * 366 + 26
                 });
@@ -150,7 +149,7 @@ Page({
           fail: function () {
             apiRequest.post('pub/homePage/soliciting', params)
               .then(function (res) {
-                that.setData({
+                _that.setData({
                   rentMate: res.data.data.list,
                   winHeight: res.data.data.list.length * 366 + 26
                 });
@@ -186,7 +185,7 @@ Page({
           success: function (res) {
             apiRequest.postByToken('api/homePage/richmod-list', params, res.data)
               .then(function (res) {
-                that.setData({
+                _that.setData({
                   roomMate: res.data.data.list,
                   winHeight: res.data.data.list.length * 366 + 26
                 });
@@ -195,7 +194,7 @@ Page({
           fail: function () {
             apiRequest.post('pub/homePage/richmod-list', params)
               .then(function (res) {
-                that.setData({
+                _that.setData({
                   roomMate: res.data.data.list,
                   winHeight: res.data.data.list.length * 366 + 26
                 });
@@ -251,9 +250,9 @@ Page({
             apiRequest.post('pub/homePage/local-city', params1)
               .then(function (res) {
                 getLocationCallback(res);
-                getHourselist(1, 5, that);
                 getRentlist(1, 5, that);
                 getRoommatelist(1, 5, that);
+                getHourselist(1, 5, that);
                 wx.hideLoading()
               })
           }
@@ -263,18 +262,13 @@ Page({
         apiRequest.post('pub/homePage/getDefaultCity', {})
           .then(function (res) {
             getLocationCallback(res);
-            getHourselist(1, 5, that);
             getRentlist(1, 5, that);
             getRoommatelist(1, 5, that);
+            getHourselist(1, 5, that);
             wx.hideLoading()
           })
       }
     })
-
-    that.setData({
-      winWidth: '100%',
-      winHeight: that.data.houseList.length * 366 + 26
-    });
   },
   bindChange: function (e) {
     var that = this;
@@ -345,8 +339,6 @@ Page({
         })
       }
     })
-    
-    
   },
   selectPlace: function () {
     wx.navigateTo({
