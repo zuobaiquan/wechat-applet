@@ -15,14 +15,29 @@ Page({
   onLoad(options) {
     var _that=this;
     if (options.hasOwnProperty('houseId')) {
-      apiRequest.post('pub/homePage/houses-detail', { housesId: options.houseId})
-        .then(function (res) {
-          _that.setData({
-            houseDatail: res.data.data,
-            updateTime: util.pubTime(res.data.data.updateTime)
-          });
-          console.log(1111, _that.data.houseDatail);
-        })
+      wx.getStorage({
+        key: 'yzw-token',
+        success: function (res) {
+          //console.log(res.data);
+          apiRequest.postByToken('api/homePage/houses-detail', { housesId: options.houseId }, res.data)
+            .then(function (res) {
+              _that.setData({
+                houseDatail: res.data.data,
+                updateTime: util.pubTime(res.data.data.updateTime)
+              });
+            })
+        },
+        fail: function () {
+          apiRequest.post('pub/homePage/houses-detail', { housesId: options.houseId })
+            .then(function (res) {
+              _that.setData({
+                houseDatail: res.data.data,
+                updateTime: util.pubTime(res.data.data.updateTime)
+              });
+            })
+        }
+      })
+      
     }
     if (options.hasOwnProperty('look')) {
       this.setData({

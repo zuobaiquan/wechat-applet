@@ -1,3 +1,4 @@
+<import src="../../common/indexlist.wxml"/>
 <view class="container">
   <scroll-view scroll-y="true" lower-threshold="100" bindscrolltolower="handleLoadMore" bindscrolltoupper="handleRefresh" style="height:100%;">
     <view wx:if="{{isRefreshing}}" class="load-more">
@@ -110,7 +111,8 @@
       </swiper-item>
       <swiper-item>
         <view bindtap="detailRent" class="tab-houselist tab-roommate" wx:for="{{rentMate}}" wx:key="$index" data-rentid="{{item.id}}">
-          <view class="roomate-left">
+          <template is="rentHouse" data="{{item}}"/>
+          <!-- <view class="roomate-left">
             <image class="left-image" src="{{item.portraitUrl}}"></image>
             <text class="left-nickname">{{item.nickName}}</text>
             <text class="left-nickname left-reason">求租</text>
@@ -125,7 +127,7 @@
           <view class="roomate-right">
             <image data-type="1" data-id="{{item.id}}" data-iscollect="{{item.isCollected}}" catchtap="handelCollect"  class="right-collect" src="{{item.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
             <view class="right-icon"></view>
-          </view>
+          </view> -->
         </view>
       </swiper-item>
       <swiper-item>

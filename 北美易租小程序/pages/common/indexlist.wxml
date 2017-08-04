@@ -1,4 +1,4 @@
- <!-- <template name="rentHouse" data="{{...item}}">
+  <template name="rentHouse" data="{{item}}">
     <view class="roomate-left">
       <image class="left-image" src="{{item.portraitUrl}}"></image>
       <text class="left-nickname">{{item.nickName}}</text>
@@ -16,5 +16,4 @@
       <view class="right-icon"></view>
 
     </view>
-  </view>
-</template>  -->
+</template>  

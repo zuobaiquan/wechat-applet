@@ -64,12 +64,28 @@ Page({
           }
         }
       })
-      apiRequest.post('pub/homePage/banner', params2)
-        .then(function (res) {
-          that.setData({
-            swiperList: res.data.data
-          });
-        })
+      wx.getStorage({
+        key: 'yzw-token',
+        success: function (res) {
+          apiRequest.postByToken('api/homePage/banner', params2, res.data)
+            .then(function (res) {
+              that.setData({
+                swiperList: res.data.data
+              });
+            })
+        },
+        fail: function () {
+          apiRequest.post('pub/homePage/banner', params2)
+            .then(function (res) {
+              that.setData({
+                swiperList: res.data.data
+              });
+            })
+        }
+      })
+
+
+      
     }
     wx.getStorage({
       key: 'selectLocation',
@@ -335,6 +351,7 @@ Page({
         wx.openSetting({
           success: (res) => {
             APP.globalData.setUserToken();
+            _that.onLoad();
           }
         })
       }

@@ -10,8 +10,8 @@
       <image class="publish-avator" src="{{houseDatail.user.portraitUrl}}"></image>
       <text>{{houseDatail.user.nickName}} 发布于{{updateTime}}</text>
       <view class="publish-right">
-        <text>浏览次数{{rentDatail.viewCount}}</text>
-        <image class="rightcollect" src="/images/icon-collect.png"></image>
+        <text>浏览次数{{houseDatail.viewCount}}</text>
+        <image class="rightcollect" src="{{houseDatail.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
       </view>
     </view>
     <view class="house-info">
