@@ -1,6 +1,5 @@
 var QQMapWX = require('./qqmap-wx-jssdk.min.js');
 var configApi = require('./constant.js');
-console.log(configApi);
 var qqmapsdk;
 function formatDate(date) {
   var year = date.getFullYear();
