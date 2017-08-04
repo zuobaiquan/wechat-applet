@@ -1,10 +1,10 @@
 const apiRequest = require('../../../utils/apiRequest.js');
 Page({
   data: {
-    communityListlen:0,
-    houseListlen:0,
-    rentMatelen: 0,
-    roomMatelen:0, 
+    communityListlen: -1,
+    houseListlen:-1,
+    rentMatelen: -1,
+    roomMatelen: -1,
     currentTab:2,
     communityList:[],
     houseList:[],
@@ -14,23 +14,6 @@ Page({
     curLocation:{}
   },
   onLoad() {
-    wx.showLoading({
-      title: '数据加载中',
-    })
-    var _that = this;
-    wx.getStorage({
-      key: 'userLocation',
-      success: function (res) {
-        _that.setData({ 'curLocation': res.data });
-        //数据全部加载，防止第一次切换闪屏
-        _that.getHourselist(1, 5, _that);
-        _that.getCommunity(1, 5, _that);
-        _that.getRentlist(1, 5, _that);
-        _that.getRoommatelist(1, 5, _that);
-        wx.hideLoading()
-      }
-    })
-    
   },
   getCommunity(page, size, _that) {
     const params1 = {
@@ -119,13 +102,14 @@ Page({
         currentTab: index
       })
     }
-    _that.curTablist(index, _that);
+    if (_that.data.searchcon!=""){
+      this.curTablist(this.data.currentTab, this);
+    }
   },
   clearText:function(e){
     this.setData({
       searchcon: ""
     });
-    this.curTablist(this.data.currentTab, this);
   },
   cancelSearch:function(e){
     wx.reLaunch({
