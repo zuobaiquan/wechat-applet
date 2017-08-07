@@ -38,8 +38,10 @@
 }
 
 map {
-    width: 100%;
-    top: 10rpx;
+  position:relative;
+  width: 100%;
+  top: 10rpx;
+  z-index:1;
 }
 
 .hidden-arrow {
@@ -90,7 +92,7 @@ map {
     left: 0;
     top: 82rpx;
     width: 100%;
-    z-index: 99999;
+    z-index: 999;
     background: #ffffff;
 }
 
@@ -122,4 +124,32 @@ map {
     position: absolute;
     left: 30rpx;
     top:0;
+}
+.show-tips{
+  position: absolute;
+  top:50%;
+  left:50%;
+  height:120rpx;
+  width:240rpx;
+  border-radius: 20rpx;
+  transform: translate(-50%,-50%);
+  background: rgba(17, 17, 17, 0.7);
+  color:#ffffff;
+  text-align: center;
+  padding:60rpx 0;
+  z-index:9999;
+}
+.show-tips .collect-right{
+  width:100rpx;
+  height:72rpx;
+}
+.show-tips .collect-error{
+  width:74rpx;
+  height:74rpx;
+}
+.show-tips .tips-info{
+  margin:20rpx 0;
+  display: block;
+  color:#ffffff;
+  font-size: 32rpx;
 }

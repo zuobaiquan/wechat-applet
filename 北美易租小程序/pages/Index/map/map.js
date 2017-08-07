@@ -1,31 +1,67 @@
 const apiRequest = require('../../../utils/apiRequest.js');
 var userLocation, curLocation, selectLocation, param, location = {},mapSearchHistroy=[];
+const APP = getApp();
 var reqestToMap = function(that) {
-    apiRequest.post('pub/map/getInfoByMap', param).then(function(res) {
+  wx.getStorage({
+    key: 'yzw-token',
+    success: function (res) {
+      //console.log(res.data);
+      apiRequest.postByToken('api/map/getInfoByMap', param, res.data).then(function (res) {
         var list = res.data.data;
         for (var i = 0, len = list.length; i < len; i++) {
-            list[i].index = i;
-            if (list[i].type) {
-                list[i].iconPath = list[i].portraitUrl;
-            }
-            list[i].callout = {
-                content: list[i].type ? list[i].communityNameCn : list[i].symbol + list[i].rentAmount,
-                bgColor: that.data.markersBg,
-                color: that.data.calloutColor,
-                padding: 10,
-                fontSize: '13',
-                borderRadius: 5,
-                display: 'ALWAYS'
-            }
+          list[i].index = i;
+          if (list[i].type) {
+            //list[i].iconPath = list[i].portraitUrl;
+          }
+          list[i].callout = {
+            content: list[i].type ? list[i].communityNameCn : list[i].symbol + list[i].rentAmount,
+            bgColor: that.data.markersBg,
+            color: that.data.calloutColor,
+            padding: 10,
+            fontSize: '13',
+            borderRadius: 5,
+            display: 'ALWAYS'
+          }
         }
         that.setData({
-            'markers': list
+          'markers': list
         });
         console.log('markers', list);
-    })
+      })
+    },
+    fail: function () {
+      apiRequest.post('pub/map/getInfoByMap', param).then(function (res) {
+        var list = res.data.data;
+        for (var i = 0, len = list.length; i < len; i++) {
+          list[i].index = i;
+          if (list[i].type) {
+            //list[i].iconPath = list[i].portraitUrl;
+          }
+          list[i].callout = {
+            content: list[i].type ? list[i].communityNameCn : list[i].symbol + list[i].rentAmount,
+            bgColor: that.data.markersBg,
+            color: that.data.calloutColor,
+            padding: 10,
+            fontSize: '13',
+            borderRadius: 5,
+            display: 'ALWAYS'
+          }
+        }
+        that.setData({
+          'markers': list
+        });
+        console.log('markers', list);
+      })
+    }
+  })
+
+
+    
 }
 Page({
     data: {
+        showTips: false,
+        tipsInfo: '收藏成功',
         latitude: '',
         longitude: '',
         scale: 8,
@@ -48,7 +84,6 @@ Page({
 
     onLoad() {
         var that = this;
-        console.log('ppppp+++++');
         if (wx.getSystemInfoSync().SDKVersion.slice(0, 3) < 1.2) {
             wx.showModal({
                 title: '提示',
@@ -126,11 +161,7 @@ Page({
 
 
     },
-    onShow: function() {
-        // 1.创建地图上下文，移动当前位置到地图中心
-        this.mapCtx = wx.createMapContext("yzwMap");
-        this.mapCtx.moveToLocation()
-    },
+    
     markertap: function(e) {
         var that = this;
         for (let x of that.data.markers) {
@@ -148,7 +179,7 @@ Page({
             success: function(res) {
                 that.setData({
                     showhouseInfo: true,
-                    'windowHeight': res.windowHeight * 0.6,
+                    windowHeight: res.windowHeight * 0.6,
                 });
 
             }
@@ -205,8 +236,17 @@ Page({
                     if(mapSearchHistroy.length>4){
                         mapSearchHistroy=mapSearchHistroy.slice(0,4);
                     }
-                    mapSearchHistroy=[searchContent].concat(mapSearchHistroy);
-                    setHistroy(mapSearchHistroy);
+                    var flag=false;
+                    //过滤掉搜索历史相同的关键字
+                    mapSearchHistroy.map((item,index)=>{
+                      if (item === searchContent){
+                        flag = true;
+                      }
+                    })
+                    if (!flag){
+                       mapSearchHistroy=[searchContent].concat(mapSearchHistroy);
+                       setHistroy(mapSearchHistroy);
+                    }
                 },
                 fail:function(res){
                     mapSearchHistroy=[searchContent];
@@ -217,6 +257,71 @@ Page({
 
         this.hideHistory();
         reqestToMap(that);
+    },
+    //收藏和取消收藏
+    handelCollect(e) {
+      var _that = this;
+      const collectTag = parseInt(e.target.dataset.iscollect),
+        idTag = parseInt(e.target.dataset.id),
+        //0：房源，1：社区
+        typeTag = parseInt(e.target.dataset.type);
+      console.log(111,collectTag, idTag, typeTag);
+      
+      var _tips, params;
+      collectTag == 0 ? _tips = '收藏成功' : _tips = '取消成功';
+      wx.getStorage({
+        key: 'yzw-token',
+        success: function (res) {
+          if (typeTag==0){
+            params = {
+              contentType: typeTag,
+              contentId: idTag,
+              collectionFlag: collectTag == 0 ? 1 : 0
+            }
+            apiRequest.postByToken('api/account/collection/collection', params, res.data)
+              .then(function (res) {
+                _that.setData({
+                  showTips: true,
+                  tipsInfo: _tips,
+                });
+                setTimeout(function () {
+                  _that.setData({
+                    showTips: false,
+                  });
+                }, 2000)
+                console.log(87654321, res, _that.data.showTips);
+              })
+          }
+          if (typeTag == 1) {
+            params = {
+              communityId: idTag,
+              followFlag: collectTag
+            }
+            apiRequest.postByToken('api/community/follow', params , res.data)
+              .then(function (res) {
+                console.log(12345678, res, this.data.showTips);
+                _that.setData({
+                  showTips: true,
+                  tipsInfo: _tips,
+                });
+                console.log(122222, res, this.data.showTips);
+                setTimeout(function () {
+                  _that.setData({
+                    showTips: false,
+                  });
+                }, 1000)
+              })
+          }
+          
+        }, fail: function () {
+          wx.openSetting({
+            success: (res) => {
+              APP.globalData.setUserToken();
+              _that.onLoad();
+            }
+          })
+        }
+      })
     },
     showHistory:function(e){
         var that=this;

@@ -27,11 +27,9 @@ Page({
         that.setData({
           'countryList': countryList
         });
-        console.log('countryList', countryList);
       })
     }
     apiRequest.post('pub/homePage/country', null).then(function (res) {
-      console.log('country', res.data);
       countryList = res.data.data;
       for (var i = 0, list = res.data.data, len = list.length; i < list.length; i++) {
         getCityByCountry(i, list[i].id);
@@ -110,11 +108,11 @@ Page({
     wx.getStorage({
       key: 'selectLocation',
       success: function (res) {
-        console.log('selectLocation', res.data);
+        wx.reLaunch({
+          url: '../index/index?seltype=1'
+        });
       }
     })
-    wx.reLaunch({
-      url: '../index/index'
-    });
+    
   }
 })

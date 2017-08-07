@@ -23,8 +23,7 @@ Page({
     cityId: 0,
     showCurcity: ''
   },
-
-  onLoad() {
+  onLoad(options) {
     wx.showLoading({
       title: '数据加载中',
     })
@@ -83,9 +82,6 @@ Page({
             })
         }
       })
-
-
-      
     }
     wx.getStorage({
       key: 'selectLocation',
@@ -238,53 +234,76 @@ Page({
         }
       })
     }
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        that.setData({
-          curLatitude: res.latitude,
-          curLongitude: res.longitude
-        });
-        wx.setStorage({
+    if (options.hasOwnProperty('seltype')) {
+      wx.getStorage({
+        key: 'selectLocation',
+        success: function (res) {
+          let params1 = {
+            countryName: res.data.countryName,
+            latitude: res.data.latitude,
+            longitude: res.data.longitude
+          }
+          apiRequest.post('pub/homePage/local-city', params1)
+            .then(function (res) {
+              getLocationCallback(res);
+              getRentlist(1, 5, that);
+              getRoommatelist(1, 5, that);
+              getHourselist(1, 5, that);
+              wx.hideLoading()
+            })
+        }
+      })
+    }
+    else{
+      wx.getLocation({
+        type: 'wgs84',
+        success: function (res) {
+          that.setData({
+            curLatitude: res.latitude,
+            curLongitude: res.longitude
+          });
+          wx.setStorage({
             key: "curLocation",
             data: res
-        })
-        qqmapsdk = new QQMapWX({
-          key: configApi.QQMapWX_KEY
-        });
-        qqmapsdk.reverseGeocoder({
-          location: {
-            latitude: that.data.curLatitude,
-            longitude: that.data.curLongitude
-          },
-          success: function (res) {
-            let params1 = {
-              countryName: res.result.address_component.nation,
+          })
+          qqmapsdk = new QQMapWX({
+            key: configApi.QQMapWX_KEY
+          });
+          qqmapsdk.reverseGeocoder({
+            location: {
               latitude: that.data.curLatitude,
               longitude: that.data.curLongitude
+            },
+            success: function (res) {
+              let params1 = {
+                countryName: res.result.address_component.nation,
+                latitude: that.data.curLatitude,
+                longitude: that.data.curLongitude
+              }
+              apiRequest.post('pub/homePage/local-city', params1)
+                .then(function (res) {
+                  getLocationCallback(res);
+                  getRentlist(1, 5, that);
+                  getRoommatelist(1, 5, that);
+                  getHourselist(1, 5, that);
+                  wx.hideLoading()
+                })
             }
-            apiRequest.post('pub/homePage/local-city', params1)
-              .then(function (res) {
-                getLocationCallback(res);
-                getRentlist(1, 5, that);
-                getRoommatelist(1, 5, that);
-                getHourselist(1, 5, that);
-                wx.hideLoading()
-              })
-          }
-        })
-      },
-      fail: function (err) {
-        apiRequest.post('pub/homePage/getDefaultCity', {})
-          .then(function (res) {
-            getLocationCallback(res);
-            getRentlist(1, 5, that);
-            getRoommatelist(1, 5, that);
-            getHourselist(1, 5, that);
-            wx.hideLoading()
           })
-      }
-    })
+        },
+        fail: function (err) {
+          apiRequest.post('pub/homePage/getDefaultCity', {})
+            .then(function (res) {
+              getLocationCallback(res);
+              getRentlist(1, 5, that);
+              getRoommatelist(1, 5, that);
+              getHourselist(1, 5, that);
+              wx.hideLoading()
+            })
+        }
+      })
+    }
+    
   },
   bindChange: function (e) {
     var that = this;

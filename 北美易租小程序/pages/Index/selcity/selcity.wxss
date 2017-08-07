@@ -4,11 +4,11 @@ page{
   border-top:1rpx solid #DFDFDF;
 }
 .city-tabcon{
-    height: 80rpx;
+  height: 80rpx;
 }
 .city-tabcon .tabcon-item{
   width:50%;
-    display: inline-block;
+  display: inline-block;
 }
 .city-tabcon .tabcon-3{
   width:190rpx;
@@ -46,7 +46,7 @@ page{
 }
 .scroll-container,.search-item,.scroll-view{
   width: 100%;
-  height: 100%;
+  height: 100%; 
 }
 .recommend_scroll_x_box {
   white-space: nowrap;

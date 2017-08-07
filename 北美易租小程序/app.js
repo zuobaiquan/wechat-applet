@@ -46,7 +46,7 @@ App({
                   //console.log('getInfoByCode', res2.data);
                   userInfo.wechatId = res2.data.data.openid;
                   apiRequest.postJson('pub/account/loginPlatform', userInfo).then(function (res3) {
-                    //console.log('loginPlatform', res3.data);
+                    console.log('loginPlatform', res3.data);
                     that.globalData.token = res3.data.data.token;
                     //console.log('globalData', that.globalData.token);
                     wx.setStorage({
