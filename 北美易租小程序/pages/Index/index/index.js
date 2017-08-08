@@ -351,20 +351,49 @@ Page({
               showTips: true,
               tipsInfo: _tips,
             });
+            //根据类型来局部list刷新 iscollect收藏 
             if (typeTag == 0) {
-              getHourselist(1, 10, _that);
+              _that.data.houseList.forEach((item)=>{
+                if (item.id == idTag){
+                  item.isCollected = params.collectionFlag;
+                  setTimeout(function () {
+                    _that.setData({
+                      showTips: false,
+                      houseList: _that.data.houseList
+                    });
+                  }, 1000)
+                  return ;
+                }
+              })
             }
             if (typeTag == 1) {
-              getRentlist(1, 10, _that);
+              _that.data.rentMate.forEach((item) => {
+                if (item.id == idTag) {
+                  item.isCollected = params.collectionFlag;
+                  setTimeout(function () {
+                    _that.setData({
+                      showTips: false,
+                      rentMate: _that.data.rentMate
+                    });
+                  }, 1000)
+                  return;
+                }
+              })
             }
             if (typeTag == 2) {
-              getRoommatelist(1, 10, _that);
+              _that.data.roomMate.forEach((item) => {
+                if (item.id == idTag) {
+                  item.isCollected = params.collectionFlag;
+                  setTimeout(function () {
+                    _that.setData({
+                      showTips: false,
+                      roomMate: _that.data.roomMate
+                    });
+                  }, 1000)
+                  return;
+                }
+              })
             }
-            setTimeout(function () {
-              _that.setData({
-                showTips: false,
-              });
-            }, 1000)
           })
       },fail:function(){
         wx.openSetting({

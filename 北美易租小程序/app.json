@@ -2,6 +2,7 @@
   "pages": [
     "pages/Index/index/index",
     "pages/Index/map/map",
+    
     "pages/Index/selcity/selcity",
     "pages/Index/searchbox/searchbox",
     "pages/Community/community/community",

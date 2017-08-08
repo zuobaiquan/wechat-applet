@@ -19,53 +19,53 @@
   color:#4b474c;
   height:62rpx;
   margin: 0 auto;*/
-    width: 80%;
-    border: 1px solid #4b474c;
-    border-radius: 10px;
-    font-size: 28rpx;
-    color: #4b474c;
-    height: 62rpx;
-    padding-left: 60rpx;
+  width: 80%;
+  border: 1px solid #4b474c;
+  border-radius: 10px;
+  font-size: 28rpx;
+  color: #4b474c;
+  height: 62rpx;
+  padding-left: 60rpx;
 }
 
 .search-list {
-    position: absolute;
-    right: -10rpx;
-    top: 0;
-    bottom: 0;
-    font-size: 32rpx;
-    padding: 15rpx;
+  position: absolute;
+  right: -10rpx;
+  top: 0;
+  bottom: 0;
+  font-size: 32rpx;
+  padding: 15rpx;
 }
 
 map {
   position:relative;
   width: 100%;
   top: 10rpx;
-  z-index:1;
+  z-index:-1 !important;
 }
 
 .hidden-arrow {
-    width: 34rpx;
-    margin: 0 auto;
-    margin-bottom: 16rpx;
-    height: 34rpx;
-    border: solid #dfdfdf;
-    border-width: 6rpx 6rpx 0 0;
-    -webkit-transform: rotate(135deg);
-    transform: rotate(135deg);
+  width: 34rpx;
+  margin: 0 auto;
+  margin-bottom: 16rpx;
+  height: 34rpx;
+  border: solid #dfdfdf;
+  border-width: 6rpx 6rpx 0 0;
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
 }
 
 .tab-houselist {
-    height: 396rpx;
+  height: 396rpx;
 }
 
 .tab-houselist {
-    margin: 0;
+  margin: 0;
 }
 
 .tab-housedetail .housedetail {
-    padding: 0;
-    margin: 6rpx 24rpx 0;
+  padding: 0;
+  margin: 6rpx 24rpx 0;
 }
 
 .map-right {
@@ -127,7 +127,7 @@ map {
 }
 .show-tips{
   position: absolute;
-  top:50%;
+  top:10%;
   left:50%;
   height:120rpx;
   width:240rpx;
@@ -137,7 +137,7 @@ map {
   color:#ffffff;
   text-align: center;
   padding:60rpx 0;
-  z-index:9999;
+  z-index:9999 !important;
 }
 .show-tips .collect-right{
   width:100rpx;

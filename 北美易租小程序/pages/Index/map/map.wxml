@@ -8,13 +8,12 @@
         <view class="cur-location" bindtap="curGo"><image src="../images/Triangle.png"></image>当前位置</view>
         <view wx:for="{{searchHistory}}" wx:key="$index">{{item}}</view>
     </view>
-    <map id="yzwMap" scale="{{scale}}" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" bindcallouttap="markertap" style="height:{{windowHeight}}px" bindmarkertap="markertap" />
+    <map id="yzwMap" scale="{{scale}}" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" bindcallouttap="markertap" style="height:{{windowHeight}}px" bindmarkertap="markertap" ></map>
     <view wx:if="{{showhouseInfo}}" wx:for="{{markers}}" wx:key="{{$index}}" class="tab-houselist" wx:if="{{item.id==houseId}}">
         <view class="hidden-arrow" bindtap="hiddenHouse"></view>
         <view bindtap="detailHouse" data-id="{{item.id}}" data-type="{{item.type}}">
             <image src="{{item.type?item.backgroundImageUrl:item.defaultImageUrl}}" class="tab-house" />
-            <image wx:if="{{item.type==1}}" data-id="{{item.id}}" data-type="{{item.type}}" data-iscollect="{{item.isFollowed }}" catchtap="handelCollect" class="right-collect map-right" src="{{item.isFollowed==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
-            <image wx:if="{{item.type==0}}" data-id="{{item.id}}" data-type="{{item.type}}" data-iscollect="{{item.isCollected }}" catchtap="handelCollect" class="right-collect map-right" src="{{item.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+            <image data-id="{{item.id}}" data-type="{{item.type}}" data-iscollect="{{item.isCollected }}" catchtap="handelCollect" class="right-collect map-right" src="{{item.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
             <view class="tab-housedetail" wx:if="{{item.type==0}}">
                 <view class="housedetail">
                     <text class="detail-left">{{item.title}}</text>
@@ -35,9 +34,9 @@
             </view>
         </view>
     </view>
-    <view wx:if="{{showTips==true}}" class="show-tips">
+    <!-- <view wx:if="{{showTips==true}}" class="show-tips">
       <image class="collect-right" src="../../../images/collect-right.png"></image>
       <text class="tips-info">{{tipsInfo}}</text>
-    </view>
+    </view> -->
 </view>
 
