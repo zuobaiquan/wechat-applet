@@ -110,23 +110,23 @@
     <view class="search-item {{currentTab==3 ? 'show-content' : 'hidden-content'}}">
         <view class="detail-item3">
             <view class="box-item3" data-index="0" bindtap="selFacility">
-                <image class="item3-img58" src="{{facilityItem[0].facilityItem0?'../images/jiaju-sel.png':'../images/jiaju.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[0].facilityItem0?'../images/jiaju-sel.png':'../images/jiaju.png'}}"></image>
                 <text class="item3-text {{facilityItem[0].facilityItem0?'choose-text':''}}">家具</text>
             </view>
             <view class="box-item3" data-index="1" bindtap="selFacility">
-                <image class="item3-img58" src="{{facilityItem[1].facilityItem1?'../images/dianshi-sel.png':'../images/dianshi.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[1].facilityItem1?'../images/dianshi-sel.png':'../images/dianshi.png'}}"></image>
                 <text class="item3-text {{facilityItem[1].facilityItem1?'choose-text':''}}">电视</text>
             </view>
             <view class="box-item3" data-index="2" bindtap="selFacility">
-                <image class="item3-img52" src="{{facilityItem[2].facilityItem2?'../images/jingbao-sel.png':'../images/jingbao.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[2].facilityItem2?'../images/jingbao-sel.png':'../images/jingbao.png'}}"></image>
                 <text class="item3-text {{facilityItem[2].facilityItem2?'choose-text':''}}">警报/防盗系统</text>
             </view>
             <view class="box-item3" data-index="3" bindtap="selFacility">
-                <image class="item3-img54" src="{{facilityItem[3].facilityItem3?'../images/wife-sel.png':'../images/wifi.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[3].facilityItem3?'../images/wife-sel.png':'../images/wifi.png'}}"></image>
                 <text class="item3-text {{facilityItem[3].facilityItem3?'choose-text':''}}">无线网络</text>
             </view>
             <view class="box-item3" data-index="4" bindtap="selFacility">
-                <image class="item3-img542" src="{{facilityItem[4].facilityItem4?'../images/kogndiao-sel.png':'../images/kogndiao.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[4].facilityItem4?'../images/kogndiao-sel.png':'../images/kogndiao.png'}}"></image>
                 <text class="item3-text {{facilityItem[4].facilityItem4?'choose-text':''}}">制冷空调</text>
             </view>
             <view class="box-item3" data-index="5" bindtap="selFacility">
@@ -138,11 +138,11 @@
                 <text class="item3-text {{facilityItem[6].facilityItem6?'choose-text':''}}">洗衣机/烘干机</text>
             </view>
             <view class="box-item3" data-index="7" bindtap="selFacility">
-                <image class="item3-img54" src="{{facilityItem[7].facilityItem7?'../images/kaoxiang-sel.png':'../images/kaoxiang.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[7].facilityItem7?'../images/kaoxiang-sel.png':'../images/kaoxiang.png'}}"></image>
                 <text class="item3-text {{facilityItem[7].facilityItem7?'choose-text':''}}">烤箱</text>
             </view>
             <view class="box-item3" data-index="8" bindtap="selFacility">
-                <image class="item3-img568" src="{{facilityItem[8].facilityItem8?'../images/weibol-sel.png':'../images/weibol.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[8].facilityItem8?'../images/weibol-sel.png':'../images/weibol.png'}}"></image>
                 <text class="item3-text {{facilityItem[8].facilityItem8?'choose-text':''}}">微波炉</text>
             </view>
             <view class="box-item3" data-index="9" bindtap="selFacility">
@@ -150,23 +150,23 @@
                 <text class="item3-text {{facilityItem[9].facilityItem9?'choose-text':''}}">洗碗机</text>
             </view>
             <view class="box-item3" data-index="10" bindtap="selFacility">
-                <image class="item3-img54" src="{{facilityItem[10].facilityItem10?'../images/yugang-sel.png':'../images/yugang.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[10].facilityItem10?'../images/yugang-sel.png':'../images/yugang.png'}}"></image>
                 <text class="item3-text {{facilityItem[10].facilityItem10?'choose-text':''}}">浴缸</text>
             </view>
             <view class="box-item3" data-index="11" bindtap="selFacility">
-                <image class="item3-img508" src="{{facilityItem[11].facilityItem11?'../images/tingyuan-sel.png':'../images/tingyuan.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[11].facilityItem11?'../images/tingyuan-sel.png':'../images/tingyuan.png'}}"></image>
                 <text class="item3-text {{facilityItem[11].facilityItem11?'choose-text':''}}">庭院</text>
             </view>
             <view class="box-item3" data-index="12" bindtap="selFacility">
-                <image class="item3-img583" src="{{facilityItem[12].facilityItem12?'../images/jianshengf-sel.png':'../images/jianshengf.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[12].facilityItem12?'../images/jianshengf-sel.png':'../images/jianshengf.png'}}"></image>
                 <text class="item3-text {{facilityItem[12].facilityItem12?'choose-text':''}}">健身房</text>
             </view>
             <view class="box-item3" data-index="13" bindtap="selFacility">
-                <image class="item3-img426" src="{{facilityItem[13].facilityItem13?'../images/youyongc-sel.png':'../images/youyongc.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[13].facilityItem13?'../images/youyongc-sel.png':'../images/youyongc.png'}}"></image>
                 <text class="item3-text {{facilityItem[13].facilityItem13?'choose-text':''}}">游泳池</text>
             </view>
             <view class="box-item3" data-index="14" bindtap="selFacility">
-                <image class="item3-img568" src="{{facilityItem[14].facilityItem14?'../images/tingchew-sel.png':'../images/tingchew.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[14].facilityItem14?'../images/tingchew-sel.png':'../images/tingchew.png'}}"></image>
                 <text class="item3-text {{facilityItem[14].facilityItem14?'choose-text':''}}">停车位</text>
             </view>
             <view class="box-item3" data-index="15" bindtap="selFacility">
@@ -174,33 +174,33 @@
                 <text class="item3-text {{facilityItem[15].facilityItem15?'choose-text':''}}">公交</text>
             </view>
             <view class="box-item3" data-index="16" bindtap="selFacility">
-                <image class="item3-img583" src="{{facilityItem[16].facilityItem16?'../images/baoan-sel.png':'../images/baoan.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[16].facilityItem16?'../images/baoan-sel.png':'../images/baoan.png'}}"></image>
                 <text class="item3-text {{facilityItem[16].facilityItem16?'choose-text':''}}">保安</text>
             </view>
             <view class="box-item3" data-index="17" bindtap="selFacility">
-                <image class="item3-img54" src="{{facilityItem[17].facilityItem17?'../images/dianti-sel.png':'../images/dianti.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[17].facilityItem17?'../images/dianti-sel.png':'../images/dianti.png'}}"></image>
                 <text class="item3-text {{facilityItem[17].facilityItem17?'choose-text':''}}">电梯</text>
             </view>
             <view class="box-item3" data-index="18" bindtap="selFacility">
-                <image class="item3-img4458" src="{{facilityItem[18].facilityItem18?'../images/caijir-sel.png':'../images/canjir.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[18].facilityItem18?'../images/caijir-sel.png':'../images/canjir.png'}}"></image>
                 <text class="item3-text {{facilityItem[18].facilityItem18?'choose-text':''}}">残疾人设施</text>
             </view>
         </view>
         <view class="forbid-item">
             <view class="box-item3" data-index="19" bindtap="selFacility">
-                <image class="item3-img55" src="{{facilityItem[19].facilityItem19?'../images/chongwu-sel.png':'../images/chongwu.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[19].facilityItem19?'../images/chongwu-sel.png':'../images/chongwu.png'}}"></image>
                 <text class="item3-text {{facilityItem[19].facilityItem19?'choose-text':''}}">禁养宠物</text>
             </view>
             <view class="box-item3" data-index="20" bindtap="selFacility">
-                <image class="item3-img55" src="{{facilityItem[20].facilityItem20?'../images/jingyan-sel.png':'../images/jingyan.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[20].facilityItem20?'../images/jingyan-sel.png':'../images/jingyan.png'}}"></image>
                 <text class="item3-text {{facilityItem[20].facilityItem20?'choose-text':''}}">禁烟</text>
             </view>
             <view class="box-item3" data-index="21" bindtap="selFacility">
-                <image class="item3-img55" src="{{facilityItem[21].facilityItem21?'../images/jingparty-sel.png':'../images/jingparty.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[21].facilityItem21?'../images/jingparty-sel.png':'../images/jingparty.png'}}"></image>
                 <text class="item3-text {{facilityItem[21].facilityItem21?'choose-text':''}}">禁派对</text>
             </view>
             <view class="box-item3" data-index="22" bindtap="selFacility">
-                <image class="item3-img55" src="{{facilityItem[22].facilityItem22?'../images/jingsu-sel.png':'../images/jingsu.png'}}"></image>
+                <image class="item3-img" src="{{facilityItem[22].facilityItem22?'../images/jingsu-sel.png':'../images/jingsu.png'}}"></image>
                 <text class="item3-text {{facilityItem[22].facilityItem22?'choose-text':''}}">禁留宿他人</text>
             </view>
         </view>

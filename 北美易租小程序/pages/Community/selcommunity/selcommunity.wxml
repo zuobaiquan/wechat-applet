@@ -24,7 +24,7 @@
         </view>
     </scroll-view>
     <view class="letterlist" bindtouchstart="letterSelstart">
-        <view class="letter" wx:for="{{letterlist}}" wx:key="*this" data-id="{{item}}">{{item}}</view>
+        <view class="letter" wx:for="{{lettercity}}" wx:key="*this" data-id="{{item}}">{{item}}</view>
     </view>
 </scroll-view>
 </view>
@@ -41,7 +41,7 @@
         </view>
     </scroll-view>
     <view class="letterlist" bindtouchstart="letterSelstart">
-        <view class="letter" wx:for="{{letterlist}}" wx:key="*this" data-id="{{item}}">{{item}}</view>
+        <view class="letter" wx:for="{{letterschool}}" wx:key="*this" data-id="{{item}}">{{item}}</view>
     </view>
 </scroll-view>
 </view>

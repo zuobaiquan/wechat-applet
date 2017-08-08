@@ -2,9 +2,8 @@ const apiRequest = require('../../../utils/apiRequest.js');
 const util = require('../../../utils/util.js');
 const APP = getApp();
 var QQMapWX = require('../../../utils/qqmap-wx-jssdk.min.js');
-var qqmapsdk;
 import { configApi } from '../../../utils/constant';
-var sourseSwiperIndex, getHourselist, getRentlist, getRoommatelist;
+var qqmapsdk,sourseSwiperIndex, getHourselist, getRentlist, getRoommatelist, refreshData;
 Page({
   data: {
     isLoading: false,
@@ -125,8 +124,6 @@ Page({
         success: function (res) {
           params = {
             cityId: res.data.cityId,
-            latitude: res.data.latitude,
-            longitude: res.data.longitude,
             page: page,
             size: size
           }
@@ -234,75 +231,79 @@ Page({
         }
       })
     }
-    if (options.hasOwnProperty('seltype')) {
-      wx.getStorage({
-        key: 'selectLocation',
-        success: function (res) {
-          let params1 = {
-            countryName: res.data.countryName,
-            latitude: res.data.latitude,
-            longitude: res.data.longitude
+
+    refreshData=function(){
+      if (options.hasOwnProperty('seltype')) {
+        wx.getStorage({
+          key: 'selectLocation',
+          success: function (res) {
+            let params1 = {
+              countryName: res.data.countryName,
+              latitude: res.data.latitude,
+              longitude: res.data.longitude
+            }
+            apiRequest.post('pub/homePage/local-city', params1)
+              .then(function (res) {
+                getLocationCallback(res);
+                getRentlist(1, 5, that);
+                getRoommatelist(1, 5, that);
+                getHourselist(1, 5, that);
+                wx.hideLoading()
+              })
           }
-          apiRequest.post('pub/homePage/local-city', params1)
-            .then(function (res) {
-              getLocationCallback(res);
-              getRentlist(1, 5, that);
-              getRoommatelist(1, 5, that);
-              getHourselist(1, 5, that);
-              wx.hideLoading()
+        })
+      }
+      else {
+        wx.getLocation({
+          type: 'wgs84',
+          success: function (res) {
+            that.setData({
+              curLatitude: res.latitude,
+              curLongitude: res.longitude
+            });
+            wx.setStorage({
+              key: "curLocation",
+              data: res
             })
-        }
-      })
-    }
-    else{
-      wx.getLocation({
-        type: 'wgs84',
-        success: function (res) {
-          that.setData({
-            curLatitude: res.latitude,
-            curLongitude: res.longitude
-          });
-          wx.setStorage({
-            key: "curLocation",
-            data: res
-          })
-          qqmapsdk = new QQMapWX({
-            key: configApi.QQMapWX_KEY
-          });
-          qqmapsdk.reverseGeocoder({
-            location: {
-              latitude: that.data.curLatitude,
-              longitude: that.data.curLongitude
-            },
-            success: function (res) {
-              let params1 = {
-                countryName: res.result.address_component.nation,
+            qqmapsdk = new QQMapWX({
+              key: configApi.QQMapWX_KEY
+            });
+            qqmapsdk.reverseGeocoder({
+              location: {
                 latitude: that.data.curLatitude,
                 longitude: that.data.curLongitude
+              },
+              success: function (res) {
+                let params1 = {
+                  countryName: res.result.address_component.nation,
+                  latitude: that.data.curLatitude,
+                  longitude: that.data.curLongitude
+                }
+                apiRequest.post('pub/homePage/local-city', params1)
+                  .then(function (res) {
+                    getLocationCallback(res);
+                    getRentlist(1, 5, that);
+                    getRoommatelist(1, 5, that);
+                    getHourselist(1, 5, that);
+                    wx.hideLoading()
+                  })
               }
-              apiRequest.post('pub/homePage/local-city', params1)
-                .then(function (res) {
-                  getLocationCallback(res);
-                  getRentlist(1, 5, that);
-                  getRoommatelist(1, 5, that);
-                  getHourselist(1, 5, that);
-                  wx.hideLoading()
-                })
-            }
-          })
-        },
-        fail: function (err) {
-          apiRequest.post('pub/homePage/getDefaultCity', {})
-            .then(function (res) {
-              getLocationCallback(res);
-              getRentlist(1, 5, that);
-              getRoommatelist(1, 5, that);
-              getHourselist(1, 5, that);
-              wx.hideLoading()
             })
-        }
-      })
+          },
+          fail: function (err) {
+            apiRequest.post('pub/homePage/getDefaultCity', {})
+              .then(function (res) {
+                getLocationCallback(res);
+                getRentlist(1, 5, that);
+                getRoommatelist(1, 5, that);
+                getHourselist(1, 5, that);
+                wx.hideLoading()
+              })
+          }
+        })
+      }
     }
+    refreshData()
     
   },
   bindChange: function (e) {
@@ -453,16 +454,15 @@ Page({
     // }).bind(this), 2000)
   },
   handleRefresh: function () {
-    //console.log('pull down');
-    // this.setData({
-    //   isRefreshing: true
-    // })
-    // setTimeout((function () {
-    //   this.setData({
-    //     houseList: houseList,
-    //     isRefreshing: false
-    //   });
-    //   this.tabHeight(this, sourseSwiperIndex);
-    // }).bind(this), 2000)
-  },
+    console.log('pull down');
+    this.setData({
+      isRefreshing: true
+    })
+    refreshData();
+    setTimeout((function () {
+      this.setData({
+        isRefreshing: false
+      })
+    }).bind(this), 2000)
+  }
 })

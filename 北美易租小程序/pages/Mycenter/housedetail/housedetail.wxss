@@ -172,8 +172,8 @@ swiper{
   text-align: center;
 }
 .box-item3 .item3-img{
-  width:56rpx;
-  height:58rpx;
+  width:60rpx;
+  height:60rpx;
 }
 .box-item3 .item3-text{
   display: block;

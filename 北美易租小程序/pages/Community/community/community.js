@@ -1,7 +1,10 @@
 const apiRequest = require('../../../utils/apiRequest.js');
 const APP = getApp();
+var refreshData;
 Page({
   data: {
+    isLoading: false,
+    isRefreshing: false,
     issearch:false,
     attentionlen:0,
     interestlen:0,
@@ -15,36 +18,39 @@ Page({
     })
     var interestlen = this.data.myinterestList.length;
     var that = this;
-    wx.getStorage({
-      key: 'userLocation',
-      success: function (res) {
-        const params = {
-          cityId: res.data.id,
-          longitude: res.data.longitude,
-          latitude: res.data.latitude
+    refreshData=function(){
+      wx.getStorage({
+        key: 'userLocation',
+        success: function (res) {
+          const params = {
+            cityId: res.data.id,
+            longitude: res.data.longitude,
+            latitude: res.data.latitude
+          }
+          apiRequest.post('pub/community/getMyInterestedCommunityList', params)
+            .then(function (res) {
+              that.setData({
+                myinterestList: res.data.data,
+                interestlen: res.data.data.length
+              });
+              wx.hideLoading()
+            })
         }
-        apiRequest.post('pub/community/getMyInterestedCommunityList', params)
-          .then(function (res) {
-            that.setData({
-              myinterestList: res.data.data,
-              interestlen:res.data.data.length
-            });
-            wx.hideLoading()
+      })
+      //获取全局变量这里重启会无效，报错,修改为getStorage获取token
+      wx.getStorage({
+        key: 'yzw-token',
+        success: function (res) {
+          apiRequest.postByToken('api/community/follow-list', null, res.data).then(function (res) {
+            that.setData({ 'myattentionList': res.data.data.list })
           })
-      }
-    })
-    //获取全局变量这里重启会无效，报错,修改为getStorage获取token
-    wx.getStorage({
-      key: 'yzw-token',
-      success: function (res) {
-        apiRequest.postByToken('api/community/follow-list', null, res.data).then(function (res) {
-          that.setData({ 'myattentionList': res.data.data.list })
-        })
-      },
-      fail: function () {
-        // 
-      }
-    })
+        },
+        fail: function () {
+          // 
+        }
+      })
+    }
+    refreshData();
     
   },
   selCommunity:function(e){
@@ -74,6 +80,32 @@ Page({
     wx.navigateTo({
       url: '../communitydetail/communitydetail'
     });
-  }
+  },
+  handleLoadMore: function () {
+    // //console.log('load more');
+    // this.setData({
+    //   isLoading: true
+    // })
+    // setTimeout((function () {
+    //   this.setData({
+    //     houseList: this.data.houseList.concat(houseList),
+    //     isLoading: false,
+    //   });
+    //   this.tabHeight(this, sourseSwiperIndex);
+    //   //console.log('houseList', this.data.houseList);
+    // }).bind(this), 2000)
+  },
+  handleRefresh: function () {
+    console.log('pull down');
+    this.setData({
+      isRefreshing: true
+    })
+    refreshData();
+    setTimeout((function () {
+      this.setData({
+        isRefreshing: false
+      })
+    }).bind(this), 2000)
+  },
 
 })

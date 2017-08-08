@@ -7,7 +7,8 @@ Page({
   data: {
     currentTab: 0,
     isShowToast: false,
-    letterlist: [],
+    lettercity: [],
+    letterschool: [],
     scrollIntoId: 'A'
   },
 
@@ -43,7 +44,12 @@ Page({
                 }
               })
               if (flag) {
-                that.data.letterlist.push(itemres.prefix);
+                if (currentTab == 0) {
+                  that.data.lettercity.push(itemres.prefix);
+                }
+                if (currentTab == 1) {
+                  that.data.letterschool.push(itemres.prefix);
+                }
                 listdata.push({
                   name: itemres.prefix,
                   child: [{
@@ -55,19 +61,19 @@ Page({
               }
             })
           }
-          
+          console.log(12,currentTab);
           if (currentTab==0){
             that.setData({
               cityList: listdata,
-              letterlist:that.data.letterlist,
-              scrollIntoId: that.data.letterlist[0]
+              lettercity: that.data.lettercity,
+              scrollIntoId: that.data.lettercity[0]
             })
           }
           if (currentTab == 1) {
             that.setData({
               schoolList: listdata,
-              letterlist: that.data.letterlist,
-              scrollIntoId: that.data.letterlist[0]
+              letterschool: that.data.letterschool,
+              scrollIntoId: that.data.letterschool[0]
             })
           }
           wx.hideLoading()

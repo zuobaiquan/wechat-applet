@@ -45,22 +45,100 @@
   <view class="contract-box sheshi-sp">
     <view class="detail-item detail-sheshi">
       <view class="extrl-contract">设施/须知</view>
-        <view class="box-item3">
-          <image class="item3-img" src="../images/jiaju.png"></image>
-          <text class="item3-text">家具</text>
+      <block wx:for="{{houseDatail.facilityList}}" wx:key="$index">
+        <view class="box-item3" wx:if="{{item.name=='家具'}}">
+            <image class="item3-img" src="../images/jiaju.png"></image>
+            <text class="item3-text">家具</text>
         </view>
-        <view class="box-item3">
-          <image class="item3-img" src="../images/dianshi.png"></image>
-          <text class="item3-text">电视</text>
+        <view class="box-item3" wx:if="{{item.name=='电视'}}">
+            <image class="item3-img" src="../images/dianshi.png"></image>
+            <text class="item3-text">电视</text>
         </view>
-        <view class="box-item3">
-          <image class="item3-img" src="../images/wifi.png"></image>
-          <text class="item3-text">无线网络</text>
+        <view class="box-item3" wx:if="{{item.name=='警报/防盗系统'}}">
+            <image class="item3-img" src="../images/jingbao.png"></image>
+            <text class="item3-text">警报/防盗系统</text>
         </view>
-        <view class="box-item3">
-          <image class="item3-img" src="../images/xiyiji.png"></image>
-          <text class="item3-text">洗衣机</text>
+        <view class="box-item3" wx:if="{{item.name=='无线网络'}}">
+            <image class="item3-img" src="../images/wifi.png"></image>
+            <text class="item3-text">无线网络</text>
         </view>
+        <view class="box-item3" wx:if="{{item.name=='制冷空调'}}">
+            <image class="item3-img" src="../images/kogndiao.png"></image>
+            <text class="item3-text">制冷空调</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='暖气'}}">
+            <image class="item3-img" src="../images/nanqi.png"></image>
+            <text class="item3-text">暖气</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='洗衣机/烘干机'}}">
+            <image class="item3-img" src="../images/xiyiji.png"></image>
+            <text class="item3-text">洗衣机/烘干机</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='烤箱'}}">
+            <image class="item3-img" src="../images/kaoxiang.png"></image>
+            <text class="item3-text">烤箱</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='微波炉'}}">
+            <image class="item3-img" src="../images/weibol.png"></image>
+            <text class="item3-text">微波炉</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='洗碗机'}}">
+            <image class="item3-img" src="../images/xiwanj.png"></image>
+            <text class="item3-text">洗碗机</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='浴缸'}}">
+            <image class="item3-img" src="../images/yugang.png"></image>
+            <text class="item3-text">浴缸</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='庭院'}}">
+            <image class="item3-img" src="../images/tingyuan.png"></image>
+            <text class="item3-text">庭院</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='健身房'}}">
+            <image class="item3-img" src="../images/jianshengf.png"></image>
+            <text class="item3-text">健身房</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='游泳池'}}">
+            <image class="item3-img" src="../images/youyongc.png"></image>
+            <text class="item3-text">游泳池</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='停车位'}}">
+            <image class="item3-img" src="../images/tingchew.png"></image>
+            <text class="item3-text">停车位</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='公交'}}">
+            <image class="item3-img" src="../images/bus.png"></image>
+            <text class="item3-text">公交</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='保安'}}">
+            <image class="item3-img" src="../images/baoan.png"></image>
+            <text class="item3-text">保安</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='电梯'}}">
+            <image class="item3-img" src="../images/dianti.png"></image>
+            <text class="item3-text">电梯</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='残疾人设施'}}">
+            <image class="item3-img" src="../images/canjir.png"></image>
+            <text class="item3-text">残疾人设施</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='禁养宠物'}}">
+            <image class="item3-img" src="../images/chongwu.png"></image>
+            <text class="item3-text">禁养宠物</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='禁烟'}}">
+            <image class="item3-img" src="../images/jingyan.png"></image>
+            <text class="item3-text">禁烟</text>
+        </view> 
+        <view class="box-item3" wx:if="{{item.name=='禁派对'}}">
+            <image class="item3-img" src="../images/jingparty.png"></image>
+            <text class="item3-text">禁派对</text>
+        </view>
+        <view class="box-item3" wx:if="{{item.name=='禁留宿他人'}}">
+            <image class="item3-img" src="../images/jingsu.png"></image>
+            <text class="item3-text">禁留宿他人</text>
+        </view>
+      </block>
     </view>
   </view>
   <view class="contract-box">

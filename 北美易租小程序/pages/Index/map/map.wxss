@@ -12,13 +12,6 @@
 }
 
 .search-textcon .search-text {
-    /*width:92%;
-  border:1px solid #4b474c;
-  border-radius:10px;
-  font-size:28rpx;
-  color:#4b474c;
-  height:62rpx;
-  margin: 0 auto;*/
   width: 80%;
   border: 1px solid #4b474c;
   border-radius: 10px;
@@ -118,13 +111,14 @@ map {
     position: relative;
     padding-left: 80rpx;
 }
-.cur-location image{
-    width: 35rpx;
-    height: 35rpx;
+.search-list image{
+    width: 45rpx;
+    height: 45rpx;
     position: absolute;
-    left: 30rpx;
-    top:0;
+    right: 15rpx;
+    top:15rpx;
 }
+
 .show-tips{
   position: absolute;
   top:10%;

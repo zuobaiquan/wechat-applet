@@ -5,16 +5,19 @@ var reqestToMap = function(that) {
   wx.getStorage({
     key: 'yzw-token',
     success: function (res) {
+      console.log(param);
       //console.log(res.data);
       apiRequest.postByToken('api/map/getInfoByMap', param, res.data).then(function (res) {
         var list = res.data.data;
         for (var i = 0, len = list.length; i < len; i++) {
           list[i].index = i;
           if (list[i].type) {
-            //list[i].iconPath = list[i].portraitUrl;
+            list[i].iconPath = '../images/WechatIMG11.png';
+            list[i].width=25;
+            list[i].height=25;
           }
           list[i].callout = {
-            content: list[i].type ? list[i].communityNameCn : list[i].symbol + list[i].rentAmount,
+            content: list[i].type ? "[社区]"+list[i].communityNameCn : list[i].symbol + list[i].rentAmount,
             bgColor: that.data.markersBg,
             color: that.data.calloutColor,
             padding: 10,
@@ -50,13 +53,9 @@ var reqestToMap = function(that) {
         that.setData({
           'markers': list
         });
-        console.log('markers', list);
       })
     }
   })
-
-
-    
 }
 Page({
     data: {
@@ -104,19 +103,17 @@ Page({
           }
         })
         var getMap = function(location) {
-            if (location.selectLocation && location.userLocation.id != location.selectLocation.cityId) {
+            if (location.selectLocation) {
               // 取selectLocation
               param = {
                 search: '',
                 cityId: location.selectLocation.cityId,
-                longitude: '',
-                latitude: ''
+                longitude: location.selectLocation.longitude,
+                latitude: location.selectLocation.latitude
               };
               that.setData({
-                  "longitude": location.selectLocation.longitude
-              });
-              that.setData({
-                  "latitude": location.selectLocation.latitude
+                longitude: location.selectLocation.longitude,
+                latitude: location.selectLocation.latitude
               });
             } else {
               param = {
@@ -126,14 +123,13 @@ Page({
                 latitude: location.curLocation.latitude
               };
               that.setData({
-                  "longitude": location.curLocation.longitude
-              });
-              that.setData({
-                  "latitude": location.curLocation.latitude
+                longitude: location.curLocation.longitude,
+                latitude: location.curLocation.latitude
               });
             }
             reqestToMap(that);
         }
+        
         wx.getStorage({
           key: 'curLocation',
           success: function(res) {
@@ -157,7 +153,7 @@ Page({
           }
         })
     },
-    
+
     markertap: function(e) {
       var that = this;
       for (let x of that.data.markers) {
@@ -185,15 +181,12 @@ Page({
       wx.getSystemInfo({
         success: function(res) {
           that.setData({
-              showhouseInfo: false,
-              houseId: -1,
-              'windowHeight': res.windowHeight - 50
+            showhouseInfo: false,
+            houseId: -1,
+            'windowHeight': res.windowHeight - 50
           });
         }
       });
-      // for (let x of that.data.markers) {
-      //     Object.assign(that.data.markers[x.id].callout, that.data.calloutold);
-      // }
       that.setData({
           markers: this.data.markers
       });
@@ -216,39 +209,38 @@ Page({
       param.search = searchContent;
       var that = this;
       var setHistroy=function(data){
-          that.setData({'searchHistory':data});
-          wx.setStorage({
-            key: "mapSearchHistroy",
-            data:data
-          })
+        that.setData({'searchHistory':data});
+        wx.setStorage({
+          key: "mapSearchHistroy",
+          data:data
+        })
       }
       if(searchContent){
-          wx.getStorage({
-              key:'mapSearchHistroy',
-              success:function(res){
-                  mapSearchHistroy=res.data;
-                  if(mapSearchHistroy.length>4){
-                      mapSearchHistroy=mapSearchHistroy.slice(0,4);
-                  }
-                  var flag=false;
-                  //过滤掉搜索历史相同的关键字
-                  mapSearchHistroy.map((item,index)=>{
-                    if (item === searchContent){
-                      flag = true;
-                    }
-                  })
-                  if (!flag){
-                      mapSearchHistroy=[searchContent].concat(mapSearchHistroy);
-                      setHistroy(mapSearchHistroy);
-                  }
-              },
-              fail:function(res){
-                  mapSearchHistroy=[searchContent];
-                  setHistroy(mapSearchHistroy);
+        wx.getStorage({
+          key:'mapSearchHistroy',
+          success:function(res){
+            mapSearchHistroy=res.data;
+            if(mapSearchHistroy.length>4){
+                mapSearchHistroy=mapSearchHistroy.slice(0,4);
+            }
+            var flag=false;
+            //过滤掉搜索历史相同的关键字
+            mapSearchHistroy.map((item,index)=>{
+              if (item === searchContent){
+                flag = true;
               }
-          })
+            })
+            if (!flag){
+                mapSearchHistroy=[searchContent].concat(mapSearchHistroy);
+                setHistroy(mapSearchHistroy);
+            }
+          },
+          fail:function(res){
+              mapSearchHistroy=[searchContent];
+              setHistroy(mapSearchHistroy);
+          }
+        })
       }
-
       this.hideHistory();
       reqestToMap(that);
     },
@@ -288,12 +280,13 @@ Page({
               communityId: idTag,
               followFlag: collectTag
             }
+            //这里收藏目前调用是否关注社区的接口
             apiRequest.postByToken('api/community/follow', params , res.data)
               .then(function (res) {
                 console.log(123456,res);
                 _that.data.markers.forEach((item) => {
                   if (item.id == idTag) {
-                    item.isCollected = params.followFlag == 1 ? 0 : 1;
+                    item.isFollowed = params.followFlag==0?1:0;
                     _that.setData({
                       markers: _that.data.markers
                     });
@@ -302,7 +295,6 @@ Page({
                 })
               })
           }
-          
         }, fail: function () {
           wx.openSetting({
             success: (res) => {
@@ -319,22 +311,25 @@ Page({
         wx.getStorage({
           key:'mapSearchHistroy',
           success:function(res){
-              mapSearchHistroy=res.data;
-              that.setData({'searchHistory':mapSearchHistroy});
+            mapSearchHistroy=res.data;
+            that.setData({'searchHistory':mapSearchHistroy});
           }
         })
-        console.log('showHistory');
     },
     hideHistory:function(e){
       this.setData({'historyShow':false});
-      console.log('hideHistory');
     },
     cancelSearch:function(e){
       wx.navigateBack();
     },
     curGo:function(e){
-      var that=this;
-      param.search = '';
+      var that = this;
+      if (e.currentTarget.dataset.text != undefined) {
+        param.search = e.currentTarget.dataset.text;
+      } else {
+        param.search = '';
+      }
+      that.setData({ 'sarchText': param.search });
       reqestToMap(that);
     }
 })

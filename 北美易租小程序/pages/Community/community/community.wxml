@@ -1,5 +1,9 @@
 
 <view class="container">
+<scroll-view scroll-y="true" lower-threshold="100" bindscrolltolower="handleLoadMore" bindscrolltoupper="handleRefresh" style="height:100%;">
+    <view wx:if="{{isRefreshing}}" class="load-more">
+      <image src="../../../images/loading.gif"></image>下拉刷新
+    </view>
   <view class="search-textcon">
       <input class="search-text" confirm-type="search" bindconfirm="searchChange" type="text" placeholder="搜索城市或学校名" />
       <icon class="serach-icon" type="search" size="18" color="#4b474c" />
@@ -72,5 +76,5 @@
     </view>
    </view>
   </view>
-
+</scroll-view>
 </view>
