@@ -67,3 +67,9 @@ page{
   left: 0;  
   z-index: 888;  
 }  
+
+
+.letterlist .letter:first-child{
+  width: 52rpx;
+  font-size: 28rpx;
+}

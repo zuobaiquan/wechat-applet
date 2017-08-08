@@ -204,7 +204,7 @@ Page({
         });
     },
     detailHouse(e) {
-        var houseId = e.currentTarget.dataset.houseid;
+        var houseId = e.currentTarget.dataset.id;
         var type = e.currentTarget.dataset.type;
         if (type) {
             wx.navigateTo({

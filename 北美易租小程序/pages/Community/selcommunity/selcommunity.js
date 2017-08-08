@@ -7,7 +7,7 @@ Page({
   data: {
     currentTab: 0,
     isShowToast: false,
-    letterlist: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+    letterlist: [],
     scrollIntoId: 'A'
   },
 
@@ -43,6 +43,7 @@ Page({
                 }
               })
               if (flag) {
+                that.data.letterlist.push(itemres.prefix);
                 listdata.push({
                   name: itemres.prefix,
                   child: [{
@@ -57,12 +58,16 @@ Page({
           
           if (currentTab==0){
             that.setData({
-              cityList: listdata
+              cityList: listdata,
+              letterlist:that.data.letterlist,
+              scrollIntoId: that.data.letterlist[0]
             })
           }
           if (currentTab == 1) {
             that.setData({
-              schoolList: listdata
+              schoolList: listdata,
+              letterlist: that.data.letterlist,
+              scrollIntoId: that.data.letterlist[0]
             })
           }
           wx.hideLoading()
