@@ -29,18 +29,8 @@
               <image src="{{'http://oshsvxlu9.bkt.clouddn.com/'+item.imageUrl}}" class="slide-image" /> 
             </view>
             <view wx:if="{{item.contentType ==1}}" bindtap="detailHouse" class="tab-houselist" data-houseid="{{item.house.id}}">
-              <image src="{{item.house.defaultImageUrl}}" class="tab-house" />
               <image data-type="0" data-id="{{item.id}}" data-iscollect="{{item.isCancelled}}" catchtap="handelCollect" class="right-collect" src="{{item.isCancelled==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
-              <view class="tab-housedetail">
-                <view class="housedetail">
-                  <text class="detail-left">{{item.house.title}}</text>
-                  <text class="detail-right"><text class="rent-ammout">{{item.house.rentAmount}}</text> {{item.house.currencyName}}/{{item.house.periodName}}</text>
-                </view>
-                <view class="housedetail">
-                  <text class="detail-left detail-spc">{{item.house.typeName}}<text class="detail-type">|</text>{{item.house.nameCn}},{{item.house.stateNameCn}}</text>
-                  <text class="detail-right detail-spc">{{item.house.bedroomCount}}卧 {{item.house.bathroomCount}}卫浴</text>
-                </view>
-              </view>
+              <template is="myHouse" data="{{item}}"/>
             </view>
             <view wx:if="{{item.contentType ==2}}" bindtap="detailRoom" class="tab-houselist tab-roommate" data-roomid="{{item.lookForRoommate.id}}">
               <view class="roomate-left">
@@ -48,6 +38,7 @@
                 <text class="left-nickname">{{item.lookForRoommate.nickname}}</text>
                 <text class="left-nickname left-reason">找室友</text>
               </view>
+              <template is="myrentRomme" data="{{item}}"/>
               <view class="roomate-middle">
                 <view class="middle-item">城市：<text class="detail-value">{{item.lookForRoommate.city.nameCn}}</text></view>
                 <view class="middle-item">性别：<text class="detail-value">{{item.lookForRoommate.myGender==0?"男":(item.lookForRoommate.myGender==1?"女":'男女不限')}}</text> </view>
@@ -112,22 +103,6 @@
       <swiper-item>
         <view bindtap="detailRent" class="tab-houselist tab-roommate" wx:for="{{rentMate}}" wx:key="$index" data-rentid="{{item.id}}">
           <template is="rentHouse" data="{{item}}"/>
-          <!-- <view class="roomate-left">
-            <image class="left-image" src="{{item.portraitUrl}}"></image>
-            <text class="left-nickname">{{item.nickName}}</text>
-            <text class="left-nickname left-reason">求租</text>
-          </view>
-          <view class="roomate-middle">
-            <view class="middle-item">城市：<text class="detail-value">{{item.nameCn}}</text></view>
-            <view class="middle-item">租金：<text class="detail-value">{{item.rentAmount}} {{item.currencyName}}/{{item.periodName}}</text> </view>
-            <view class="middle-item">起租时间：<text class="detail-value">{{item.startDate}}</text></view>
-            <view class="middle-item">结束时间：<text class="detail-value">{{item.endDate}}</text></view>
-            <view class="middle-item">要求：<text class="detail-value">{{item.requirement}}</text></view>
-          </view>
-          <view class="roomate-right">
-            <image data-type="1" data-id="{{item.id}}" data-iscollect="{{item.isCollected}}" catchtap="handelCollect"  class="right-collect" src="{{item.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
-            <view class="right-icon"></view>
-          </view> -->
         </view>
       </swiper-item>
       <swiper-item>

@@ -37,7 +37,6 @@ Page({
             })
         }
       })
-      
     }
     if (options.hasOwnProperty('look')) {
       this.setData({

@@ -59,15 +59,16 @@ swiper{
 }
 .house-info .info-left{
    float: left;
-   width:64%;
+   width:60%;
 }
 .info-left .info-name{
   font-weight: bold;
   font-size:36rpx;
+  display: block;
 }
 .house-info .info-right{
   float: right;
-  width:36%;
+  width:40%;
   text-align: right;
 }
 .info-right .info-price{
@@ -93,6 +94,7 @@ swiper{
 .addr-detail .addr-name{
   width:220rpx;
   float: left;
+  font-weight: bold;
 }
 .addr-detail .house-addr{
   float: left;

@@ -1,18 +1,54 @@
-
+const apiRequest = require('../../../utils/apiRequest.js');
+const util = require('../../../utils/util.js');
 Page({
   data: {
     showmore:false,
     noticeBottom:80,
     attendText:"+ 关注",
     isAttend:false,
-    chartlist:[
-      { type: 1,isCollect:0, avator: 'http://img3.imgtn.bdimg.com/it/u=734972231,2892744574&fm=26&gp=0.jpg', nickname: 'juliy1',tag:'求租', city: '西雅图', price: '1000 USD/月', start:'2017-06-01',end:'2018-06-01',req:'没有要求'},
-      { type: 2, isCollect: 1, avator: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2406161785,701397900&fm=5', nickname: '大碰2', tag: '房源',  url: '../images/houselist1.png', price: "999 USD/月", typename: '独栋别墅', addr: 'Seattle，WA', detail: '4卧 2卫浴' },
-      { type: 3, isCollect: 0, avator: 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1853832225,307688784&fm=5', nickname: '夏明3', tag: '找室友', city: '西雅图', sex: '本人女,希望室友性别女', price: '1000 USD/月', start: '2017-06-01', req: '我喜欢猫的，希望x喜欢猫'  },
-      { type: 4, isCollect: 0, avator: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2287816931,1201096380&fm=5', nickname: '夏张4',  text:'Bridge 超阔Town House其中一间 暑期6.5-8.17 空白期招租啦！！如图所示三间都转租 想问哪间直接扫其中一张。洗衣机烘干机厨房冰箱全都有！二楼一整层超大客厅加厨房采光贼好 学习做饭开趴一应俱全！！价钱也棒！！快来扫我找我商量！！' }
-    ]
+    communityName:'',
+    communityDetail:[]
   },
-  onLoad() {
+  onLoad(options) {
+    var that=this;
+    const communityId = options.communityId;
+    var params={
+      communityId: options.communityId,
+      page:1,size:5
+    }
+    wx.getStorage({
+      key: 'yzw-token',
+      success: function (res) {
+        apiRequest.postByToken('api/community/checkHasFollowed', { communityId: options.communityId }, res.data)
+          .then(function (res) {
+            if(res.data==1){
+              that.setData({
+                attendText: "取消关注",
+                isAttend: true
+              });
+            }
+          })
+        apiRequest.postByToken('api/community/getCommunityDetail', params, res.data)
+          .then(function (res) {
+            //1：房源，2：求租，3：找室友，4：文字消息。5：图片消息
+            that.setData({
+              communityName: options.communityName,
+              communityDetail: res.data.data.list
+            });
+          })
+        
+          //POST /api/community/checkHasFollowed
+      },
+      fail: function () {
+        apiRequest.post('pub/community/getCommunityDetail', params)
+          .then(function (res) {
+            that.setData({
+              communityName: options.communityName,
+              communityDetail: res.data.data.list
+            });
+          })
+      }
+    })
     
   },
   sendMore(){
@@ -41,10 +77,22 @@ Page({
       });
     }
   },
-  detailRent(e){
-    var type = e.currentTarget.dataset.type;
+  detailHouse(e) {
+    var houseId = e.currentTarget.dataset.houseid;
     wx.navigateTo({
-      url: `../rentdetail/rentdetail?type=${type}`
+      url: `../../Mycenter/housedetail/housedetail?houseId=${houseId}`
+    })
+  },
+  detailRent(e) {
+    var rentId = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `../rentdetail/rentdetail?rentId=${rentId}`
+    })
+  },
+  detailRoom(e) {
+    var roomId = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `../rentdetail/rentdetail?roomId=${roomId}`
     })
   },
   sendInfo(e){

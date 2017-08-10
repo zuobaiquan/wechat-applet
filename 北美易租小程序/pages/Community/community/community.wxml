@@ -40,7 +40,7 @@
        <text class="top-title">我关注的社区</text>
     </view>
     <view wx:if="{{myattentionList.length==0}}" class="no-attention">您还没有关注任何社区</view>
-    <view wx:if="{{myattentionList.length!=0}}" class="tab-myattention" wx:for="{{myattentionList}}" wx:key="$index" bindtap="listDetail">
+    <view wx:if="{{myattentionList.length!=0}}" class="tab-myattention" wx:for="{{myattentionList}}" wx:key="$index" data-name="{{item.nameCn}}" data-id="{{item.id}}" bindtap="communityDetail">
       <view class="attention-left">
           <image class="left-image" src="{{item.portraitUrl}}"></image>
           <text wx-if="{{item.followerCount!=0}}" class="attention-look"></text>
@@ -61,7 +61,7 @@
     <view class="community-top">
        <text class="top-title">你可能感兴趣的社区</text>
     </view>
-    <view class="tab-myattention" wx:for="{{myinterestList}}" wx:key="$index" bindtap="listDetail">
+    <view class="tab-myattention" wx:for="{{myinterestList}}" wx:key="$index" data-id="{{item.id}}" data-name="{{item.nameCn}}" bindtap="communityDetail">
       <view class="attention-left">
           <image class="left-image" src="{{item.portraitUrl}}"></image>
       </view>

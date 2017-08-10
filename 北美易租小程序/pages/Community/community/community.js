@@ -35,18 +35,24 @@ Page({
               });
               wx.hideLoading()
             })
+        },
+        fail:function(){
+          
         }
       })
       //获取全局变量这里重启会无效，报错,修改为getStorage获取token
       wx.getStorage({
         key: 'yzw-token',
         success: function (res) {
-          apiRequest.postByToken('api/community/follow-list', null, res.data).then(function (res) {
+          apiRequest.postByToken('api/community/follow-list', {page:1,size:5}, res.data).then(function (res) {
             that.setData({ 'myattentionList': res.data.data.list })
           })
         },
         fail: function () {
-          // 
+          // POST /pub/community/community-list
+          apiRequest.post('pub/community/community-list', null).then(function (res) {
+            that.setData({ 'myattentionList': res.data.data.list })
+          })
         }
       })
     }
@@ -76,9 +82,11 @@ Page({
       });
     }
   },
-  listDetail(e){
+  communityDetail(e){
+    const id = e.currentTarget.dataset.id,
+      name = e.currentTarget.dataset.name;
     wx.navigateTo({
-      url: '../communitydetail/communitydetail'
+      url: `../communitydetail/communitydetail?communityId=${id}&communityName=${name}`
     });
   },
   handleLoadMore: function () {

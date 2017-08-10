@@ -15,6 +15,7 @@ Page({
  
   onLoad(options) {
     var _that = this;
+    console.log(options);
     if (options.hasOwnProperty('rentId')) {
       apiRequest.post('pub/homePage/soliciting-detail', { id: options.rentId })
         .then(function (res) {
@@ -22,7 +23,9 @@ Page({
             rentDatail: res.data.data,
             updateTime: util.pubTime(res.data.data.updateTime)
           });
-          console.log(1111, _that.data.rentDatail);
+          wx.setNavigationBarTitle({
+            title: '求租详情'
+          })
         })
     }
     if (options.hasOwnProperty('roomId')) {
@@ -32,7 +35,9 @@ Page({
             rentDatail: res.data.data,
             updateTime: util.pubTime(res.data.data.updateTime)
           });
-          console.log(1111, _that.data.rentDatail);
+          wx.setNavigationBarTitle({
+            title: '找室友详情'
+          })
         })
     }
     if (options.hasOwnProperty('look')){
@@ -41,15 +46,7 @@ Page({
         showContract: true,
       });
     }
-    var detailType = options.type;
-    this.setData({
-      detailType: detailType
-    });
-    if (detailType==3){
-      wx.setNavigationBarTitle({
-        title: '找室友'
-      })
-    }
+    
   },
   
   getContract(){

@@ -1,36 +1,90 @@
-
+const apiRequest = require('../../../utils/apiRequest.js');
+const util = require('../../../utils/util.js');
+const APP = getApp();
+var freshinfoData, freshcollectData;
 Page({
   data: {
+    isLoading: false,
+    isRefreshing: false,
     delBtnWidth: 182,
-    chartlist: [
-      { txtStyle: '', type: 1,status:1, avator: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2406161785,701397900&fm=5', title: 'UW附近2b1b整套出租', url: '../images/houselist1.png', price: "999 USD/月", typename: '独栋别墅', addr: 'Seattle，WA', detail: '4卧 2卫浴' },
-      { txtStyle: '', type: 1, status: 0, avator: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2406161785,701397900&fm=5', title: '哈哈哈近2b1b整套出租', url: '../images/houselist1.png', price: "888 USD/月", typename: '独栋别墅', addr: 'Seattle，WA', detail: '2卧 2卫浴' },
-      { txtStyle: '', type: 1, status: 1, avator: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2406161785,701397900&fm=5', title: '哈哈哈近2b1b整套出租', url: '../images/houselist1.png', price: "888 USD/月", typename: '独栋别墅', addr: 'Seattle，WA', detail: '2卧 2卫浴' },
-      { txtStyle: '', type: 2, status: 0, city: '西雅图0', sex: '本人女希望室友性别女0', price: "600 USD/月", startTime: '2017-06-01', req: '我喜欢猫的，希望x喜欢猫' },
-      { txtStyle: '', type: 2, status: 1, city: '西雅图1', sex: '本人女希望室友性别女1', price: "600 USD/月", startTime: '2017-06-01', req: '我喜欢猫的，希望x喜欢猫' },
-      { txtStyle: '', type: 3, status: 1, city: '西雅图1', price: "600 USD/月", startTime: '2017-06-01', endTime: '2017-12-01', req: '我喜欢猫的，希望x喜欢猫' }
-     ],
-    collectList:[
-      { type: 1, status: 1, avator: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2406161785,701397900&fm=5', title: 'UW附近2b1b整套出租', url: '../images/houselist1.png', price: "999 USD/月", typename: '独栋别墅', addr: 'Seattle，WA', detail: '4卧 2卫浴' },
-      { type: 1, status: 1, avator: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2406161785,701397900&fm=5', title: '哈哈哈近2b1b整套出租', url: '../images/houselist1.png', price: "888 USD/月", typename: '独栋别墅', addr: 'Seattle，WA', detail: '2卧 2卫浴' },
-      { type: 2, status: 1, city: '西雅图0', sex: '本人女希望室友性别女0', price: "600 USD/月", startTime: '2017-06-01', req: '我喜欢猫的，希望x喜欢猫' }
-    ],
+    myinfoData:[],
+    mycollectData:[],
+    //设置是候点击了我的收藏的标记，减少服务器请求
+    isClickcollect:0,
     // tab切换 
     currentTab: 0,
     showrentDetail: false,
     showTips: false,
   },
   onLoad(){
+    wx.showLoading({
+      title: '数据加载中',
+    })
+    var that=this;
     this.initEleWidth();
+    freshinfoData=function(){
+      var params1 = {
+        page: 1,
+        size: 5
+      }
+      wx.getStorage({
+        key: 'yzw-token',
+        success: function (res) {
+          apiRequest.postByToken('api/me/myPublish', params1, res.data)
+            .then(function (res) {
+              console.log(123456, res.data.data.list);
+              that.setData({
+                myinfoData: res.data.data.list
+              });
+              wx.hideLoading()
+            })
+        },
+        fail: function () {
+          console.log(1234);
+        }
+      })
+    }
+    freshinfoData();
+    
   },
   selectedTab(e) {
-    var index = e.currentTarget.dataset.current;
     var that = this;
-    if (this.data.currentTab === index) {
+    var index = e.currentTarget.dataset.current;
+    if (that.data.isClickcollect == 0 && index==1){
+      freshcollectData=function(){
+        var params2 = {
+          page: 1,
+          size: 5
+        }
+        wx.showLoading({
+          title: '数据加载中',
+        })
+        wx.getStorage({
+          key: 'yzw-token',
+          success: function (res) {
+            apiRequest.postByToken('api/me/myCollection', params2, res.data)
+              .then(function (res) {
+                console.log(123456, res.data.data.list);
+                that.setData({
+                  mycollectData: res.data.data.list
+                });
+                wx.hideLoading()
+              })
+          },
+          fail: function () {
+            console.log(5678);
+          }
+        })
+      }
+      freshcollectData();
+    }
+    
+    if (that.data.currentTab === index) {
       return false;
     } else {
       that.setData({
-        currentTab: index
+        currentTab: index,
+        isClickcollect:1
       })
     }
   },
@@ -113,7 +167,7 @@ Page({
         }
       }
       var index = e.currentTarget.dataset.index;
-      this.data.chartlist[index].txtStyle = txtStyle;
+      this.data.myinfoData[index].txtStyle = txtStyle;
       this.setData({
         chartlist: this.data.chartlist
       });
@@ -126,9 +180,9 @@ Page({
       var delBtnWidth = this.data.delBtnWidth;
       var txtStyle = disX > delBtnWidth / 2 ? "left:-" + delBtnWidth + "px" : "left:0px";
       var index = e.currentTarget.dataset.index;
-      this.data.chartlist[index].txtStyle = txtStyle;
+      this.data.myinfoData[index].txtStyle = txtStyle;
       this.setData({
-        chartlist: this.data.chartlist
+        myinfoData: this.data.myinfoData
       });
     }
   },
@@ -157,8 +211,9 @@ Page({
   delItem(e) {
     var that=this;
     const index = e.target.dataset.index;
+    const id = e.target.dataset.id;
     const listtype = parseInt(e.target.dataset.listtype);
-    var chartlist = that.data.chartlist;
+    var myinfoData = that.data.myinfoData;
     var modalTitle="";
     switch (listtype) {
       case 1: modalTitle = '您确定要彻底删除此房源消息吗？'; break;
@@ -174,26 +229,88 @@ Page({
       content: modalTitle,
       success: function (res) {
         if (res.confirm) {
-          chartlist.splice(index, 1);
-          that.setData({
-            chartlist: chartlist
-          });
+          const paramsdel={
+            type: listtype,
+            id:id
+          }
+          wx.getStorage({
+            key: 'yzw-token',
+            success: function (res) {
+              console.log(paramsdel);
+              apiRequest.postByToken('api/me/deletePublish', paramsdel, res.data)
+                .then(function (res) {
+                  that.data.myinfoData.splice(index, 1);
+                  that.setData({
+                    myinfoData: that.data.myinfoData
+                  });
+                })
+            },
+            fail: function () {
+              console.log(5678);
+            }
+          })
+          
         } else if (res.cancel) {
           //用户取消删除，删除按钮隐藏
           var txtStyle = "left:0px";
-          that.data.chartlist[index].txtStyle = txtStyle;
+          that.data.myinfoData[index].txtStyle = txtStyle;
           that.setData({
-            chartlist: that.data.chartlist
+            myinfoData: that.data.myinfoData
           });
         }
       }
     })
-
-
-
-
-    
   },
+  detailHouse(e) {
+    var houseId = e.currentTarget.dataset.houseid;
+    wx.navigateTo({
+      url: `../../Mycenter/housedetail/housedetail?houseId=${houseId}`
+    })
+  },
+  detailRent(e) {
+    var rentId = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `../rentdetail/rentdetail?rentId=${rentId}`
+    })
+  },
+  detailRoom(e) {
+    var roomId = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `../rentdetail/rentdetail?roomId=${roomId}`
+    })
+  },
+  handleLoadMore: function () {
+    // //console.log('load more');
+    // this.setData({
+    //   isLoading: true
+    // })
+    // setTimeout((function () {
+    //   this.setData({
+    //     houseList: this.data.houseList.concat(houseList),
+    //     isLoading: false,
+    //   });
+    //   this.tabHeight(this, sourseSwiperIndex);
+    //   //console.log('houseList', this.data.houseList);
+    // }).bind(this), 2000)
+  },
+  handleRefresh: function () {
+    console.log('pull down');
+    this.setData({
+      isRefreshing: true
+    })
+    if (this.data.currentTab==0){
+      freshinfoData();
+    }
+    if (this.data.currentTab == 1) {
+      freshcollectData();
+    }
+    //refreshData();
+    setTimeout((function () {
+      this.setData({
+        isRefreshing: false
+      })
+    }).bind(this), 2000)
+  }
 })
 
 
