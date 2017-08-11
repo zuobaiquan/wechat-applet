@@ -15,13 +15,13 @@ Page({
  
   onLoad(options) {
     var _that = this;
-    console.log(options);
     if (options.hasOwnProperty('rentId')) {
       apiRequest.post('pub/homePage/soliciting-detail', { id: options.rentId })
         .then(function (res) {
           _that.setData({
             rentDatail: res.data.data,
-            updateTime: util.pubTime(res.data.data.updateTime)
+            updateTime: util.pubTime(res.data.data.updateTime),
+            detailType:2
           });
           wx.setNavigationBarTitle({
             title: '求租详情'
@@ -33,7 +33,8 @@ Page({
         .then(function (res) {
           _that.setData({
             rentDatail: res.data.data,
-            updateTime: util.pubTime(res.data.data.updateTime)
+            updateTime: util.pubTime(res.data.data.updateTime),
+            detailType: 3
           });
           wx.setNavigationBarTitle({
             title: '找室友详情'

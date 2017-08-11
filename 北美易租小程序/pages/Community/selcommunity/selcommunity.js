@@ -37,6 +37,7 @@ Page({
                 if (itemcity.name == itemres.prefix) {
                   flag = false;
                   listdata[j].child.push({
+                    id: itemres.id,
                     cityname: itemres.nameCn,
                     cityname_en: itemres.nameEn,
                     picture: itemres.portraitUrl
@@ -53,6 +54,7 @@ Page({
                 listdata.push({
                   name: itemres.prefix,
                   child: [{
+                    id: itemres.id,
                     cityname: itemres.nameCn,
                     cityname_en: itemres.nameEn,
                     picture: itemres.portraitUrl
@@ -61,7 +63,6 @@ Page({
               }
             })
           }
-          console.log(12,currentTab);
           if (currentTab==0){
             that.setData({
               cityList: listdata,
@@ -76,6 +77,7 @@ Page({
               scrollIntoId: that.data.letterschool[0]
             })
           }
+          console.log(that.data.cityList, that.data.schoolList);
           wx.hideLoading()
         })
     }
@@ -105,6 +107,12 @@ Page({
         currentTab: index
       })
     }
+  },
+  communityDetail(e) {
+    const [id, name] = [e.currentTarget.dataset.id, e.currentTarget.dataset.name];
+    wx.navigateTo({
+      url: `../communitydetail/communitydetail?communityId=${id}&communityName=${name}`
+    });
   },
   search: function (e) {
     var that=this;

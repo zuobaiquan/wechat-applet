@@ -4,7 +4,6 @@
     <text class="deatil-title">{{communityName}}</text>
     <text class="{{isAttend==false ? 'deatil-attend' : 'deatil-noattend'}}" bindtap="changeAttend" data-state="{{isAttend}}">{{attendText}}</text>
   </view>
-  
   <scroll-view scroll-y style="margin-bottom:{{noticeBottom}}rpx">
   <view wx:for="{{communityDetail}}" wx:for-item="item" wx:key="$index">
      <view wx:if="{{item.type==1}}" class="itemtype2">

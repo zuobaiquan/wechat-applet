@@ -17,7 +17,7 @@
     <scroll-view class="scroll-view" scroll-y="true" scroll-into-view="{{scrollIntoId}}">
         <view wx:for="{{cityList}}" wx:key="city" wx:for-item="city">
             <view class="list-cityletter" id="{{city.name}}"></view>
-            <view class="list-city" wx:for="{{city.child}}" wx:key="cityitem" wx:for-item="cityitem">
+            <view class="list-city" wx:for="{{city.child}}" wx:key="cityitem" wx:for-item="cityitem" data-id="{{cityitem.id}}" data-name="{{cityitem.cityname}}" bindtap="communityDetail">
                 <image class="list-cityimg" src="{{cityitem.picture}}"></image>
                 <view class="list-cityname">{{cityitem.cityname}}</view>
             </view>
@@ -34,7 +34,7 @@
     <scroll-view class="scroll-view" scroll-y="true" scroll-into-view="{{scrollIntoId}}">
         <view wx:for="{{schoolList}}" wx:key="city" wx:for-item="city">
             <view class="list-cityletter" id="{{city.name}}"></view>
-            <view class="list-city" wx:for="{{city.child}}" wx:key="cityitem" wx:for-item="cityitem">
+            <view class="list-city" wx:for="{{city.child}}" wx:key="cityitem" wx:for-item="cityitem" data-id="{{cityitem.id}}" data-name="{{cityitem.cityname}}" bindtap="communityDetail">
                 <image class="list-cityimg" src="{{cityitem.picture}}"></image>
                 <view class="list-cityname">{{cityitem.cityname}}</view>
             </view>

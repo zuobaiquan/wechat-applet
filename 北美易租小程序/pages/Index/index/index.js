@@ -333,9 +333,7 @@ Page({
   },
   handelCollect(e) {
     var _that = this;
-    const collectTag = parseInt(e.target.dataset.iscollect),
-      idTag = parseInt(e.target.dataset.id),
-      typeTag = parseInt(e.target.dataset.type);
+    const [collectTag, idTag, typeTag, isbanner] = [parseInt(e.target.dataset.iscollect), parseInt(e.target.dataset.id), parseInt(e.target.dataset.type), parseInt(e.target.dataset.isbanner)];
     const params={
       contentType: typeTag,
       contentId: idTag,
@@ -346,6 +344,80 @@ Page({
     wx.getStorage({
       key: 'yzw-token',
       success: function (res) {
+        var changeList=function(){
+          if (typeTag == 0) {
+            setTimeout(function () {
+              _that.setData({
+                showTips: false,
+                houseList: _that.data.houseList
+              });
+            }, 1000)
+          }
+          if (typeTag == 1) {
+            setTimeout(function () {
+              _that.setData({
+                showTips: false,
+                rentMate: _that.data.rentMate
+              });
+            }, 1000)
+          }
+          if (typeTag == 2) {
+            setTimeout(function () {
+              _that.setData({
+                showTips: false,
+                roomMate: _that.data.roomMate
+              });
+            }, 1000)
+          }
+        }
+        var collectFun = function (listData,itemname,namelist) {
+          console.log(listData, itemname, namelist);
+          if (isbanner == 0) {
+            console.log(listData, itemname, namelist, params.collectionFlag);
+            listData.forEach((item) => {
+              if (item.id == idTag) {
+                item.isCollected = params.collectionFlag;
+                //居然不识别参数！！！
+                changeList();
+                _that.data.swiperList.forEach((item) => {
+                  if (item[itemname]) {
+                    if (item[itemname].id == idTag) {
+                      item[itemname].isCollected = params.collectionFlag;
+                      _that.setData({
+                        swiperList: _that.data.swiperList
+                      });
+                      return;
+                    }
+                  }
+                })
+              }
+            })
+          }
+          //如果是轮播图的
+          if (isbanner == 1) {
+            _that.data.swiperList.forEach((item) => {
+              if (item[itemname]) {
+                if (item[itemname].id == idTag) {
+                  item[itemname].isCollected = params.collectionFlag;
+                  setTimeout(function () {
+                    _that.setData({
+                      showTips: false,
+                      swiperList: _that.data.swiperList
+                    });
+                  }, 1000)
+                  listData.forEach((item) => {
+                    if (item.id == idTag) {
+                      item.isCollected = params.collectionFlag;
+                      //居然不识别参数！！！
+                      changeList();
+                    }
+                  })
+                  return;
+                }
+              }
+            })
+          }
+        }
         apiRequest.postByToken('api/account/collection/collection', params, res.data)
           .then(function (res) {
             _that.setData({
@@ -353,47 +425,15 @@ Page({
               tipsInfo: _tips,
             });
             //根据类型来局部list刷新 iscollect收藏 
+            //如果是房源收藏
             if (typeTag == 0) {
-              _that.data.houseList.forEach((item)=>{
-                if (item.id == idTag){
-                  item.isCollected = params.collectionFlag;
-                  setTimeout(function () {
-                    _that.setData({
-                      showTips: false,
-                      houseList: _that.data.houseList
-                    });
-                  }, 1000)
-                  return ;
-                }
-              })
+              collectFun(_that.data.houseList, "house", "houseList");
             }
             if (typeTag == 1) {
-              _that.data.rentMate.forEach((item) => {
-                if (item.id == idTag) {
-                  item.isCollected = params.collectionFlag;
-                  setTimeout(function () {
-                    _that.setData({
-                      showTips: false,
-                      rentMate: _that.data.rentMate
-                    });
-                  }, 1000)
-                  return;
-                }
-              })
+              collectFun(_that.data.rentMate, "lookForHouse", "rentMate");
             }
             if (typeTag == 2) {
-              _that.data.roomMate.forEach((item) => {
-                if (item.id == idTag) {
-                  item.isCollected = params.collectionFlag;
-                  setTimeout(function () {
-                    _that.setData({
-                      showTips: false,
-                      roomMate: _that.data.roomMate
-                    });
-                  }, 1000)
-                  return;
-                }
-              })
+              collectFun(_that.data.roomMate, "lookForRoommate", "roomMate");
             }
           })
       },fail:function(){

@@ -29,25 +29,24 @@
               <image src="{{'http://oshsvxlu9.bkt.clouddn.com/'+item.imageUrl}}" class="slide-image" /> 
             </view>
             <view wx:if="{{item.contentType ==1}}" bindtap="detailHouse" class="tab-houselist" data-houseid="{{item.house.id}}">
-              <image data-type="0" data-id="{{item.id}}" data-iscollect="{{item.isCancelled}}" catchtap="handelCollect" class="right-collect" src="{{item.isCancelled==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+              <image data-isbanner="1" data-type="0" data-id="{{item.house.id}}" data-iscollect="{{item.house.isCollected}}" catchtap="handelCollect" class="right-collect" src="{{item.house.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
               <template is="myHouse" data="{{item}}"/>
             </view>
             <view wx:if="{{item.contentType ==2}}" bindtap="detailRoom" class="tab-houselist tab-roommate" data-roomid="{{item.lookForRoommate.id}}">
               <view class="roomate-left">
                 <image class="left-image" src="{{item.lookForRoommate.portraitUrl}}"></image>
-                <text class="left-nickname">{{item.lookForRoommate.nickname}}</text>
+                <text class="left-nickname">{{item.lookForRoommate.nickName}}</text>
                 <text class="left-nickname left-reason">找室友</text>
               </view>
-              <template is="myrentRomme" data="{{item}}"/>
               <view class="roomate-middle">
                 <view class="middle-item">城市：<text class="detail-value">{{item.lookForRoommate.city.nameCn}}</text></view>
                 <view class="middle-item">性别：<text class="detail-value">{{item.lookForRoommate.myGender==0?"男":(item.lookForRoommate.myGender==1?"女":'男女不限')}}</text> </view>
+                <view class="middle-item">租金：<text class="detail-value"> {{item.lookForRoommate.rentAmount}} {{item.lookForRoommate.currencyName}}/{{item.lookForRoommate.periodName}}</text> </view>
                 <view class="middle-item">起租时间：<text class="detail-value">{{item.lookForRoommate.startDate}}</text></view>
-                <view class="middle-item">结束时间：<text class="detail-value">{{item.lookForRoommate.endDate}}</text></view>
                 <view class="middle-item">要求：<text class="detail-value">{{item.lookForRoommate.requirement}}</text></view>
               </view>
               <view class="roomate-right">
-                <image data-type="2" data-id="{{item.id}}" data-iscollect="{{item.isCancelled}}" catchtap="handelCollect"  class="right-collect" src="{{item.isCancelled==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+                <image data-isbanner="1" data-type="2" data-id="{{item.lookForRoommate.id}}" data-iscollect="{{item.lookForRoommate.isCollected}}" catchtap="handelCollect"  class="right-collect" src="{{item.lookForRoommate.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
                 <view class="right-icon"></view>
               </view>
             </view>
@@ -65,7 +64,7 @@
                 <view class="middle-item">要求：<text class="detail-value">{{item.lookForHouse.requirement}}</text></view>
               </view>
               <view class="roomate-right">
-                <image data-type="1" data-id="{{item.id}}" data-iscollect="{{item.isCancelled}}" catchtap="handelCollect"  class="right-collect" src="{{item.isCancelled==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+                <image data-isbanner="1" data-type="1" data-id="{{item.lookForHouse.id}}" data-iscollect="{{item.lookForHouse.isCollected}}" catchtap="handelCollect"  class="right-collect" src="{{item.lookForHouse.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
                 <view class="right-icon"></view>
               </view>
             </view>
@@ -87,7 +86,7 @@
       <swiper-item>
         <view bindtap="detailHouse" class="tab-houselist" wx:for="{{houseList}}" wx:key="$index" data-houseid="{{item.id}}">
           <image src="{{item.defaultImageUrl}}" class="tab-house" />
-          <image data-type="0" data-id="{{item.id}}" data-iscollect="{{item.isCollected}}" catchtap="handelCollect" class="right-collect" src="{{item.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+          <image data-isbanner="0" data-type="0" data-id="{{item.id}}" data-iscollect="{{item.isCollected}}" catchtap="handelCollect" class="right-collect" src="{{item.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
           <view class="tab-housedetail">
             <view class="housedetail">
               <text class="detail-left">{{item.title}}</text>
@@ -120,7 +119,7 @@
             <view class="middle-item">要求：<text class="detail-value">{{item.requirement}}</text></view>
           </view>
           <view class="roomate-right">
-            <image data-type="2" data-id="{{item.id}}" data-iscollect="{{item.isCollected}}" catchtap="handelCollect"  class="right-collect" src="{{item.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+            <image data-type="2" data-isbanner="0" data-id="{{item.id}}" data-iscollect="{{item.isCollected}}" catchtap="handelCollect"  class="right-collect" src="{{item.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
             <view class="right-icon"></view>
           </view>
         </view>

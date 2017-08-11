@@ -19,7 +19,7 @@
 
 <template name="myHouse" data="{{item}}">
   <image src="{{item.house.defaultImageUrl}}" class="tab-house"></image>
-  <view class="tab-housedetail" bindtap="detailHouse" data-houseid="{{item.house.id}}">
+  <view class="tab-housedetail">
       <view class="housedetail">
       <text class="detail-left">{{item.house.title}}</text>
       <text class="detail-right"><text class="rent-ammout">{{item.house.rentAmount}}</text> {{item.house.currencyName}}/{{item.house.periodName}}</text>
@@ -34,12 +34,12 @@
 <template name="myrentRomme" data="{{item}}">
   <view class="roomate-middle">
     <view class="middle-item">城市：<text wx:if="{{item.type==2||item.contentType==2}}" class="detail-value">{{item.lookForHouse.city.nameCn}}</text><text wx:if="{{item.type==3||item.contentType==3}}" class="detail-value">{{item.lookForRoommate.city.nameCn}}</text></view>
-    <view wx:if="{{item.type==2||item.contentType==2}}" class="middle-item">性别：<text class="detail-value">{{item.lookForHouse.myGender==0?"男":(item.lookForHouse.myGender==1?"女":'保密')}}</text> </view>
+    <view wx:if="{{item.type==3||item.contentType==3}}" class="middle-item">性别：<text class="detail-value">{{item.lookForRoommate.myGender==0?"男":(item.lookForRoommate.myGender==1?"女":'保密')}}</text> </view>
     <view class="middle-item">租金：
       <text wx:if="{{item.type==2||item.contentType==2}}" class="detail-value">{{item.lookForHouse.rentAmount}} {{item.lookForHouse.currencyName}}/{{item.lookForHouse.periodName}}</text>
       <text wx:if="{{item.type==3||item.contentType==3}}" class="detail-value">{{item.lookForRoommate.rentAmount}} {{item.lookForRoommate.currencyName}}/{{item.lookForRoommate.periodName}}</text></view>
     <view class="middle-item">起租时间：<text wx:if="{{item.type==2||item.contentType==2}}" class="detail-value">{{item.lookForHouse.startDate}}</text><text wx:if="{{item.type==3||item.contentType==3}}" class="detail-value">{{item.lookForRoommate.startDate}}</text></view>
-    <view wx:if="{{item.type==3||item.contentType==3}}" class="middle-item">结束时间：<text class="detail-value">{{item.lookForRoommate.endDate}}</text></view>
+    <view wx:if="{{item.type==2||item.contentType==2}}" class="middle-item">结束时间：<text class="detail-value">{{item.lookForRoommate.endDate}}</text></view>
     <view class="middle-item">要求：<text wx:if="{{item.type==2||item.contentType==3}}" class="detail-value">{{item.lookForHouse.requirement==null?'无':item.lookForHouse.requirement}}</text><text wx:if="{{item.type==3}}" class="detail-value">{{item.lookForRoommate.requirement==null?"无":item.lookForRoommate.requirement}}</text></view>
   </view>
   <view class="roomate-right">

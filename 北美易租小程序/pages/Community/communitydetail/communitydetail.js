@@ -1,5 +1,6 @@
 const apiRequest = require('../../../utils/apiRequest.js');
 const util = require('../../../utils/util.js');
+const APP = getApp();
 Page({
   data: {
     showmore:false,
@@ -64,18 +65,37 @@ Page({
     });
   },
   changeAttend(e){
-    if (e.target.dataset.state){
-      this.setData({
-        attendText: "+ 关注",
-        isAttend: false,
-      });
-    }
-    else{
-      this.setData({
-        attendText: "取消关注",
-        isAttend: true,
-      });
-    }
+    var _that=this;
+    wx.getStorage({
+      key: 'yzw-token',
+      success: function (res) {
+        if (e.target.dataset.state) {
+          _that.setData({
+            attendText: "+ 关注",
+            isAttend: false,
+          });
+        }
+        else {
+          _that.setData({
+            attendText: "取消关注",
+            isAttend: true,
+          });
+        }
+      },
+      fail: function () {
+        wx.openSetting({
+          success: (res) => {
+            APP.globalData.setUserToken();
+          },
+          complete: ()=>{
+            wx.reLaunch({
+              url: '../community/community'
+            })
+          }
+        })
+        
+      }
+    })
   },
   detailHouse(e) {
     var houseId = e.currentTarget.dataset.houseid;

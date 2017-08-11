@@ -83,8 +83,7 @@ Page({
     }
   },
   communityDetail(e){
-    const id = e.currentTarget.dataset.id,
-      name = e.currentTarget.dataset.name;
+    const [id, name] = [e.currentTarget.dataset.id, e.currentTarget.dataset.name];
     wx.navigateTo({
       url: `../communitydetail/communitydetail?communityId=${id}&communityName=${name}`
     });

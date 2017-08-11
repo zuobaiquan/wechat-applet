@@ -32,7 +32,6 @@ Page({
         success: function (res) {
           apiRequest.postByToken('api/me/myPublish', params1, res.data)
             .then(function (res) {
-              console.log(123456, res.data.data.list);
               that.setData({
                 myinfoData: res.data.data.list
               });
@@ -40,7 +39,14 @@ Page({
             })
         },
         fail: function () {
-          console.log(1234);
+          wx.openSetting({
+            success: (res) => {
+              APP.globalData.setUserToken();
+            },
+            complete: () => {
+              that.onLoad();
+            }
+          })
         }
       })
     }
@@ -64,7 +70,6 @@ Page({
           success: function (res) {
             apiRequest.postByToken('api/me/myCollection', params2, res.data)
               .then(function (res) {
-                console.log(123456, res.data.data.list);
                 that.setData({
                   mycollectData: res.data.data.list
                 });
@@ -114,22 +119,22 @@ Page({
       url: url
     })
   },
-  detailHouse() {
+  detailHouse(e) {
+    var houseId = e.currentTarget.dataset.houseid;
     wx.navigateTo({
-      url: '../../Mycenter/housedetail/housedetail'
+      url: `../../Mycenter/housedetail/housedetail?houseId=${houseId}`
     })
   },
-  detailRentroom(e){
-    const listtype = parseInt(e.currentTarget.dataset.listtype);
-    console.log(e,listtype);;
-    if (listtype==3){
+  detailRentroom(e) {
+    const [id,type] = [e.currentTarget.dataset.id, e.currentTarget.dataset.listtype];
+    if(type==2){
       wx.navigateTo({
-        url: '../../Community/rentdetail/rentdetail?type=2&look=false'
+        url: `../../Community/rentdetail/rentdetail?type=2&look=false&rentId=${id}`
       })
     }
-    if (listtype == 2) {
+    if(type==3){
       wx.navigateTo({
-        url: '../../Community/rentdetail/rentdetail?type=3&look=false'
+        url: `../../Community/rentdetail/rentdetail?type=3&look=false&roomId=${id}`
       })
     }
   },
@@ -197,9 +202,7 @@ Page({
     } catch (e) {
       return false;
     }
-
   },
-
   initEleWidth() {
     var delBtnWidth = this.getEleWidth(this.data.delBtnWidth);
     this.setData({
@@ -210,9 +213,7 @@ Page({
   //点击删除按钮事件
   delItem(e) {
     var that=this;
-    const index = e.target.dataset.index;
-    const id = e.target.dataset.id;
-    const listtype = parseInt(e.target.dataset.listtype);
+    const [index, id, listtype] = [e.target.dataset.index, e.target.dataset.id, parseInt(e.target.dataset.listtype)];
     var myinfoData = that.data.myinfoData;
     var modalTitle="";
     switch (listtype) {
@@ -277,6 +278,36 @@ Page({
     var roomId = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: `../rentdetail/rentdetail?roomId=${roomId}`
+    })
+  },
+  handelCollect(e) {
+    var _that = this;
+    const [collectTag, idTag, typeTag,index] = [parseInt(e.target.dataset.iscollect), parseInt(e.target.dataset.id), parseInt(e.target.dataset.type)];
+    const params = {
+      contentType: typeTag -1,
+      contentId: idTag,
+      collectionFlag: 0
+    }
+    wx.getStorage({
+      key: 'yzw-token',
+      success: function (res) {
+        apiRequest.postByToken('api/account/collection/collection', params, res.data)
+          .then(function (res) {
+            _that.setData({
+              showTips: true,
+              tipsInfo: '取消成功',
+            });
+            setTimeout(function () {
+              _that.data.mycollectData.splice(index,1);
+              _that.setData({
+                showTips: false,
+                mycollectData: _that.data.mycollectData
+              });
+            }, 1000)
+          })
+      }, fail: function () {
+        console.log("错误");
+      }
     })
   },
   handleLoadMore: function () {

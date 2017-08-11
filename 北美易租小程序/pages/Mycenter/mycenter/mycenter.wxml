@@ -10,7 +10,7 @@
   </view>
   <view class="search-item {{currentTab==0 ? 'show-content' : 'hidden-content'}}">
     <view wx-if="{{myinfoData.length!=0}}" class="tab-houselist" wx:for="{{myinfoData}}" wx:key="{{index}}">
-         <view wx:if="{{item.type==1}}" bindtap="detailHouse" bindtouchstart="touchStart" 
+         <view wx:if="{{item.type==1}}" catchtap="detailHouse" data-houseid="{{item.house.id}}" bindtouchstart="touchStart" 
     bindtouchmove="touchMove" bindtouchend="touchEnd" data-index="{{index}}" style="{{item.txtStyle}}" class="listdel txt">
           <template is="myHouse" data="{{item}}"/>
           <view class="unpublish" wx:if="{{item.house.isPublished==0}}" >
@@ -20,7 +20,7 @@
         <view wx:if="{{item.type==1}}" data-index="{{index}}" data-id="{{item.house.id}}" data-listtype="{{item.type}}" bindtap="delItem" class="listdel deltext">删除</view>
         <view wx:if="{{item.type==2}}" data-index="{{index}}" data-id="{{item.lookForHouse.id}}" data-listtype="{{item.type}}" bindtap="delItem" class="listdel deltext">删除</view>
         <view wx:if="{{item.type==3}}" data-index="{{index}}" data-id="{{item.lookForRoommate.id}}" data-listtype="{{item.type}}" bindtap="delItem" class="listdel deltext">删除</view>    
-        <view bindtap="detailRentroom" data-listtype="{{item.type}}" wx:if="{{item.type==2||item.type==3}}" bindtouchstart="touchStart" 
+        <view catchtap="detailRentroom" data-id="{{item.lookForRoommate.id||item.lookForHouse.id}}" data-listtype="{{item.type}}" wx:if="{{item.type==2||item.type==3}}" bindtouchstart="touchStart" 
     bindtouchmove="touchMove" bindtouchend="touchEnd" data-index="{{index}}" style="{{item.txtStyle}}" class="tab-houselist tab-roommate listdel txt">
             <template is="myrentRomme" data="{{item}}"/>
             <view class="unpublish" wx:if="{{item.type==2&&item.lookForHouse.isPublished==0}}">
@@ -37,12 +37,12 @@
     </view>
   <view class="search-item collect-box {{currentTab==1 ? 'show-content' : 'hidden-content'}}">
       <view wx-if="{{mycollectData.length!=0}}" wx:for="{{mycollectData}}" wx:key="$index">
-        <view wx:if="{{item.type==1}}" class="tab-houselist" bindtap="detailHouse">
-          <image data-iscollect="{{item.house.isCollected}}" catchtap="handelCollect" class="right-collect" src="/images/icon-collected.png"></image>
+        <view wx:if="{{item.type==1}}" class="tab-houselist" bindtap="detailHouse" data-houseid="{{item.house.id}}">
+          <image catchtap="handelCollect" data-type="{{item.type}}" data-index="{{index}}" data-id="{{item.house.id}}" class="right-collect" src="/images/icon-collected.png"></image>
           <template is="myHouse" data="{{item}}"/>
         </view>
-        <view wx:if="{{item.type==2||item.type==3}}" class="tab-houselist tab-roommate">
-            <image class="right-collect" src="/images/icon-collected.png"></image>  
+        <view wx:if="{{item.type==2||item.type==3}}" class="tab-houselist tab-roommate" bindtap="detailRentroom" data-id="{{item.lookForRoommate.id||item.lookForHouse.id}}" data-listtype="{{item.type}}">
+            <image class="right-collect" catchtap="handelCollect" data-index="{{index}}" data-type="{{item.type}}" data-id="{{item.lookForHouse.id || item.lookForRoommate.id}}" src="/images/icon-collected.png"></image>  
             <template is="myrentRomme" data="{{item}}"/>
          </view>
       </view>
