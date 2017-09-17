@@ -1,0 +1,42 @@
+<view class="container">
+    <view class="no" wx:if="{{list.length == 0}}">
+        <view class="title">貌似木有内容，赶紧去添加一些吧~</view>
+        <view class="line">
+            <image src="../../images/bg_line.png"></image>
+        </view>
+    </view>
+    <!--衣橱列表-->
+    <view class="wardrobe-list" wx:else style="padding-left: {{paddpx}}px;">
+        <block wx:for="{{list}}"  wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
+            <view catchtap="goDetail" class="item" style="margin: {{paddpx}}px {{paddpx}}px 0 0;width: {{imgw}}px"data-id="{{itemName.id}}" data-type="{{itemName.name}}">
+                <view class="box-image">
+                  <view class="image" style="{{ 'width: '+imgw+'px;height: '+imgw+'px'}}" >
+                      <image class="img" src="{{itemName.coverUrl}}" mode="aspectFill"></image>
+                  </view>
+                    <view class="impression" hidden="{{list.length == 0}}"></view>
+                </view>
+                <view class="news">
+                    <view class="label">{{itemName.name}}</view>
+                    <view class="view">{{itemName.clothesCount}}</view>
+                </view>
+            </view>
+        </block>
+
+    </view>
+    <!--悬浮按钮-->
+    <view class="button">
+        <view class="add" catchtap="camera">
+            <view class="icon">
+                <image src="../../images/btn_add.png"></image>
+            </view>
+            <view class="text">添加</view>
+        </view>
+        <view class="leave" catchtap="leave" wx:if="{{checkSuccess&&getData}}">
+            <view class="icon">
+                <image src="../../images/btn_leave_a_message.png"></image>
+            </view>
+            <view class="text">留言</view>
+        </view>
+    </view>
+
+</view>

@@ -1,0 +1,33 @@
+<view class="container">
+    <form bindsubmit="submit">
+        <view class="top-button">
+            <view class="cancel" catchtap="cancel">取消</view>
+            <button class="send" form-type="submit">发送</button>
+        </view>
+        <view class="idea">
+            <text wx:if="{{cancelPopup}}">分享这一刻的想法...</text>
+            <textarea wx:else placeholder="分享这一刻的想法..." placeholder-class="placeholder-class" name="content"></textarea>
+        </view>
+    </form>
+    <view class="photo">
+        <view wx:for="{{imageList}}">
+            <image mode="widthFix" src="{{item}}"></image>
+            <image catchtap="delete" data-index="{{index}}" class="close" src="../../images/ic_close_semicircle.png"></image>
+        </view>
+        <view class="add" bindtap="selectImage" wx:if="{{count>0}}">
+            <image src="../../images/ic_add_gray.png"></image>
+        </view>
+    </view>
+    <!--取消弹窗-->
+    <view class="cancel-popup" wx:if="{{cancelPopup}}" catchtap="cancelCancel">
+        <view class="content" catchtap="stop">
+            <view class="title">提示</view>
+            <view class="text">退出此次编辑？</view>
+            <view class="button">
+                <view class="cancel" catchtap="cancelCancel">取消</view>
+                <view class="line"></view>
+                <view class="confirm" catchtap="cancelConfirm">确定</view>
+            </view>
+        </view>
+    </view>
+</view>

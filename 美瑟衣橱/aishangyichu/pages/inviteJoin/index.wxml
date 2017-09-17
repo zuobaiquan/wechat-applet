@@ -1,0 +1,27 @@
+<view class="container">
+    <view class="content">
+        <view class="avatar" style="background-image: url({{circleObj.creator.avatarUrl}})"></view>
+        <view class="name">{{circleObj.creator.nickName}}</view>
+        <view class="description">
+            <view class="title">{{circleObj.title}}</view>
+            <view class="text">{{circleObj.content}}</view>
+        </view>
+        <view class="code">
+            <image src="{{qrcodeurl}}"></image>
+        </view>
+        <!--<view class="hint">请使用微信长按识别二维码加入圈子</view>-->
+    </view>
+
+    <view class="how-invite">
+        <view class="title">如果邀请好友？</view>
+        <view>点击右上角分享给好友，或者截屏，找到截屏图分享给好友或者朋友圈</view>
+    </view>
+
+    <view class="button" catchtap="addCircle" wx:if="{{!!share}}">
+        <button>进入圈子</button>
+    </view>
+    <!--分享好友图片-->
+    <view class="share_img_box" wx:if="{{share_img && !share}}" catchtap="share_friend">
+        <image src="../../images/share_friend.png"></image>
+    </view>
+</view>

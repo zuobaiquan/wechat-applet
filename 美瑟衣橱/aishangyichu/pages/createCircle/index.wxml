@@ -1,0 +1,22 @@
+<view class="container">
+    <form bindsubmit="formSubmit">
+        <view class="logoAndName">
+            <view class="default" wx:if="{{logoLocalUrl==''}}" catchtap="camera">
+                <image src='../../images/ic_photo.png'></image>
+            </view>
+            <view class="logo" wx:else style="background-image: url('');" catchtap="camera">
+                <image src="{{logoLocalUrl}}"></image>
+            </view>
+            <input type="text" name="coverUrl" value="{{coverUrl}}" hidden />
+            <view class="name">
+                <input  placeholder-class="placeholder-class" type="text" placeholder="圈子名称" data-type="title" name="title"/>
+            </view>
+        </view>
+        <view class="intro">
+            <textarea  placeholder-class="placeholder-class" placeholder="圈子介绍（选填)" data-type="content" name="content"></textarea>
+        </view>
+        <view class="button">
+            <button formType="submit">完成</button>
+        </view>
+    </form>
+</view>

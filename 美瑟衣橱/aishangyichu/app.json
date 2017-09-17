@@ -1,0 +1,39 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/me/index",
+    "pages/about/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "发现",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar":{
+    "borderStyle": "white",
+    "color":"#666666",
+    "selectedColor":"#ff5669",
+    "backgroundColor":"#fdfdfd",
+    "list":[
+      {
+        "pagePath":"pages/index/index",
+        "text":"发现",
+        "iconPath":"images/00标签栏/ic_main_tab_circle_normal.png",
+        "selectedIconPath":"images/00标签栏/ic_main_tab_circle_pressed.png"
+      },
+      {
+        "pagePath":"pages/wardrobe/index",
+        "text":"衣橱",
+        "iconPath":"images/00标签栏/ic_main_tab_wardrobe_normal.png",
+        "selectedIconPath":"images/00标签栏/ic_main_tab_wardrobe_pressed.png"
+      },
+      {
+        "pagePath":"pages/me/index",
+        "text":"我的",
+        "iconPath":"images/00标签栏/ic_main_tab_user_center_normal.png",
+        "selectedIconPath":"images/00标签栏/ic_main_tab_user_center_pressed.png"
+      }
+    ]
+  }
+}

@@ -1,9 +1,0 @@
-<view class="out1" bindtap="outtap">
-                out1
- <view  class="middle1" catchtap="midtap">
-                 middle1
-    <view class="inner1" bindtap="innertap">
-                    inner1
-    </view>
- </view>
-</view>

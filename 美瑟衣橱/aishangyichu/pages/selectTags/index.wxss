@@ -1,0 +1,306 @@
+.container{
+    padding-top:18rpx;
+}
+.container .button{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+}
+.container .button view{
+    border:none;
+    display: block;
+    background-color:#FF5669;
+    color:#fff;
+    padding: 15rpx 24rpx;
+    margin-right:30rpx;
+    font-size: 14px;
+    border-radius: 6rpx;
+}
+.container .button .cancel{
+    background-color:transparent;
+    color: #101010;
+    font-size: 14px;
+}
+
+.container .create{
+    background-color:#fff;
+    padding:20rpx;
+    padding-left: 29rpx;
+    padding-bottom: 0rpx;
+    display:flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top:26rpx;
+}
+.container .create view{
+    padding:10rpx 34rpx;
+    color:#999999;
+    font-size: 13px;
+    border: 1rpx solid #999999;
+    border-radius: 4rpx;
+    margin-bottom: 20rpx;
+    position: relative;
+    margin-right: 20rpx;
+}
+.container .create .border-red,.container .create .check{
+    border: 1px solid #FF5669;
+    color:#FF5669;
+}
+.container .create view>image{
+    position: absolute;
+    width: 30rpx;
+    height: 30rpx;
+    top: -15rpx;
+    right: -15rpx;
+}
+.container .create .addTag{
+    width: 60rpx;
+    height:60rpx;
+    margin-bottom: 20rpx;
+    display: block;
+}
+/*类型*/
+.container .type{
+
+}
+.container .type .title{
+    display:flex;
+    align-items: center;
+    background-color:#fff;
+    margin-left: 27rpx;
+    padding: 10rpx 0 10rpx 20rpx;
+    border-radius: 30rpx;
+    box-sizing: border-box;
+    width: 125rpx;
+    margin-top: 40rpx;
+}
+.container .type .title view{
+    color:#333333;
+    font-size: 12px;
+}
+.container .type .title .dot{
+    width: 14rpx;
+    height: 14rpx;
+    border-radius: 50%;
+    background-color: #FF5669;
+    margin-right:20rpx;
+}
+.container .type .list{
+    background-color:#fff;
+    padding: 30rpx 0rpx 10rpx 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top:40rpx;
+}
+.container .type .list view{
+    padding: 10rpx 30rpx;
+    color:#999;
+    font-size: 13px;
+    border: 1rpx solid #999;
+    border-radius: 4rpx;
+    margin-left:29rpx;
+    margin-bottom: 20rpx;
+}
+.container .type .list .active{
+    padding: 10rpx 30rpx;
+    color:#FF5669;
+    font-size: 13px;
+    border: 1rpx solid #FF5669;
+    border-radius: 4rpx;
+}
+/*风格*/
+.container .style{
+
+}
+.container .style .title{
+    display:flex;
+    align-items: center;
+    background-color:#fff;
+    margin-left: 27rpx;
+    padding: 10rpx 0 10rpx 20rpx;
+    border-radius: 30rpx;
+    box-sizing: border-box;
+    width: 125rpx;
+    margin-top: 40rpx;
+}
+.container .style .title view{
+    color:#333333;
+    font-size: 12px;
+}
+.container .style .title .dot{
+    width: 14rpx;
+    height: 14rpx;
+    border-radius: 50%;
+    background-color: #FF5669;
+    margin-right:20rpx;
+}
+.container .style .list{
+    background-color:#fff;
+    padding: 30rpx 0rpx 10rpx 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top:40rpx;
+}
+.container .style .list view{
+    padding: 10rpx 30rpx;
+    color:#999;
+    font-size: 13px;
+    border: 1rpx solid #999;
+    border-radius: 4rpx;
+    margin-left:29rpx;
+    margin-bottom: 20rpx;
+}
+.container .style .list .active{
+    padding: 10rpx 30rpx;
+    color:#FF5669;
+    font-size: 13px;
+    border: 1rpx solid #FF5669;
+    border-radius: 4rpx;
+}
+/*场合*/
+.container .occasion{
+
+}
+.container .occasion .title{
+    display:flex;
+    align-items: center;
+    background-color:#fff;
+    margin-left: 27rpx;
+    padding: 10rpx 0 10rpx 20rpx;
+    border-radius: 30rpx;
+    box-sizing: border-box;
+    width: 125rpx;
+    margin-top: 40rpx;
+}
+.container .occasion .title view{
+    color:#333333;
+    font-size: 12px;
+}
+.container .occasion .title .dot{
+    width: 14rpx;
+    height: 14rpx;
+    border-radius: 50%;
+    background-color: #FF5669;
+    margin-right:20rpx;
+}
+.container .occasion .list{
+    background-color:#fff;
+    padding: 30rpx 0rpx 10rpx 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top:40rpx;
+}
+.container .occasion .list view{
+    padding: 10rpx 30rpx;
+    color:#999;
+    font-size: 13px;
+    border: 1rpx solid #999;
+    border-radius: 4rpx;
+    margin-left:29rpx;
+    margin-bottom: 20rpx;
+}
+.container .occasion .list .active{
+    padding: 10rpx 30rpx;
+    color:#FF5669;
+    font-size: 13px;
+    border: 1px solid #FF5669;
+    border-radius: 4rpx;
+}
+/*是否同步圈子*/
+.container .sync{
+    background-color:#fff;
+    height: 120rpx;
+    display:flex;
+    align-items: center;
+    padding: 0 40rpx;
+    justify-content: space-between;
+    margin-top:48rpx;
+}
+.container .sync text{
+    display:block;
+    color:#333;
+    font-size: 13px;
+}
+.container .sync image{
+    display:block;
+    width: 100rpx;
+    height: 55rpx;
+}
+/*添加弹窗*/
+.container .tag-popup{
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*.container .tag-popup scroll-view{*/
+    /*display:flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+/*}*/
+.container .tag-popup .content{
+    background-color: #fff;
+    width: 560rpx;
+    padding-bottom: 35rpx;
+}
+.container .tag-popup .tag-button{
+    display:flex;
+    justify-content: flex-end;
+    padding-right: 20rpx;
+}
+.container .tag-popup .tag-close{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25rpx 20rpx 0  0;
+}
+.container .tag-popup .tag-close view{
+    background-color:#ccc;
+    width: 2px;
+    height: 30rpx;
+    transform:rotate(45deg) translateY(-1rpx);
+}
+.container .tag-popup .tag-close .line{
+    transform:rotate(-45deg) translateY(-1rpx);
+}
+.container .tag-popup .input{
+    display:flex;
+    align-items: center;
+    width: 465rpx;
+    margin: 50rpx auto 0;
+    border-bottom: 1px solid #EEEEEE;
+    padding-bottom: 15rpx;
+}
+.container .tag-popup .input view{
+    width: 4rpx;
+    height: 58rpx;
+    background-color:#FF5669;
+}
+.container .tag-popup .input input{
+    display:block;
+    flex-grow: 1;
+    padding: 0 22rpx;
+    color:#999999;
+    font-size: 15px;
+}
+.container .tag-popup button{
+    width: 375rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    border:none;
+    background-color: #FF5669;
+    color: #fff;
+    font-size: 14px;
+    margin:85rpx auto 0;
+    display:block;
+}

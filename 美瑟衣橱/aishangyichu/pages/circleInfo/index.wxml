@@ -1,0 +1,23 @@
+<view class="container">
+    <form bindsubmit="formSubmit">
+        <view class="logoAndName">
+            <view class="default" wx:if="{{true}}">
+                <image src="{{scalecoverUrl}}" catchtap="camera"></image>
+            </view>
+            <view class="logo" wx:else style="background-image: url('http://img04.sogoucdn.com/app/a/100520024/9ffc49ba8c48366076a58bf4fbb6aa3f');">
+                <!--<image src="http://img04.sogoucdn.com/app/a/100520024/9ffc49ba8c48366076a58bf4fbb6aa3f"></image>-->
+            </view>
+            <input type="text" name="id" value="{{id}}" hidden />
+            <input type="text" name="coverUrl" value="{{coverUrl}}" hidden />
+            <view class="name">
+                <input placeholder-class="placeholder-class" type="text" name="title" placeholder="圈子名称" value="{{title}}"/>
+            </view>
+        </view>
+        <view class="intro">
+            <textarea placeholder-class="placeholder-class" placeholder="圈子介绍（选填)" value="{{content}}" name="content"></textarea>
+        </view>
+        <view class="button">
+            <button formType="submit">完成</button>
+        </view>
+    </form>
+</view>

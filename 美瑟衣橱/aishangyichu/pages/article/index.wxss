@@ -1,0 +1,22 @@
+.article-wrapper-template{
+    padding: 0 42rpx;
+    background-color: #fff;
+    min-height: 100%;
+}
+.article-wrapper-template image{
+    width: 670rpx;
+    height: 510rpx;
+}
+.article-wrapper-template .title{
+    font-size: 16px;
+    color:#010101;
+    padding-top: 15rpx;
+    line-height: 1.4;
+}
+.article-wrapper-template .description{
+    padding-top: 15rpx;
+    color: #666666;
+    font-size: 13px;
+    line-height: 1.8;
+    padding-bottom: 45rpx;
+}

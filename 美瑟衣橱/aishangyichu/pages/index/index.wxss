@@ -1,0 +1,70 @@
+@import "../article/index.wxss";
+.container{
+    padding-top: 0rpx;
+}
+view,image{
+    box-sizing: border-box;
+}
+.container .nav{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 32rpx 96rpx;
+}
+.container .nav image{
+    width: 204rpx;
+    height: 138rpx;
+}
+.container .nav .border{
+    width: 2rpx;
+    height: 90rpx;
+    background-color: #e3e3e3;
+}
+/*圈子列表*/
+.container .circle-list{
+    display:flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left:40rpx;
+    padding-bottom: 20rpx;
+}
+.container .circle-list view{
+    width: 285rpx;
+    margin: 6rpx 40rpx 0 0;
+    overflow: hidden;
+    padding-bottom: 0rpx;
+}
+.container .circle-list view image{
+    width: 285rpx;
+    height: 285rpx;
+    border-radius: 20rpx;
+    background-clip: border-box;
+    display:block;
+}
+.container .circle-list view .image{
+    width: 285rpx;
+    height: 290rpx;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-position: center top;
+    background-clip: border-box;
+    display:block;
+}
+.container .circle-list view text{
+    display:block;
+    color:#333;
+    font-size: 14px;
+    text-align: left;
+    padding: 20rpx 10rpx 0;
+    line-height: 1;
+}
+.container .circle-list view .name{
+    color:#999;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    padding: 20rpx 10rpx 0;
+}

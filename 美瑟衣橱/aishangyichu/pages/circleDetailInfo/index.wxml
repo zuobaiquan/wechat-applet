@@ -1,0 +1,45 @@
+<view class="container">
+    <view class="avatar" style="background-image: url({{coverUrl}})"></view>
+    <view class="name">{{circleObj.title}}</view>
+    <view class="description">
+        {{circleObj.content}}
+    </view>
+
+    <view class="circle-news">
+        <view class="creator">
+            <view class="title">圈子创始人</view>
+            <view class="wrapper">
+                <view class="content">{{circleObj.creator.nickName}}</view>
+                <!--<view class="icon"></view>-->
+            </view>
+        </view>
+
+        <!--<view class="card" catchtap="circleCard">-->
+        <!--<view class="title">我的圈子名片</view>-->
+        <!--<view class="wrapper">-->
+        <!--<view class="content">夕米</view>-->
+        <!--<image class="icon" src="../../images/ic_arrow_right_dark_brown.png"></image>-->
+        <!--</view>-->
+        <!--</view>-->
+
+        <view class="member">
+            <view class="title">圈子成员</view>
+            <view class="wrapper">
+                <view class="content">{{circleObj.membersCount}}</view>
+                <!--<view class="icon"></view>-->
+            </view>
+        </view>
+    </view>
+
+    <view class="about" catchtap="circleInfo">
+        <view class="title">编辑圈子资料</view>
+        <view class="wrapper">
+            <view class="content">{{circleObj.title}}</view>
+            <image class="icon" src="../../images/ic_arrow_right_dark_brown.png" wx:if="{{opreation}}"></image>
+        </view>
+    </view>
+
+    <view class="button" catchtap="inviteJoin">
+        <button>邀请好友加入</button>
+    </view>
+</view>

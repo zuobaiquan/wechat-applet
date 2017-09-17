@@ -1,0 +1,299 @@
+image{
+    width: 100%;
+    height: 100%;
+    display:block;
+}
+page{
+    background-color: #fff;
+}
+.container{
+    background-color: #fff;
+}
+.container .head swiper-item image{
+    width: 750rpx;
+    height: 300rpx;
+}
+.container .cover-img{
+    width: 750rpx;
+    height: 300rpx;
+    background-size: cover;
+    background-clip: border-box;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-position: center;
+}
+.container .edit-img{
+    position: absolute;
+    width: 70rpx;
+    height: 70rpx;
+    top: 20rpx;
+    right: 20rpx;
+}
+.container .head .intro{
+    background-color:#fff;
+    display:flex;
+    align-items: center;
+    padding-right: 30rpx;
+}
+.container .head .intro .line{
+    width: 5rpx;
+    height: 72rpx;
+    background-color:#ff5669;
+    flex-shrink: 0;
+    margin:40rpx 0 38rpx;
+}
+.container .head .intro .content{
+    flex-grow: 1;
+    margin-left:39rpx;
+}
+.container .head .intro .content text{
+    display:block;
+    color:#848484;
+    font-size: 14px;
+}
+.container .head .intro .content .title{
+    color:#000;
+    font-size: 15px;
+    padding-bottom: 16rpx;
+}
+.container .head .intro .close{
+    width:25rpx;
+    height:25rpx;
+    flex-shrink: 0;
+}
+.container .head .intro .close image{
+    width: 100%;
+    display:block;
+    height: 100%;
+}
+/*动态*/
+.container .height{
+    height: 20rpx;
+    background-color: #F4F5F6;
+}
+.container .dynamic {
+    background-color:#fff;
+}
+.container .dynamic .message-item{
+    padding:60rpx 25rpx 0;
+    display:flex;
+    align-items: flex-start;
+}
+.container .dynamic .message-item .left{
+    flex-shrink: 0;
+    width:80rpx;
+}
+.container .dynamic .message-item .left .avatar{
+    width:80rpx;
+    height:80rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #eee;
+    background-size: contain;
+    background-clip: border-box;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-position: center;
+}
+.container .dynamic .message-item .left .review{
+    width:77rpx;
+    background-color:#f4f5f6;
+    border-radius: 6rpx;
+    margin-top:24rpx;
+    padding-bottom: 14rpx;
+}
+.container .dynamic .message-item .left .top-arrow{
+    width: 23rpx;
+    height: 16rpx;
+    margin: 0 auto 0;
+    padding-top:15rpx;
+    overflow: hidden;
+}
+.container .dynamic .message-item .left .bottom-arrow{
+    width: 23rpx;
+    height: 16rpx;
+    margin: 11rpx auto 0;
+    overflow: hidden;
+}
+.container .dynamic .message-item .left .review text{
+    display:block;
+    color:#999;
+    font-size: 11px;
+    text-align: center;
+}
+.container .dynamic .message-item .left .review .active{
+    color:#FF5669;
+}
+.container .dynamic .message-item .left .review .number{
+    padding-top:14rpx;
+}
+.container .dynamic .message-item .left .review .text{
+    font-size: 10px;
+    padding-top:10rpx;
+}
+.container .dynamic .message-item .right{
+    margin-left:24rpx;
+    flex-grow: 1;
+}
+.container .dynamic .message-item .right .name{
+    height:80rpx;
+    display:flex;
+    align-items: center;
+    font-size: 15px;
+    color:#333;
+}
+.container .dynamic .message-item .right .title{
+    font-size: 15px;
+    color:#333;
+    padding-top:14rpx;
+    line-height: 1.3;
+}
+.container .dynamic .message-item .right .wardrobe-title{
+    font-size: 15px;
+    color:#999;
+    padding-top:14rpx;
+}
+.container .dynamic .message-item .right .images-list{
+    margin-top:11rpx;
+    display:flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.container .dynamic .message-item .right .images-list view{
+    width:166rpx;
+    height:166rpx;
+    background-clip: content-box;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-position: center top;
+    margin:12rpx 10rpx 0 0;
+}
+.container .dynamic .message-item .tags{
+    margin-top:24rpx;
+    display:flex;
+    align-items: center;
+}
+.container .dynamic .message-item .tags .icon{
+    width:36rpx;
+    height:36rpx;
+}
+.container .dynamic .message-item .tags .tag-text{
+    margin-left:19rpx;
+    font-size: 12px;
+    color:#ff5669;
+}
+.container .dynamic .message-item .right .time{
+    margin:29rpx 0 0 0;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.container .dynamic .message-item .right .time text{
+    display:block;
+    color:#737373;
+    font-size: 12px;
+}
+.container .dynamic .message-item .right .time .news{
+    width:38rpx;
+    height:36rpx;
+    flex-shrink: 0;
+}
+/*评论列表*/
+.container .dynamic .message-item .right .comment-list{
+    margin-top:15rpx;
+    padding-right: 85rpx;
+}
+.container .dynamic .message-item .right .comment-item{
+    font-size: 13px;
+    word-wrap: break-word;
+    word-break:break-all;
+    line-height: 1.6;
+    margin-top:5rpx;
+}
+.container .dynamic .message-item .right .comment-item .reply{
+    display:inline-block;
+}
+.container .dynamic .message-item .right .comment-item .reply-padding{
+    margin:0 14rpx;
+}
+.container .dynamic .message-item .right .comment-list text{
+    color:#333;
+    display:inline-block;
+}
+.container .dynamic .message-item .right .comment-list .comment-name,.container .dynamic .message-item .right .comment-list .colon{
+    color:#636B95;
+    font-size: 13px;
+}
+/*参与评论*/
+.container .dynamic .message-item .right .take-comment{
+    font-size: 13px;
+    color:#999;
+    border-bottom:1px solid #eeeeee;
+    margin-top:30rpx;
+    line-height: 3;
+    margin-right:85rpx;
+}
+/*已显示全部数据*/
+.no-data{
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+    padding-top: 104rpx;
+    padding-bottom: 40rpx;
+}
+.no-data text{
+    color:#FF5669;
+}
+/*添加*/
+.add{
+    width: 80rpx;
+    height: 80rpx;
+    position: fixed;
+    right: 25rpx;
+    bottom: 120rpx;
+    z-index: 99;
+}
+/*投票*/
+.container .popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.65);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+.container .popup .wrapper{
+    background-color:#fff;
+    width: 526rpx;
+    padding: 51rpx 0;
+}
+.container .popup .wrapper .title{
+    text-align:center;
+    color:#333;
+    font-size: 15px;
+}
+.container .popup .wrapper .comment{
+    margin-top:50rpx;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.container .popup .wrapper .comment .like,.container .popup .wrapper .comment .boring{
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+}
+.container .popup .wrapper .comment .active{
+    color:#FF5669;
+}
+.container .popup .wrapper .comment .like image,.container .popup .wrapper .comment .boring image{
+    width: 121rpx;
+    height: 121rpx;
+    margin-bottom: 23rpx;
+}
+

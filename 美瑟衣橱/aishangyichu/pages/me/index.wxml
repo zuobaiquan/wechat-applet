@@ -1,0 +1,29 @@
+<view class="container">
+
+    <image class="avatar" mode="aspectFill" bindtap="selectAvatar" src="{{userInfo.avatarUrl}}"></image>
+    
+    <view class="cell" bindtap="selectBg" hover="true" hover-class="highlight">
+        <image class="left_img" src="../../images/07-0我的/ic_posted.png"></image>
+        <text class="cell_title" catchtap="myPublic">我的发布</text>
+        <image class="right_img" src="../../images/ic_arrow_right_dark_brown.png"></image>
+    </view>
+
+    <view class="cell" bindtap="selectBg" hover="true" hover-class="highlight">
+        <image class="left_img" src="../../images/07-0我的/ic_cabinet.png"></image>
+        <text class="cell_title" catchtap="myWardrob">我的橱柜</text>
+        <image class="right_img" src="../../images/ic_arrow_right_dark_brown.png"></image>
+    </view>
+
+    <view class="cell" bindtap="selectBg" hover="true" hover-class="highlight">
+        <image class="left_img" src="../../images/07-0我的/ic_membership_card.png"></image>
+        <text class="cell_title" catchtap="myCard">我的会员卡</text>
+        <image class="right_img" src="../../images/ic_arrow_right_dark_brown.png"></image>
+    </view>
+
+    <view class="cell" bindtap="selectBg" hover="true" hover-class="highlight">
+        <image class="left_img" src="../../images/07-0我的/ic_about.png"></image>
+        <text class="cell_title" catchtap="gotoabout">关于</text>
+        <image class="right_img" src="../../images/ic_arrow_right_dark_brown.png"></image>
+    </view>
+    
+</view>
