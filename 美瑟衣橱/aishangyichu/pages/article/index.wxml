@@ -1,8 +1,0 @@
-<template name="article">
-    <view bindtap="gotoArticleDetail" class="article-wrapper-template">
-        <image src="{{cover}}"></image>
-        <view class="title">{{title}}</view>
-        <view class="description">{{summary}}</view>
-    </view>
-</template>
-<template is="article"></template>

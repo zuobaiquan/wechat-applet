@@ -1,9 +1,0 @@
-<view class="container">
-    <view class="card">
-        <view class="line"></view>
-        <view class="name">夕米</view>
-    </view>
-    <view class="button">
-        <button>完成</button>
-    </view>
-</view>
