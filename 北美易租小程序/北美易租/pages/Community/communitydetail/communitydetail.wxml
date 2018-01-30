@@ -1,0 +1,114 @@
+<import src="../../common/indexlist.wxml"/>
+<view class="container">
+  <view class="deatil-top">
+    <text class="deatil-title">{{communityName}}</text>
+    <text class="{{isAttend==false ? 'deatil-attend' : 'deatil-noattend'}}" bindtap="changeAttend" data-state="{{isAttend}}">{{attendText}}</text>
+  </view>
+  <scroll-view scroll-y style="margin-bottom:{{noticeBottom}}rpx">
+  <view wx:for="{{communityDetail}}" wx:for-item="item" wx:key="$index">
+     <view wx:if="{{item.type==1}}" class="itemtype2">
+        <view class="item-imgcon">
+          <navigator hover-stay-time='0' url="../person/person"><image class="item-avator" src="{{item.house.portraitUrl}}"></image></navigator>
+        </view>
+        <view class="item-content" bindtap="detailHouse" data-houseid="{{item.house.id}}">
+          <view class="item-nickname">{{item.house.nickname}}<text class="item-slot">●</text>房源</view>
+          <view class="rent-content typelist2">
+            <image style="width:546rpx;" class="type-renthouse" src="{{item.house.defaultImageUrl}}"></image>
+            <image class="right-collect" src="{{item.house.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+            <view class="collect-bottom">
+                <view class="housedetail">
+                  <text class="detail-left">{{item.house.title}}</text>
+                  <text class="detail-right"><text class="rent-ammout">{{item.house.rentAmount}}</text> {{item.house.currencyName}}/{{item.house.periodName}}</text>
+                </view>
+                <view class="housedetail">
+                  <text class="detail-left detail-spc">{{item.house.typeName}}<text class="detail-type">|</text>{{item.house.nameCn}},{{item.house.stateNameCn}}</text>
+                  <text class="detail-right detail-spc">{{item.house.bedroomCount}}卧 {{item.house.bathroomCount}}卫浴</text>
+                </view>
+            </view>
+          </view>
+        </view>
+     </view>
+     <view wx:if="{{item.type==2}}" class="itemtype1">
+        <view class="item-imgcon">
+          <navigator hover-stay-time='0' url="../person/person"><image class="item-avator" src="{{item.lookForHouse.portraitUrl}}"></image></navigator>
+        </view>
+        <view class="item-content">
+          <view class="item-nickname">{{item.lookForHouse.nickName}}<text class="item-slot">●</text>求租</view>
+          <view class="rent-content" bindtap="detailRent" data-id="{{item.lookForHouse.id}}">
+            <view class="rent-left">
+              <view class="left-con">城市：<text class="left-condatail">{{item.lookForHouse.city.nameCn}}</text></view>
+              <view class="left-con">租金：<text class="left-condatail">{{item.lookForHouse.rentAmount}} {{item.lookForHouse.currencyName}}/{{item.lookForHouse.periodName}}</text></view>
+              <view class="left-con">起租时间：<text class="left-condatail">{{item.lookForHouse.startDate}}</text></view>
+              <view class="left-con">结束时间：<text class="left-condatail">{{item.lookForHouse.endDate}}</text></view>
+              <view class="left-con">要求：<text class="left-condatail">{{item.lookForHouse.requirement==null?'无':item.lookForHouse.requirement}}</text></view>
+            </view>
+            <view class="rent-right">
+              <image class="right-collect" src="{{item.lookForHouse.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+              <view class="right-icon"></view>
+            </view>
+          </view>
+        </view>
+     </view>
+     <view wx:if="{{item.type==3}}" class="itemtype3">
+        <view class="item-imgcon">
+          <navigator hover-stay-time='0' url="../person/person"><image class="item-avator" src="{{item.lookForRoommate.portraitUrl}}"></image></navigator>
+        </view>
+        <view class="item-content">
+          <view class="item-nickname">{{item.lookForRoommate.nickname}}<text class="item-slot">●</text>找室友</view>
+          <view class="rent-content" bindtap="detailRoom" data-id="{{item.lookForRoommate.id}}">
+            <view class="rent-left">
+              <view class="left-con">城市：<text class="left-condatail">{{item.lookForRoommate.city.nameCn}}</text></view>
+              <view class="left-con">性别：<text class="left-condatail">{{item.lookForRoommate.myGender==0?"男":(item.lookForRoommate.myGender==1?"女":'男女不限')}}</text></view>
+              <view class="left-con">起租时间：<text class="left-condatail">{{item.lookForRoommate.startDate}}</text></view>
+              <view class="left-con">结束时间：<text class="left-condatail">{{item.lookForRoommate.endDate}}</text></view>
+              <view class="left-con">要求：<text class="left-condatail">{{item.lookForRoommate.requirement==null?'无':item.lookForRoommate.requirement}}</text></view>
+            </view>
+            <view class="rent-right">
+              <image class="right-collect" src="{{item.lookForRoommate.isCollected==1?'/images/icon-collected.png':'/images/icon-collect.png'}}"></image>
+              <view class="right-icon"></view>
+            </view>
+          </view>
+        </view>
+     </view>
+     <view wx:if="{{item.type==4}}" class="itemtype4">
+        <view class="item-imgcon">
+          <navigator hover-stay-time='0' url="../person/person"><image class="item-avator" src="{{item.avator}}"></image></navigator>
+        </view>
+        <view class="item-content">
+          <view class="item-nickname">{{item.nickname}}</view>
+          <view class="text-content">{{item.text}}</view>
+        </view>
+     </view>
+  </view>
+  </scroll-view>
+  <view wx:if="{{!showmore}}" class="sendmes-box">
+    <input class="sendmes-text" type="text" />
+    <text class="send-confirm">发送</text>
+    <image bindtap="sendMore" class="send-more" src="../images/send-more.png"></image>
+  </view>
+  <view wx:if="{{showmore}}" class="sendmore-box">
+    <view class="sendmore-con">
+      <input class="sendmes-text" type="text" />
+      <text class="send-confirm">发送</text>
+      <image bindtap="hideMore" class="send-more" src="../images/send-more.png"></image>
+    </view>
+    <view class="more-itemlist">
+      <view class="item" data-currenttype="1" bindtap="sendInfo">
+        <image class="item-img" src="../images/fangyuan.png"></image>
+        <view>房源</view>
+      </view>
+      <view class="item" data-currenttype="2" bindtap="sendInfo">
+        <image class="item-img" src="../images/qiuzu.png"></image>
+        <view>求租</view>
+      </view>
+      <view class="item" data-currenttype="3" bindtap="sendInfo">
+        <image class="item-img" src="../images/zhaoshiyou.png"></image>
+        <view>找室友</view>
+      </view>
+      <view class="item" bindtap="sendImginfo">
+        <image class="item-img" src="../images/tupian.png"></image>
+        <view>图片</view>
+      </view>
+    </view>  
+  </view>
+</view>

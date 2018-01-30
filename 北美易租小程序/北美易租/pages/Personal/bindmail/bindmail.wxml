@@ -1,0 +1,39 @@
+<!--pages/Personal/bindmail/bindmail.wxml-->
+<view class="container">
+  <view class="yz-logo">
+     <image class="logo-img" src="../images/yz-logo.png"></image>
+  </view>
+  <view class="mail-itemlist">
+     <view class="item-list">
+        <text class="item-text">邮箱</text>
+        <input class="text-input1" placeholder="team@yirental.com" />
+     </view>
+     <view class="item-list">
+        <text class="item-text">验证码</text>
+        <input type="digit" placeholder-style="color:#dfdfdf" class="text-input2" placeholder="6位数字" />
+        <text catchtap="getCode" class="yzm-box">{{codeTip}}</text>
+     </view>
+     <view class="item-list">
+        <text class="item-text">密码</text>
+        <input bindinput="inputPass" type="{{passHide?'text':'password'}}" placeholder-style="color:#dfdfdf" class="text-input2" placeholder="密码长度不小于8位数" />
+        <view class="item-passright">
+           <image catchtap="showPass" class="passright-img1" src="{{passHide?'../images/pass-see.png':'../images/pass-unsee.png'}}"></image>
+           <image class="passright-img2" src="{{passHas?'../images/has-pass.png':'../images/no-pass.png'}}"></image>
+        </view>
+     </view>
+     <view class="protocol-box"><image bindtap="setAgreestate" class="protocol-img" src="{{isAgree?'../images/checkbox-sel.png':'../images/checkbox.png'}}"></image>我已阅读并同意<text class="protocol-con">易租屋服务协议</text></view>
+  </view>
+  <view class="save-box">
+    <view class="btn-box btn-send" bindtap="saveResult">绑定邮箱</view>
+  </view>
+  <view wx:if="{{showTips}}" class="show-tips">
+      <image class="collect-right collect-error" src="../../../images/collect-error.png"></image>
+      <text class="tips-info">{{tipsInfo}}</text>
+  </view>
+  <view hidden="{{!showMask}}" class="mask" bindtap="hideMask"></view>
+  <view wx:if="{{showEmailtips}}" class="email-tips">
+     <text class="email-exist">邮箱已存在</text>
+     <text class="email-error">请使用其他邮箱，或在IOS端以邮箱登录。</text>
+     <text catchtap="hideEmailtips" class="email-confirm">确定</text> 
+  </view>
+</view>

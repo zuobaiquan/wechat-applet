@@ -1,0 +1,30 @@
+/* pages/addroommate/addroommate.wxss */
+
+.container{
+  padding-top:50rpx;
+}
+
+.detail-item{
+  margin:0 34rpx;
+  border-bottom:2rpx solid #dfdfdf;
+}
+
+.detail-item .item-name{
+  display: inline-block;
+  width:220rpx;
+  height:120rpx;
+  line-height: 120rpx;
+  font-weight:bold;
+}
+
+.res-sex{
+  display: inline-block;
+}
+.res-sex .sex-sel{
+  margin-right:100rpx;
+  display: inline-block;
+  padding:0 5rpx;
+}
+.current-matesel{
+  color:#f47a20;
+}

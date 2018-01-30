@@ -1,0 +1,80 @@
+
+<view class="container">
+<scroll-view scroll-y="true" lower-threshold="100" bindscrolltolower="handleLoadMore" bindscrolltoupper="handleRefresh" style="height:100%;">
+    <view wx:if="{{isRefreshing}}" class="load-more">
+      <image src="../../../images/loading.gif"></image>下拉刷新
+    </view>
+  <view class="search-textcon">
+      <input class="search-text" confirm-type="search" bindconfirm="searchChange" type="text" placeholder="搜索城市或学校名" />
+      <icon class="serach-icon" type="search" size="18" color="#4b474c" />
+  </view>
+
+  <view wx:if="{{issearch==true}}" class="list-city" wx:for="{{searchList}}" wx:key="$index" bindtap="listDetail">
+      <view class="city-left">
+          <image class="left-image" src="{{item.portraitUrl}}"></image>
+      </view>
+      <view class="city-middle">
+        <view class="middle-itemname">{{item.nameCn}}</view>
+        <view class="middle-itemnum">最近有{{item.unReadCount}}条消息</view>
+      </view>
+  </view>
+
+  <view wx:if="{{issearch==false}}">
+    <view class="community-tabcon">
+    <view class="community-top">
+       <text class="top-title">社区列表</text>
+    </view>
+    <view class="tabcon-item" data-current="0" bindtap="selCommunity">
+      <image class="tabcon-img" src="../images/allcity.png"></image>
+      <text class="city-tablist">所有城市</text>
+    </view>
+    <view class="tabcon-item" data-current="1" bindtap="selCommunity">
+      <image  class="tabcon-img" src="../images/allschool.png"></image>
+      <text class="city-tablist">所有学校</text>
+    </view>
+    <view class="white-space"></view>
+  </view>
+
+  <view class="community-tabcon">
+    <view class="community-top">
+       <text class="top-title">我关注的社区</text>
+    </view>
+    <view wx:if="{{myattentionList.length==0}}" class="no-attention">您还没有关注任何社区</view>
+    <view wx:if="{{myattentionList.length!=0}}" class="tab-myattention" wx:for="{{myattentionList}}" wx:key="$index" data-name="{{item.nameCn}}" data-id="{{item.id}}" bindtap="communityDetail">
+      <view class="attention-left">
+          <image class="left-image" src="{{item.portraitUrl}}"></image>
+          <text wx-if="{{item.followerCount!=0}}" class="attention-look"></text>
+      </view>
+      <view class="attention-middle">
+        <view class="middle-itemname">{{item.nameCn}}</view>
+        <view class="middle-itemnum">最近有{{item.unReadCount}}条消息</view>
+      </view>
+      <view class="attention-right">
+          <view class="attention-num">{{item.followerCount}}人关注</view>
+      </view>
+     </view>
+     <view class="attention-more" wx:if="{{myattentionList.length!=0}}">更多…</view>
+    <view class="white-space"></view>
+  </view>
+
+  <view class="community-tabcon">
+    <view class="community-top">
+       <text class="top-title">你可能感兴趣的社区</text>
+    </view>
+    <view class="tab-myattention" wx:for="{{myinterestList}}" wx:key="$index" data-id="{{item.id}}" data-name="{{item.nameCn}}" bindtap="communityDetail">
+      <view class="attention-left">
+          <image class="left-image" src="{{item.portraitUrl}}"></image>
+      </view>
+      <view class="attention-middle">
+        <view class="middle-itemname">{{item.nameCn}}</view>
+        <view class="middle-itemnum">最近有{{item.unReadCount}}条消息</view>
+      </view>
+      <view class="attention-right">
+          <view class="attention-num1">＜{{item.distance}}km</view>
+          <view class="attention-num2">{{item.followerCount}}人关注</view>
+      </view>
+    </view>
+   </view>
+  </view>
+</scroll-view>
+</view>

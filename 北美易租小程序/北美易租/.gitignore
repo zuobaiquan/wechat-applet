@@ -1,0 +1,14 @@
+
+.idea/
+
+.DS_Store
+.DS_Store?
+
+
+/**/node_modules/**
+node_modules/**
+/**/bower_components/**
+bower_components/**
+/.tmp
+/.git
+/.temp
