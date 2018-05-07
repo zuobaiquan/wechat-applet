@@ -1,0 +1,14 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <view class="header">
+
+  </view>
+
+  <view class="marquee_box">
+    <view class="marquee_text" style="left:{{marqueeDistance}}px;">
+      <text>{{text}}</text>
+      <text wx:if="{{marqueecopy_status}}" style="margin-left:{{marquee_margin}}px;">{{text}}</text>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,37 @@
+page{
+    background-color:#F4F5F6;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    font-size:28rpx;
+    /*主题颜色*/
+    color:#4b474c;
+}
+textarea{
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+action-sheet-item {
+  background-color:#FFFFFF;
+  position:relative;
+  z-index:9999999;
+}
+
+/*遮挡层*/
+.mask{
+  position: fixed;
+  background: rgba(0,0,0,0.5);
+  left: 0;
+  top: 0;
+  width: 100%;
+  height:100%;
+  z-index: 99;
+}
+
+.circle-pay{
+  margin:0 20rpx;
+  width: 32rpx !important;
+  height: 28rpx  !important;
+  vertical-align: middle;
+}

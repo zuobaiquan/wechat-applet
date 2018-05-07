@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "#000000",
+    "navigationBarBackgroundColor": "#F4F5F6",
+    "navigationBarTitleText": "我的农场",
+    "navigationBarTextStyle": "black"
+  }
+}
