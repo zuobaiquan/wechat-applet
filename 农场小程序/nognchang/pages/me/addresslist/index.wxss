@@ -1,1 +1,40 @@
-/* pages/me/address/index.wxss */
+.container{
+  padding-bottom: 100rpx;
+}
+.address-list{
+  background: #fff;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+}
+.address-list .user-info{
+  display: flex;
+  justify-content: space-between;
+}
+.address-list .user-info text{
+  font-size: 28rpx;
+}
+.address-list .address-name{
+  color:#999;
+}
+.address-list .address-operator{
+  display: flex;
+  justify-content: space-between;
+  border-top:1rpx solid #ddd;
+}
+.address-list .address-operator .left{
+
+}
+.address-list .address-operator .right{
+
+}
+.container .add-new{
+  position: fixed;
+  bottom: 0;
+  left:0;
+  right: 0;
+  height: 100rpx;
+  line-height: 100rpx;
+  color:#282828;
+  background:#fff;
+  text-align: center;
+}
