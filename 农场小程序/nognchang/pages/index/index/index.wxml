@@ -1,0 +1,32 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="icon-person"></view>
+  </view>
+
+  <view class="marquee-container">
+    <text class="ads-text">公告</text>
+    <view class="marquee-box">
+      <view class="marquee-text" style="left:{{marqueeDistance}}px;">
+        <text>{{text}}</text>
+        <text wx:if="{{marqueecopy_status}}" style="margin-left:{{marquee_margin}}px;">{{text}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="product-list">
+    <view class="item">
+      <view class="icon"></view>
+      <view class="text">品牌故事</view>
+    </view>
+    <view class="item">
+      <view class="icon"></view>
+      <view class="text">产品介绍</view>
+    </view>
+    <view class="item" bindtap="problemDetail">
+      <view class="icon"></view>
+      <view class="text">常见问题</view>
+    </view>
+  </view>
+
+</view>

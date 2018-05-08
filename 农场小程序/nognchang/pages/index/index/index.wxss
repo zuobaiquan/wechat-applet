@@ -1,0 +1,60 @@
+.container{
+
+}
+.container .header{
+  width: 100%;
+  height: 400rpx;
+  border:1rpx solid red;
+  box-sizing: border-box;
+  position: relative;
+}
+.container .header .icon-person{
+  position: absolute;
+  top:30rpx;
+  left:30rpx;
+  height: 30rpx;
+  width: 30rpx;
+  display: inline-block;
+  background: #ddd;
+}
+.marquee-container{
+  padding:0 20rpx;
+  border-bottom:1rpx solid red;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+.marquee-container .ads-text{
+  color:#282828;
+  width: 15%;
+}
+.marquee-container .marquee-box{
+  width: 85%;
+  height: 60rpx;
+  line-height: 60rpx;
+  position: relative;
+  overflow: hidden;
+}
+.marquee-box .marquee-text {
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+  font-size: 28rpx;
+}
+
+.product-list{
+  display: flex;
+  justify-content: space-between;
+}
+.product-list .item{
+  flex:1;
+  text-align: center;
+}
+.product-list .item .icon{
+  width: 100rpx;
+  height: 100rpx;
+  margin:0 auto;
+  border-radius: 50%;
+  background: #ddd;
+}

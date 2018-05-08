@@ -1,6 +1,9 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/me/addresslist/index",
+    "pages/index/index/index",
+    "pages/index/problem/index",
+    "pages/me/newaddress/index"
   ],
   "window": {
     "backgroundTextStyle": "#000000",

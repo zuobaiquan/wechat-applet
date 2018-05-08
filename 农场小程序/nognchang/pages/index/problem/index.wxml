@@ -1,0 +1,11 @@
+<view class="container">
+  <view class="problem-tit">选菜地</view>
+  <view class="problem-list">
+    <view class="item">
+      <view class="list-tit" bindtap="toggleDetail" data-flag="1">我们的运营模式?</view>
+      <view wx:if="{{toggleShow1}}">共享种菜共享种菜共享种菜共享种菜共享种菜共享种菜</view>
+      <view class="list-tit" bindtap="toggleDetail" data-flag="2">面积?</view>
+      <view wx:if="{{toggleShow2}}">面积面积面积面积面积面积面积面积面积面积面积面积</view>
+    </view>
+  </view>
+</view>

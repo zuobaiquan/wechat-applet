@@ -1,0 +1,10 @@
+.container .problem-tit{
+  color:#282828;
+}
+.container .problem-list{
+
+}
+.problem-list .item .list-tit{
+  background: #ddd;
+  margin-top: 10rpx;
+}
