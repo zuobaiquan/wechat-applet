@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/me/newaddress/index",
     "pages/me/addresslist/index",
     "pages/index/index/index",

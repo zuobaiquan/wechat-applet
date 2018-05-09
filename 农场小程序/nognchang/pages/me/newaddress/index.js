@@ -1,29 +1,29 @@
 //index.js
 //获取应用实例
 var area = require('../../../utils/area.js')
-
+var verify = require('../../../utils/verify.js')
 var areaInfo = [];//所有省市区县数据
-
 var provinces = [];//省
-
 var citys = [];//城市
-
 var countys = [];//区县
-
 var index = [0, 0, 0];
-
 var cellId;
-
-var t = 0;
+var t = 1;
 var show = false;
-
 Page({
   data: {
     show: show,
     provinces: provinces,
     citys: citys,
     countys: countys,
-    value: [0, 0, 0]
+    value: [0, 0, 0],
+    showTips:false
+  },
+  verifyName(e){
+    verify.isEmpty(e.detail.value,"收货人不能为空",this);
+  },
+  saveResult(){
+
   },
   //滑动事件
   bindChange: function (e) {
@@ -58,8 +58,6 @@ Page({
   onLoad: function (options) {
     cellId = options.cellId;
     var that = this;
-    var date = new Date()
-    console.log(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日");
 
     //获取省市区县数据
     area.getAreaInfo(function (arr) {
@@ -88,8 +86,8 @@ Page({
   },
   //隐藏弹窗浮层
   hiddenFloatView(){
-    show = true;
-    t = 0;
+    show = false;
+    t = 1;
     animationEvents(this,show)
   }
 })
@@ -101,7 +99,7 @@ function animationEvents(that,show){
   })
 }
 
-// ---------------- 分割线 ---------------- 
+// ---------------- 分割线 ----------------
 
 //获取省份数据
 function getProvinceData(that) {

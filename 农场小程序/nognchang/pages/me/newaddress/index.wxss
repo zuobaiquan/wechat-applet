@@ -11,8 +11,13 @@
 }
 .container .area-item{
   height: 125rpx;
-  padding-top:30rpx;
   align-items: flex-start;
+}
+.container .area-item .item-name{
+  padding-top:20rpx;
+}
+.container .area-item .item-input{
+  padding-top:8rpx;
 }
 .address-item .item-name {
   width: 25%;
@@ -22,7 +27,6 @@
   text-align: left;
 }
 .address-item .arrow-right{
-  display: inline-block;
   width: 14rpx;
   height: 14rpx;
   border: solid #999;
@@ -31,7 +35,17 @@
   transform:rotate(45deg);
 }
 .address-item .item-areainput{
-  height: 125rpx;
+  height: 117rpx;
+}
+.btn-save{
+  width:84%;
+  margin:20rpx auto 0;
+  height:70rpx;
+  line-height:70rpx;
+  border-radius:5px;
+  font-size:32rpx;
+  text-align: center;
+  background:#dfdfdf;
 }
 
 picker-view{
@@ -56,24 +70,24 @@ picker-view-column view{
 /* ----------------------------------------- */
 
 .animation-element-wrapper {
-  display: flex;  
   position: fixed;
   left: 0;
   top:0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index:1;
 }
-.animation-element {
-  display: flex;
+.animation-element-wrapper .animation-element {
   position: fixed;
-  width: 100%;
   height: 470rpx;
   bottom: 0;
+  left:0;
+  right: 0;
   background-color: rgba(255, 255, 255, 1);
 }
 
-.animation-button {
+.animation-element-wrapper .animation-button {
   top:20rpx;
   width: 290rpx;
   height: 100rpx;  
@@ -81,8 +95,7 @@ picker-view-column view{
 }
 
 .animation-element-wrapper .text-bt{
-  color: #999999;
-  display: inline-flex;  
+  color: #999999; 
   position: fixed;
   margin-top: 20rpx;
   height: 50rpx;
@@ -97,10 +110,9 @@ picker-view-column view{
   right: 30rpx;
 }
 .animation-element-wrapper .line{
-  display: block;
   position: fixed;
   height: 1rpx;
   width: 100%;
-  margin-top: 89rpx; 
+  margin-top: 90rpx; 
   background-color: #eeeeee;
 }
