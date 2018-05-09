@@ -1,0 +1,17 @@
+<view class="container">
+    <view class="my-center">
+        <view class="icon"></view>
+        <text class="text">陈佳佳</text>
+    </view>
+    <view class="center-list">
+        <view class="item item1">
+          地址管理
+        </view>
+        <view class="item item2">
+          订单记录
+        </view>
+        <view class="item item3">
+          客服电话
+        </view>
+    </view>
+</view>

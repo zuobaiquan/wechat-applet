@@ -8,7 +8,7 @@
   <view class="address-item">
     <text class="item-name">手机号码</text>
     <view class="item-input">
-        <input class="input-name" bindblur="verifyPhone" type="text" placeholder-style="color:#999999;" placeholder="请输入收货人的手机号码" />
+        <input class="input-name" bindblur="verifyPhone" type="number" placeholder-style="color:#999999;" placeholder="请输入收货人的手机号码" />
     </view>
   </view>
   <view class="address-item" bindtap="translate">
@@ -24,10 +24,10 @@
   <view class="btn-save" bindtap="saveResult">保存</view>
 </view>
 <view wx:if="{{showTips}}" class="show-tips">{{tipsInfo}}</view>
-<view class="animation-element-wrapper" style="visibility:{{show ? 'visible':'hidden'}}" catchtap="hiddenFloatView">
+<view class="animation-element-wrapper" style="visibility:{{show ? 'visible':'hidden'}}" catchtap="cancelBtn">
   <view class="animation-element">
-      <text class="text-bt left-bt" catchtap="hiddenFloatView">取消</text>
-      <text class="text-bt right-bt" catchtap="hiddenFloatView">确定</text>
+      <text class="text-bt left-bt" catchtap="cancelBtn">取消</text>
+      <text class="text-bt right-bt" catchtap="confirmBtn">确定</text>
       <view class="line"></view>
       <picker-view indicator-style = "height: 50rpx;" value="{{value}}" bindchange="bindChange">
         <!--省-->

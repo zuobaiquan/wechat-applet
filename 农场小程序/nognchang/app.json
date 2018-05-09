@@ -1,6 +1,7 @@
 {
   "pages": [
-    
+    "pages/me/mycenter/index" ,
+    "pages/me/paysuccess/index",
     "pages/me/newaddress/index",
     "pages/me/addresslist/index",
     "pages/index/index/index",

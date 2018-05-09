@@ -1,0 +1,28 @@
+/* pages/me/mycenter/index.wxss */
+.container .my-center{
+    width:100%;
+    padding: 100rpx 0;
+    text-align: center;
+    background: #fff;
+}
+.my-center .icon{
+    width:100rpx;
+    height: 100rpx;
+    margin:0 auto 20rpx;
+    border-radius: 50%;
+    background: #ddd;
+}
+.my-center .text{
+    font-size: 28rpx;
+}
+.container  .center-list{
+  display: flex;
+  border-bottom: 1rpx solid #ddd;
+}
+.center-list .item{
+  flex:1;
+  text-align: center;
+  background: url("http://bpic.588ku.com/element_origin_min_pic/17/05/11/e1b738c231dc9839ab1c355142a9dff0.jpg!r650") top center no-repeat ;
+  background-size: 100%;
+  padding-top: 120rpx;
+}

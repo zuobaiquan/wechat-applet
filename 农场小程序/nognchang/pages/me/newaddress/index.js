@@ -1,5 +1,3 @@
-//index.js
-//获取应用实例
 var area = require('../../../utils/area.js')
 var verify = require('../../../utils/verify.js')
 var areaInfo = [];//所有省市区县数据
@@ -28,7 +26,6 @@ Page({
   //滑动事件
   bindChange: function (e) {
     var val = e.detail.value
-
     //判断滑动的是第几个column
     //若省份column做了滑动则定位到地级市和区县第一位
     if (index[0] != val[0]) {
@@ -43,9 +40,6 @@ Page({
       }
     }
     index = val;
-
-    console.log(index + " => " + val);
-
     //更新数据
     this.setData({
       value: [val[0], val[1], val[2]],
@@ -53,19 +47,16 @@ Page({
       city: citys[val[1]].name,
       county: countys[val[2]].name
     })
-
   },
   onLoad: function (options) {
     cellId = options.cellId;
     var that = this;
-
     //获取省市区县数据
     area.getAreaInfo(function (arr) {
       areaInfo = arr;
       //获取省份数据
       getProvinceData(that);
     });
-
   },
   // ------------------- 分割线 --------------------
   onReady: function () {
@@ -85,10 +76,16 @@ Page({
     animationEvents(this, show);
   },
   //隐藏弹窗浮层
-  hiddenFloatView(){
+  cancelBtn(){
     show = false;
     t = 1;
     animationEvents(this,show)
+  },
+  confirmBtn(){
+    show = false;
+    t = 1;
+    animationEvents(this,show)
+    console.log(this.data.province,this.data.city,this.data.county);
   }
 })
 
@@ -98,9 +95,7 @@ function animationEvents(that,show){
     show: show
   })
 }
-
 // ---------------- 分割线 ----------------
-
 //获取省份数据
 function getProvinceData(that) {
   var s;
@@ -125,7 +120,6 @@ function getProvinceData(that) {
     city: "市辖区",
     county: "东城区",
   })
-
 }
 
 // 获取地级市数据
@@ -143,7 +137,6 @@ function getCityArr(count, that) {
   if (citys.length == 0) {
     citys[0] = { name: '' };
   }
-
   that.setData({
     city: "",
     citys: citys,
