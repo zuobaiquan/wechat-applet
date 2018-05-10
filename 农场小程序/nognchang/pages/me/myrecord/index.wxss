@@ -1,0 +1,26 @@
+.container .record-list{
+  display: flex;
+  justify-content: space-between;
+  padding:0 10rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #ddd;
+}
+.record-list .record-left {
+
+}
+.record-list .record-left .left-icon{
+  margin-right: 20rpx;
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  background: red;
+}
+.record-list .record-left .left-content{
+  display: inline-block;
+}
+.record-list .record-left text{
+  display: block;
+}
+.record-list .record-right text{
+  display: block;
+}

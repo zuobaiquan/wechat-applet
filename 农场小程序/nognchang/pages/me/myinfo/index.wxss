@@ -1,0 +1,6 @@
+.container .info-list{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #ddd;
+  background: #fff;
+}

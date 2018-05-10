@@ -1,12 +1,13 @@
 {
   "pages": [
-    "pages/me/mycenter/index" ,
+    "pages/me/myinfo/index",
+    "pages/me/myrecord/index",
+    "pages/me/mycenter/index",
     "pages/me/paysuccess/index",
     "pages/me/newaddress/index",
     "pages/me/addresslist/index",
     "pages/index/index/index",
     "pages/index/problem/index"
-    
   ],
   "window": {
     "backgroundTextStyle": "#000000",

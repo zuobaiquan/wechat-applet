@@ -16,13 +16,30 @@
     font-size: 28rpx;
 }
 .container  .center-list{
-  display: flex;
+  width: 100%;
   border-bottom: 1rpx solid #ddd;
 }
 .center-list .item{
-  flex:1;
+  margin-top:10rpx;
+  width: 32%;
+  display:inline-block;
   text-align: center;
-  background: url("http://bpic.588ku.com/element_origin_min_pic/17/05/11/e1b738c231dc9839ab1c355142a9dff0.jpg!r650") top center no-repeat ;
-  background-size: 100%;
-  padding-top: 120rpx;
+  background:#fff;
+}
+.center-list .item.item-margin{
+  margin-left: 2%;
+}
+.center-list .icon{
+    width:150rpx;
+    height: 100rpx;
+    background:#ddd;
+    margin:0 auto;
+}
+.center-list .icon1{
+  
+}
+.center-list .icon2{
+    
+}
+.center-list .icon3{
 }

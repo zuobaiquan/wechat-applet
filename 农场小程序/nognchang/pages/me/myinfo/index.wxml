@@ -1,0 +1,14 @@
+<view class="container">
+    <view class="info-list">
+      <view class="icon icon1">头像</view>
+      <view class="text">地址管理<text class="icon"></text></view>
+    </view>
+    <view class="info-list">
+      <view class="icon icon1">昵称</view>
+      <view class="text">程佳佳<text class="icon"></text></view>
+    </view>
+    <view class="info-list">
+      <view class="icon icon1">手机号</view>
+      <view class="text">13045050505<text class="icon"></text></view>
+    </view>
+</view>

@@ -4,14 +4,21 @@
         <text class="text">陈佳佳</text>
     </view>
     <view class="center-list">
-        <view class="item item1">
-          地址管理
+        <view class="item">
+          <view class="icon icon1"></view>
+          <view class="text">地址管理</view>
         </view>
-        <view class="item item2">
-          订单记录
+        <view class="item item-margin">
+          <view class="icon icon2"></view>
+          <view class="text">订单记录</view>
         </view>
-        <view class="item item3">
-          客服电话
+        <view class="item item-margin">
+          <view class="icon icon3"></view>
+          <view class="text">客服电话</view>
+        </view>
+        <view class="item">
+          <view class="icon icon3"></view>
+          <view class="text">在线客服</view>
         </view>
     </view>
 </view>
