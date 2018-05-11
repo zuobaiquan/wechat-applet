@@ -1,33 +1,50 @@
-var util = require('./util')
 module.exports={
-    verified:function(verifing,that) {
-      var flag = false;
-      if(!verifing||verifing.length==0){
-          return true;
+    isEmpty: function (option, tips, _that){
+      if (option == "") {
+        _that.setData({
+          showTips: true,
+          tipsInfo: tips,
+        });
+        setTimeout(()=>{
+          _that.setData({
+            showTips: false,
+          });
+        }, 2000)
+        return false;
       }
-      for (var i = 0; i < verifing.length; i++) {
-        flag = this[verifing[i].name](verifing[i].content, verifing[i].tip);
-        //console.log('verifing++++i',i,flag,verifing);
-        if (!flag) {
-          break;
-        }
+      else {
+        return true;
       }
-      return flag;
     },
-    isEmpty:function(input, tip) {
-        if (input === '' || input === null || input === undefined) {
-            util.showInfo(tip);
-        }else{
-            return true;
-        }
-    },
-    isPhone:function(email, tip) {
-        var reg = new RegExp('^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$');
-        if (!reg.test(email)) {
-          util.showInfo(tip);
-        } else {
-            return true;
-        }
-    },
-
+    //邮箱
+    isEmail: function (email, _that) {
+      var reg = new RegExp('^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$');
+      if (email=="") {
+        _that.setData({
+          showTips: true,
+          tipsInfo: '邮箱不能为空',
+        });
+        setTimeout(()=>{
+          _that.setData({
+            showTips: false,
+          });
+        }, 2000)
+        return false;
+      }
+      if(!reg.test(email)) {
+        _that.setData({
+          showTips: true,
+          tipsInfo: '邮箱格式不正确',
+        });
+        setTimeout(()=>{
+          _that.setData({
+            showTips: false,
+          });
+        }, 2000)
+        return false;
+      }
+      else {
+        return true;
+      }
+    }
 }

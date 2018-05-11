@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="address-list">
+    <view class="user-info"><text>江小白</text><text>13570503153</text></view>
+    <view class="address-name">上海市闵行区梅陇镇古美西路101</view>
+    <view class="address-operator">
+       <view class="left">设为默认</view>
+       <view class="right"><text>修改</text><text>删除</text></view> 
+    </view>
+  </view>
+  <view class="address-list">
+    <view class="user-info"><text>江小白</text><text>13570503153</text></view>
+    <view class="address-name">上海市闵行区梅陇镇古美西路101</view>
+    <view class="address-operator">
+       <view class="left">设为默认</view>
+       <view class="right"><text>修改</text><text>删除</text></view> 
+    </view>
+  </view>
+  <view class="add-new">添加收货地址</view>
+</view>

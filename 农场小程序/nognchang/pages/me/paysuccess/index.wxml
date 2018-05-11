@@ -1,0 +1,10 @@
+<view class="container">
+  <view class="icon-box">
+    <view class="icon"></view>
+    <text class="text">支付成功</text>
+  </view>
+  <view class="box-list">
+    <text>回到首页</text>
+    <text>设置收货地址</text>
+  </view>
+</view>

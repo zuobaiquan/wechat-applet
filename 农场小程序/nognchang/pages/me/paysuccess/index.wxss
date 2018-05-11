@@ -1,0 +1,29 @@
+/* pages/me/paysuccess/index.wxss */
+.container .icon-box{
+    width:100%;
+    padding: 100rpx 0;
+    text-align: center;
+}
+.icon-box .icon{
+    width:100rpx;
+    height: 100rpx;
+    margin:0 auto 20rpx;
+    border-radius: 50%;
+    background: #ddd;
+}
+.icon-box .text{
+    font-size: 28rpx;
+}
+.container .box-list{
+    display: flex;
+    justify-content: space-around;
+}
+.box-list text{
+    margin-top:50rpx;
+    width:210rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    border:1rpx solid #ddd;
+    border-radius: 10rpx;
+    text-align: center;
+}

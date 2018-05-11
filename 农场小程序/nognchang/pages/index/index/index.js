@@ -43,5 +43,10 @@ Page({
         }
       }
     }, 20);
-  }
+  },
+  problemDetail(e){
+    wx.navigateTo({
+      url: `../problem/index`
+    });
+  },
 })

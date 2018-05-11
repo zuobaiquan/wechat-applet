@@ -1,0 +1,45 @@
+/* pages/me/mycenter/index.wxss */
+.container .my-center{
+    width:100%;
+    padding: 100rpx 0;
+    text-align: center;
+    background: #fff;
+}
+.my-center .icon{
+    width:100rpx;
+    height: 100rpx;
+    margin:0 auto 20rpx;
+    border-radius: 50%;
+    background: #ddd;
+}
+.my-center .text{
+    font-size: 28rpx;
+}
+.container  .center-list{
+  width: 100%;
+  border-bottom: 1rpx solid #ddd;
+}
+.center-list .item{
+  margin-top:10rpx;
+  width: 32%;
+  display:inline-block;
+  text-align: center;
+  background:#fff;
+}
+.center-list .item.item-margin{
+  margin-left: 2%;
+}
+.center-list .icon{
+    width:150rpx;
+    height: 100rpx;
+    background:#ddd;
+    margin:0 auto;
+}
+.center-list .icon1{
+  
+}
+.center-list .icon2{
+    
+}
+.center-list .icon3{
+}
