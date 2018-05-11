@@ -1,5 +1,22 @@
 <template>
   <div class="app-container">
+    用户ID：<el-input @keyup.enter.native="handleFilter"
+    style="width: 120px;" class="filter-item"
+    placeholder="请输入" v-model="listInput.title">
+    </el-input>
+    &nbsp;&nbsp;&nbsp;
+    昵称：<el-input @keyup.enter.native="handleFilter"
+    style="width: 120px;" class="filter-item"
+    placeholder="请输入" v-model="listInput.title">
+      </el-input>
+      &nbsp;&nbsp;&nbsp;
+      分区&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="listInput.selectitem" placeholder="选择分区">
+        <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item">
+        </el-option>
+      </el-select>
+      &nbsp;&nbsp;&nbsp;
+      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
+      <br />    <br />
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label='id' width="95">
         <template slot-scope="scope">
@@ -52,7 +69,12 @@ export default {
     return {
       list: null,
       listLoading: true,
-      currentPage: 4
+      currentPage: 4,
+      listInput:{
+        title:'',
+        selectitem:''
+      },
+      importanceOptions:['全部','A','B','C']
     }
   },
   filters: {
@@ -76,11 +98,14 @@ export default {
         this.listLoading = false
       })
     },
-    handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
+    handleFilter(){
+
     },
-    handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
+    handleSizeChange() {
+        //console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange() {
+        //console.log(`当前页: ${val}`);
     }
   }
 }
