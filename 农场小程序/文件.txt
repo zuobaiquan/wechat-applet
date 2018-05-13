@@ -4,3 +4,8 @@ https://3phcct.axshare.com/#g
 
 https://github.com/PanJiaChen/vue-element-admin/
 https://panjiachen.github.io/vue-element-admin-site/#/zh-cn/README
+
+APP Key：wxffc76339a7b5f112
+Secret：1af63c354ab0de087be8721815326a25
+
+我的农场 蓝湖-标注+切图 链接：https://lanhuapp.com/url/rMkZD
