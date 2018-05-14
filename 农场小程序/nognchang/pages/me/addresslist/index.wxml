@@ -1,19 +1,35 @@
 <view class="container">
   <view class="address-list">
-    <view class="user-info"><text>江小白</text><text>13570503153</text></view>
-    <view class="address-name">上海市闵行区梅陇镇古美西路101</view>
+    <view class="user-info">江小白<text class="phone">13570503153</text></view>
+    <view class="address-name"><text>[默认地址]</text>广东省广州市番禺区万兴一路凹凸凹创意园</view>
     <view class="address-operator">
-       <view class="left">设为默认</view>
-       <view class="right"><text>修改</text><text>删除</text></view> 
+       <view class="left"><text class="selected"></text>设为默认</view>
+       <view class="right">
+         <view class="right-box right-box1">
+           <text class="edit-icon"></text><text class="edit-delete">修改</text>
+         </view>
+         <view class="right-box right-box2">
+           <text class="delete-icon"></text><text class="edit-delete">删除</text>
+         </view>
+       </view>
     </view>
   </view>
   <view class="address-list">
-    <view class="user-info"><text>江小白</text><text>13570503153</text></view>
-    <view class="address-name">上海市闵行区梅陇镇古美西路101</view>
+    <view class="user-info">江小白<text class="phone">13570503153</text></view>
+    <view class="address-name">广东省广州市番禺区万兴一路凹凸凹创意园</view>
     <view class="address-operator">
-       <view class="left">设为默认</view>
-       <view class="right"><text>修改</text><text>删除</text></view> 
+       <view class="left"><text class="selected unselected"></text>设为默认</view>
+       <view class="right">
+         <view class="right-box right-box1">
+           <text class="edit-icon"></text><text class="edit-delete">修改</text>
+         </view>
+         <view class="right-box right-box2">
+           <text class="delete-icon"></text><text class="edit-delete">删除</text>
+         </view>
+       </view>
     </view>
   </view>
-  <view class="add-new">添加收货地址</view>
+  <view class="add-new">
+    <text>添加收货地址</text>
+  </view>
 </view>

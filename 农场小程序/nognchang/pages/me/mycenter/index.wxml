@@ -1,7 +1,11 @@
 <view class="container">
     <view class="my-center">
-        <view class="icon"></view>
-        <text class="text">陈佳佳</text>
+        <image src="/images/me/bg_mine.png" class="icon-bg"/>
+        <view class="person-box">
+          <view class="icon"></view>
+          <text class="text">1388267190</text>
+        </view>
+
     </view>
     <view class="center-list">
         <view class="item">

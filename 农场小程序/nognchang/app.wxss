@@ -1,5 +1,5 @@
 page{
-    background-color:#F4F5F6;
+    background-color:#FAFAFA;
     width: 100%;
     height: auto;
     box-sizing: border-box;
@@ -11,7 +11,9 @@ textarea{
     word-break: break-all;
     word-wrap: break-word;
 }
-
+image{
+  display: block;
+}
 action-sheet-item {
   background-color:#FFFFFF;
   position:relative;

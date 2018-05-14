@@ -1,10 +1,21 @@
+.container {
+  margin: 0 25rpx 0;
+}
 .container .problem-tit{
+  margin:28rpx 0;
+  border-left:9rpx solid rgba(255,150,0,1);
+  padding-left: 23rpx;
   color:#282828;
+  line-height: 1;
 }
 .container .problem-list{
-
 }
-.problem-list .item .list-tit{
-  background: #ddd;
-  margin-top: 10rpx;
+.problem-list .toggle-content{
+  background: #fff;
+  padding:25rpx 22rpx;
+}
+.problem-list .list-tit{
+  padding:30rpx 0 30rpx 27rpx;
+  background: #FFFFFF;
+  margin: 20rpx 0 0;
 }

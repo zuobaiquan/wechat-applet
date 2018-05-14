@@ -6,7 +6,17 @@ Page({
    */
   data: {
     toggleShow1:false,
-    toggleShow2:false
+    toggleShow2:false,
+    toggleShow3:false,
+    toggleShow4:false,
+    toggleShow5:false,
+    toggleShow6:false,
+    toggleShow7:false,
+    toggleShow8:false,
+    toggleShow9:false,
+    toggleShow10:false,
+    toggleShow11:false,
+    toggleShow12:false
   },
 
   /**

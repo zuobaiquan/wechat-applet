@@ -40,4 +40,24 @@
     </view>
   </view>
 
+  <view class="myproduct-list">
+    <image class="list-img" src="/images/index/index_default_image.png"></image>
+    <view class="list-box">
+      <text>A001</text>30㎡菜地
+    </view>
+  </view>
+  <view class="myproduct-list">
+    <image class="list-img" src="/images/index/index_default_image.png"></image>
+    <view class="list-box">
+      <text>A001</text>30㎡菜地
+    </view>
+  </view>
+  <view class="myproduct-list">
+    <image class="list-img" src="/images/index/index_default_image.png"></image>
+    <view class="list-box">
+      <text>A001</text>30㎡菜地
+    </view>
+  </view>
+
+
 </view>

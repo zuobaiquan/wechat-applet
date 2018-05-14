@@ -1,29 +1,34 @@
 /* pages/me/paysuccess/index.wxss */
 .container .icon-box{
     width:100%;
-    padding: 100rpx 0;
+    padding: 136rpx 0 0;
     text-align: center;
 }
 .icon-box .icon{
-    width:100rpx;
-    height: 100rpx;
-    margin:0 auto 20rpx;
-    border-radius: 50%;
-    background: #ddd;
+    width:107rpx;
+    height: 107rpx;
+    margin:0 auto 50rpx;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGsAAABrCAMAAABHYYw+AAAA7VBMVEUAAAD/zgD/zwD/zQD/zwD/zwD/0AD/zgD/ywD/6wD/zwD/zwD/zwD/zgD/zwD/0AD/zwD/zwD/zwD/zwD/0AD/zwD/zwD/0AD/zwD/0AD/zwD/zgD/zwD/zwD/zwD/zwD/zQD/zwD//wD/xAD/zwD/0AD/zwD/zwD/zwD/zwD/zwD/zwD/zgD/zwD/zgD/zgD/zQD/2AD/zwD/////0Af/0hH//vv//vf/537/4Fb/1ib/++f/9MH/3kz/1Br//fH/8a//76n/+Nv/99P/4WH/2jv/9sz/8rj/7qL/5Gz/2C//7Jn/6Yb/5Xb/6o3UBN5gAAAAMnRSTlMA/sIE8NZCCggC8uxFLfrTL+WG9e7atqyflI1oYl81Jh4aAQ3mvIKmpXBvT006Kr0pDZUxk8gAAAPESURBVGje1ZppY9IwHMaT0BZogVKuMQ4BHbvUqU84xhC26eYxj+//cRwb2ImlTZoU8feOVz/SPLn/RJxsz2qWjpnrOUbZcDyXHZeaVi9LdJMttupVo4B1Cka13ipq9KVzDdPGZmyzkUtraVH+0KSIgpqHedXWZayaDTHsmpVRMb1ikIG9imtL5RhkYbkUked5Zw9x2Os8l/58pwbiYZxKfsg8Q3xYXqan2hWoUGkL99qLfQo16P4LMVW3D3X6XaGuMqEDU6DTnh1ADwfPolSvHejCeR3RKgf6cEJblvegEy8fkkAXenG7G8dVH7rpbxhnqX3oZz94BmlT6Ie2g1RvK0iCytuARYQhGVjmr6XxFElxur54dgwkhdFZy+AekmPvzyzmkCS5p6o0Q5KwNPF5iWR5KZF39YbJ95Z6j6VqSJraKorFMpKmXFy6DqGR+QBBlJaBN6GNwfnoS6DMfEyHVYAuBtec80BZwXpwNaCL+Se+4IbibxoPKTShibvpg+rjHAGYqUUKbWiBzsaPqiGCsBdJbGlSnfMHPg0RTOveVYcOBlcRKtQJyVahgeHHR9X7jSpUs6RnQJ27aaQKRk/H6KKT8VI1QAD+CGuqq85HAiqgSUrKqmsupEKJHCmahh8EVTgmTE11cblUfY5SgRFXSTUbCavgEk8pFXzJVbQKHqkoqK5+qyiicUgZYVBsZvBhpbqmEMAIdQ2nm7uBXozlVCiHuQafOZ/e0ZBUyKhghPXXV37P+IaGpoJ/gSBOSA4vVv97EJAKeRW8jePLXyf4dE43pYJ/gzBu2Lzxe/oZT/5s8GUcFVjofDhfyUbf6JMVZMRX/KQQ5zh0nqfzKedrazv9zuOpUCJNiMkuZxQLrnzVdwoZmhHrMvX7ZnRO/bzEUBWsyP2GL+PvL279H/xeLYXRi95H+XMRH4/iq1DNCuwP73yZzw/IUhfa994GqChkafn7eSnZV3mVXRQ8p9wqq2CmBM9fdPZUdUMhT0P4XElniqqCJX5eppOVaiKv8s/LYltfeqOiQkn0fsNfpkcTxKJclLu3oT/uVRSxqKVk76NmtxTxyG3r+hBg6S3eH27zXnT7973bv8cmHRtJYXfW3x1OkBQnz7f6nrLOWULvRGdbfP/65+965F0funnzbgfeYbW/Lx/kd+TdXHM9wA7VOeis3xCg+0ZH2Ls7V2+zqCNy1FLRThFxzpTqo86IFJmT2HVfJ5kdrmdTrtNLvv4w/V/UVUrXi6qTtiLrYK30f1jf+7Ru+Yi5XsUoGxXPZUeSdcu/AHPPzQtT2Em2AAAAAElFTkSuQmCC) no-repeat;
+    background-size: 100%;
 }
 .icon-box .text{
-    font-size: 28rpx;
+    font-size: 36rpx;
+    color:#000000;
 }
 .container .box-list{
+    width: 70%;
+    margin:0 auto;
     display: flex;
     justify-content: space-around;
 }
 .box-list text{
-    margin-top:50rpx;
-    width:210rpx;
-    height: 80rpx;
-    line-height: 80rpx;
-    border:1rpx solid #ddd;
-    border-radius: 10rpx;
+    margin-top:92rpx;
+    padding: 0 36rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    border:1rpx solid #96CB2C;
+    border-radius: 35rpx;
     text-align: center;
+    color:#96CB2C;
+    font-size: 28rpx;
 }

@@ -1,11 +1,23 @@
 <view class="container">
   <view class="problem-tit">选菜地</view>
   <view class="problem-list">
-    <view class="item">
-      <view class="list-tit" bindtap="toggleDetail" data-flag="1">我们的运营模式?</view>
-      <view wx:if="{{toggleShow1}}">共享种菜共享种菜共享种菜共享种菜共享种菜共享种菜</view>
-      <view class="list-tit" bindtap="toggleDetail" data-flag="2">面积?</view>
-      <view wx:if="{{toggleShow2}}">面积面积面积面积面积面积面积面积面积面积面积面积</view>
-    </view>
+      <view class="list-tit" bindtap="toggleDetail" data-flag="1">1.我们的运营模式是什么?</view>
+      <view class="toggle-content" wx:if="{{toggleShow1}}">共享菜地：每人认领10平米参与共享，根据地主心愿菜单种植蔬菜。每周配送一次，每次科学搭配应季蔬</view>
+      <view class="list-tit" bindtap="toggleDetail" data-flag="2">2.面积、产量、配送、价格？</view>
+      <view class="toggle-content" wx:if="{{toggleShow2}}">面积面积面积面积面积面积面积面积面积面积面积面积</view>
+      <view class="list-tit" bindtap="toggleDetail" data-flag="3">3.能开发票吗？</view>
+      <view class="toggle-content" wx:if="{{toggleShow3}}">面积面积面积面积面积面积面积面积面积面积面积面积</view>
+      <view class="list-tit" bindtap="toggleDetail" data-flag="4">4.有机蔬菜和绿色蔬菜、无公害蔬菜、普通蔬菜有什么区别？</view>
+      <view  class="toggle-content" wx:if="{{toggleShow4}}">面积面积面积面积面积面积面积面积面积面积面积面积</view>
+  </view>
+
+  <view class="problem-tit">种菜</view>
+  <view class="problem-list">
+      <view class="list-tit" bindtap="toggleDetail" data-flag="5">1.如何种菜?</view>
+      <view class="toggle-content" wx:if="{{toggleShow5}}">共享菜地：每人认领10平米参与共享，根据地主心愿菜单种植蔬菜。每周配送一次，每次科学搭配应季蔬</view>
+      <view class="list-tit" bindtap="toggleDetail" data-flag="6">2.如何保证是有机种植？</view>
+      <view class="toggle-content" wx:if="{{toggleShow6}}">面积面积面积面积面积面积面积面积面积面积面积面积</view>
+      <view class="list-tit" bindtap="toggleDetail" data-flag="7">3.冬季能不能种菜？</view>
+      <view class="toggle-content" wx:if="{{toggleShow7}}">面积面积面积面积面积面积面积面积面积面积面积面积</view>
   </view>
 </view>

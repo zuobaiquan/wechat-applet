@@ -1,19 +1,22 @@
 {
   "pages": [
-    "pages/index/index/index",
+    "pages/me/mycenter/index",
+    "pages/me/addresslist/index",
     "pages/index/problem/index",
+    "pages/index/index/index",
+    "pages/me/paysuccess/index",
     "pages/me/myinfo/index",
     "pages/me/myrecord/index",
-    "pages/me/mycenter/index",
-    "pages/me/paysuccess/index",
-    "pages/me/newaddress/index",
-    "pages/me/addresslist/index"
+
+
+    "pages/me/newaddress/index"
+
 
   ],
   "window": {
     "backgroundTextStyle": "#000000",
-    "navigationBarBackgroundColor": "#F4F5F6",
+    "navigationBarBackgroundColor": "#96CB2C",
     "navigationBarTitleText": "我的农场",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "#ffffff"
   }
 }
