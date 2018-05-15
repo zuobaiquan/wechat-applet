@@ -3,7 +3,7 @@
       <view class="text">头像</view>
       <view class="text text-avator">
         <image src="/images/me/default_avatar.png" class="avatar-image"/>
-        <text class="icon"></text>
+        <text class="arrow-right icon"></text>
       </view>
     </view>
     <view class="info-list">

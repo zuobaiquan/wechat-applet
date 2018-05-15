@@ -18,8 +18,8 @@
   color:#000000;
 }
 .info-list .avatar-image{
-  width: 70rpx;
-  height: 70rpx;
+  width: 105rpx;
+  height: 105rpx;
   display: inline-block;
 }
 .info-list .icon{

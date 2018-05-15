@@ -1,3 +1,5 @@
 <view class="container">
-
+  <image src="/images/index/story1.jpg" />
+  <image src="/images/index/story2.jpg" />
+  <view>位于北京市长子营镇西北甘村北，占地35亩，共有种植大棚23个，基础设施出众，水质优良，由我司设计开发  </view>
 </view>

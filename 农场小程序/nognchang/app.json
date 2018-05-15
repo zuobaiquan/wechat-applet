@@ -1,14 +1,15 @@
 {
   "pages": [
-    "pages/me/newaddress/index",
-    "pages/me/addresslist/index",
+    "pages/index/pay/index",
     "pages/me/myrecord/index",
+    "pages/me/addresslist/index",
+    "pages/me/newaddress/index",
     "pages/me/mycenter/index",
     "pages/me/myinfo/index",
     "pages/index/problem/index",
-    "pages/index/index/index",
+    "pages/index/story/index",
     "pages/me/paysuccess/index",
-    "pages/index/story/index"
+    "pages/index/index/index"
   ],
   "window": {
     "backgroundTextStyle": "#000000",
