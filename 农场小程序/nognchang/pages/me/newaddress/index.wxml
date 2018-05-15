@@ -21,7 +21,9 @@
       <textarea class="item-areainput" bindblur="bindTextAreaBlur" placeholder="请输入收货人的详细地址" />
     </view>
   </view>
-  <view class="btn-save" bindtap="saveResult">保存</view>
+  <view class="add-new" bindtap="saveResult">
+    <text>保存</text>
+  </view>
 </view>
 <view wx:if="{{showTips}}" class="show-tips">{{tipsInfo}}</view>
 <view class="animation-element-wrapper" style="visibility:{{show ? 'visible':'hidden'}}" catchtap="cancelBtn">

@@ -1,6 +1,27 @@
 .container .info-list{
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom: 1rpx solid #ddd;
   background: #fff;
+  padding:40rpx;
+}
+.info-list.last-list{
+  border-bottom: 0;
+}
+.info-list .text-avator{
+  display: flex;
+  align-items: center;
+}
+.info-list .text{
+  font-size: 30rpx;
+  color:#000000;
+}
+.info-list .avatar-image{
+  width: 70rpx;
+  height: 70rpx;
+  display: inline-block;
+}
+.info-list .icon{
+  margin-left: 26rpx;
 }

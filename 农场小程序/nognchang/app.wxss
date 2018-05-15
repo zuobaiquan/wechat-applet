@@ -20,6 +20,40 @@ action-sheet-item {
   z-index:9999999;
 }
 
+.arrow-right{
+   display: inline-block;
+   width: 16rpx;
+   height: 16rpx;
+   border: solid #C4C4C4;
+   border-width: 3rpx 3rpx 0 0;
+   -webkit-transform:rotate(45deg);
+   transform:rotate(45deg);
+}
+
+
+.add-new{
+  position: fixed;
+  bottom: 0;
+  left:0;
+  right: 0;
+  height: 109rpx;
+  line-height: 109rpx;
+  color:#282828;
+  background:#fff;
+  text-align: center;
+}
+.add-new text{
+  height: 80rpx;
+  width: 52%;
+  line-height: 80rpx;
+  color:#FFFFFF;
+  font-size: 30rpx;
+  border-radius: 50rpx;
+  display: inline-block;
+  background: -webkit-linear-gradient(left,#96C454, #CBE154);
+  background: linear-gradient(left,#96C454, #CBE154);
+}
+
 /*遮挡层*/
 .mask{
   position: fixed;

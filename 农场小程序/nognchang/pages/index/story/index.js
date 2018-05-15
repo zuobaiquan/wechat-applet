@@ -1,11 +1,11 @@
-// pages/me/myrecord/index.js
+// pages/index/story/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    noRecord:false
+
   },
 
   /**
@@ -15,17 +15,12 @@ Page({
 
   },
 
+
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
 
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
   }
+
 })

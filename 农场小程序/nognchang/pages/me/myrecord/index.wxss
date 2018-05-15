@@ -1,26 +1,51 @@
 .container .record-list{
   display: flex;
   justify-content: space-between;
-  padding:0 10rpx;
+  padding:25rpx;
   background: #fff;
-  border-bottom: 1rpx solid #ddd;
+  border-bottom: 1rpx solid #e5e5e5;
 }
-.record-list .record-left {
-
+.record-list .record-left .left-content {
+  display: inline-block;
 }
 .record-list .record-left .left-icon{
   margin-right: 20rpx;
   display: inline-block;
-  width: 50rpx;
-  height: 50rpx;
-  background: red;
+  width: 58rpx;
+  height: 58rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAMAAADWZboaAAAAjVBMVEUAAACo0DGh0jiXzCyh0jmg0Dmh0TmdzzSh0jmWyyybzi+XyyyWyyubzjSh0zeZzjOZzSyVyiui0jibzSmWyyyjyDeVyyyWyyyVyiuWzC2XyyuVyyyXyyyYzC6WyyuUzCyh0TmWyy2h0TigzziWzCuh0jiWzCyh0TmXyiuh0jih0Tmh0Dqh0Dij0zqh0TlyGZIZAAAALnRSTlMABTtp+JnfG/J+DoRBJS4ZHodyE3MJmG1lW1RPSkQ7IvlfNimBe1HnfdLMqKOFfD6F3gAAAdhJREFUSMe1l+mWgiAUgCGaHIESS1u0cm+bGd7/8cZqDAnc8Mz3I87RvuO9eIEr+Acsutt43mZHrUEa29ouohGGEEcUufaW9fNgkKOVfGmF8gB2in5C5rrrc+L57eY+b0zNIfsWEa8PoIXDGjfdOtodCUH7qL8R5qCTPNRdPSHQA3TSPFOY7W6o5gl68p4vFma3K8/zGvZX4VqqhAMYwKFWGz4BgyCiJhNnmGolr+AJGIhbTU0wl5dYtlgsyrEcBNlKWkdBFbo0fwW/kwKfyywfT5IVJtVRwa8Ty7onj60akytfAgFij2Fbj8XhN6Dnxp1aUtvHIBVSytOmt/m6IyQX1Jjwphc155P6HItUhfr9oeerUkWylMpqPNUTC7WydpFJwNGu/NlgExVvyh8Ptqlo+SR9U6HXqcb8SQwVtStg+Ica8LhponSwWlkMmaiIaQqRNaiZWojAlv9QNKg/PJPKX1l08DxdaM00nkF50SnJspifZypnHjM5VXWDAbiYfarMltLrJ2JbG4bY1qBrvJmCxDLYwk0PDvPjyvyQND6aL9i8ITBvQ8Y0Pyqh3SPasKHRu3Q1epdjc3tJh7aXgj1xWppa01Y68Xs08ERt4EkAx302jP9YGc8vaKEn/lLdUOYAAAAASUVORK5CYII=) no-repeat;
+  background-size: 100%;
 }
-.record-list .record-left .left-content{
-  display: inline-block;
+.record-list .record-left .left-content .record-title{
+  font-size: 30rpx;
+  color:#000000;
 }
-.record-list .record-left text{
+.record-list .record-left .left-content .record-time{
+  font-size: 24rpx;
+  color:#888888;
+}
+.record-list text{
   display: block;
 }
-.record-list .record-right text{
+.record-list .record-right .record-money{
+  color:#FF9600;
+  font-size: 34rpx;
+}
+.record-list .record-right .record-status{
+  color:#333333;
+  font-size: 26rpx;
+  text-align: right;
+}
+.container .norecord-icon{
+  width: 134rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIYAAACGCAMAAAAvpwKjAAAArlBMVEUAAAD6+vr19fX29vb19fX29vb19fX19fXr6+v19fX29vb19fX19fX19fX19fX29vb19fX29vb19fX19fX29vb19fX19fX19fX09PT29vb09PTy8vL5+fnw8PD29vb19fX29vb09PT19fX29vb19fX19fX29vby8vL////29vb09PT19fXS0tLk5OTv7+/t7e3z8/PU1NTX19fh4eHx8fHc3Nzp6enm5ubr6+vZ2dmyrrdZAAAAK3RSTlMAB/vMJPTxawKirVwzLiDD1JJ2wfjnlIiBUiocFAWk49pxP8aPYkMTEpQ7zTDg9QAABCRJREFUeNrE1olu2kAUheEzHrzb7HsgIXvUU1GgKKTv/2JNVIkmGmI8Zuz7PcEvz9GVUVGUz/rj5H41CobkMBit7pNxf5ZHaEyUhbH2eJKn4zBroOXqMQl4RpA8XqFG7b5mSbrfRi1UOqCVTqrg2tXEpzV/4vZx5jEriudwpRXzAtctuPDS44V6L7jUMvR5MT9c4iK5phM6R3VqSmemqvI0NR3S1aYapR6d8tII1tSYzo0VLC06rEFnYTmLG9bixmogWcCaBBlKu/NYG+8OJT15rJH3hFJ+GBUS3yMbsmZehrPaPmvnt3DGYsUGrBYopDpsREehQPRA1zZvr3uaHiJ8L6Vzr4fDYUNTWnDCPTp3eLenyft2pkrTVNfXoFY4bUpnzG2YpjgpZ8NynLDUbJhewhSycSEMzz4b5z8bGT2W8MvChuf1jJPBEtY/LaxZQgtfXctkXOOLOWUyODc+hkhGjE/alMpgG/9N5DImOFKBXIavjN8MiQymx4yBZMbAGKhIxnGkt7IZffyjbTN2vwtsbTP08U0sM1hkc8ywe5XQOmO/KfBmnRHiQ0LZbTDBuyiQzggiABmlM5gBCOUzQgCxfEYMoCuf0QUU5TOokJPWGdtdgSoZOWYkha8oOcMtSduMDQvsK2TcoscPltvYFqjyKD3jlItMNMGAlM8YoEvKZ3QxIuUzRghI+YwAQ1I+YwjPvD9/ttvdutEM/u3mfFsThoEw3m6t2umkTjbnHMpgLxxHm1TTtN//k61FKMJZzbWeif7AF0JfHOTy7/I8dyKMJNMiyzssX33CwIOyywGKrMNi3mdQcIrmu/p3dlDyUxgOSiqEwin6jr/LKjRXbogahSZsDAiZ7CXXTFEn63MxYTFnDGN+661NHsJAW9uMKwzVlqEVEm30P7xhYGSaSnzsWXKFAQSWxCOxOQkQeGW7ICgg4HNdl3IgELNdHiUQiLiu0gIoDJkKCxpITHjKLAJIDEYcRadcAo0XcgnuMnsFVIbEgiSo9CxKSejAFJVnbfCMitVWeEOleysE6CHDBnP0rGOFMXrkskHooyc/Gyy8CvtJOvWOiMASEXoct8IXkgrYIELCCSsEWEZigZmrohqixEiqtNRaFw3VnzIlbvTDPoIrVeoiaaXQpQKi4IouP5M6MUBLivyMLsaTiSEGcXz2kCbqxAhtMCR+H6Gm0gZBGGTHU0CXreJJkrRgPF3G1xHxSqnqc7oQZYUQh3O5BFN+R+5Lmj3vewM3YHPRIBI4IXd3RfzvihXCFWOIKzYZTtNQOLk/C5UrhjIee92ff69mQ1esl84YUV2x5TpjUq7YfvSeIFvvGgRr6ME6eCw7f81qMQAyg8XKuzb+mLa+H7d6eLzGF00bkBAuEDK1AcFNUWJoIUZNUVjxmxYxIUDYtIjpmg3/M6hJsBDp/P4AAAAASUVORK5CYII=) no-repeat;
+  background-size: 100%;
+  height: 134rpx;
+  margin:210rpx auto 43rpx;
+}
+.container .norecord-text{
+  font-size: 32rpx;
+  color:#aaaaaa;
+  text-align: center;
   display: block;
 }
