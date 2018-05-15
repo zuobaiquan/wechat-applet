@@ -54,6 +54,36 @@ action-sheet-item {
   background: linear-gradient(left,#96C454, #CBE154);
 }
 
+.fixed-page{
+  position:fixed;
+  bottom: 0;
+  left:0;
+  right: 0;
+  z-index: 99;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #fff;
+  border-top: 1rpx solid #e5e5e5;
+}
+.fixed-page .left{
+  width: 60%;
+  display: inline-block;
+  font-size: 30rpx;
+  color:#333;
+}
+.fixed-page .left text{
+  color:#FF6600;
+  font-size: 36rpx;
+}
+.fixed-page .right{
+  display: inline-block;
+  width: 40%;
+  background: #96CB2C;
+  color:#fff;
+  font-size: 34rpx;
+}
+
 /*遮挡层*/
 .mask{
   position: fixed;

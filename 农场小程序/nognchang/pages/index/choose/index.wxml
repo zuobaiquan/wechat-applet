@@ -1,0 +1,65 @@
+<view class="container">
+  <view class="header">
+    <image src="/images/index/story1.jpg" class="item-image"/>
+  </view>
+
+  <view class="dot-box">
+    <text class="text text1">可选</text>
+    <text class="text text2">选中</text>
+    <text class="text text3">不可选</text>
+    <text class="text text4">已售出</text>
+  </view>
+
+  <view class="product-list">
+    <view class="item-list">
+      <view class="list list1">
+        <text>A001</text>
+      </view>
+      <view class="select-box"></view>
+    </view>
+    <view class="item-list">
+      <view class="list list23">
+        <text>A001</text>
+      </view>
+      <view class="select-box unselect-box"></view>
+    </view>
+    <view class="item-list">
+      <view class="list list23">
+        <text>A001</text>
+      </view>
+      <view class="select-box unselect-box"></view>
+    </view>
+    <view class="item-list">
+      <view class="list list4">
+        <text>A001</text>
+      </view>
+      <view class="select-box unselect-box"></view>
+    </view>
+    <view class="item-list">
+      <view class="list list56">
+        <text>A001</text>
+      </view>
+      <view class="select-box unselect-box"></view>
+    </view>
+    <view class="item-list">
+      <view class="list list56">
+        <text>A001</text>
+      </view>
+      <view class="select-box unselect-box"></view>
+    </view>
+  </view>
+
+  <view class="tit">产品介绍</view>
+  <view class="product-box">
+    <image src="/images/index/story1.jpg" />
+    <image src="/images/index/story2.jpg" />
+    <view>位于北京市长子营镇西北甘村北，占地35亩，共有种植大棚23个，基础设施出众，水质优良，由我司设计开发  </view>
+  </view>
+
+
+  <view class="fixed-page">
+    <view class="left">合计：<text>￥2580</text></view>
+    <view class="right">确认支付</view>
+  </view>
+
+</view>

@@ -76,9 +76,6 @@
   font-size: 30rpx;
   color:#333;
 }
-.detail-box .content .img-box{
-
-}
 .detail-box .content .img-box image{
   margin-right: 25rpx;
   width: 170rpx;
