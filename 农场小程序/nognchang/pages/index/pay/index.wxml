@@ -17,14 +17,17 @@
         <view class="icon icon2"></view>
         <view class="text">购地年限</view>
       </view>
-      <view class="item-right">1 年<text class="arrow-right"></text></view>
+      <picker bindchange="yearChosen" value="{{index}}" range="{{yearList}}">
+        <view class="item-right">{{yearList[index]}}<text class="arrow-right"></text></view>
+      </picker>
     </view>
     <view class="pay-list">
       <view class="item-left">
         <view class="icon icon3"></view>
         <view class="text">手机号</view>
       </view>
-      <view class="item-right">13549400380<text class="arrow-right"></text></view>
+      <input class="input-phone" type="number" maxlength="10" placeholder="请输入手机号" />
+      <!--<view class="item-right">13549400380<text class="arrow-right"></text></view> -->
     </view>
     <view class="pay-way">
       <text class="tit">选择支付方式</text>

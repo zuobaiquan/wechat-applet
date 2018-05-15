@@ -17,7 +17,6 @@
   margin-bottom: 25rpx;
 }
 .container  .pay-list{
-  padding: 35rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -41,7 +40,15 @@
   font-size: 28rpx;
   color:#949494;
 }
+.pay-list .item-left{
+  padding: 35rpx;
+}
+.input-phone{
+  text-align: right;
+  padding-right: 35rpx;
+}
 .pay-list .item-right{
+  padding: 35rpx;
   font-size: 30rpx;
   color:#666666;
 }

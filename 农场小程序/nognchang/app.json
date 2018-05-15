@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/detail/index",
     "pages/index/pay/index",
     "pages/me/myrecord/index",
     "pages/me/addresslist/index",
@@ -10,6 +11,7 @@
     "pages/index/story/index",
     "pages/me/paysuccess/index",
     "pages/index/index/index"
+
   ],
   "window": {
     "backgroundTextStyle": "#000000",
