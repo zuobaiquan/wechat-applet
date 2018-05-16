@@ -56,6 +56,18 @@
       </view>
       <view class="select-box unselect-box"></view>
     </view>
+    <view class="item-list">
+      <view class="list list1">
+        <text>A001</text>
+      </view>
+      <view class="select-box"></view>
+    </view>
+    <view class="item-list">
+      <view class="list list23">
+        <text>A001</text>
+      </view>
+      <view class="select-box unselect-box"></view>
+    </view>
   </view>
 
   <view class="tit">产品介绍</view>

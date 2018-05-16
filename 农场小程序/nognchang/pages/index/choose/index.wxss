@@ -87,11 +87,16 @@
 }
 .product-list{
   display: flex;
-  justify-content: space-between;
+  justify-content:flex-start;
   padding:0 18rpx;
   background:#fff;
+  flex-wrap:wrap;
 }
 .product-list .item-list{
+  margin-right: 19rpx;
+}
+.product-list .item-list:nth-child(6n+6){
+  margin-right: 0;
 }
 .product-list .item-list .list{
   width: 105rpx;

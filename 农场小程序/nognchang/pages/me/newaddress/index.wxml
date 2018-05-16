@@ -18,7 +18,7 @@
   <view class="address-item area-item">
     <text class="item-name">详细地址</text>
     <view class="item-input">
-      <textarea class="item-areainput" bindblur="bindTextAreaBlur" placeholder="请输入收货人的详细地址" />
+      <textarea cursor-spacing="0" cursor="0" auto-height="true" class="item-areainput" bindblur="bindTextAreaBlur" placeholder="请输入收货人的详细地址" />
     </view>
   </view>
   <view class="add-new" bindtap="saveResult">
