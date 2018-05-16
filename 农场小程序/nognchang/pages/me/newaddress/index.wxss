@@ -10,17 +10,18 @@
   align-items: center;
 }
 .container .area-item{
+  padding: 0 30rpx;
   height: 125rpx;
   align-items: flex-start;
+  align-items: center;
   border-bottom:0;
 }
 .container .area-item .item-name{
-  padding-top:20rpx;
   color:#333;
   font-size: 28rpx;
 }
 .container .area-item .item-input{
-  padding-top:8rpx;
+  font-size: 28rpx;
 }
 .address-item .item-name {
   width: 25%;
@@ -28,14 +29,6 @@
 .address-item .item-input {
   width: 75%;
   text-align: left;
-}
-.address-item .arrow-right{
-  width: 14rpx;
-  height: 14rpx;
-  border: solid #999;
-  border-width: 2rpx 2rpx 0 0;
-  -webkit-transform:rotate(45deg);
-  transform:rotate(45deg);
 }
 .address-item .item-areainput{
   height: 117rpx;
@@ -58,6 +51,7 @@ picker-view{
   height: 380rpx;
   bottom: 0;
   position: fixed;
+  z-index:9;
 }
 
 picker-view-column view{
@@ -79,7 +73,7 @@ picker-view-column view{
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index:1;
+  z-index:99;
 }
 .animation-element-wrapper .animation-element {
   position: fixed;

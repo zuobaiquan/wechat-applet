@@ -21,7 +21,7 @@ Page({
     verify.isEmpty(e.detail.value,"收货人不能为空",this);
   },
   saveResult(){
-
+    
   },
   //滑动事件
   bindChange: function (e) {

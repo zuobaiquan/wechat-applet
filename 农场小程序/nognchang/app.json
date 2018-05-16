@@ -5,8 +5,6 @@
     "pages/index/detail/index",
     "pages/index/pay/index",
     "pages/me/myrecord/index",
-    "pages/me/addresslist/index",
-    "pages/me/newaddress/index",
     "pages/me/mycenter/index",
     "pages/me/myinfo/index",
     "pages/index/problem/index",

@@ -17,9 +17,13 @@ image{
 action-sheet-item {
   background-color:#FFFFFF;
   position:relative;
-  z-index:9999999;
+  z-index:99;
 }
-
+button{
+  border-radius: 0;
+  background: transparent;
+  padding:0;
+}
 .arrow-right{
    display: inline-block;
    width: 16rpx;
