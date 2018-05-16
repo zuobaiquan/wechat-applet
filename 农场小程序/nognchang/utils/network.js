@@ -112,7 +112,7 @@ function patchUploadFile(tempFilePaths,success){
 }
 
 //网络请求封装
-const host = 'https://beta.wx.ifmy.cn';
+const host = 'https://ifarm.iqiys.cn';
 //const host = 'https://api.wx.ifmy.cn';
 function baseRequest(path, parameter, method, success,dataType, fail) {
     var url = host + path;

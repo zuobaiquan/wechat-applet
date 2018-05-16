@@ -7,6 +7,8 @@
     "pages/me/myrecord/index",
     "pages/me/mycenter/index",
     "pages/me/myinfo/index",
+    "pages/me/addresslist/index",
+    "pages/me/newaddress/index",
     "pages/index/problem/index",
     "pages/index/story/index",
     "pages/me/paysuccess/index"

@@ -1,6 +1,6 @@
 <view class="container">
     <view class="my-center">
-      <image src="/images/me/bg_mine.png" class="icon-bg"/>
+      <image mode="aspectFill" src="/images/me/bg_mine.png" class="icon-bg"/>
       <view class="person-box" bindtap="tapMyinfo">
         <view class="icon"></view>
         <text class="text">1388267190</text>

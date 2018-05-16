@@ -2,7 +2,7 @@
     <view class="info-list">
       <view class="text">头像</view>
       <view class="text text-avator">
-        <image src="/images/me/default_avatar.png" class="avatar-image"/>
+        <image mode="aspectFill" src="/images/me/default_avatar.png" class="avatar-image"/>
         <text class="arrow-right icon"></text>
       </view>
     </view>

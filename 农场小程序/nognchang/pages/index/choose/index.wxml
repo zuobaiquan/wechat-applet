@@ -1,6 +1,6 @@
 <view class="container">
   <view class="header">
-    <image src="/images/index/story1.jpg" class="item-image"/>
+    <image mode="aspectFill" src="/images/index/story1.jpg" class="item-image"/>
   </view>
 
   <view class="dot-box">

@@ -1,12 +1,12 @@
 <template>
   <div class="login-container">
     <el-form class="login-form" autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left">
-      <h3 class="title">vue-element-admin</h3>
-      <el-form-item prop="username">
+      <h3 class="title">ifarm后台管理系统</h3>
+      <el-form-item prop="account">
         <span class="svg-container svg-container_login">
           <svg-icon icon-class="user" />
         </span>
-        <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username" />
+        <el-input name="account" type="text" v-model="loginForm.account" autoComplete="on" placeholder="account" />
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
@@ -18,20 +18,15 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
-          Sign in
+          登陆
         </el-button>
       </el-form-item>
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: admin</span>
-      </div>
     </el-form>
   </div>
 </template>
 
 <script>
 import { isvalidUsername } from '@/utils/validate'
-
 export default {
   name: 'login',
   data() {
@@ -51,11 +46,11 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
+        account: 'admin',
         password: 'admin'
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        account: [{ required: true, trigger: 'blur', validator: validateUsername }],
         password: [{ required: true, trigger: 'blur', validator: validatePass }]
       },
       loading: false,

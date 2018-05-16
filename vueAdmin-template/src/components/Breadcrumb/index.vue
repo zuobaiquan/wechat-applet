@@ -8,7 +8,6 @@
     </transition-group>
   </el-breadcrumb>
 </template>
-
 <script>
 export default {
   created() {
@@ -36,7 +35,6 @@ export default {
   }
 }
 </script>
-
 <style rel="stylesheet/scss" lang="scss" scoped>
   .app-breadcrumb.el-breadcrumb {
     display: inline-block;

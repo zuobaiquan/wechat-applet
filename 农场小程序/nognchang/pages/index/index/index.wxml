@@ -8,7 +8,7 @@
       autoplay="true" interval="3000" circular="true" duration="1000">
       <block wx:for="{{imgUrls}}" wx:key="index">
         <swiper-item>
-          <image catchtap="coverImgDetail" data-id="{{item}}" src="{{item}}" class="item-image"/>
+          <image mode="aspectFill" catchtap="coverImgDetail" data-id="{{item}}" src="{{item}}" class="item-image"/>
         </swiper-item>
       </block>
     </swiper>
@@ -32,7 +32,7 @@
   <view class="product-add">
     <text class="tit">菜地</text>
     <view class="add-box">
-      <image class="addbox-bg" src="/images/index/index_vegetable_fields.png"></image>
+      <image mode="aspectFill" class="addbox-bg" src="/images/index/index_vegetable_fields.png"></image>
       <view class="add-content" bindtap="tapChoose">
         <view class="icon"></view>
         <text>选菜地</text>
@@ -41,19 +41,19 @@
   </view>
 
   <view class="myproduct-list">
-    <image class="list-img" src="/images/index/index_default_image.png"></image>
+    <image mode="aspectFill" class="list-img" src="/images/index/index_default_image.png"></image>
     <view class="list-box">
       <text>A001</text>30㎡菜地
     </view>
   </view>
   <view class="myproduct-list" bindtap="tapDetail">
-    <image class="list-img" src="/images/index/index_default_image.png"></image>
+    <image mode="aspectFill" class="list-img" src="/images/index/index_default_image.png"></image>
     <view class="list-box">
       <text>A001</text>30㎡菜地
     </view>
   </view>
   <view class="myproduct-list">
-    <image class="list-img" src="/images/index/index_default_image.png"></image>
+    <image mode="aspectFill" class="list-img" src="/images/index/index_default_image.png"></image>
     <view class="list-box">
       <text>A001</text>30㎡菜地
     </view>

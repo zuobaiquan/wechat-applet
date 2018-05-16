@@ -1,12 +1,16 @@
 import request from '@/utils/request'
-
-export function login(username, password) {
+import qs from 'qs'
+export function login(account, password) {
   return request({
-    url: '/user/login',
+    url: '/api/loginByPassword',
     method: 'post',
-    data: {
-      username,
+    data: qs.stringify({
+      account,
       password
+    }),
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest',
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
     }
   })
 }

@@ -3,7 +3,7 @@
     <view class="icon-time" bindtap="tapTime">
       <view class="icon"></view>
     </view>
-    <image src="/images/index/story1.jpg" class="item-image"/>
+    <image mode="aspectFill" src="/images/index/story1.jpg" class="item-image"/>
     <view class="list-box">
       <text>A001</text>30㎡菜地
     </view>
@@ -14,12 +14,12 @@
       <view class="content">
         <text>好吃又新鲜, 一起来分享~</text>
         <view class="img-box">
-          <image src="/images/index/story1.jpg" />
-          <image src="/images/index/story1.jpg" />
-          <image src="/images/index/story1.jpg" />
-          <image src="/images/index/story1.jpg" />
-          <image src="/images/index/story1.jpg" />
-          <image src="/images/index/story1.jpg" />
+          <image mode="aspectFill" src="/images/index/story1.jpg" />
+          <image mode="aspectFill" src="/images/index/story1.jpg" />
+          <image mode="aspectFill" src="/images/index/story1.jpg" />
+          <image mode="aspectFill" src="/images/index/story1.jpg" />
+          <image mode="aspectFill" src="/images/index/story1.jpg" />
+          <image mode="aspectFill" src="/images/index/story1.jpg" />
         </view>
       </view>
     </view>
@@ -28,17 +28,14 @@
       <view class="content">
         <text>好吃又新鲜, 一起来分享~</text>
         <view class="img-box">
-          <image src="/images/index/story1.jpg" />
-          <image src="/images/index/story1.jpg" />
-          <image src="/images/index/story1.jpg" />
-          <image src="/images/index/story1.jpg" />
-          <image src="/images/index/story1.jpg" />
-          <image src="/images/index/story1.jpg" />
+          <image mode="aspectFill" src="/images/index/story1.jpg" />
+          <image mode="aspectFill" src="/images/index/story1.jpg" />
+          <image mode="aspectFill" src="/images/index/story1.jpg" />
+          <image mode="aspectFill" src="/images/index/story1.jpg" />
+          <image mode="aspectFill" src="/images/index/story1.jpg" />
+          <image mode="aspectFill" src="/images/index/story1.jpg" />
         </view>
       </view>
     </view>
   </view>
-
-
-
 </view>
