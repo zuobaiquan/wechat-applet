@@ -1,29 +1,29 @@
 <view class="container">
-  <view class="address-item">
-    <text class="item-name">收货人</text>
-    <view class="item-input">
-        <input class="input-name" bindblur="verifyName" type="text" placeholder-style="color:#999999;" placeholder="请输入收货人姓名" />
+  <form bindsubmit="formSubmit">
+    <view class="address-item">
+      <text class="item-name">收货人</text>
+      <view class="item-input">
+          <input class="input-name" bindblur="verifyName" type="text" placeholder-style="color:#999999;" placeholder="请输入收货人姓名" />
+      </view>
     </view>
-  </view>
-  <view class="address-item">
-    <text class="item-name">手机号码</text>
-    <view class="item-input">
-        <input class="input-name" bindblur="verifyPhone" type="number" placeholder-style="color:#999999;" placeholder="请输入收货人的手机号码" />
+    <view class="address-item">
+      <text class="item-name">手机号码</text>
+      <view class="item-input">
+          <input class="input-name" bindblur="verifyPhone" type="number" placeholder-style="color:#999999;" placeholder="请输入收货人的手机号码" />
+      </view>
     </view>
-  </view>
-  <view class="address-item" bindtap="translate">
-    <text class="item-name">省市区</text>
-    <view class="arrow-right"></view>
-  </view>
-  <view class="address-item area-item">
-    <text class="item-name">详细地址</text>
-    <view class="item-input">
-      <textarea cursor-spacing="0" cursor="0" auto-height="true" class="item-areainput" bindblur="bindTextAreaBlur" placeholder="请输入收货人的详细地址" />
+    <view class="address-item" bindtap="translate">
+      <text class="item-name">省市区</text>
+      <view class="arrow-right"></view>
     </view>
-  </view>
-  <view class="add-new" bindtap="saveResult">
-    <text>保存</text>
-  </view>
+    <view class="address-item area-item">
+      <text class="item-name">详细地址</text>
+      <view class="item-input">
+        <textarea cursor-spacing="0" cursor="0" auto-height="true" class="item-areainput" bindblur="bindTextAreaBlur" placeholder="请输入收货人的详细地址" />
+      </view>
+    </view>
+    <button class="add-new" formType="saveResult"><text>保存</text></button>
+  </form>
 </view>
 <view wx:if="{{showTips}}" class="show-tips">{{tipsInfo}}</view>
 <view class="animation-element-wrapper" style="visibility:{{show ? 'visible':'hidden'}}" catchtap="cancelBtn">
