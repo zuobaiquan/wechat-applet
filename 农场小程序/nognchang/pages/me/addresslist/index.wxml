@@ -35,7 +35,7 @@
     <view class="no-addicon"></view>
     <text class="no-address">快去添加地址~</text>
   </block>
-  <view class="add-new">
-    <text>添加收货地址</text>
+  <view class="add-new" tapNewaddr="newAddress">
+    <text bindtap="newAddress">添加收货地址</text>
   </view>
 </view>

@@ -29,5 +29,10 @@ Page({
         }
       }
     })
+  },
+  newAddress(){
+    wx.navigateTo({
+      url: `../newaddress/index`
+    });
   }
 })

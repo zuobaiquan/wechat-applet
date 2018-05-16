@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index/index",
     "pages/index/choose/index",
     "pages/index/detail/index",
     "pages/index/pay/index",
@@ -10,9 +11,7 @@
     "pages/me/myinfo/index",
     "pages/index/problem/index",
     "pages/index/story/index",
-    "pages/me/paysuccess/index",
-    "pages/index/index/index"
-    
+    "pages/me/paysuccess/index"
   ],
   "window": {
     "backgroundTextStyle": "#000000",

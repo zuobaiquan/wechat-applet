@@ -24,7 +24,7 @@ Page({
 
   tapTel(){
     wx.makePhoneCall({
-      phoneNumber: '15671559817'
+      phoneNumber: '051208773737'
     })
   },
   tapAddress(){

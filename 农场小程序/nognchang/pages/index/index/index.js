@@ -10,9 +10,29 @@ Page({
     interval: 5000,
     duration: 1000
   },
+  tapPerson(){
+    wx.navigateTo({
+      url: `../../me/mycenter/index`
+    });
+  },
   problemDetail(e){
     wx.navigateTo({
       url: `../problem/index`
     });
   },
+  tapStory(){
+    wx.navigateTo({
+      url: `../story/index`
+    });
+  },
+  tapChoose(){
+    wx.navigateTo({
+      url: `../choose/index`
+    });
+  },
+  tapDetail(){
+    wx.navigateTo({
+      url: `../detail/index`
+    });
+  }
 })
