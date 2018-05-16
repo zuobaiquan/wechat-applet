@@ -9,7 +9,16 @@
     <text class="text text3">不可选</text>
     <text class="text text4">已售出</text>
   </view>
-
+  <scroll-view class="scroll-box" scroll-x>
+    <view class="scroll-list">
+      <text class="active">A区</text>
+      <text>B区</text>
+      <text>C区</text>
+      <text>D区</text>
+      <text>E区</text>
+      <text>F区</text>
+    </view>
+  </scroll-view>
   <view class="product-list">
     <view class="item-list">
       <view class="list list1">

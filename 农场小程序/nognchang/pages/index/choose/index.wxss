@@ -59,6 +59,32 @@
   width: 100%;
   margin-bottom: 35rpx;
 }
+.container .scroll-box{
+  overflow-x: auto;
+  background: #FFFFFF;
+}
+.scroll-box .scroll-list{
+  padding: 0 24rpx 40rpx;
+  width: 100%;
+  white-space: nowrap;
+}
+.scroll-box .scroll-list text{
+  width: 150rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin-right: 20rpx;
+  border-radius: 4rpx;
+  border:1rpx solid #e5e5e5;
+  color: #969696;
+  font-size: 28rpx;
+  text-align: center;
+  display: inline-block;
+  letter-spacing: 8rpx;
+}
+.scroll-box .scroll-list text.active{
+  border:1rpx solid #FF9600;
+  color: #FF9600;
+}
 .product-list{
   display: flex;
   justify-content: space-between;
