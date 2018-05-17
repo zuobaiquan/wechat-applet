@@ -1,17 +1,16 @@
 import { login, logout, getInfo } from '@/api/login'
-import { getToken, setToken, removeToken } from '@/utils/auth'
-
+import { getToken,getAvator, setToken,setAvator, removeToken,removeAvator } from '@/utils/auth'
+import { Message, MessageBox } from 'element-ui'
 const user = {
   state: {
     token: getToken(),
     name: '',
-    avatar: '',
+    avatar: getAvator(),
     roles: []
   },
 
   mutations: {
     SET_TOKEN: (state, token) => {
-      console.log(55,state)
       state.token = token
     },
     SET_NAME: (state, name) => {
@@ -33,11 +32,17 @@ const user = {
         login(account,userInfo.password).then(response => {
           const data = response.data
           setToken(data.token)
+          setAvator(data.userBean.avatarUrl)
           commit('SET_TOKEN', data.token)
           commit('SET_NAME', data.account)
+          commit('SET_AVATAR',data.userBean.avatarUrl)
           resolve()
         }).catch(error => {
-          console.log(123,error)
+          Message({
+            message: "用户名或密码错误",
+            type: 'error',
+            duration: 5 * 1000
+          })
           reject(error)
         })
       })
@@ -66,14 +71,12 @@ const user = {
     // 登出
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
-          commit('SET_TOKEN', '')
-          commit('SET_ROLES', [])
-          removeToken()
-          resolve()
-        }).catch(error => {
-          reject(error)
-        })
+        commit('SET_TOKEN', '')
+        commit('SET_NAME', '')
+        commit('SET_AVATAR','')
+        removeToken()
+        removeAvator()
+        location.reload()
       })
     },
 
@@ -81,8 +84,10 @@ const user = {
     FedLogOut({ commit }) {
       return new Promise(resolve => {
         commit('SET_TOKEN', '')
+        commit('SET_NAME', '')
+        commit('SET_AVATAR','')
         removeToken()
-        resolve()
+        location.reload()
       })
     }
   }

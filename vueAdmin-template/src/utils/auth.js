@@ -25,3 +25,6 @@ export function setAvator(avator) {
 export function removeToken() {
   return Cookies.remove(TokenKey)
 }
+export function removeAvator() {
+  return Cookies.remove("avator")
+}

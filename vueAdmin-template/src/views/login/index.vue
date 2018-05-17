@@ -6,14 +6,14 @@
         <span class="svg-container svg-container_login">
           <svg-icon icon-class="user" />
         </span>
-        <el-input name="account" type="text" v-model="loginForm.account" autoComplete="on" placeholder="account" />
+        <el-input name="account" type="text" v-model="loginForm.account" autoComplete="on" placeholder="请输入用户名" />
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon-class="password"></svg-icon>
         </span>
         <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
-          placeholder="password"></el-input>
+          placeholder="请输入登陆密码"></el-input>
           <span class="show-pwd" @click="showPwd"><svg-icon icon-class="eye" /></span>
       </el-form-item>
       <el-form-item>
@@ -24,7 +24,6 @@
     </el-form>
   </div>
 </template>
-
 <script>
 import { isvalidUsername } from '@/utils/validate'
 export default {
@@ -46,8 +45,8 @@ export default {
     }
     return {
       loginForm: {
-        account: 'admin',
-        password: 'admin'
+        account: '',
+        password: ''
       },
       loginRules: {
         account: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -73,10 +72,11 @@ export default {
             this.loading = false
             this.$router.push({ path: '/' })
           }).catch(() => {
+            console.log(111);
             this.loading = false
           })
         } else {
-          console.log('error submit!!')
+          console.log('表单验证失败')
           return false
         }
       })
@@ -116,9 +116,7 @@ $light_gray:#eee;
     color: #454545;
   }
 }
-
 </style>
-
 <style rel="stylesheet/scss" lang="scss" scoped>
 $bg:#2d3a4b;
 $dark_gray:#889aa4;
