@@ -19,47 +19,98 @@ export const constantRouterMap = [
     }]
   },
   {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
-  },
-  {
-    path: '/userlist',
+    path: '/user',
     component: Layout,
     children: [
       {
-        path: 'userlist',
-        name: 'Userlist',
-        component: () => import('@/views/userlist/index'),
+        path: 'user',
+        name: 'User',
+        component: () => import('@/views/user/index'),
         meta: { title: '用户管理', icon: 'user' }
       }
     ]
   },
   {
-    path: '/form',
+    path: '/index',
+    component: Layout,
+    redirect: '/index/banner',
+    name: 'Example',
+    meta: { title: '首页管理', icon: 'example' },
+    children: [
+      {
+        path: 'banner',
+        name: 'Banner',
+        component: () => import('@/views/index/banner/index'),
+        meta: { title: '广告管理', icon: 'table' }
+      },
+      {
+        path: 'info',
+        name: 'Info',
+        component: () => import('@/views/index/info/index'),
+        meta: { title: '信息管理', icon: 'table' }
+      },
+      {
+        path: 'problem',
+        name: 'Problem',
+        component: () => import('@/views/index/problem/index'),
+        meta: { title: '常见问题', icon: 'table' }
+      },
+      {
+        path: 'category',
+        name: 'Category',
+        component: () => import('@/views/index/category/index'),
+        meta: { title: '分类管理', icon: 'table' }
+      }
+    ]
+  },
+  {
+    path: '/vegetable',
+    component: Layout,
+    redirect: '/vegetable/index',
+    name: 'Vegetable',
+    meta: { title: '菜地管理', icon: 'tree' },
+    children: [
+      {
+        path: 'index',
+        name: 'Index',
+        component: () => import('@/views/vegetable/index/index'),
+        meta: { title: '菜地管理', icon: 'table' }
+      },
+      {
+        path: 'info',
+        name: 'vegetableInfo',
+        component: () => import('@/views/vegetable/info/index'),
+        meta: { title: '菜地信息管理', icon: 'table' }
+      },
+      {
+        path: 'sale',
+        name: 'Sale',
+        component: () => import('@/views/vegetable/sale/index'),
+        meta: { title: '已售菜地管理', icon: 'table' }
+      }
+    ]
+  },
+  {
+    path: '/record',
     component: Layout,
     children: [
       {
         path: 'index',
         name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        component: () => import('@/views/record/index'),
+        meta: { title: '订单记录', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/admin',
+    component: Layout,
+    children: [
+      {
+        path: 'admin',
+        name: 'Admin',
+        component: () => import('@/views/admin/index'),
+        meta: { title: '管理员管理', icon: 'form' }
       }
     ]
   },

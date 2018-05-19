@@ -1,44 +1,36 @@
 <template>
   <div class="app-container">
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
-      <el-table-column align="center" label='ID' width="95">
+      <el-table-column align="center" label='序号' width="95">
         <template slot-scope="scope">
-          {{scope.$index}}
+          {{scope.$index+1}}
         </template>
       </el-table-column>
-      <el-table-column label="Title">
+      <el-table-column label="问题" align="center">
         <template slot-scope="scope">
-          {{scope.row.title}}
+          {{scope.row.question}}
         </template>
       </el-table-column>
-      <el-table-column label="Author" width="110" align="center">
+      <el-table-column label="分类" align="center">
         <template slot-scope="scope">
-          <span>{{scope.row.author}}</span>
+          <span>{{scope.row.category.name}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Pageviews" width="110" align="center">
+      <el-table-column label="更新时间" align="center">
         <template slot-scope="scope">
           {{scope.row.pageviews}}
         </template>
       </el-table-column>
-      <el-table-column class-name="status-col" label="Status" width="110" align="center">
+      <el-table-column class-name="status-col" label="操作" align="center">
         <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{scope.row.status}}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
-        <template slot-scope="scope">
-          <i class="el-icon-time"></i>
-          <span>{{scope.row.display_time}}</span>
+          <el-button @click="handleAdd()" type="primary" size="small" icon="el-icon-edit">编辑</el-button>
         </template>
       </el-table-column>
     </el-table>
   </div>
 </template>
-
 <script>
-import { getList } from '@/api/table'
-
+import { getBannerList,getProblemList } from '@/api/index'
 export default {
   data() {
     return {
@@ -62,10 +54,13 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
-        this.list = response.data.items
+      getProblemList({'page':0,'size':5}).then(response => {
+        this.list = response.data.content;
         this.listLoading = false
       })
+    },
+    handleAdd(){
+
     }
   }
 }
