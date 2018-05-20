@@ -72,7 +72,6 @@ export default {
             this.loading = false
             this.$router.push({ path: '/' })
           }).catch(() => {
-            console.log(111);
             this.loading = false
           })
         } else {
@@ -84,11 +83,9 @@ export default {
   }
 }
 </script>
-
 <style rel="stylesheet/scss" lang="scss">
 $bg:#2d3a4b;
 $light_gray:#eee;
-
 /* reset element-ui css */
 .login-container {
   .el-input {
