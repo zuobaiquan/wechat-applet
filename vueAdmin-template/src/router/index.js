@@ -77,6 +77,12 @@ export const constantRouterMap = [
         meta: { title: '菜地管理', icon: 'table' }
       },
       {
+        path: 'area',
+        name: 'vegetableArea',
+        component: () => import('@/views/vegetable/area/index'),
+        meta: { title: '菜地分区', icon: 'table' }
+      },
+      {
         path: 'info',
         name: 'vegetableInfo',
         component: () => import('@/views/vegetable/info/index'),

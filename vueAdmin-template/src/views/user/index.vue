@@ -40,7 +40,7 @@
       </el-table-column>
       <el-table-column label="注册时间" align="center">
         <template slot-scope="scope">
-          {{scope.row.pageviews}}
+          {{scope.row.createTime | parseTime }}
         </template>
       </el-table-column>
       <el-table-column fixed="right" label="操作" align="center">
