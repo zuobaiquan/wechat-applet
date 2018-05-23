@@ -15,7 +15,7 @@
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label='序号' width="100">
         <template slot-scope="scope">
-          {{scope.$index+1}}
+          {{(currentPage-1)*10+scope.$index+1}}
         </template>
       </el-table-column>
       <el-table-column label="订单号" align="center">
@@ -50,7 +50,7 @@
       </el-table-column>
       <el-table-column label="手机号" align="center">
         <template slot-scope="scope">
-          {{scope.row.phone}}
+          {{scope.row.phone || '--'}}
         </template>
       </el-table-column>
     </el-table>
@@ -58,8 +58,8 @@
       background
       @current-change="handleCurrentChange"
       :current-page="currentPage"
-      :page-sizes="[1, 5, 10, 15]"
-      :page-size="5"
+      :page-sizes="[1, 10, 20, 30]"
+      :page-size="10"
       layout="total, prev, pager, next, jumper"
       :total="totalNum">
     </el-pagination>
@@ -103,7 +103,7 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getRecordList({'page':this.currentPage-1,'size':5},this.searchObj).then(response => {
+      getRecordList({'page':this.currentPage-1,'size':10},this.searchObj).then(response => {
         this.list = response.data.content;
         this.totalNum=response.data.totalElements
         this.listLoading = false

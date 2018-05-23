@@ -20,7 +20,7 @@
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label='id'>
         <template slot-scope="scope">
-          {{scope.$index+1}}
+          {{(currentPage-1)*5+scope.$index+1}}
         </template>
       </el-table-column>
       <el-table-column label="昵称" align="center">
@@ -116,7 +116,7 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getUserList({"page":0,"size":5}).then(response => {
+      getUserList({"page":this.currentPage-1,"size":5}).then(response => {
         this.list = response.data.content
         this.totalNum=response.data.totalElements
         this.listLoading = false
@@ -125,14 +125,12 @@ export default {
     handleFilter(){
 
     },
-    handleSizeChange() {
-        //console.log(`每页 ${val} 条`);
-    },
-    handleCurrentChange() {
-        //console.log(`当前页: ${val}`);
+    handleCurrentChange(val) {
+       this.currentPage=val
+       this.fetchData();
     },
     handleClick(){
-      this.dialogFormVisible = true
+      //this.dialogFormVisible = true
     }
   }
 }

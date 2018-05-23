@@ -45,12 +45,12 @@
       </el-table-column>
       <el-table-column label="手机号" align="center">
         <template slot-scope="scope">
-          {{scope.row.address.phone || scope.row.user.phone || '--' }}
+          {{scope.row.user? scope.row.user.phone :'' || scope.row.address? scope.row.address.phone:'--' }}
         </template>
       </el-table-column>
       <el-table-column label="默认收货地址" align="center">
         <template slot-scope="scope">
-          {{scope.row.address.address}}
+          {{scope.row.address ? scope.row.address.address :'--'}}
         </template>
       </el-table-column>
       <el-table-column align="center" label="操作">
@@ -103,16 +103,18 @@ export default {
     }
   },
   created() {
+    this.fetchData()
     getAreaList({'page':0,'size':100}).then(response => {
       this.selectOptions = response.data.content;
     })
-    this.fetchData()
+
   },
   methods: {
     fetchData() {
       this.listLoading = true
       getSaleList({'page':this.currentPage-1,'size':5}).then(response => {
-        this.list = response.data.content;
+        this.list = response.data.content
+        console.log(this.list);
         this.totalNum=response.data.totalElements
         this.listLoading = false
       })
