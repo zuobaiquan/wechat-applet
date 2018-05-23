@@ -20,27 +20,27 @@
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label='id'>
         <template slot-scope="scope">
-          {{scope.$index}}
+          {{scope.$index+1}}
         </template>
       </el-table-column>
       <el-table-column label="昵称" align="center">
         <template slot-scope="scope">
-          {{scope.row.nickName}}
+          {{scope.row.nickName|| '--'}}
         </template>
       </el-table-column>
       <el-table-column label="手机号" align="center">
         <template slot-scope="scope">
-          <span>{{scope.row.phone}}</span>
+          <span>{{scope.row.phone || '--'}}</span>
         </template>
       </el-table-column>
       <el-table-column label="菜地" align="center">
         <template slot-scope="scope">
-          {{scope.row.pageviews}}
+          {{scope.row.pageviews || '--'}}
         </template>
       </el-table-column>
       <el-table-column label="注册时间" align="center">
         <template slot-scope="scope">
-          {{scope.row.pageviews}}
+          {{scope.row.createTime | parseTime }}
         </template>
       </el-table-column>
       <el-table-column fixed="right" label="操作" align="center">
@@ -50,13 +50,13 @@
     </el-table-column>
     </el-table>
     <el-pagination
-      @size-change="handleSizeChange"
+      background
       @current-change="handleCurrentChange"
       :current-page="currentPage"
-      :page-sizes="[10, 20, 30, 40]"
-      :page-size="100"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="400">
+      :page-sizes="[1, 5, 10, 15]"
+      :page-size="5"
+      layout="total, prev, pager, next, jumper"
+      :total="totalNum">
     </el-pagination>
 
     <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
@@ -76,13 +76,11 @@
         <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
       </div>
     </el-dialog>
-
-
   </div>
 </template>
 
 <script>
-import { getList } from '@/api/table'
+import { getUserList } from '@/api/user'
 
 export default {
   data() {
@@ -97,27 +95,19 @@ export default {
       importanceOptions:['全部','A','B','C'],
 
       dialogFormVisible: false,
-        form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        },
-        formLabelWidth: '120px'
-    }
-  },
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
+      form: {
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: ''
+      },
+      formLabelWidth: '120px',
+      currentPage: 1,
+      totalNum:1
     }
   },
   created() {
@@ -126,8 +116,9 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getList({"page":0,"size":5}).then(response => {
+      getUserList({"page":0,"size":5}).then(response => {
         this.list = response.data.content
+        this.totalNum=response.data.totalElements
         this.listLoading = false
       })
     },

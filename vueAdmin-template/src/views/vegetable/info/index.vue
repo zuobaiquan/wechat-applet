@@ -1,48 +1,43 @@
 <template>
   <div class="app-container">
-    <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
-      <el-table-column align="center" label='序号' width="95">
-        <template slot-scope="scope">
-          {{scope.$index}}
-        </template>
-      </el-table-column>
-      <el-table-column label="标题" align="center">
-        <template slot-scope="scope">
-          {{scope.row.title}}
-        </template>
-      </el-table-column>
-      <el-table-column label="更新时间" align="center">
-        <template slot-scope="scope">
-          <span>{{scope.row.author}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column fixed="right" label="操作" align="center">
-        <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="primary" size="small">查看</el-button>
-        </template>
-    </el-table-column>
-    </el-table>
+    <el-form ref="form" :model="form" label-width="120px">
+      <el-form-item label="菜地价格">
+        <el-input v-model="form.price"></el-input>
+      </el-form-item>
+      <el-form-item label="产品介绍">
+          <el-input type="textarea" :autosize="{ minRows:4, maxRows:6}" v-model="form.text" auto-complete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="航拍图">
+          <el-upload class="upload-demo" drag :before-upload="handleImagebeforeUpload" :on-success="handleImageScucess" :action="baseURL" :data="uploadData">
+            <i class="el-icon-upload"></i>
+            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+          </el-upload>
+      </el-form-item>
+      <div v-if="form.coverUrl" style="margin-left:120px;">
+        <img :src="form.coverUrl" alt="" style="max-height:200px;max-height:200px;" width="80%" height="80%">
+      </div>
+      <el-form-item label="">
+          <el-button type="primary" @click="submitRes()">确 定</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
-
 <script>
-import { getBannerList } from '@/api/index'
-
+import { editInfo,getInfo } from '@/api/vegetable'
+// import Tinymce from '@/components/Tinymce'
 export default {
   data() {
     return {
-      list: null,
-      listLoading: true
-    }
-  },
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
+      form: {
+        price: '',
+        text:'',
+        coverUrl:'',
+        title:''
+      },
+      baseURL:process.env.BASE_API+'/api/oss',
+      uploadData:{
+        key:''
+      },
     }
   },
   created() {
@@ -51,11 +46,69 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getBannerList(this.listQuery).then(response => {
-        this.list = response.data.items
+      getInfo({'page':0,'size':5}).then(response => {
+        this.form = response.data.content[0];
         this.listLoading = false
+      })
+    },
+    handleImagebeforeUpload(file){
+      let name=file.name;
+      let houzhui = name.substring(name.lastIndexOf('.') + 1);
+      this.uploadData.key=Date.parse(new Date())+'.'+houzhui;
+    },
+    handleImageScucess(response, file, fileList){
+      this.form.coverUrl=response.data
+    },
+    submitRes(){
+      if(this.form.price==""){
+        this.$message({
+          message: '菜地价格不能为空',
+          type: 'warning'
+        })
+        return false
+      }
+      if(this.form.text==""){
+        this.$message({
+          message: '产品介绍不能为空',
+          type: 'warning'
+        })
+        return false
+      }
+      if(this.form.coverUrl==""){
+        this.$message({
+          message: '航拍图不能为空',
+          type: 'warning'
+        })
+        return false
+      }
+      editInfo({
+        'id':this.form.id,
+        'coverUrl':this.form.coverUrl,
+        'text':this.form.text,
+        'price':this.form.price,
+        'title':this.form.title
+        }).then(response => {
+        if(response.status==200){
+          this.$message({
+            message: '修改成功',
+            type: 'success'
+          })
+        }else{
+          this.$message({
+            message: '修改失败',
+            type: 'warning'
+          })
+        }
       })
     }
   }
 }
 </script>
+<style scoped>
+.line{
+  text-align: center;
+}
+.el-upload-list {
+    margin-left: 0 !important;
+}
+</style>

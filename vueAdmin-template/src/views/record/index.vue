@@ -1,85 +1,145 @@
 <template>
   <div class="app-container">
-    <el-form ref="form" :model="form" label-width="120px">
-      <el-form-item label="Activity name">
-        <el-input v-model="form.name"></el-input>
-      </el-form-item>
-      <el-form-item label="Activity zone">
-        <el-select v-model="form.region" placeholder="please select your zone">
-          <el-option label="Zone one" value="shanghai"></el-option>
-          <el-option label="Zone two" value="beijing"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="Activity time">
-        <el-col :span="11">
-          <el-date-picker type="date" placeholder="Pick a date" v-model="form.date1" style="width: 100%;"></el-date-picker>
-        </el-col>
-        <el-col class="line" :span="2">-</el-col>
-        <el-col :span="11">
-          <el-time-picker type="fixed-time" placeholder="Pick a time" v-model="form.date2" style="width: 100%;"></el-time-picker>
-        </el-col>
-      </el-form-item>
-      <el-form-item label="Instant delivery">
-        <el-switch v-model="form.delivery"></el-switch>
-      </el-form-item>
-      <el-form-item label="Activity type">
-        <el-checkbox-group v-model="form.type">
-          <el-checkbox label="Online activities" name="type"></el-checkbox>
-          <el-checkbox label="Promotion activities" name="type"></el-checkbox>
-          <el-checkbox label="Offline activities" name="type"></el-checkbox>
-          <el-checkbox label="Simple brand exposure" name="type"></el-checkbox>
-        </el-checkbox-group>
-      </el-form-item>
-      <el-form-item label="Resources">
-        <el-radio-group v-model="form.resource">
-          <el-radio label="Sponsor"></el-radio>
-          <el-radio label="Venue"></el-radio>
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="Activity form">
-        <el-input type="textarea" v-model="form.desc"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">Create</el-button>
-        <el-button @click="onCancel">Cancel</el-button>
-      </el-form-item>
-    </el-form>
+      状态&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="searchStatus" placeholder="请选择">
+      <el-option v-for="item in selectOptionsStatus" :key="item.id" :label="item.name" :value="item.id">
+      </el-option>
+      </el-select>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      类型&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="searchSelect" placeholder="请选择">
+      <el-option v-for="item in selectOptions" :key="item.id" :label="item.name" :value="item.id">
+      </el-option>
+      </el-select>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
+      <br /><br />
+    <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
+      <el-table-column align="center" label='序号' width="100">
+        <template slot-scope="scope">
+          {{scope.$index+1}}
+        </template>
+      </el-table-column>
+      <el-table-column label="订单号" align="center">
+        <template slot-scope="scope">
+          {{scope.row.orderSn}}
+        </template>
+      </el-table-column>
+      <el-table-column label="购买类型" align="center">
+        <template slot-scope="scope">
+          买菜地
+        </template>
+      </el-table-column>
+      <el-table-column label="费用" align="center">
+        <template slot-scope="scope">
+          {{scope.row.money}}
+        </template>
+      </el-table-column>
+      <el-table-column label="状态" align="center">
+        <template slot-scope="scope">
+          {{payStatus(scope.row.payStatus)}}
+        </template>
+      </el-table-column>
+      <el-table-column label="下单时间" align="center">
+        <template slot-scope="scope">
+          {{scope.row.createTime |  parseTime }}
+        </template>
+      </el-table-column>
+      <el-table-column label="用户昵称" align="center">
+        <template slot-scope="scope">
+          {{scope.row.creator.nickName}}
+        </template>
+      </el-table-column>
+      <el-table-column label="手机号" align="center">
+        <template slot-scope="scope">
+          {{scope.row.phone}}
+        </template>
+      </el-table-column>
+    </el-table>
+    <el-pagination
+      background
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[1, 5, 10, 15]"
+      :page-size="5"
+      layout="total, prev, pager, next, jumper"
+      :total="totalNum">
+    </el-pagination>
   </div>
 </template>
-
 <script>
+import { getRecordList } from '@/api/record'
 export default {
   data() {
     return {
-      form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
+      list: null,
+      listLoading: true,
+      selectitem:'',
+      sn:'',
+      selectOptions:[
+        {'id':-1,'name':'全部'},
+        {'id':0,'name':'买菜地'},
+        {'id':1,'name':'买卡'}
+      ],
+      currentPage: 1,
+      totalNum:1,
+      searchSelect:-1,
+      searchStatus:-1,
+      selectOptionsStatus:[
+        {'id':-1,'name':'全部'},
+        {'id':0,'name':'未付款'},
+        {'id':1,'name':'付款中'},
+        {'id':2,'name':'已付款'},
+        {'id':3,'name':'已退款'}
+      ],
+      searchObj:{
+        type:-1,
+        searchStatus:-1,
+        searchSelect:-1,
       }
     }
   },
+  created() {
+    this.fetchData()
+  },
   methods: {
-    onSubmit() {
-      this.$message('submit!')
-    },
-    onCancel() {
-      this.$message({
-        message: 'cancel!',
-        type: 'warning'
+    fetchData() {
+      this.listLoading = true
+      getRecordList({'page':this.currentPage-1,'size':5},this.searchObj).then(response => {
+        this.list = response.data.content;
+        this.totalNum=response.data.totalElements
+        this.listLoading = false
       })
+    },
+    handleFilter(){
+      if(this.searchSelect==-1&&this.searchStatus!==-1){
+        this.searchObj.type=0
+        this.searchObj.searchStatus=this.searchStatus
+      }
+      if(this.searchSelect!=-1&&this.searchStatus==-1){
+        this.searchObj.type=1
+        this.searchObj.searchSelect=this.searchSelect
+      }
+      if(this.searchSelect!=-1&&this.searchStatus!=-1){
+        this.searchObj.type=2
+        this.searchObj.searchStatus=this.searchStatus
+        this.searchObj.searchSelect=this.searchSelect
+      }
+      this.fetchData()
+    },
+    handleCurrentChange(val) {
+       this.currentPage=val
+       this.fetchData();
+    },
+    payStatus(id){
+      switch (id){
+        case  0:return '未付款';
+        case  1:return '付款中';
+        case  2:return '已付款';
+        case  3:return '已退款';
+      }
     }
   }
 }
 </script>
+<style rel="stylesheet/scss" lang="scss" scoped>
 
-<style scoped>
-.line{
-  text-align: center;
-}
 </style>
-

@@ -1,6 +1,11 @@
 <template>
   <div class="app-container">
     <el-button @click="handleAdd(1,-1)" class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit">添加</el-button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    用户名：<el-input style="width: 200px;" class="filter-item" placeholder="请输入" v-model="searchAccount"></el-input>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <el-button class="filter-item" type="primary" icon="el-icon-search" @click="fetchData">搜索</el-button>
+    <br /><br />
     <br /><br />
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label='序号' width="100">
@@ -10,17 +15,17 @@
       </el-table-column>
       <el-table-column label="用户名" align="center">
         <template slot-scope="scope">
-          {{scope.row.account}}
+          {{scope.row.account || '--' }}
         </template>
       </el-table-column>
       <el-table-column label="姓名" align="center">
         <template slot-scope="scope">
-          {{scope.row.realName}}
+          {{scope.row.realName || '--'}}
         </template>
       </el-table-column>
       <el-table-column label="联系方式" align="center">
         <template slot-scope="scope">
-          {{scope.row.phone}}
+          {{scope.row.phone || '--' }}
         </template>
       </el-table-column>
       <el-table-column label="部门职位" align="center">
@@ -30,7 +35,7 @@
       </el-table-column>
       <el-table-column label="状态" align="center">
         <template slot-scope="scope">
-          {{scope.row.userType}}
+          {{scope.row.status==1?'停用':(scope.row.status==2?'删除':'正常')}}
         </template>
       </el-table-column>
       <el-table-column align="center" label="操作" width="120">
@@ -93,7 +98,8 @@ export default {
         id:-1
       },
       currentPage: 1,
-      totalNum:1
+      totalNum:1,
+      searchAccount:''
     }
   },
   created() {
@@ -102,7 +108,7 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getAdminList({'page':this.currentPage-1,'size':5}).then(response => {
+      getAdminList({'page':this.currentPage-1,'size':5},this.searchAccount).then(response => {
         this.list = response.data.content;
         this.totalNum=response.data.totalElements
         this.listLoading = false
