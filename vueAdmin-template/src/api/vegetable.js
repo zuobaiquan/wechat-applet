@@ -172,11 +172,54 @@ export function getOrderList(params,searchObj) {
       apiUrl=`/api/order?status=${searchObj.status}&gardenArea=${searchObj.gardenArea}&sn=${searchObj.sn}`
       break;
     default:
-
   }
   return request({
     url: apiUrl,
     // url: `/api/garden/item?gardenArea.garden.id=${id}`,
+    method: 'get',
+    params
+  })
+}
+
+export function getInfo(params) {
+  return request({
+    url: `/api/garden?id=1`,
+    method: 'get',
+    params
+  })
+}
+
+export function addInfo(params) {
+  return request({
+    url: `/api/garden`,
+    method: 'post',
+    data:JSON.stringify(params),
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    }
+  })
+}
+
+export function editInfo(params) {
+  return request({
+    url: `/api/garden`,
+    method: 'put',
+    data:JSON.stringify(params),
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    }
+  })
+}
+export function deleteInfo(id) {
+  return request({
+    url: `/api/garden/${id}`,
+    method: 'delete'
+  })
+}
+
+export function getSaleList(params) {
+  return request({
+    url: `api/garden/item?gardenArea.garden.id=1&status=2`,
     method: 'get',
     params
   })
