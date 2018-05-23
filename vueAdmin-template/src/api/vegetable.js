@@ -1,7 +1,6 @@
 import request from '@/utils/request'
 export function getVegetableList(params,searchObj) {
   let apiUrl='/api/garden/item?gardenArea.garden.id=1';
-  console.log(searchObj);
   switch (searchObj.type) {
     //只搜索状态
     case 0:
@@ -219,7 +218,7 @@ export function deleteInfo(id) {
 
 export function getSaleList(params) {
   return request({
-    url: `api/garden/item?gardenArea.garden.id=1&status=2`,
+    url: `/api/bill`,
     method: 'get',
     params
   })

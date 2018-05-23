@@ -113,7 +113,7 @@ export default {
       searchSelect2:-1,
       searchStatus:-1,
       selectOptionsStatus:[
-        {'id':-1,'name':'请选择'},
+        {'id':-1,'name':'全部'},
         {'id':0,'name':'下架'},
         {'id':1,'name':'待售'},
         {'id':2,'name':'已售'},
@@ -133,7 +133,7 @@ export default {
       this.selectOptions2 = response.data.content;
       this.selectOptions2.unshift({
         'id':-1,
-        'name':'请选择'
+        'name':'全部'
       })
     })
     this.fetchData()
