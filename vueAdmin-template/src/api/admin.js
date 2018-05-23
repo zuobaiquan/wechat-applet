@@ -1,7 +1,7 @@
 import request from '@/utils/request'
-export function getAdminList(params) {
+export function getAdminList(params,account='') {
   return request({
-    url: '/api/user/admin/list',
+    url: account==''?`/api/user/admin/list`:`/api/user/admin/list?content.account=${account}`,
     method: 'get',
     params
   })

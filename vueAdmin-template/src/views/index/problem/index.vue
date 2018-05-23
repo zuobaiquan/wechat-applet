@@ -40,7 +40,6 @@
         </template>
       </el-table-column>
     </el-table>
-
     <el-dialog :title="dialogTitle" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="问题" label-width="120px">

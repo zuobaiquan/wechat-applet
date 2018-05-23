@@ -1,7 +1,42 @@
 import request from '@/utils/request'
-export function getVegetableList(params,id) {
+export function getVegetableList(params,searchObj) {
+  let apiUrl='/api/garden/item?gardenArea.garden.id=1';
+  console.log(searchObj);
+  switch (searchObj.type) {
+    //只搜索状态
+    case 0:
+      apiUrl=`/api/garden/item?gardenArea.garden.id=1&status=${searchObj.status}`
+      break;
+    //只搜索编号
+    case 1:
+      apiUrl=`/api/garden/item?gardenArea.garden.id=1&sn=${searchObj.sn}`
+      break;
+    //只搜索分区
+    case 2:
+      apiUrl=`/api/garden/item?gardenArea.garden.id=1&gardenArea=${searchObj.gardenArea}`
+      break;
+    //搜索编号和状态
+    case 3:
+      apiUrl=`/api/garden/item?gardenArea.garden.id=1&sn=${searchObj.sn}&status=${searchObj.status}`
+      break;
+    //搜索编号和分区
+    case 4:
+      apiUrl=`/api/garden/item?gardenArea.garden.id=1&sn=${searchObj.sn}&gardenArea=${searchObj.gardenArea}`
+      break;
+    //搜索状态和分区
+    case 5:
+      apiUrl=`/api/garden/item?gardenArea.garden.id=1&status=${searchObj.status}&gardenArea=${searchObj.gardenArea}`
+      break;
+    //搜索状态和分区和编号
+    case 6:
+      apiUrl=`/api/garden/item?gardenArea.garden.id=1&status=${searchObj.status}&gardenArea=${searchObj.gardenArea}&sn=${searchObj.sn}`
+      break;
+    default:
+
+  }
   return request({
-    url: `/api/garden/item?gardenArea.garden.id=${id}`,
+    url: apiUrl,
+    // url: `/api/garden/item?gardenArea.garden.id=${id}`,
     method: 'get',
     params
   })
@@ -100,5 +135,49 @@ export function deleteGardenItem(id) {
   return request({
     url: `api/garden/item/${id}`,
     method: 'delete'
+  })
+}
+
+
+export function getOrderList(params,searchObj) {
+  let apiUrl='/api/order';
+  console.log(searchObj);
+  switch (searchObj.type) {
+    //只搜索状态
+    case 0:
+      apiUrl=`/api/order?status=${searchObj.status}`
+      break;
+    //只搜索编号
+    case 1:
+      apiUrl=`/api/order?sn=${searchObj.sn}`
+      break;
+    //只搜索分区
+    case 2:
+      apiUrl=`/api/order?gardenArea=${searchObj.gardenArea}`
+      break;
+    //搜索编号和状态
+    case 3:
+      apiUrl=`/api/order?sn=${searchObj.sn}&status=${searchObj.status}`
+      break;
+    //搜索编号和分区
+    case 4:
+      apiUrl=`/api/order?sn=${searchObj.sn}&gardenArea=${searchObj.gardenArea}`
+      break;
+    //搜索状态和分区
+    case 5:
+      apiUrl=`/api/order?status=${searchObj.status}&gardenArea=${searchObj.gardenArea}`
+      break;
+    //搜索状态和分区和编号
+    case 6:
+      apiUrl=`/api/order?status=${searchObj.status}&gardenArea=${searchObj.gardenArea}&sn=${searchObj.sn}`
+      break;
+    default:
+
+  }
+  return request({
+    url: apiUrl,
+    // url: `/api/garden/item?gardenArea.garden.id=${id}`,
+    method: 'get',
+    params
   })
 }

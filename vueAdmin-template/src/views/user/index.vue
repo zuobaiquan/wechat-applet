@@ -76,13 +76,11 @@
         <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
       </div>
     </el-dialog>
-
-
   </div>
 </template>
 
 <script>
-import { getList } from '@/api/table'
+// import { getList } from '@/api/table'
 
 export default {
   data() {
@@ -126,10 +124,10 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getList({"page":0,"size":5}).then(response => {
-        this.list = response.data.content
-        this.listLoading = false
-      })
+      // getList({"page":0,"size":5}).then(response => {
+      //   this.list = response.data.content
+      //   this.listLoading = false
+      // })
     },
     handleFilter(){
 
