@@ -5,7 +5,7 @@
     </el-option>
     </el-select>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    类型&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="searchSelect" placeholder="请选择">
+    分区&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="searchSelect" placeholder="请选择">
     <el-option v-for="item in selectOptions" :key="item.id" :label="item.name" :value="item.id">
     </el-option>
     </el-select>
@@ -90,10 +90,8 @@ export default {
       searchStatus:-1,
       selectOptionsStatus:[
         {'id':-1,'name':'全部'},
-        {'id':0,'name':'未付款'},
-        {'id':1,'name':'付款中'},
-        {'id':2,'name':'已付款'},
-        {'id':3,'name':'已退款'}
+        {'id':0,'name':'过期'},
+        {'id':1,'name':'未过期'}
       ],
       searchObj:{
         type:-1,
