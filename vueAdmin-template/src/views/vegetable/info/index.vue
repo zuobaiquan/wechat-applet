@@ -14,7 +14,7 @@
           </el-upload>
       </el-form-item>
       <div v-if="form.coverUrl" style="margin-left:120px;">
-        <img :src="form.coverUrl" alt="" style="max-height:200px;max-height:200px;" width="80%" height="80%">
+        <img :src="form.coverUrl" alt="" style="max-width:200px;max-height:200px;" width="80%" height="80%">
       </div>
       <el-form-item label="">
           <el-button type="primary" @click="submitRes()">确 定</el-button>

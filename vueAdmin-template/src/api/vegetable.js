@@ -216,10 +216,29 @@ export function deleteInfo(id) {
   })
 }
 
+export function getReportList(params) {
+  return request({
+    url: `/api/report`,
+    method: 'get',
+    params
+  })
+}
 export function getSaleList(params) {
   return request({
     url: `/api/bill`,
     method: 'get',
     params
+  })
+}
+
+
+export function addReport(params) {
+  return request({
+    url: `/api/report`,
+    method: 'post',
+    data:JSON.stringify(params),
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    }
   })
 }

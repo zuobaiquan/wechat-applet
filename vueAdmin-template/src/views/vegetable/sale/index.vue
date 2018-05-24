@@ -148,7 +148,7 @@ export default {
       }
     },
     handleReport(data){
-      this.$router.push({ name: 'Report', params:  data })
+      this.$router.push({ name: 'report',params: {'billid': 1}, query:  data })
     }
   }
 }

@@ -90,13 +90,13 @@ export const constantRouterMap = [
       },
       {
         path: 'sale',
-        name: 'Sale',
+        name: 'sale',
         component: () => import('@/views/vegetable/sale/index'),
         meta: { title: '已售菜地管理', icon: 'table' }
       },
       {
-        path: 'report',
-        name: 'Report',
+        path: 'report/:billid',
+        name: 'report',
         component: () => import('@/views/vegetable/report/index'),
         hidden:true
       }
