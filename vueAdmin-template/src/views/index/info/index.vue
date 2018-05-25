@@ -13,9 +13,9 @@
           {{scope.row.title}}
         </template>
       </el-table-column>
-      <el-table-column label="概要" align="center">
+      <el-table-column label="内容详情" align="center">
         <template slot-scope="scope">
-          {{scope.row.summary}}
+          <span v-html="scope.row.summary"></span>
         </template>
       </el-table-column>
       <el-table-column width="200" label="操作" align="center">
@@ -25,7 +25,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog :title="dialogTitle" :visible.sync="dialogFormVisible">
+    <!-- <el-dialog :title="dialogTitle" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="标题" label-width="120px">
           <el-input v-model="form.title" auto-complete="off"></el-input>
@@ -40,7 +40,7 @@
         <el-button @click="dialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="submitRes()">确 定</el-button>
       </div>
-    </el-dialog>
+    </el-dialog> -->
     <el-pagination
       background
       @current-change="handleCurrentChange"
@@ -79,11 +79,6 @@ export default {
       getInfoArticle({'page':this.currentPage-1,'size':10}).then(response => {
         this.list = response.data.content;
         this.totalNum=response.data.totalElements
-        this.list = this.list.map(v => {
-          this.$set(v, 'edit', false)
-          v.originalName = v.name
-          return v
-        })
         this.listLoading = false
       })
     },
@@ -108,43 +103,7 @@ export default {
       })
     },
     handleAdd(flag,id){
-      if(flag==1){
-        this.form.id=-1
-        this.dialogTitle='添加文章'
-        this.form.title=''
-        this.form.summary=''
-        this.dialogFormVisible = true
-      }
-      if(flag==-1){
-        this.form.id=id
-        this.dialogTitle='修改文章'
-        this.list.forEach((item,index)=>{
-          if(item.id==id){
-            this.form.title=item.title
-            this.form.summary=item.summary
-            this.dialogFormVisible = true
-            return ;
-          }
-        })
-      }
-    },
-    handelErrorForm(){
-      if(this.form.title==""){
-        this.$message({
-          message: '标题不能为空',
-          type: 'warning'
-        })
-        return false
-      }
-      if(this.form.summary==""){
-        this.$message({
-          message: '概要不能为空',
-          type: 'warning'
-        })
-        return false
-      }else{
-        return true
-      }
+      this.$router.push({ path: `infoedit/${id}/${flag}`})
     },
     submitRes(){
       if(this.handelErrorForm()){

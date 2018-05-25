@@ -73,6 +73,13 @@ export function getInfoArticle(params) {
     params
   })
 }
+export function getInfoArticlebyId(params,id) {
+  return request({
+    url: `/api/article?id=${id}`,
+    method: 'get',
+    params
+  })
+}
 export function addInfoArticle(params) {
   return request({
     url: '/api/article',

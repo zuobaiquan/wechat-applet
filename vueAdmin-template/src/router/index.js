@@ -50,6 +50,13 @@ export const constantRouterMap = [
         meta: { title: '信息管理', icon: 'table' }
       },
       {
+        path: 'infoedit/:infoid/:flag',
+        name: 'infoedit',
+        component: () => import('@/views/index/infoedit/index'),
+        meta: { title: '信息编辑', icon: 'table' },
+        hidden:true
+      },
+      {
         path: 'problem',
         name: 'Problem',
         component: () => import('@/views/index/problem/index'),
@@ -98,6 +105,7 @@ export const constantRouterMap = [
         path: 'report/:billid',
         name: 'report',
         component: () => import('@/views/vegetable/report/index'),
+        meta: { title: '汇报管理', icon: 'table' },
         hidden:true
       }
     ]

@@ -4,18 +4,19 @@
       <el-form-item label="菜地价格">
         <el-input v-model="form.price"></el-input>
       </el-form-item>
-      <el-form-item label="产品介绍">
-          <el-input type="textarea" :autosize="{ minRows:4, maxRows:6}" v-model="form.text" auto-complete="off"></el-input>
-      </el-form-item>
       <el-form-item label="航拍图">
-          <el-upload class="upload-demo" drag :before-upload="handleImagebeforeUpload" :on-success="handleImageScucess" :action="baseURL" :data="uploadData">
+          <el-upload class="upload-demo" drag :on-success="handleImageScucess" :action="baseURL">
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
           </el-upload>
+          <div v-if="form.coverUrl" style="display:inline-block">
+            <img :src="form.coverUrl" alt="" style="max-width:300px;max-height:250px;" width="80%" height="80%">
+          </div>
       </el-form-item>
-      <div v-if="form.coverUrl" style="margin-left:120px;">
-        <img :src="form.coverUrl" alt="" style="max-width:200px;max-height:200px;" width="80%" height="80%">
-      </div>
+      <el-form-item label="产品介绍">
+        <Tinymce :height='300' :width="800" id="tinymce" ref="editor" v-model="form.text"></Tinymce>
+          <!-- <el-input type="textarea" :autosize="{ minRows:4, maxRows:6}" v-model="form.text" auto-complete="off"></el-input> -->
+      </el-form-item>
       <el-form-item label="">
           <el-button type="primary" @click="submitRes()">确 定</el-button>
       </el-form-item>
@@ -24,7 +25,7 @@
 </template>
 <script>
 import { editInfo,getInfo } from '@/api/vegetable'
-// import Tinymce from '@/components/Tinymce'
+import Tinymce from '@/components/Tinymce'
 export default {
   data() {
     return {
@@ -35,10 +36,10 @@ export default {
         title:''
       },
       baseURL:process.env.BASE_API+'/api/oss',
-      uploadData:{
-        key:''
-      },
     }
+  },
+  components:{
+    Tinymce
   },
   created() {
     this.fetchData()
@@ -51,11 +52,11 @@ export default {
         this.listLoading = false
       })
     },
-    handleImagebeforeUpload(file){
-      let name=file.name;
-      let houzhui = name.substring(name.lastIndexOf('.') + 1);
-      this.uploadData.key=Date.parse(new Date())+'.'+houzhui;
-    },
+    // handleImagebeforeUpload(file){
+    //   let name=file.name;
+    //   let houzhui = name.substring(name.lastIndexOf('.') + 1);
+    //   this.uploadData.key=Date.parse(new Date())+'.'+houzhui;
+    // },
     handleImageScucess(response, file, fileList){
       this.form.coverUrl=response.data
     },
@@ -63,6 +64,13 @@ export default {
       if(this.form.price==""){
         this.$message({
           message: '菜地价格不能为空',
+          type: 'warning'
+        })
+        return false
+      }
+      if(!/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{1,2}$)/.test(this.form.price)){
+        this.$message({
+          message: '菜地价格格式不正确',
           type: 'warning'
         })
         return false
