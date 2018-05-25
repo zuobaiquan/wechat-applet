@@ -77,7 +77,7 @@ export default {
       selectOptions:[
         {'id':-1,'name':'全部'},
         {'id':0,'name':'买菜地'},
-        {'id':1,'name':'买卡'}
+        // {'id':1,'name':'买卡'}
       ],
       currentPage: 1,
       totalNum:1,

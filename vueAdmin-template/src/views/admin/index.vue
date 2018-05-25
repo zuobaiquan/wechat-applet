@@ -10,7 +10,7 @@
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label='序号' width="100">
         <template slot-scope="scope">
-          {{(currentPage-1)*5+scope.$index+1}}
+          {{(currentPage-1)*10+scope.$index+1}}
         </template>
       </el-table-column>
       <el-table-column label="用户名" align="center">
@@ -38,9 +38,11 @@
           {{scope.row.status==1?'停用':(scope.row.status==2?'删除':'正常')}}
         </template>
       </el-table-column>
-      <el-table-column align="center" label="操作" width="120">
+      <el-table-column align="center" label="操作" width="300">
         <template slot-scope="scope">
           <el-button @click="handleAdd(-1,scope.row.id)" type="primary" size="small" icon="el-icon-edit">编辑</el-button>
+          <el-button @click="handleStart(scope.row.id,scope.row.status)" type="primary" size="small">{{scope.row.status==1?'启用':'禁用'}}</el-button>
+          <el-button type="danger" icon="el-icon-delete" size="small" @click="delAdmin(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -74,15 +76,15 @@
       background
       @current-change="handleCurrentChange"
       :current-page="currentPage"
-      :page-sizes="[1, 5, 10, 15]"
-      :page-size="5"
+      :page-sizes="[1, 10, 20, 30]"
+      :page-size="10"
       layout="total, prev, pager, next, jumper"
       :total="totalNum">
     </el-pagination>
   </div>
 </template>
 <script>
-import { getAdminList,addAdmin,editAdmin,deleteAdmin } from '@/api/admin'
+import { getAdminList,addAdmin,editAdmin } from '@/api/admin'
 export default {
   data() {
     return {
@@ -108,7 +110,7 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getAdminList({'page':this.currentPage-1,'size':5},this.searchAccount).then(response => {
+      getAdminList({'page':this.currentPage-1,'size':10},this.searchAccount).then(response => {
         this.list = response.data.content;
         this.totalNum=response.data.totalElements
         this.listLoading = false
@@ -117,6 +119,44 @@ export default {
     handleCurrentChange(val) {
        this.currentPage=val
        this.fetchData();
+    },
+    handleStart(id,status){
+      editAdmin({
+        'id':id,
+        'status':status==0?1:0
+      }).then(response => {
+        if(response.status==200){
+          this.$message({
+            message: status==0?'已禁用':'已启用',
+            type: 'success'
+          })
+          this.fetchData()
+        }else{
+          this.$message({
+            message: '操作失败',
+            type: 'warning'
+          })
+        }
+      })
+    },
+    delAdmin(id){
+      editAdmin({
+        'id':id,
+        'status':2
+      }).then(response => {
+        if(response.status==200){
+          this.$message({
+            message: '删除成功',
+            type: 'success'
+          })
+          this.fetchData()
+        }else{
+          this.$message({
+            message: '删除失败',
+            type: 'warning'
+          })
+        }
+      })
     },
     handleAdd(flag,id){
       if(flag==1){
@@ -195,13 +235,13 @@ export default {
             if(response.status==200){
               this.dialogFormVisible=false
               this.$message({
-                message: '修改成功',
+                message: '添加成功',
                 type: 'success'
               })
               this.fetchData();
             }else{
               this.$message({
-                message: '修改失败',
+                message: '添加失败',
                 type: 'warning'
               })
             }
@@ -217,17 +257,15 @@ export default {
           }).then(response => {
             if(response.status==200){
               this.dialogFormVisible=false
-              Message({
-                message: "修改成功",
-                type: 'success',
-                duration: 5 * 1000
+              this.$message({
+                message: '修改成功',
+                type: 'success'
               })
               this.fetchData();
             }else{
-              Message({
-                message: "修改失败",
-                type: 'error',
-                duration: 5 * 1000
+              this.$message({
+                message: '修改失败',
+                type: 'error'
               })
             }
           })

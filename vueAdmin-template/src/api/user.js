@@ -1,34 +1,24 @@
 import request from '@/utils/request'
-export function getUserList(params) {
+export function getUserList(params,searchObj) {
+  let apiUrl='/api/user?userType=0';
+  switch (searchObj.type) {
+    //只搜索状态
+    case 0:
+      apiUrl=`/api/user?userType=0&id=${searchObj.id}`
+      break;
+    //只搜索编号
+    case 1:
+      apiUrl=`/api/user?userType=0&nickName=${searchObj.nickName}`
+      break;
+    //只搜索分区
+    case 2:
+      apiUrl=`/api/user?userType=0&id=${searchObj.id}&nickName=${searchObj.nickName}`
+      break;
+    default:
+  }
   return request({
-    url: '/api/user',
+    url: apiUrl,
     method: 'get',
     params
-  })
-}
-export function addNewBanner(params) {
-  return request({
-    url: '/api/banner',
-    method: 'post',
-    data:JSON.stringify(params),
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    }
-  })
-}
-export function editNewBanner(params) {
-  return request({
-    url: '/api/banner',
-    method: 'put',
-    data:JSON.stringify(params),
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    }
-  })
-}
-export function deleteBanner(id) {
-  return request({
-    url: `/api/banner/${id}`,
-    method: 'delete'
   })
 }

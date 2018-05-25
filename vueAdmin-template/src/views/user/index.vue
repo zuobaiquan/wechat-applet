@@ -2,12 +2,12 @@
   <div class="app-container">
     用户ID：<el-input @keyup.enter.native="handleFilter"
     style="width: 120px;" class="filter-item"
-    placeholder="请输入" v-model="listInput.title">
+    placeholder="请输入" v-model="searchObj.id">
     </el-input>
     &nbsp;&nbsp;&nbsp;
     昵称：<el-input @keyup.enter.native="handleFilter"
     style="width: 120px;" class="filter-item"
-    placeholder="请输入" v-model="listInput.title">
+    placeholder="请输入" v-model="searchObj.nickName">
       </el-input>
       &nbsp;&nbsp;&nbsp;
       分区&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="listInput.selectitem" placeholder="选择分区">
@@ -20,7 +20,7 @@
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label='id'>
         <template slot-scope="scope">
-          {{(currentPage-1)*5+scope.$index+1}}
+          {{scope.row.id}}
         </template>
       </el-table-column>
       <el-table-column label="昵称" align="center">
@@ -45,7 +45,7 @@
       </el-table-column>
       <el-table-column fixed="right" label="操作" align="center">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="primary" size="small">查看</el-button>
+          <el-button @click="handleClick(scope.$index)" type="primary" size="small">查看</el-button>
         </template>
     </el-table-column>
     </el-table>
@@ -53,22 +53,28 @@
       background
       @current-change="handleCurrentChange"
       :current-page="currentPage"
-      :page-sizes="[1, 5, 10, 15]"
-      :page-size="5"
+      :page-sizes="[1, 10, 20, 30]"
+      :page-size="10"
       layout="total, prev, pager, next, jumper"
       :total="totalNum">
     </el-pagination>
 
-    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+    <el-dialog title="用户信息" :visible.sync="dialogFormVisible">
       <el-form :model="form">
-        <el-form-item label="活动名称" :label-width="formLabelWidth">
-          <el-input v-model="form.name" auto-complete="off"></el-input>
+        <el-form-item label="头像：" :label-width="formLabelWidth">
+            <img style="width:100px;height:100px;border-radius:50%" :src="form.avatarUrl" alt="">
         </el-form-item>
-        <el-form-item label="活动区域" :label-width="formLabelWidth">
-          <el-select v-model="form.region" placeholder="请选择活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
+        <el-form-item label="昵称：" :label-width="formLabelWidth">
+            {{form.nickName}}
+        </el-form-item>
+        <el-form-item label="手机号：" :label-width="formLabelWidth">
+            {{form.phone}}
+        </el-form-item>
+        <el-form-item label="默认收货信息：" :label-width="formLabelWidth">
+
+        </el-form-item>
+        <el-form-item label="注册时间：" :label-width="formLabelWidth">
+            {{form.createTime | parseTime }}
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -87,27 +93,27 @@ export default {
     return {
       list: null,
       listLoading: true,
-      currentPage: 4,
       listInput:{
         title : '',
         selectitem : ''
       },
       importanceOptions:['全部','A','B','C'],
-
       dialogFormVisible: false,
       form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
+        account: '',
+        avatarUrl:'',
+        department:'',
+        nickName:'',
+        phone:''
       },
-      formLabelWidth: '120px',
+      formLabelWidth: '150px',
       currentPage: 1,
-      totalNum:1
+      totalNum:1,
+      searchObj:{
+        type:-1,
+        id:'',
+        nickName:''
+      },
     }
   },
   created() {
@@ -116,21 +122,31 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getUserList({"page":this.currentPage-1,"size":5}).then(response => {
+      getUserList({"page":this.currentPage-1,"size":10},this.searchObj).then(response => {
         this.list = response.data.content
         this.totalNum=response.data.totalElements
         this.listLoading = false
       })
     },
     handleFilter(){
-
+      if(this.searchObj.id!==''&&this.searchObj.nickName==''){
+        this.searchObj.type=0
+      }
+      if(this.searchObj.id==''&&this.searchObj.nickName!==''){
+        this.searchObj.type=1
+      }
+      if(this.searchObj.id!==''&&this.searchObj.nickName!==''){
+        this.searchObj.type=2
+      }
+      this.fetchData()
     },
     handleCurrentChange(val) {
        this.currentPage=val
        this.fetchData();
     },
-    handleClick(){
-      //this.dialogFormVisible = true
+    handleClick(index){
+      this.dialogFormVisible = true
+      this.form=this.list[index]
     }
   }
 }

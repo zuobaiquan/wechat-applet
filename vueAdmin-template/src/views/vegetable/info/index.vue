@@ -46,7 +46,7 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getInfo({'page':0,'size':5}).then(response => {
+      getInfo({'page':0,'size':1}).then(response => {
         this.form = response.data.content[0];
         this.listLoading = false
       })

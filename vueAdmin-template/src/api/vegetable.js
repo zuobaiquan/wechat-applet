@@ -230,7 +230,13 @@ export function getSaleList(params) {
     params
   })
 }
-
+export function getSalebyId(id) {
+  return request({
+    url: `/api/bill?id=${id}`,
+    method: 'get',
+    params:{'page':0,'size':5}
+  })
+}
 
 export function addReport(params) {
   return request({

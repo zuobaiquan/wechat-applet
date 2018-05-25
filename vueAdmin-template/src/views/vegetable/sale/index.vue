@@ -63,8 +63,8 @@
       background
       @current-change="handleCurrentChange"
       :current-page="currentPage"
-      :page-sizes="[1, 5, 10, 15]"
-      :page-size="5"
+      :page-sizes="[1, 10, 20, 30]"
+      :page-size="10"
       layout="total, prev, pager, next, jumper"
       :total="totalNum">
     </el-pagination>
@@ -105,14 +105,12 @@ export default {
     getAreaList({'page':0,'size':100}).then(response => {
       this.selectOptions = response.data.content;
     })
-
   },
   methods: {
     fetchData() {
       this.listLoading = true
-      getSaleList({'page':this.currentPage-1,'size':5}).then(response => {
+      getSaleList({'page':this.currentPage-1,'size':10}).then(response => {
         this.list = response.data.content
-        console.log(this.list);
         this.totalNum=response.data.totalElements
         this.listLoading = false
       })
@@ -148,7 +146,7 @@ export default {
       }
     },
     handleReport(data){
-      this.$router.push({ name: 'report',params: {'billid': 1}, query:  data })
+      this.$router.push({ name: 'report',params: {'billid': data.id}})
     }
   }
 }

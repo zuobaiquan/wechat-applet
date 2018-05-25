@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div class="app-container" v-if="hasData">
     <el-form :model="formData">
       <el-form-item label="菜地分区：" label-width="150px">
         {{formData.gardenItem.gardenArea.name}}
@@ -11,10 +11,10 @@
         {{formData.user.nickName }}
       </el-form-item>
       <el-form-item label="手机号：" label-width="150px">
-        {{formData.address.phone || formData.user.phone || '--' }}
+        {{formData.user? formData.user.phone :'' || formData.address? formData.address.phone:'--' }}
       </el-form-item>
       <el-form-item label="默认收货信息：" label-width="150px">
-        {{formData.address.address }}
+        {{formData.address ? formData.address.address :'--' }}
       </el-form-item>
       <el-form-item label="菜地主图：" label-width="150px">
         <img :src="formData.gardenItem.gardenArea.garden.coverUrl" alt="" style="max-width:200px;max-height:200px;" width="80%" height="80%">
@@ -23,7 +23,6 @@
         <el-button type="primary" @click="addNewReport()" size="small" icon="el-icon-edit">添加汇报</el-button>
       </el-form-item>
     </el-form>
-
     <el-dialog title="添加汇报" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="汇报内容：" label-width="120px">
@@ -49,11 +48,13 @@
   </div>
 </template>
 <script>
-import { addReport } from '@/api/vegetable'
+import { addReport,getSalebyId } from '@/api/vegetable'
 export default {
   data() {
     return {
-      formData:this.$route.query,
+      formData:{
+
+      },
       form: {
         content: '',
         coverUrl:'',
@@ -63,11 +64,15 @@ export default {
       uploadData:{
         key:''
       },
+      hasData:false,
       dialogFormVisible:false
     }
   },
   created() {
-    console.log(this.formData);
+    getSalebyId(this.$route.params.billid).then(response => {
+      this.formData=response.data.content[0]
+      this.hasData=true
+    })
   },
   methods: {
     addNewReport(){
