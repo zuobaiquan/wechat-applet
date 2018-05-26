@@ -13,11 +13,11 @@
           {{scope.row.title}}
         </template>
       </el-table-column>
-      <el-table-column label="内容详情" align="center">
+      <!-- <el-table-column label="内容详情" align="center">
         <template slot-scope="scope">
-          <span v-html="scope.row.summary"></span>
+          <span v-html="scope.row.text"></span>
         </template>
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column width="200" label="操作" align="center">
         <template slot-scope="scope">
           <el-button type="primary" @click="handleAdd(-1,scope.row.id)" size="small" icon="el-icon-edit">编辑</el-button>
@@ -25,22 +25,6 @@
         </template>
       </el-table-column>
     </el-table>
-    <!-- <el-dialog :title="dialogTitle" :visible.sync="dialogFormVisible">
-      <el-form :model="form">
-        <el-form-item label="标题" label-width="120px">
-          <el-input v-model="form.title" auto-complete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <el-form :model="form">
-        <el-form-item label="概要" label-width="120px">
-          <el-input v-model="form.summary" auto-complete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="submitRes()">确 定</el-button>
-      </div>
-    </el-dialog> -->
     <el-pagination
       background
       @current-change="handleCurrentChange"
@@ -53,19 +37,12 @@
   </div>
 </template>
 <script>
-import { getInfoArticle,editInfoArticle,addInfoArticle,deleteInfoArticle } from '@/api/index'
+import { getInfoArticle,deleteInfoArticle } from '@/api/index'
 export default {
   data() {
     return {
       list: null,
       listLoading: true,
-      dialogFormVisible: false,
-      dialogTitle:'添加文章',
-      form: {
-        title: '',
-        summary:'',
-        id:-1
-      },
       currentPage: 1,
       totalNum:1
     }
@@ -104,52 +81,6 @@ export default {
     },
     handleAdd(flag,id){
       this.$router.push({ path: `infoedit/${id}/${flag}`})
-    },
-    submitRes(){
-      if(this.handelErrorForm()){
-        if(this.form.id==-1){
-          addInfoArticle({
-            'title':this.form.title,
-            'summary':this.form.summary
-          }).then(response => {
-            if(response.status==200){
-              this.dialogFormVisible=false
-              this.$message({
-                message: '添加成功',
-                type: 'success'
-              })
-              this.fetchData();
-            }else{
-              this.$message({
-                message: '添加失败',
-                type: 'warning'
-              })
-            }
-          })
-        }else{
-          editInfoArticle({
-            'title':this.form.title,
-            'summary':this.form.summary,
-            'id':this.form.id
-          }).then(response => {
-            if(response.status==200){
-              this.dialogFormVisible=false
-              this.$message({
-                message: '修改成功',
-                type: 'success'
-              })
-              this.fetchData()
-            }else{
-              this.$message({
-                message: '修改失败',
-                type: 'warning'
-              })
-            }
-          })
-        }
-      }else{
-        console.log("表单提交失败");
-      }
     }
   }
 }

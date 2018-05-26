@@ -5,7 +5,7 @@
         <el-input v-model="form.title"></el-input>
       </el-form-item>
       <el-form-item label="内容详情">
-        <Tinymce :height='300' :width="800" id="tinymce" ref="editor" v-model="form.summary"></Tinymce>
+        <Tinymce :height='300' :width="800" id="tinymce" ref="editor" v-model="form.text"></Tinymce>
           <!-- <el-input type="textarea" :autosize="{ minRows:4, maxRows:6}" v-model="form.text" auto-complete="off"></el-input> -->
       </el-form-item>
       <el-form-item label="">
@@ -22,7 +22,7 @@ export default {
     return {
       form: {
         title:'',
-        summary:''
+        text:''
       },
       infoid:this.$route.params.infoid,
       flag:this.$route.params.flag
@@ -72,7 +72,7 @@ export default {
         if(this.flag==-1){
           editInfoArticle({
             'title':this.form.title,
-            'summary':this.form.summary,
+            'text':this.form.text,
             'id':this.infoid
           }).then(response => {
             if(response.status==200){
@@ -91,7 +91,7 @@ export default {
         }else{
           addInfoArticle({
             'title':this.form.title,
-            'summary':this.form.summary
+            'text':this.form.text
           }).then(response => {
             if(response.status==200){
               this.$message({

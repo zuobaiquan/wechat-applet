@@ -61,9 +61,6 @@ export default {
         billId:-1
       },
       baseURL:process.env.BASE_API+'/api/oss',
-      uploadData:{
-        key:''
-      },
       hasData:false,
       dialogFormVisible:false
     }

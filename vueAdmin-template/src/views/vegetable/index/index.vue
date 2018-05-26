@@ -2,14 +2,14 @@
   <div class="app-container">
     <el-button @click="handleAdd(1,-1)" class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit">添加</el-button>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      编号：<el-input style="width: 120px;" class="filter-item" placeholder="请输入" v-model="searchSn"></el-input>
+      编号：<el-input style="width: 120px;" class="filter-item" placeholder="请输入" v-model="searchObj.sn"></el-input>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      分区&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="searchSelect2" placeholder="选择分区">
+      分区&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="searchObj.gardenArea" placeholder="选择分区">
       <el-option v-for="item in selectOptions2" :key="item.id" :label="item.name" :value="item.id">
       </el-option>
       </el-select>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      状态&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="searchStatus" placeholder="选择分区">
+      状态&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="searchObj.status" placeholder="选择分区">
       <el-option v-for="item in selectOptionsStatus" :key="item.id" :label="item.name" :value="item.id">
       </el-option>
       </el-select>
@@ -24,7 +24,7 @@
       </el-table-column>
       <el-table-column label="分区" align="center">
         <template slot-scope="scope">
-          {{scope.row.name}}
+          {{scope.row.gardenArea.name}}
         </template>
       </el-table-column>
       <el-table-column label="编号" align="center">
@@ -108,10 +108,7 @@ export default {
       gardenId:-1,
       currentPage: 1,
       totalNum:1,
-      searchSn:'',
       searchSelect:null,
-      searchSelect2:-1,
-      searchStatus:-1,
       selectOptionsStatus:[
         {'id':-1,'name':'全部'},
         {'id':0,'name':'下架'},
@@ -121,7 +118,7 @@ export default {
       ],
       searchObj:{
         type:-1,
-        status:-1,
+        status:'',
         sn:'',
         gardenArea:''
       }
@@ -150,36 +147,24 @@ export default {
     handleFilter(){
       if(this.searchSn==''&&this.searchSelect2==-1&&this.searchStatus!==-1){
         this.searchObj.type=0
-        this.searchObj.status=this.searchStatus
       }
-      if(this.searchSn!=''&&this.searchSelect2==-1&&this.searchStatus==-1){
+      if(this.searchSn!==''&&this.searchSelect2==-1&&this.searchStatus==-1){
         this.searchObj.type=1
-        this.searchObj.sn=this.searchSn
       }
       if(this.searchSn==''&&this.searchSelect2!==-1&&this.searchStatus==-1){
         this.searchObj.type=2
-        this.searchObj.gardenArea=this.searchSelect2
       }
       if(this.searchSn!==''&&this.searchSelect2==-1&&this.searchStatus!==-1){
         this.searchObj.type=3
-        this.searchObj.status=this.searchStatus
-        this.searchObj.sn=this.searchSn
       }
       if(this.searchSn!==''&&this.searchSelect2!==-1&&this.searchStatus==-1){
         this.searchObj.type=4
-        this.searchObj.gardenArea=this.searchSelect2
-        this.searchObj.sn=this.searchSn
       }
       if(this.searchSn==''&&this.searchSelect2!==-1&&this.searchStatus!==-1){
         this.searchObj.type=5
-        this.searchObj.gardenArea=this.searchSelect2
-        this.searchObj.status=this.searchStatus
       }
       if(this.searchSn!==''&&this.searchSelect2!==-1&&this.searchStatus!==-1){
         this.searchObj.type=6
-        this.searchObj.gardenArea=this.searchSelect2
-        this.searchObj.status=this.searchStatus
-        this.searchObj.sn=this.searchSn
       }
       this.fetchData()
     },
