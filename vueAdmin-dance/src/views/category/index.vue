@@ -15,6 +15,11 @@
       </el-table-column>
       <el-table-column label="排序" align="center">
         <template slot-scope="scope">
+          {{scope.row.toIndex || '0'}}
+        </template>
+      </el-table-column>
+      <el-table-column label="是否在首页" align="center">
+        <template slot-scope="scope">
           {{scope.row.toHome || '0'}}
         </template>
       </el-table-column>
@@ -28,10 +33,13 @@
     <el-dialog title="添加分类" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="分类名称" label-width="120px">
-          <el-input v-model="form.name" auto-complete="off"></el-input>
+          <el-input v-model="form.name" auto-complete="off" placeholder="请输入分类名称"></el-input>
         </el-form-item>
         <el-form-item label="排序" label-width="120px">
-          <el-input v-model="form.toHome" auto-complete="off"></el-input>
+          <el-input v-model="form.toIndex" auto-complete="off" placeholder="请输入大于等于0的整数，并且数字大的在前面"></el-input>
+        </el-form-item>
+        <el-form-item label="是否在首页" label-width="120px">
+          <el-input v-model="form.toHome" auto-complete="off" placeholder="0表示不在首页显示，大于0表示在首页显示，并且数字大的在前面"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -62,7 +70,8 @@ export default {
       form: {
         id:-1,
         name: '',
-        toHome:''
+        toHome:'',
+        toIndex:''
       },
       currentPage: 1,
       totalNum:1
@@ -112,14 +121,13 @@ export default {
         this.list.forEach((item,index)=>{
           if(item.id==id){
             this.form.name=item.name
-            this.form.toHome=item.toHome
+            this.form.toHome=item.toHome,
+            this.form.toIndex=item.toIndex
             this.dialogFormVisible = true
             return ;
           }
         })
       }
-
-
     },
     handelErrorForm(){
       if(this.form.name==""){
@@ -129,20 +137,35 @@ export default {
         })
         return false
       }
-      if(this.form.toHome==""){
+      if(this.form.toIndex==""){
         this.$message({
           message: '排序不能为空',
           type: 'warning'
         })
         return false
       }
-      if(!(/^(0|([1-9]\d*))$/).test(this.form.toHome)){
+      if(!(/^(0|([1-9]\d*))$/).test(this.form.toIndex)){
         this.$message({
           message: '排序格式不正确',
           type: 'warning'
         })
         return false
-      }else{
+      }
+      if(this.form.toHome==""){
+        this.$message({
+          message: '首页显示不能为空',
+          type: 'warning'
+        })
+        return false
+      }
+      if(!(/^(0|([1-9]\d*))$/).test(this.form.toHome)){
+        this.$message({
+          message: '首页显示格式不正确',
+          type: 'warning'
+        })
+        return false
+      }
+      else{
         return true
       }
     },
@@ -151,7 +174,8 @@ export default {
         if(this.form.id==-1){
           addCategory({
             'name':this.form.name,
-            'toHome':this.form.toHome
+            'toHome':this.form.toHome,
+            'toIndex':this.form.toIndex
           }).then(response => {
             if(response.status==200){
               this.dialogFormVisible=false
@@ -171,6 +195,7 @@ export default {
           editCategory({
             'name':this.form.name,
             'toHome':this.form.toHome,
+            'toIndex':this.form.toIndex,
             'id':this.form.id
           }).then(response => {
             if(response.status==200){

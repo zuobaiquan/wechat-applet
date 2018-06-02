@@ -39,7 +39,7 @@
         </el-upload>
       </div>
       <div v-if="form.coverUrl" style="margin-left:120px;">
-        <img @click="handlePictureCardPreview(form)" :src="form.coverUrl" alt="" style="max-height:200px;max-height:200px;cursor:pointer" width="80%" height="80%">
+        <img @click="handlePictureCardPreview(form)" :src="form.coverUrl" alt="" style="max-width:200px;max-height:200px;cursor:pointer" width="80%" height="80%">
       </div>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>

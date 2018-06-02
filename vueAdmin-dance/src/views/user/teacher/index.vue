@@ -23,7 +23,7 @@
       </el-table-column>
       <el-table-column fixed="right" label="操作" align="center">
         <template slot-scope="scope">
-          <el-button type="primary" size="small">查看</el-button>
+          <el-button type="primary" @click="userDetail(scope.row.id)" size="small">查看</el-button>
         </template>
     </el-table-column>
     </el-table>
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { getUserList } from '@/api/user'
+import { getUserList} from '@/api/user'
 
 export default {
   data() {
@@ -49,7 +49,10 @@ export default {
       list: null,
       listLoading: true,
       currentPage: 1,
-      totalNum:1
+      totalNum:1,
+      posterList:[],
+      workList:[],
+      userInfo:[]
     }
   },
   created() {
@@ -67,6 +70,9 @@ export default {
     handleCurrentChange(val) {
        this.currentPage=val
        this.fetchData();
+    },
+    userDetail(id){
+      this.$router.push({ name: 'userInfo',params: {'uid': id,'type':'teacher'}})
     }
   }
 }

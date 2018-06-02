@@ -18,7 +18,7 @@
       </el-table-column>
       <el-table-column fixed="right" label="操作" align="center">
         <template slot-scope="scope">
-          <el-button type="primary" size="small">查看</el-button>
+          <el-button type="primary" @click="userDetail(scope.row.id)" size="small">查看</el-button>
         </template>
     </el-table-column>
     </el-table>
@@ -62,6 +62,9 @@ export default {
     handleCurrentChange(val) {
        this.currentPage=val
        this.fetchData();
+    },
+    userDetail(id){
+      this.$router.push({ name: 'userInfo',params: {'uid': id,'type':'student'}})
     }
   }
 }

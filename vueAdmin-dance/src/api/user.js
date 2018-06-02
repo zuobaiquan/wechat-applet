@@ -7,3 +7,17 @@ export function getUserList(params,type) {
     params
   })
 }
+export function getUserWorks(params) {
+  return request({
+    url: `/api/user/getUserWorks`,
+    method: 'get',
+    params
+  })
+}
+export function getUserInfo(params) {
+  return request({
+    url: `/api/user/find`,
+    method: 'get',
+    params
+  })
+}

@@ -36,6 +36,13 @@ export const constantRouterMap = [
         name: 'Teacher',
         component: () => import('@/views/user/teacher/index'),
         meta: { title: '老师列表', icon: 'table2' }
+      },
+      {
+        path: 'userinfo/:uid/:type',
+        name: 'userInfo',
+        component: () => import('@/views/user/userinfo/index'),
+        meta: { title: '信息详情', icon: 'table2' },
+        hidden:true
       }
     ]
   },
@@ -89,6 +96,18 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/ads',
+    component: Layout,
+    children: [
+      {
+        path: 'ads',
+        name: 'Ads',
+        component: () => import('@/views/ads/edit'),
+        meta: { title: '广告编辑', icon: 'table' }
+      }
+    ]
+  },
+  {
     path: '/category',
     component: Layout,
     children: [
@@ -96,7 +115,7 @@ export const constantRouterMap = [
         path: 'category',
         name: 'Category',
         component: () => import('@/views/category/index'),
-        meta: { title: '舞蹈分类', icon: 'table' }
+        meta: { title: '舞蹈分类', icon: 'tree' }
       }
     ]
   },
@@ -108,8 +127,15 @@ export const constantRouterMap = [
         path: 'room',
         name: 'Room',
         component: () => import('@/views/room/index'),
-        meta: { title: '舞蹈室', icon: 'table' }
-      }
+        meta: { title: '舞蹈室', icon: 'example' }
+      },
+      {
+        path: 'roomedit/:editid',
+        name: 'roomedit',
+        component: () => import('@/views/room/edit'),
+        meta: { title: '添加舞蹈室', icon: 'table' },
+        hidden:true
+      },
     ]
   },
   {
