@@ -55,6 +55,7 @@
       </el-table-column>
     </el-table>
     <el-pagination
+      v-if="totalNum/10>1"
       background
       @current-change="handleCurrentChange"
       :current-page="currentPage"
@@ -75,16 +76,14 @@ export default {
       selectitem:'',
       sn:'',
       selectOptions:[
-        {'id':-1,'name':'全部'},
         {'id':0,'name':'买菜地'},
         // {'id':1,'name':'买卡'}
       ],
       currentPage: 1,
       totalNum:1,
-      searchSelect:-1,
-      searchStatus:-1,
+      searchSelect:'',
+      searchStatus:'',
       selectOptionsStatus:[
-        {'id':-1,'name':'全部'},
         {'id':0,'name':'未付款'},
         {'id':1,'name':'付款中'},
         {'id':2,'name':'已付款'},
@@ -140,6 +139,3 @@ export default {
   }
 }
 </script>
-<style rel="stylesheet/scss" lang="scss" scoped>
-
-</style>

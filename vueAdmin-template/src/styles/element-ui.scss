@@ -92,4 +92,8 @@
 }
 .upload-demo{
   display: inline-block;
+  vertical-align: middle;
+  .el-upload{
+    vertical-align: middle;
+  }
 }

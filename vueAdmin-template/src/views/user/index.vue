@@ -10,11 +10,6 @@
     placeholder="请输入" v-model="searchObj.nickName">
       </el-input>
       &nbsp;&nbsp;&nbsp;
-      分区&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="listInput.selectitem" placeholder="选择分区">
-        <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item">
-        </el-option>
-      </el-select>
-      &nbsp;&nbsp;&nbsp;
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
       <br /><br />
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
@@ -35,7 +30,7 @@
       </el-table-column>
       <el-table-column label="菜地" align="center">
         <template slot-scope="scope">
-          {{scope.row.pageviews || '--'}}
+          {{scope.row.availableBill? scope.row.availableBill.join("、"):'--'}}
         </template>
       </el-table-column>
       <el-table-column label="注册时间" align="center">
@@ -50,6 +45,7 @@
     </el-table-column>
     </el-table>
     <el-pagination
+      v-if="totalNum/10>1"
       background
       @current-change="handleCurrentChange"
       :current-page="currentPage"
@@ -71,10 +67,50 @@
             {{form.phone}}
         </el-form-item>
         <el-form-item label="默认收货信息：" :label-width="formLabelWidth">
-
+          {{userAddress}}
+          <p style="line-height:22px;">{{userInfo}}</p>
         </el-form-item>
         <el-form-item label="注册时间：" :label-width="formLabelWidth">
             {{form.createTime | parseTime }}
+        </el-form-item>
+        <el-table v-if="userBill.length"
+          :data="userBill"
+          :height="userBill.length>2?250:'auto'"
+          border
+          style="width: 100%">
+          <el-table-column
+            prop="id" width="50"
+            label="id">
+          </el-table-column>
+          <el-table-column
+            prop="fenqu"
+            label="分区">
+          </el-table-column>
+          <el-table-column
+            prop="sn"
+            label="菜地编号">
+          </el-table-column>
+          <el-table-column
+            prop="yxq"
+            label="有效期">
+          </el-table-column>
+          <el-table-column
+            prop="time"
+            label="下单时间">
+          </el-table-column>
+          <el-table-column
+            prop="feiyong"
+            label="费用">
+          </el-table-column>
+          <el-table-column
+            label="操作" width="50">
+            <template slot-scope="scope">
+              <el-button @click="caidiDetail(scope.$index)" type="text" size="small">查看</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+        <el-form-item v-if="!userBill.length" label="" :label-width="formLabelWidth">
+            暂无菜地购买信息
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -86,7 +122,7 @@
 </template>
 
 <script>
-import { getUserList } from '@/api/user'
+import { getUserList,getAddress,getUserBill } from '@/api/user'
 
 export default {
   data() {
@@ -97,7 +133,7 @@ export default {
         title : '',
         selectitem : ''
       },
-      importanceOptions:['全部','A','B','C'],
+      importanceOptions:['A','B','C'],
       dialogFormVisible: false,
       form: {
         account: '',
@@ -112,8 +148,12 @@ export default {
       searchObj:{
         type:-1,
         id:'',
-        nickName:''
+        nickName:'',
+        withBill:1
       },
+      userBill:[],
+      userAddress:"--",
+      userInfo:"--"
     }
   },
   created() {
@@ -144,9 +184,64 @@ export default {
        this.currentPage=val
        this.fetchData();
     },
+    getYear(date){
+      return new Date(date).getFullYear()
+    },
+    parseTime(time, cFormat) {
+      if (arguments.length === 0) {
+        return null
+      }
+      if ((time + '').length === 10) {
+        time = +time * 1000
+      }
+      const format = '{y}-{m}-{d}'
+      let date = new Date(time)
+      const formatObj = {
+        y: date.getFullYear(),
+        m: date.getMonth() + 1,
+        d: date.getDate()
+      }
+      const time_str = format.replace(/{(y|m|d)+}/g, (result, key) => {
+        let value = formatObj[key]
+        if (result.length > 0 && value < 10) {
+          value = '0' + value
+        }
+        return value || 0
+      })
+      return time_str
+    },
+    caidiDetail(index){
+      this.$router.push({ name: 'report',params: {'billid': this.userBill[index].id}})
+    },
     handleClick(index){
       this.dialogFormVisible = true
       this.form=this.list[index]
+      getAddress(this.form.id).then(response => {
+        let tempData=response.data.content[0]
+        if(tempData){
+          this.userAddress=tempData.province+tempData.city+tempData.area+tempData.address
+          this.userInfo=tempData.name+" "+tempData.phone
+        }else{
+          this.userAddress="--"
+          this.userInfo="--"
+        }
+
+      })
+      getUserBill(this.form.id).then(response => {
+        this.userBill=[]
+        response.data.content.map((item,index)=>{
+          this.userBill.push(
+            {
+              'id':item.id,
+              'fenqu':item.gardenItem.gardenArea.name,
+              'sn':item.gardenItem.sn,
+              'time':this.parseTime(item.startTime),
+              'yxq':this.parseTime(item.startTime)+ '~'+ this.parseTime(item.endTime),
+              'feiyong':item.gardenItem.gardenArea.garden.price*(this.getYear(item.endTime)-this.getYear(item.startTime))
+            }
+          )
+        })
+      })
     }
   }
 }

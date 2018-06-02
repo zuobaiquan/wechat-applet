@@ -5,7 +5,7 @@
         <el-input v-model="form.title"></el-input>
       </el-form-item>
       <el-form-item label="内容详情">
-        <Tinymce :height='300' :width="800" id="tinymce" ref="editor" v-model="form.text"></Tinymce>
+        <Tinymce :height='550' :width="800" id="tinymce" ref="editor" v-model="form.text"></Tinymce>
           <!-- <el-input type="textarea" :autosize="{ minRows:4, maxRows:6}" v-model="form.text" auto-complete="off"></el-input> -->
       </el-form-item>
       <el-form-item label="">

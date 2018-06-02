@@ -21,11 +21,12 @@
       <el-table-column width="200" label="操作" align="center">
         <template slot-scope="scope">
           <el-button type="primary" @click="handleAdd(-1,scope.row.id)" size="small" icon="el-icon-edit">编辑</el-button>
-          <el-button type="danger" icon="el-icon-delete" size="small" @click="delArticle(scope.row.id)">删除</el-button>
+          <el-button v-if="scope.row.id!==1&&scope.row.id!==2" type="danger" icon="el-icon-delete" size="small" @click="delArticle(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
     <el-pagination
+      v-if="totalNum/10>1"
       background
       @current-change="handleCurrentChange"
       :current-page="currentPage"

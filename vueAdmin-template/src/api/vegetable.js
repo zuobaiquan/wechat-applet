@@ -140,7 +140,6 @@ export function deleteGardenItem(id) {
 
 export function getOrderList(params,searchObj) {
   let apiUrl='/api/order';
-  console.log(searchObj);
   switch (searchObj.type) {
     //只搜索状态
     case 0:
@@ -209,6 +208,16 @@ export function editInfo(params) {
     }
   })
 }
+export function editInfoBill(params) {
+  return request({
+    url: `/api/bill`,
+    method: 'put',
+    data:JSON.stringify(params),
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    }
+  })
+}
 export function deleteInfo(id) {
   return request({
     url: `/api/garden/${id}`,
@@ -223,9 +232,22 @@ export function getReportList(params) {
     params
   })
 }
-export function getSaleList(params) {
+export function getSaleList(params,searchObj) {
+  let apiUrl='/api/bill?sort=createTime,desc';
+  switch (searchObj.type) {
+    //只搜索状态
+    case 0:
+      apiUrl=`/api/bill?sort=createTime,desc&status=${searchObj.status}`
+      break;
+    //只搜索分区
+    case 1:
+      apiUrl=`/api/bill?sort=createTime,desc&gardenItem.gardenArea.name=${searchObj.searchSelect}`
+      break;
+    default:
+  }
   return request({
-    url: `/api/bill`,
+    url: apiUrl,
+    // url: `/api/garden/item?gardenArea.garden.id=${id}`,
     method: 'get',
     params
   })
@@ -238,6 +260,13 @@ export function getSalebyId(id) {
   })
 }
 
+export function getReportbyId(params,id) {
+  return request({
+    url: `/api/report?billId=${id}&sort=createTime,desc`,
+    method: 'get',
+    params
+  })
+}
 export function addReport(params) {
   return request({
     url: `/api/report`,
@@ -246,5 +275,21 @@ export function addReport(params) {
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
     }
+  })
+}
+export function editReport(params) {
+  return request({
+    url: `/api/report`,
+    method: 'put',
+    data:JSON.stringify(params),
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    }
+  })
+}
+export function deleteReport(id) {
+  return request({
+    url: `/api/report/${id}`,
+    method: 'delete'
   })
 }

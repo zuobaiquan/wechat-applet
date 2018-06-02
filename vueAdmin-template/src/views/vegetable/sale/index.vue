@@ -6,16 +6,16 @@
     </el-select>
     &nbsp;&nbsp;&nbsp;&nbsp;
     分区&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="searchSelect" placeholder="请选择">
-    <el-option v-for="item in selectOptions" :key="item.id" :label="item.name" :value="item.id">
+    <el-option v-for="item in selectOptions" :key="item.id" :label="item.name" :value="item.name">
     </el-option>
     </el-select>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
     <br /><br />
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
-      <el-table-column align="center" label='菜地id' width="100">
+      <el-table-column align="center" label='billId' width="100">
         <template slot-scope="scope">
-          {{scope.row.gardenItem.gardenArea.garden.id}}
+          {{scope.row.id}}
         </template>
       </el-table-column>
       <el-table-column label="分区" align="center">
@@ -30,7 +30,7 @@
       </el-table-column>
       <el-table-column label="有效期" align="center">
         <template slot-scope="scope">
-          <span>{{scope.row.startTime |  parseTime('{y}-{m}-{d}')}}</span>-<span>{{scope.row.endTime |  parseTime('{y}-{m}-{d}')}} </span>
+          <span>{{scope.row.startTime |  parseTime('{y}-{m}-{d}')}}</span>&nbsp;~&nbsp;<span>{{scope.row.endTime |  parseTime('{y}-{m}-{d}')}} </span>
         </template>
       </el-table-column>
       <el-table-column label="状态" align="center">
@@ -50,7 +50,7 @@
       </el-table-column>
       <el-table-column label="默认收货地址" align="center">
         <template slot-scope="scope">
-          {{scope.row.address ? scope.row.address.address :'--'}}
+          {{scope.row.address ? scope.row.address.province+scope.row.address.city+scope.row.address.area+scope.row.address.address :'--'}}
         </template>
       </el-table-column>
       <el-table-column align="center" label="操作">
@@ -60,6 +60,7 @@
       </el-table-column>
     </el-table>
     <el-pagination
+      v-if="totalNum/10>1"
       background
       @current-change="handleCurrentChange"
       :current-page="currentPage"
@@ -80,23 +81,21 @@ export default {
       selectitem:'',
       sn:'',
       selectOptions:[
-        {'id':-1,'name':'全部'},
         {'id':0,'name':'买菜地'},
         {'id':1,'name':'买卡'}
       ],
       currentPage: 1,
       totalNum:1,
-      searchSelect:-1,
-      searchStatus:-1,
+      searchSelect:'',
+      searchStatus:'',
       selectOptionsStatus:[
-        {'id':-1,'name':'全部'},
         {'id':0,'name':'过期'},
         {'id':1,'name':'未过期'}
       ],
       searchObj:{
         type:-1,
-        searchStatus:-1,
-        searchSelect:-1,
+        searchStatus:'',
+        searchSelect:'',
       }
     }
   },
@@ -109,7 +108,7 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getSaleList({'page':this.currentPage-1,'size':10}).then(response => {
+      getSaleList({'page':this.currentPage-1,'size':10},this.searchObj).then(response => {
         this.list = response.data.content
         this.totalNum=response.data.totalElements
         this.listLoading = false
@@ -120,17 +119,9 @@ export default {
        this.fetchData();
     },
     handleFilter(){
-      if(this.searchSelect==-1&&this.searchStatus!==-1){
-        this.searchObj.type=0
-        this.searchObj.searchStatus=this.searchStatus
-      }
-      if(this.searchSelect!=-1&&this.searchStatus==-1){
+      console.log(111,this.searchSelect);
+      if(this.searchSelect!=''&&this.searchStatus==''){
         this.searchObj.type=1
-        this.searchObj.searchSelect=this.searchSelect
-      }
-      if(this.searchSelect!=-1&&this.searchStatus!=-1){
-        this.searchObj.type=2
-        this.searchObj.searchStatus=this.searchStatus
         this.searchObj.searchSelect=this.searchSelect
       }
       this.fetchData()

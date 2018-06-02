@@ -73,6 +73,7 @@
       </div>
     </el-dialog>
     <el-pagination
+      v-if="totalNum/10>1"
       background
       @current-change="handleCurrentChange"
       :current-page="currentPage"

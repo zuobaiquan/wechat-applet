@@ -9,18 +9,30 @@
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
           </el-upload>
-          <div v-if="form.coverUrl" style="display:inline-block">
-            <img :src="form.coverUrl" alt="" style="max-width:300px;max-height:250px;" width="80%" height="80%">
+          <div v-if="form.coverUrl" style="display:inline-block;vertical-align: middle;">
+            <img  @click="handlePictureCardPreview(form.coverUrl)" :src="form.coverUrl" alt="" title="点击查看大图" style="max-width:250px;max-height:200px;cursor:pointer" width="80%" height="80%">
           </div>
       </el-form-item>
-      <el-form-item label="产品介绍">
-        <Tinymce :height='300' :width="800" id="tinymce" ref="editor" v-model="form.text"></Tinymce>
-          <!-- <el-input type="textarea" :autosize="{ minRows:4, maxRows:6}" v-model="form.text" auto-complete="off"></el-input> -->
+      <el-form-item label="详情图片">
+          <el-upload class="upload-demo" drag :on-success="handleImageScucess2" :action="baseURL">
+            <i class="el-icon-upload"></i>
+            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+          </el-upload>
+          <div v-if="form.detailUrl" style="display:inline-block;vertical-align: middle;">
+            <img @click="handlePictureCardPreview(form.detailUrl)" :src="form.detailUrl" alt="" title="点击查看大图" style="max-width:250px;max-height:200px;cursor:pointer" width="80%" height="80%">
+          </div>
       </el-form-item>
+      <!-- <el-form-item label="产品介绍">
+        <Tinymce :height='550' :width="800" id="tinymce" ref="editor" v-model="form.text"></Tinymce>
+          <el-input type="textarea" :autosize="{ minRows:4, maxRows:6}" v-model="form.text" auto-complete="off"></el-input>
+      </el-form-item> -->
       <el-form-item label="">
           <el-button type="primary" @click="submitRes()">确 定</el-button>
       </el-form-item>
     </el-form>
+    <el-dialog :visible.sync="dialogVisible2">
+      <img width="100%" :src="dialogImageUrl" alt="">
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -33,9 +45,12 @@ export default {
         price: '',
         text:'',
         coverUrl:'',
+        detailUrl:'',
         title:''
       },
       baseURL:process.env.BASE_API+'/api/oss',
+      dialogVisible2:false,
+      dialogImageUrl:''
     }
   },
   components:{
@@ -52,6 +67,10 @@ export default {
         this.listLoading = false
       })
     },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file;
+      this.dialogVisible2 = true;
+    },
     // handleImagebeforeUpload(file){
     //   let name=file.name;
     //   let houzhui = name.substring(name.lastIndexOf('.') + 1);
@@ -59,6 +78,9 @@ export default {
     // },
     handleImageScucess(response, file, fileList){
       this.form.coverUrl=response.data
+    },
+    handleImageScucess2(response, file, fileList){
+      this.form.detailUrl=response.data
     },
     submitRes(){
       if(this.form.price==""){
@@ -75,13 +97,13 @@ export default {
         })
         return false
       }
-      if(this.form.text==""){
-        this.$message({
-          message: '产品介绍不能为空',
-          type: 'warning'
-        })
-        return false
-      }
+      // if(this.form.text==""){
+      //   this.$message({
+      //     message: '产品介绍不能为空',
+      //     type: 'warning'
+      //   })
+      //   return false
+      // }
       if(this.form.coverUrl==""){
         this.$message({
           message: '航拍图不能为空',
@@ -89,12 +111,19 @@ export default {
         })
         return false
       }
+      if(this.form.detailUrl==""){
+        this.$message({
+          message: '详情图片不能为空',
+          type: 'warning'
+        })
+        return false
+      }
       editInfo({
         'id':this.form.id,
         'coverUrl':this.form.coverUrl,
-        'text':this.form.text,
-        'price':this.form.price,
-        'title':this.form.title
+        'detailUrl':this.form.detailUrl,
+        // 'text':this.form.text,
+        'price':this.form.price
         }).then(response => {
         if(response.status==200){
           this.$message({

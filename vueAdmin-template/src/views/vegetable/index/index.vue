@@ -44,7 +44,7 @@
       </el-table-column>
       <el-table-column align="center" label="操作" width="200">
         <template slot-scope="scope">
-          <el-button @click="handleAdd(-1,scope.row.gardenArea.id)" type="primary" size="small" icon="el-icon-edit">编辑</el-button>
+          <el-button @click="handleAdd(-1,scope.row.id)" type="primary" size="small" icon="el-icon-edit">编辑</el-button>
           <el-button type="danger" icon="el-icon-delete" size="small" @click="delIndex(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
@@ -63,14 +63,14 @@
         <el-form-item label="状态" label-width="120px">
           <el-radio-group v-model="status">
             <el-radio :label="0">下架</el-radio>
-            <el-radio :label="1">未售</el-radio>
+            <el-radio :label="1">待售</el-radio>
             <el-radio :label="2">已售</el-radio>
             <el-radio :label="3">预售</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label-width="50px">
           <div style="line-height:30px;margin-right:30px;">
-            （下架：小程序无法查看到该菜地；未售：已上架，但还未被购买；已售：已被购买；预售：已被锁定，3分钟后变为未售状态）
+            （下架：小程序无法查看到该菜地；待售：已上架，但还未被购买；已售：已被购买；预售：已被锁定，3分钟后变为待售状态）
           </div>
         </el-form-item>
       </el-form>
@@ -80,6 +80,7 @@
       </div>
     </el-dialog>
     <el-pagination
+      v-if="totalNum/10>1"
       background
       @current-change="handleCurrentChange"
       :current-page="currentPage"
@@ -110,7 +111,6 @@ export default {
       totalNum:1,
       searchSelect:null,
       selectOptionsStatus:[
-        {'id':-1,'name':'全部'},
         {'id':0,'name':'下架'},
         {'id':1,'name':'待售'},
         {'id':2,'name':'已售'},
@@ -126,12 +126,8 @@ export default {
   },
   created() {
     getAreaList({'page':0,'size':100}).then(response => {
-      this.selectOptions = response.data.content;
-      this.selectOptions2 = response.data.content;
-      this.selectOptions2.unshift({
-        'id':-1,
-        'name':'全部'
-      })
+      this.selectOptions = response.data.content
+      this.selectOptions2 = response.data.content
     })
     this.fetchData()
   },
@@ -184,9 +180,9 @@ export default {
       if(flag==-1){
         this.dialogTitle='修改菜地'
         this.list.forEach((item,index)=>{
-          if(item.gardenArea.id==id){
-            this.gardenId=item.id
-            this.selectitem=id
+          if(item.id==id){
+            this.gardenId=id
+            this.selectitem=item.gardenArea.id
             this.status=item.status
             this.sn=item.sn
             this.dialogFormVisible = true

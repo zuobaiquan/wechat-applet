@@ -15,7 +15,7 @@
       </el-table-column>
       <el-table-column label="banner图片" align="center">
         <template slot-scope="scope">
-          <img :src="scope.row.coverUrl" alt="" style="max-height:150px;max-width:150px;">
+          <img @click="handlePictureCardPreview(scope.row)" :src="scope.row.coverUrl" alt="" style="max-height:150px;max-width:150px;cursor:pointer">
         </template>
       </el-table-column>
       <el-table-column align="center" label="操作" width="200">
@@ -37,10 +37,9 @@
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
         </el-upload>
-      </el-upload>
       </div>
       <div v-if="form.coverUrl" style="margin-left:120px;">
-        <img :src="form.coverUrl" alt="" style="max-height:200px;max-height:200px;" width="80%" height="80%">
+        <img @click="handlePictureCardPreview(form)" :src="form.coverUrl" alt="" style="max-height:200px;max-height:200px;cursor:pointer" width="80%" height="80%">
       </div>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -48,6 +47,7 @@
       </div>
     </el-dialog>
     <el-pagination
+      v-if="totalNum/10>1"
       background
       @current-change="handleCurrentChange"
       :current-page="currentPage"
@@ -56,6 +56,9 @@
       layout="total, prev, pager, next, jumper"
       :total="totalNum">
     </el-pagination>
+    <el-dialog :visible.sync="dialogVisible2">
+      <img width="100%" :src="dialogImageUrl" alt="">
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -76,6 +79,8 @@ export default {
       uploadData:{
         key:''
       },
+      dialogVisible2:false,
+      dialogImageUrl:'',
       currentPage: 1,
       totalNum:1
     }
@@ -111,6 +116,10 @@ export default {
     handleCurrentChange(val) {
        this.currentPage=val
        this.fetchData();
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.coverUrl;
+      this.dialogVisible2 = true;
     },
     handleAdd(flag,id){
       if(flag==1){
