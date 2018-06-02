@@ -161,14 +161,7 @@ export default {
         })
         return false
       }
-      if(this.form.sortIndex==""){
-        this.$message({
-          message: '排序不能为空',
-          type: 'warning'
-        })
-        return false
-      }
-      if(!(/^(0|([1-9]\d*))$/).test(this.form.sortIndex)){
+      if((this.form.sortIndex)&&(!(/^(0|([1-9]\d*))$/).test(this.form.sortIndex))){
         this.$message({
           message: '排序格式不正确',
           type: 'warning'

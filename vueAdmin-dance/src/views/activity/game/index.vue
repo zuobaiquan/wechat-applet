@@ -1,5 +1,7 @@
 <template>
   <div class="app-container">
+    <el-button @click="handleAdd(1,-1,'game')" class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit">添加</el-button>
+    <br /><br />
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label='id'>
         <template slot-scope="scope">
@@ -31,7 +33,7 @@
           {{scope.row.contact|| '--'}}
         </template>
       </el-table-column>
-      <el-table-column label="项目" align="center">
+      <el-table-column label="项目内容" align="center">
         <template slot-scope="scope">
           <span>{{scope.row.content || '--'}}</span>
         </template>
@@ -41,9 +43,10 @@
           <span>{{scope.row.danceStyle?scope.row.danceStyle.name:'--' || '--'}}</span>
         </template>
       </el-table-column>
-      <el-table-column fixed="right" label="操作" align="center">
+      <el-table-column label="操作" align="center" width="200">
         <template slot-scope="scope">
-          <el-button type="primary" size="small">查看</el-button>
+          <el-button @click="handleAdd(-1,scope.row.id,'game')" type="primary" size="small" icon="el-icon-edit">编辑</el-button>
+          <el-button type="danger" icon="el-icon-delete" size="small" @click="delActivity(scope.row.id)">删除</el-button>
         </template>
     </el-table-column>
     </el-table>
@@ -61,13 +64,14 @@
 </template>
 
 <script>
-import { getActivityList } from '@/api/activity'
+import { getActivityList,deleteActivity } from '@/api/activity'
 
 export default {
   data() {
     return {
       list: null,
       listLoading: true,
+      baseURL:process.env.BASE_API+'/api/oss',
       currentPage: 1,
       totalNum:1
     }
@@ -87,6 +91,25 @@ export default {
     handleCurrentChange(val) {
        this.currentPage=val
        this.fetchData();
+    },
+    handleAdd(flag,id,type){
+      this.$router.push({ path: `activityedit/${id}/${flag}/${type}`})
+    },
+    delActivity(id){
+      deleteActivity({'id':id}).then(response => {
+        if(response.status==200){
+          this.$message({
+            message: '删除成功',
+            type: 'success'
+          })
+          this.fetchData()
+        }else{
+          this.$message({
+            message: '删除失败',
+            type: 'warning'
+          })
+        }
+      })
     }
   }
 }

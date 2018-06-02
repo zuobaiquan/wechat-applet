@@ -12,7 +12,6 @@
       </el-form-item>
       <el-form-item label="活动日期" label-width="120px" prop="time">
         <div class="block" style="display:inline-block;">
-           {{form.time}}
            <el-date-picker
              v-model="form.time"
              type="daterange"
@@ -43,7 +42,7 @@
         </el-upload>
       </div>
       <div v-if="form.coverUrl" style="margin-left:20px;display:inline-block">
-        <img @click="handlePictureCardPreview(form)" :src="form.coverUrl" alt="" style="max-width:400px;max-height:400px;cursor:pointer;vertical-align: middle;" width="80%" height="80%">
+        <img @click="handlePictureCardPreview(form)" :src="form.coverUrl" alt="" style="max-width:400px;max-height:320px;cursor:pointer;vertical-align: middle;">
       </div>
       <br /><br />
       <div style="display:inline-block;">
@@ -54,7 +53,7 @@
         </el-upload>
       </div>
       <div v-if="form.coverUrl" style="margin-left:20px;display:inline-block">
-        <img @click="handlePictureCardPreview(form)" :src="form.contentImageUrl" alt="" style="max-width:400px;max-height:400px;cursor:pointer;vertical-align: middle;" width="80%" height="80%">
+        <img @click="handlePictureCardPreview(form)" :src="form.contentImageUrl" alt="" style="max-width:400px;max-height:320px;cursor:pointer;vertical-align: middle;">
       </div>
       <br /><br />
       <el-form-item label="">
@@ -64,7 +63,7 @@
   </div>
 </template>
 <script>
-import { addActivity,editActivity,deleteActivity} from '@/api/activity'
+import { addActivity,editActivity,getActivityDetail} from '@/api/activity'
 import { getCategoryList} from '@/api/category'
 export default {
   data() {
@@ -134,12 +133,17 @@ export default {
       },
       baseURL:process.env.BASE_API+'/api/oss',
       edit:this.$route.params.id,
-      flag:this.$route.params.flag
+      flag:this.$route.params.flag,
+      type:this.$route.params.type
     }
   },
   created() {
     if(this.flag==-1){
-      this.fetchData()
+      //getActivityDetail
+      getActivityDetail({'page':0,'size':100},this.$route.params.editid).then(response => {
+        this.form = response.data.data.content[0]
+        this.form.time=[this.form.startTime,this.form.endTime]
+      })
     }else{
       this.$route.meta.title='活动添加'
     }
@@ -184,36 +188,79 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid && this.handelErrorForm()) {
           console.log('submit!');
-          console.log(this.form);
-          addActivity({
-            'title':this.form.title,
-            'address':this.form.address,
-            'contact':this.form.contact,
-            'content':this.form.content,
-            'coverUrl':this.form.coverUrl,
-            'startTime':this.form.time[0],
-            'endTime':this.form.time[1],
-            'timeText':this.form.timeText,
-            'contentImageUrl':this.form.contentImageUrl,
-            'price':this.form.price,
-            "danceStyle": {
-              "id": this.form.danceStyle.id
-            },
-            'type':'activity'
-          }).then(response => {
-            if(response.status==200){
-              this.$message({
-                message: '添加成功',
-                type: 'success'
-              })
-              this.$router.push({ name: 'activityIndex'})
-            }else{
-              this.$message({
-                message: '添加失败',
-                type: 'warning'
-              })
-            }
-          })
+          if(this.flag==-1){
+            editActivity({
+              'id':this.form.id,
+              'title':this.form.title,
+              'address':this.form.address,
+              'contact':this.form.contact,
+              'content':this.form.content,
+              'coverUrl':this.form.coverUrl,
+              'startTime':this.form.time[0],
+              'endTime':this.form.time[1],
+              'timeText':this.form.timeText,
+              'contentImageUrl':this.form.contentImageUrl,
+              'price':this.form.price,
+              "danceStyle": {
+                "id": this.form.danceStyle.id
+              },
+              'viewCount':this.form.viewCount,
+              'type':this.type
+            }).then(response => {
+              if(response.status==200){
+                this.$message({
+                  message: '修改成功',
+                  type: 'success'
+                })
+                if(this.type=='activity'){
+                  this.$router.push({ name: 'activityIndex'})
+                }else{
+                  this.$router.push({ name: 'activityGame'})
+                }
+              }else{
+                this.$message({
+                  message: '修改失败',
+                  type: 'warning'
+                })
+              }
+            })
+          }else{
+            addActivity({
+              'title':this.form.title,
+              'address':this.form.address,
+              'contact':this.form.contact,
+              'content':this.form.content,
+              'coverUrl':this.form.coverUrl,
+              'startTime':this.form.time[0],
+              'endTime':this.form.time[1],
+              'timeText':this.form.timeText,
+              'contentImageUrl':this.form.contentImageUrl,
+              'price':this.form.price,
+              "danceStyle": {
+                "id": this.form.danceStyle.id
+              },
+              'viewCount':0,
+              'type':this.type
+            }).then(response => {
+              if(response.status==200){
+                this.$message({
+                  message: '添加成功',
+                  type: 'success'
+                })
+                if(this.type=='activity'){
+                  this.$router.push({ name: 'activityIndex'})
+                }else{
+                  this.$router.push({ name: 'activityGame'})
+                }
+              }else{
+                this.$message({
+                  message: '添加失败',
+                  type: 'warning'
+                })
+              }
+            })
+          }
+
         } else {
           console.log('error submit!!');
           return false;

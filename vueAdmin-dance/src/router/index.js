@@ -59,7 +59,7 @@ export const constantRouterMap = [
         meta: { title: '特训', icon: 'table2' }
       },
       {
-        path: 'activityedit/:edit/:flag',
+        path: 'activityedit/:editid/:flag/:type',
         name: 'activityedit',
         component: () => import('@/views/activity/activityedit/index'),
         meta: { title: '信息编辑', icon: 'table' },

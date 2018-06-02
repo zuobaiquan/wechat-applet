@@ -6,6 +6,13 @@ export function getActivityList(params,type) {
     params
   })
 }
+export function getActivityDetail(params,id) {
+  return request({
+    url: `/api/activity?id=${id}`,
+    method: 'get',
+    params
+  })
+}
 export function addActivity(params) {
   return request({
     url: '/api/activity/create',

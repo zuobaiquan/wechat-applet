@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-button @click="handleAdd(1,-1)" class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit">添加</el-button>
+    <el-button @click="handleAdd(1,-1,'activity')" class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit">添加</el-button>
     <br /><br />
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label='id'>
@@ -45,7 +45,7 @@
       </el-table-column>
       <el-table-column label="操作" align="center" width="200">
         <template slot-scope="scope">
-          <el-button @click="handleAdd(-1,scope.row.id)" type="primary" size="small" icon="el-icon-edit">编辑</el-button>
+          <el-button @click="handleAdd(-1,scope.row.id,'activity')" type="primary" size="small" icon="el-icon-edit">编辑</el-button>
           <el-button type="danger" icon="el-icon-delete" size="small" @click="delActivity(scope.row.id)">删除</el-button>
         </template>
     </el-table-column>
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { getActivityList } from '@/api/activity'
+import { getActivityList,deleteActivity } from '@/api/activity'
 
 export default {
   data() {
@@ -92,11 +92,11 @@ export default {
        this.currentPage=val
        this.fetchData();
     },
-    handleAdd(flag,id){
-      this.$router.push({ path: `activityedit/${id}/${flag}`})
+    handleAdd(flag,id,type){
+      this.$router.push({ path: `activityedit/${id}/${flag}/${type}`})
     },
     delActivity(id){
-      deleteArea(id).then(response => {
+      deleteActivity({'id':id}).then(response => {
         if(response.status==200){
           this.$message({
             message: '删除成功',
