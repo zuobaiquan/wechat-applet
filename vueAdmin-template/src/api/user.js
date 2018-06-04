@@ -38,3 +38,13 @@ export function getUserBill(userId) {
     method: 'get'
   })
 }
+export function bindVegatable(params) {
+  return request({
+    url: '/api/bill/bind',
+    method: 'post',
+    data:JSON.stringify(params),
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    }
+  })
+}

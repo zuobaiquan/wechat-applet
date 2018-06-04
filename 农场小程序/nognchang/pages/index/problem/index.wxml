@@ -1,9 +1,0 @@
-<view class="container">
-  <block wx:for="{{problemListData}}" wx:key="index">
-    <view class="problem-tit">{{item.name}}</view>
-    <view class="problem-list" wx:for="{{item.child}}" wx:for-item="item2" wx:for-index="index2" wx:key="index2">
-      <view class="toggle-content {{item2.status?'toggle-show':''}}"  bindtap="toggleDetail" data-index="{{index}}" data-flag="{{index2}}">{{item2.question}}</view>
-      <view class="list-tit" wx:if="{{item2.status}}">{{item2.answer}}</view>
-    </view>
-  </block>
-</view>
