@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div class="app-container userInfo">
     <el-form>
       <el-form-item label="头像：" label-width="80px">
         <img style="width:100px;height:100px;border-radius:50%" :src="userInfo.avatar" alt="">
@@ -16,11 +16,11 @@
       <el-form-item label="作品：" label-width="80px">
         <template v-if="workList.length>0">
           <el-row>
-            <el-col :span="8" v-for="(item, index) in workList" :key="index" style="margin-bottom:10px;">
+            <el-col :span="8" v-for="(item, index) in workList" :key="index">
               <el-card :body-style="{ padding: '0px;' }">
-                <img v-if="item.videoCoverUrl" @click="handlePictureCardPreview(item.videoCoverUrl)" :src="item.videoCoverUrl" style="width:100%;height:150px;" class="image">
+                <!-- <img v-if="item.videoCoverUrl" @click="handlePictureCardPreview(item.videoCoverUrl)" :src="item.videoCoverUrl" style="width:261px;height:261px;object-fit: contain;" class="image"> -->
                 <div v-if="item.videoUrl">
-                  <video :src="item.videoUrl" width="320" height="240" controls="controls">
+                  <video style="object-fit: contain;" :poster="item.videoCoverUrl" :src="item.videoUrl" width="463" height="260" controls="controls">
                   Your browser does not support the video tag.
                   </video>
                 </div>
@@ -36,9 +36,9 @@
       </el-form-item>
       <el-form-item label="海报：" label-width="80px">
         <el-row v-if="posterList.length>0">
-          <el-col :span="8" v-for="(item, index) in posterList" :key="index" style="margin-bottom:10px;">
+          <el-col :span="8" v-for="(item, index) in posterList" :key="index">
             <el-card :body-style="{ padding: '0px;' }">
-              <img v-if="item.imageUrl" @click="handlePictureCardPreview(item.imageUrl)" :src="item.imageUrl" style="width:100%;height:150px;" class="image">
+              <img v-if="item.imageUrl" @click="handlePictureCardPreview(item.imageUrl)" :src="item.imageUrl" style="width:261px;height:261px;" class="image">
               <div style="text-align:center">
                 {{item.musicName}}
               </div>

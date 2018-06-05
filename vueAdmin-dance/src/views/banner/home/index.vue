@@ -13,6 +13,11 @@
           {{scope.row.title}}
         </template>
       </el-table-column>
+      <el-table-column label="banner链接地址" align="center">
+        <template slot-scope="scope">
+          {{scope.row.url}}
+        </template>
+      </el-table-column>
       <el-table-column label="banner图片" align="center">
         <template slot-scope="scope">
           <img @click="handlePictureCardPreview(scope.row)" :src="scope.row.coverUrl" alt="" style="max-height:150px;max-width:150px;cursor:pointer">
@@ -34,6 +39,9 @@
       <el-form :model="form">
         <el-form-item label="banner标题" label-width="120px">
           <el-input v-model="form.title" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="banner链接地址" label-width="120px">
+          <el-input v-model="form.url" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="排序" label-width="120px">
           <el-input v-model="form.sortIndex" auto-complete="off"></el-input>
@@ -82,6 +90,7 @@ export default {
         title: '',
         sortIndex:0,
         coverUrl:'',
+        url:'',
         id:-1
       },
       baseURL:process.env.BASE_API+'/api/oss',
@@ -132,6 +141,7 @@ export default {
         this.form.id=-1
         this.dialogTitle='添加banner'
         this.form.title=''
+        this.form.url=''
         this.form.sortIndex=null
         this.form.coverUrl=''
         this.dialogFormVisible = true
@@ -143,6 +153,7 @@ export default {
           if(item.id==id){
             this.form.title=item.title
             this.form.sortIndex=item.sortIndex
+            this.form.url=item.url
             this.form.coverUrl=item.coverUrl
             this.dialogFormVisible = true
             return ;
@@ -157,6 +168,13 @@ export default {
       if(this.form.title==""){
         this.$message({
           message: '标题不能为空',
+          type: 'warning'
+        })
+        return false
+      }
+      if(this.form.url==""){
+        this.$message({
+          message: '链接地址不能为空',
           type: 'warning'
         })
         return false
@@ -185,6 +203,7 @@ export default {
             'coverUrl':this.form.coverUrl,
             'sortIndex':this.form.sortIndex,
             'title':this.form.title,
+            'url':this.form.url,
             'type':'home'
           }).then(response => {
             if(response.status==200){
@@ -207,6 +226,7 @@ export default {
             'coverUrl':this.form.coverUrl,
             'title':this.form.title,
             'sortIndex':this.form.sortIndex,
+            'url':this.form.url,
             'id':this.form.id
           }).then(response => {
             if(response.status==200){
