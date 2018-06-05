@@ -1,3 +1,14 @@
+https://8bob1r.axshare.com
+原型补充。目前有个情况，客户线下交钱买地了，但后台无法关联。原型在用户管理补充了绑定菜地功能
+
+完整后台原型
+https://nkqyws.axshare.com
+
+完整APP原型
+https://pro.modao.cc/app/108eae120f61778ffc56afe9792da3807cb83e3c
+
+
+
 https://pro.modao.cc/app/aaf08fb4994a50aa47a6e16787d128def4ecfcb9#screen=sc1c3b68c74ac2025c22255
 
 https://3phcct.axshare.com/#g

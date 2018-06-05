@@ -41,6 +41,7 @@
       <el-table-column fixed="right" label="操作" align="center">
         <template slot-scope="scope">
           <el-button @click="handleClick(scope.$index)" type="primary" size="small">查看</el-button>
+          <el-button @click="bindDialog(scope.row.id)" type="primary" size="small">绑定菜地</el-button>
         </template>
     </el-table-column>
     </el-table>
@@ -54,6 +55,25 @@
       layout="total, prev, pager, next, jumper"
       :total="totalNum">
     </el-pagination>
+
+    <el-dialog title="绑定菜地" :visible.sync="dialogFormVisible2">
+      <el-form :model="form">
+        <el-form-item label="菜地编号" label-width="120px">
+          <el-input style="width:220px;" v-model="form2.gardenSn" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="有效期" label-width="120px">
+          <el-date-picker
+            v-model="form2.availableTimestamp"
+            type="date"
+            placeholder="选择日期">
+          </el-date-picker>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible2 = false">取 消</el-button>
+        <el-button type="primary" @click="bindVegatable()">确 定</el-button>
+      </div>
+    </el-dialog>
 
     <el-dialog title="用户信息" :visible.sync="dialogFormVisible">
       <el-form :model="form">
@@ -103,7 +123,7 @@
             label="费用">
           </el-table-column>
           <el-table-column
-            label="操作" width="50">
+            label="操作" width="250">
             <template slot-scope="scope">
               <el-button @click="caidiDetail(scope.$index)" type="text" size="small">查看</el-button>
             </template>
@@ -122,7 +142,7 @@
 </template>
 
 <script>
-import { getUserList,getAddress,getUserBill } from '@/api/user'
+import { getUserList,getAddress,getUserBill,bindVegatable } from '@/api/user'
 
 export default {
   data() {
@@ -135,12 +155,18 @@ export default {
       },
       importanceOptions:['A','B','C'],
       dialogFormVisible: false,
+      dialogFormVisible2: false,
       form: {
         account: '',
         avatarUrl:'',
         department:'',
         nickName:'',
         phone:''
+      },
+      form2:{
+        availableTimestamp:'',
+        gardenSn:'',
+        userId:''
       },
       formLabelWidth: '150px',
       currentPage: 1,
@@ -242,7 +268,48 @@ export default {
           )
         })
       })
+    },
+    bindDialog(id){
+      this.dialogFormVisible2=true
+      this.form2.userId=id
+    },
+    bindVegatable(id){
+      if(this.form2.gardenSn==""){
+        this.$message({
+          message: '请选择菜地编号',
+          type: 'warning'
+        })
+        return false
+      }
+      if(this.form2.availableTimestamp==""){
+        this.$message({
+          message: '请选择有效期',
+          type: 'warning'
+        })
+        return false
+      }
+      let timestamp=new Date(this.form2.availableTimestamp)
+      bindVegatable({
+        'availableTimestamp':timestamp.getTime(),
+        'gardenSn':this.form2.gardenSn,
+        'userId':this.form2.userId
+      }).then(response => {
+        if(response.status==200){
+          this.dialogFormVisible=false
+          this.$message({
+            message: '绑定成功',
+            type: 'success'
+          })
+          this.fetchData();
+        }else{
+          this.$message({
+            message: '绑定失败',
+            type: 'warning'
+          })
+        }
+      })
     }
+
   }
 }
 </script>
