@@ -5,5 +5,5 @@ const prodEnv = require('./prod.env')
 // var urlRelease = 'https://ifarm.iqiys.cn/api/';
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  BASE_API: '"https://ifarm.iqiys.cn/test/"',
+  BASE_API: '"https://ifarm.iqiys.cn/test/"'
 })
