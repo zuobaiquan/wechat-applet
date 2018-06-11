@@ -123,6 +123,13 @@ export default {
         })
         return false
       }
+      if(!/^\+?[1-9]\d*$/.test(this.form.count)){
+        this.$message({
+          message: '库存格式应该为正整数',
+          type: 'warning'
+        })
+        return false
+      }
       if(this.form.limitBuyCount==""){
         this.$message({
           message: '单次限购不能为空',
@@ -130,9 +137,30 @@ export default {
         })
         return false
       }
+      if(!/^\+?[1-9]\d*$/.test(this.form.limitBuyCount)){
+        this.$message({
+          message: '单次限购格式应该为正整数',
+          type: 'warning'
+        })
+        return false
+      }
+      if(this.form.limitBuyCount>this.form.count){
+        this.$message({
+          message: '单次限购数量不能超过库存数',
+          type: 'warning'
+        })
+        return false
+      }
       if(this.form.price==""){
         this.$message({
           message: '卡价格不能为空',
+          type: 'warning'
+        })
+        return false
+      }
+      if(!/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{1,2}$)/.test(this.form.price)){
+        this.$message({
+          message: '卡价格格式不正确',
           type: 'warning'
         })
         return false

@@ -68,7 +68,14 @@ export function deleteCategory(id) {
 
 export function getInfoArticle(params) {
   return request({
-    url: '/api/article',
+    url: '/api/article?type=0',
+    method: 'get',
+    params
+  })
+}
+export function getArticlelist(params) {
+  return request({
+    url: `/api/article?type=1`,
     method: 'get',
     params
   })
@@ -106,8 +113,6 @@ export function deleteInfoArticle(id) {
     method: 'delete'
   })
 }
-
-
 
 export function getProblemList(params,type=false,categoryId=-1) {
   return request({
