@@ -111,6 +111,70 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/chosenvegetable',
+    component: Layout,
+    redirect: '/chosenvegetable/onsale',
+    name: 'chosenvegetable',
+    meta: { title: '选鸡管理', icon: 'tree' },
+    children: [
+      {
+        path: 'onsale',
+        name: 'Onsale',
+        component: () => import('@/views/chosenvegetable/onsale/index'),
+        meta: { title: '已售鸡管理', icon: 'table' }
+      },
+      {
+        path: 'chosensetting',
+        name: 'Chosensetting',
+        component: () => import('@/views/chosenvegetable/chosensetting/index'),
+        meta: { title: '选鸡信息设置', icon: 'table' }
+      }
+    ]
+  },
+  {
+    path: '/card',
+    component: Layout,
+    redirect: '/card/cardsetting',
+    name: 'card',
+    meta: { title: '礼品卡管理', icon: 'tree' },
+    children: [
+      {
+        path: 'cardsetting',
+        name: 'Cardsetting',
+        component: () => import('@/views/card/cardsetting\/index'),
+        meta: { title: '礼品卡设置', icon: 'table' }
+      },
+      {
+        path: 'cardlist',
+        name: 'Cardlist',
+        component: () => import('@/views/card/cardlist/index'),
+        meta: { title: '礼品卡列表', icon: 'table' }
+      },
+      {
+        path: 'cardedit/:id/:flag',
+        name: 'cardedit',
+        component: () => import('@/views/card/cardedit/index'),
+        meta: { title: '礼品卡编辑', icon: 'table' },
+        hidden:true
+      },
+    ]
+  },
+  {
+    path: '/coupon',
+    component: Layout,
+    redirect: '/coupon/couponlist',
+    name: 'coupon',
+    meta: { title: '优惠券管理', icon: 'tree' },
+    children: [
+      {
+        path: 'couponlist',
+        name: 'Couponlist',
+        component: () => import('@/views/coupon/couponlist/index'),
+        meta: { title: '优惠券列表', icon: 'table' }
+      }
+    ]
+  },
+  {
     path: '/record',
     component: Layout,
     children: [
