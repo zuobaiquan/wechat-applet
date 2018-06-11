@@ -6,6 +6,13 @@ export function getCardList(params) {
     params
   })
 }
+export function getCardRecordList(params) {
+  return request({
+    url: '/api/cardRecord',
+    method: 'get',
+    params
+  })
+}
 export function getCardbyId(id) {
   return request({
     url: `/api/card?id=${id}`,

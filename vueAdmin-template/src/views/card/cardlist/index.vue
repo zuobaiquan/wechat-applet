@@ -1,16 +1,36 @@
 <template>
   <div class="app-container">
-    <el-button @click="handleAdd(1,-1)" class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit">添加</el-button>
-    <br /><br />
+    <!-- <el-button @click="handleAdd(1,-1)" class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit">添加</el-button>
+    <br /><br /> -->
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label='序号' width="95">
         <template slot-scope="scope">
           {{(currentPage-1)*10+scope.$index+1}}
         </template>
       </el-table-column>
-      <el-table-column label="banner描叙" align="center">
+      <el-table-column label="卡类型" align="center">
         <template slot-scope="scope">
-          {{scope.row.title}}
+          {{scope.row.card?(scope.row.card.graderId==1?'菜地卡':(scope.row.card.chickenId==1?'选鸡卡':'--')):'--'}}
+        </template>
+      </el-table-column>
+      <el-table-column label="卡号" align="center">
+        <template slot-scope="scope">
+          {{scope.row.cardNo || '--'}}
+        </template>
+      </el-table-column>
+      <el-table-column label="密码" align="center">
+        <template slot-scope="scope">
+          {{scope.row.password || '--'}}
+        </template>
+      </el-table-column>
+      <el-table-column label="状态" align="center">
+        <template slot-scope="scope">
+          {{scope.row.status==0?'未出售':(scope.row.status==1?'已出售':'已使用') || '--'}}
+        </template>
+      </el-table-column>
+      <el-table-column label="创建时间" align="center">
+        <template slot-scope="scope">
+          {{scope.row.createTime | parseTime}}
         </template>
       </el-table-column>
       <el-table-column align="center" label="操作" width="200">
@@ -47,7 +67,7 @@
   </div>
 </template>
 <script>
-import { getCardList } from '@/api/card'
+import { getCardRecordList } from '@/api/card'
 export default {
   data() {
     return {
@@ -72,7 +92,7 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getCardList({'page':this.currentPage-1,'size':10}).then(response => {
+      getCardRecordList({'page':this.currentPage-1,'size':10}).then(response => {
         this.list = response.data.content;
         this.totalNum=response.data.totalElements
         this.listLoading = false

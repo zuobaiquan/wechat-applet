@@ -8,14 +8,29 @@
           {{(currentPage-1)*10+scope.$index+1}}
         </template>
       </el-table-column>
-      <el-table-column label="banner描叙" align="center">
+      <el-table-column label="规则" align="center">
         <template slot-scope="scope">
-          {{scope.row.title}}
+          满{{scope.row.miniPrice}}减{{scope.row.money}}
         </template>
       </el-table-column>
-      <el-table-column label="banner图片" align="center">
+      <el-table-column label="备注" align="center">
         <template slot-scope="scope">
-          <img @click="handlePictureCardPreview(scope.row)" :src="scope.row.coverUrl" alt="" style="max-height:150px;max-width:150px;cursor:pointer">
+          {{scope.row.remark || '--'}}
+        </template>
+      </el-table-column>
+      <el-table-column label="有效天数" align="center">
+        <template slot-scope="scope">
+          {{scope.row.availableDay || '--'}}
+        </template>
+      </el-table-column>
+      <el-table-column label="状态" align="center">
+        <template slot-scope="scope">
+
+        </template>
+      </el-table-column>
+      <el-table-column label="创建时间" align="center">
+        <template slot-scope="scope">
+          {{scope.row.createTime | parseTime}}
         </template>
       </el-table-column>
       <el-table-column align="center" label="操作" width="200">
@@ -62,7 +77,7 @@
   </div>
 </template>
 <script>
-import { getBannerList,addNewBanner,editNewBanner,deleteBanner } from '@/api/index'
+import { getCouponList } from '@/api/coupon'
 export default {
   data() {
     return {
@@ -91,7 +106,7 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getBannerList({'page':this.currentPage-1,'size':10}).then(response => {
+      getCouponList({'page':this.currentPage-1,'size':10}).then(response => {
         this.list = response.data.content;
         this.totalNum=response.data.totalElements
         this.listLoading = false
