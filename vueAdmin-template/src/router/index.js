@@ -44,6 +44,12 @@ export const constantRouterMap = [
         meta: { title: '广告管理', icon: 'table' }
       },
       {
+        path: 'news',
+        name: 'News',
+        component: () => import('@/views/index/news/index'),
+        meta: { title: '农场动态', icon: 'table' }
+      },
+      {
         path: 'info',
         name: 'Info',
         component: () => import('@/views/index/info/index'),
@@ -54,6 +60,13 @@ export const constantRouterMap = [
         name: 'infoedit',
         component: () => import('@/views/index/infoedit/index'),
         meta: { title: '信息编辑', icon: 'table' },
+        hidden:true
+      },
+      {
+        path: 'newsedit/:newsid/:flag',
+        name: 'newsedit',
+        component: () => import('@/views/index/newsedit/index'),
+        meta: { title: '编辑动态', icon: 'table' },
         hidden:true
       },
       {

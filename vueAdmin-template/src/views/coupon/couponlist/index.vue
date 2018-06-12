@@ -8,39 +8,56 @@
           {{(currentPage-1)*10+scope.$index+1}}
         </template>
       </el-table-column>
-      <el-table-column label="banner描叙" align="center">
+      <el-table-column label="规则" align="center">
         <template slot-scope="scope">
-          {{scope.row.title}}
+          满{{scope.row.miniPrice}}减{{scope.row.money}}
         </template>
       </el-table-column>
-      <el-table-column label="banner图片" align="center">
+      <el-table-column label="备注" align="center">
         <template slot-scope="scope">
-          <img @click="handlePictureCardPreview(scope.row)" :src="scope.row.coverUrl" alt="" style="max-height:150px;max-width:150px;cursor:pointer">
+          {{scope.row.remark || '--'}}
+        </template>
+      </el-table-column>
+      <el-table-column label="有效天数" align="center">
+        <template slot-scope="scope">
+          {{scope.row.availableDay || '--'}}
+        </template>
+      </el-table-column>
+      <el-table-column label="状态" align="center">
+        <template slot-scope="scope">
+
+        </template>
+      </el-table-column>
+      <el-table-column label="创建时间" align="center">
+        <template slot-scope="scope">
+          {{scope.row.createTime | parseTime}}
         </template>
       </el-table-column>
       <el-table-column align="center" label="操作" width="200">
         <template slot-scope="scope">
           <el-button @click="handleAdd(-1,scope.row.id)" type="primary" size="small" icon="el-icon-edit">编辑</el-button>
-          <el-button type="danger" icon="el-icon-delete" size="small" @click="delBanner(scope.row.id)">删除</el-button>
+          <el-button type="danger" icon="el-icon-delete" size="small" @click="deleteCoupon(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
     <el-dialog :title="dialogTitle" :visible.sync="dialogFormVisible">
       <el-form :model="form">
-        <el-form-item label="banner标题" label-width="120px">
-          <el-input v-model="form.title" auto-complete="off"></el-input>
+        <el-form-item label="券类型：" label-width="120px">
+          满减
+        </el-form-item>
+        <el-form-item label="备注：" label-width="120px">
+          <el-input v-model="form.remark" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="满：" label-width="120px">
+          <el-input v-model="form.miniPrice" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="减：" label-width="120px">
+          <el-input v-model="form.money" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="有效天数：" label-width="120px">
+          <el-input v-model="form.availableDay" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
-      <div>
-        <label class="el-form-item__label" style="width: 120px;">banner图片</label>
-        <el-upload class="upload-demo" drag :before-upload="handleImagebeforeUpload" :on-success="handleImageScucess" :action="baseURL" :data="uploadData">
-          <i class="el-icon-upload"></i>
-          <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-        </el-upload>
-      </div>
-      <div v-if="form.coverUrl" style="margin-left:120px;">
-        <img @click="handlePictureCardPreview(form)" :src="form.coverUrl" alt="" style="max-width:200px;max-height:200px;cursor:pointer" width="80%" height="80%">
-      </div>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="submitRes()">确 定</el-button>
@@ -56,31 +73,24 @@
       layout="total, prev, pager, next, jumper"
       :total="totalNum">
     </el-pagination>
-    <el-dialog :visible.sync="dialogVisible2">
-      <img width="100%" :src="dialogImageUrl" alt="">
-    </el-dialog>
   </div>
 </template>
 <script>
-import { getBannerList,addNewBanner,editNewBanner,deleteBanner } from '@/api/index'
+import { getCouponList,addCoupon,editCoupon,deleteCoupon } from '@/api/coupon'
 export default {
   data() {
     return {
       list: null,
       listLoading: true,
       dialogFormVisible: false,
-      dialogTitle:'添加banner',
+      dialogTitle:'添加优惠券',
       form: {
-        title: '',
-        coverUrl:'',
+        availableDay:'',
+        remark:'',
+        money:'',
+        miniPrice: '',
         id:-1
       },
-      baseURL:process.env.BASE_API+'/api/oss',
-      uploadData:{
-        key:''
-      },
-      dialogVisible2:false,
-      dialogImageUrl:'',
       currentPage: 1,
       totalNum:1
     }
@@ -91,14 +101,14 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getBannerList({'page':this.currentPage-1,'size':10}).then(response => {
+      getCouponList({'page':this.currentPage-1,'size':10}).then(response => {
         this.list = response.data.content;
         this.totalNum=response.data.totalElements
         this.listLoading = false
       })
     },
-    delBanner(id){
-      deleteBanner(id).then(response => {
+    deleteCoupon(id){
+      deleteCoupon(id).then(response => {
         if(response.status==200){
           this.$message({
             message: '删除成功',
@@ -117,61 +127,94 @@ export default {
        this.currentPage=val
        this.fetchData();
     },
-    handlePictureCardPreview(file) {
-      this.dialogImageUrl = file.coverUrl;
-      this.dialogVisible2 = true;
-    },
     handleAdd(flag,id){
       if(flag==1){
         this.form.id=-1
-        this.dialogTitle='添加banner'
-        this.form.title=''
-        this.form.coverUrl=''
+        this.dialogTitle='添加优惠券'
+        this.form.availableDay=''
+        this.form.remark=''
+        this.form.money=''
+        this.form.miniPrice=''
         this.dialogFormVisible = true
       }
       if(flag==-1){
         this.form.id=id
-        this.dialogTitle='修改banner'
+        this.dialogTitle='编辑优惠券'
         this.list.forEach((item,index)=>{
           if(item.id==id){
-            this.form.title=item.title
-            this.form.coverUrl=item.coverUrl
+            this.form.availableDay=item.availableDay
+            this.form.remark=item.remark
+            this.form.money=item.money
+            this.form.miniPrice=item.miniPrice
             this.dialogFormVisible = true
             return ;
           }
         })
       }
     },
-    handleImagebeforeUpload(file){
-      let name=file.name;
-      let houzhui = name.substring(name.lastIndexOf('.') + 1);
-      this.uploadData.key=Date.parse(new Date())+'.'+houzhui;
-    },
-    handleImageScucess(response, file, fileList){
-      this.form.coverUrl=response.data
-    },
     handelErrorForm(){
-      if(this.form.title==""){
+      if(this.form.remark==""){
         this.$message({
           message: '图片标题不能为空',
           type: 'warning'
         })
         return false
       }
-      if(this.form.coverUrl==""){
+      if(this.form.miniPrice==""){
         this.$message({
-          message: '图片不能为空',
+          message: '券满金额不能为空',
           type: 'warning'
         })
         return false
-      }else{
+      }
+      if(!/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{1,2}$)/.test(this.form.miniPrice)){
+        this.$message({
+          message: '券满金额格式不正确',
+          type: 'warning'
+        })
+        return false
+      }
+      if(this.form.money==""){
+        this.$message({
+          message: '券减金额不能为空',
+          type: 'warning'
+        })
+        return false
+      }
+      if(!/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{1,2}$)/.test(this.form.money)){
+        this.$message({
+          message: '券减金额格式不正确',
+          type: 'warning'
+        })
+        return false
+      }
+      if(this.form.availableDay==""){
+        this.$message({
+          message: '有效天数不能为空',
+          type: 'warning'
+        })
+        return false
+      }
+      if(!/^\+?[1-9]\d*$/.test(this.form.availableDay)){
+        this.$message({
+          message: '有效天数格式不正确',
+          type: 'warning'
+        })
+        return false
+      }
+      else{
         return true
       }
     },
     submitRes(){
       if(this.handelErrorForm()){
         if(this.form.id==-1){
-          addNewBanner({'coverUrl':this.form.coverUrl,'title':this.form.title}).then(response => {
+          addCoupon({
+            'availableDay':this.form.availableDay,
+            'remark':this.form.remark,
+            'money':this.form.money,
+            'miniPrice':this.form.miniPrice
+          }).then(response => {
             if(response.status==200){
               this.dialogFormVisible=false
               this.$message({
@@ -188,9 +231,11 @@ export default {
           })
         }
         else{
-          editNewBanner({
-            'coverUrl':this.form.coverUrl,
-            'title':this.form.title,
+          editCoupon({
+            'availableDay':this.form.availableDay,
+            'remark':this.form.remark,
+            'money':this.form.money,
+            'miniPrice':this.form.miniPrice,
             'id':this.form.id
           }).then(response => {
             if(response.status==200){
@@ -216,56 +261,3 @@ export default {
   }
 }
 </script>
-<style rel="stylesheet/scss" lang="scss" scoped>
-.upload-container {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  .image-uploader {
-    margin-left: 120px;
-    float: left;
-  }
-  .image-preview {
-    width: 200px;
-    height: 200px;
-    position: relative;
-    border: 1px dashed #d9d9d9;
-    float: left;
-    margin-left: 50px;
-    .image-preview-wrapper {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
-    .image-preview-action {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      left: 0;
-      top: 0;
-      cursor: default;
-      text-align: center;
-      color: #fff;
-      opacity: 0;
-      font-size: 20px;
-      background-color: rgba(0, 0, 0, .5);
-      transition: opacity .3s;
-      cursor: pointer;
-      text-align: center;
-      line-height: 200px;
-      .el-icon-delete {
-          font-size: 36px;
-      }
-    }
-    &:hover {
-      .image-preview-action {
-        opacity: 1;
-      }
-    }
-  }
-}
-</style>
