@@ -12,10 +12,3 @@ APP Key：wxffc76339a7b5f112
 Secret：1af63c354ab0de087be8721815326a25
 
 我的农场 蓝湖-标注+切图 链接：https://lanhuapp.com/url/rMkZD
-
-name.substring(name.lastIndexOf('.') + 1);
-
-
-
-我用了新的框架，是支持你自定义查询的，比如你想搜索 type=2 的用户，你就是这样提交  https://ifarm.iqiys.cn/api/user?type=1 
-比如你想搜索 id=2 的用户，你就是这样提交  https://ifarm.iqiys.cn/api/user?id=2

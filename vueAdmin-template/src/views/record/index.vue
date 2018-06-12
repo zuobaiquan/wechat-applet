@@ -1,11 +1,14 @@
 <template>
   <div class="app-container">
+
+
+      总支付金额：{{countMoney}}元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       状态&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="searchStatus" placeholder="请选择">
       <el-option v-for="item in selectOptionsStatus" :key="item.id" :label="item.name" :value="item.id">
       </el-option>
       </el-select>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      类型&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="searchSelect" placeholder="请选择">
+      类型&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="orderType" placeholder="请选择">
       <el-option v-for="item in selectOptions" :key="item.id" :label="item.name" :value="item.id">
       </el-option>
       </el-select>
@@ -25,12 +28,12 @@
       </el-table-column>
       <el-table-column label="购买类型" align="center">
         <template slot-scope="scope">
-          买菜地
+          {{scope.row.cardId?'买卡':(scope.row.chickenId?'买鸡':'买菜地')}}
         </template>
       </el-table-column>
       <el-table-column label="费用" align="center">
         <template slot-scope="scope">
-          {{scope.row.money}}
+          {{scope.row.cardRecordId?'使用礼品卡支付':scope.row.money}}
         </template>
       </el-table-column>
       <el-table-column label="状态" align="center">
@@ -67,7 +70,7 @@
   </div>
 </template>
 <script>
-import { getRecordList } from '@/api/record'
+import { getRecordList,getCountMoney } from '@/api/record'
 export default {
   data() {
     return {
@@ -76,12 +79,13 @@ export default {
       selectitem:'',
       sn:'',
       selectOptions:[
-        {'id':0,'name':'买菜地'},
-        // {'id':1,'name':'买卡'}
+        {'id':1,'name':'买菜地'},
+        {'id':2,'name':'买鸡'},
+        {'id':3,'name':'买卡'}
       ],
       currentPage: 1,
       totalNum:1,
-      searchSelect:'',
+      orderType:'',
       searchStatus:'',
       selectOptionsStatus:[
         {'id':0,'name':'未付款'},
@@ -91,9 +95,10 @@ export default {
       ],
       searchObj:{
         type:-1,
-        searchStatus:-1,
-        searchSelect:-1,
-      }
+        searchStatus:'',
+        orderType:0
+      },
+      countMoney:0
     }
   },
   created() {
@@ -102,6 +107,9 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
+      getCountMoney({}).then(response => {
+        this.countMoney=response.data
+      })
       getRecordList({'page':this.currentPage-1,'size':10},this.searchObj).then(response => {
         this.list = response.data.content;
         this.totalNum=response.data.totalElements
@@ -109,18 +117,21 @@ export default {
       })
     },
     handleFilter(){
-      if(this.searchSelect==-1&&this.searchStatus!==-1){
+      if(this.orderType==''&&this.searchStatus!==''){
+        this.searchObj.type=-1
+      }
+      if(this.orderType==''&&this.searchStatus!==''){
         this.searchObj.type=0
         this.searchObj.searchStatus=this.searchStatus
       }
-      if(this.searchSelect!=-1&&this.searchStatus==-1){
+      if(this.orderType!==''&&this.searchStatus==''){
         this.searchObj.type=1
-        this.searchObj.searchSelect=this.searchSelect
+        this.searchObj.orderType=this.orderType
       }
-      if(this.searchSelect!=-1&&this.searchStatus!=-1){
+      if(this.orderType!==''&&this.searchStatus!==''){
         this.searchObj.type=2
         this.searchObj.searchStatus=this.searchStatus
-        this.searchObj.searchSelect=this.searchSelect
+        this.searchObj.orderType=this.orderType
       }
       this.fetchData()
     },

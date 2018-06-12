@@ -2,6 +2,20 @@
   <div class="app-container">
     <!-- <el-button @click="handleAdd(1,-1)" class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit">添加</el-button>
     <br /><br /> -->
+    卡号：<el-input style="width: 120px;" class="filter-item" placeholder="请输入" v-model="searchObj.cardNo"></el-input>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    卡类型&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="searchObj.cardType" placeholder="选择卡类型">
+    <el-option v-for="item in selectOptions" :key="item.id" :label="item.name" :value="item.id">
+    </el-option>
+    </el-select>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    状态&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="searchObj.status" placeholder="选择状态">
+    <el-option v-for="item in selectOptionsStatus" :key="item.id" :label="item.name" :value="item.id">
+    </el-option>
+    </el-select>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
+    <br /><br />
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label='序号' width="95">
         <template slot-scope="scope">
@@ -42,7 +56,7 @@
     </el-table>
     <el-dialog :title="dialogTitle" :visible.sync="dialogFormVisible">
       <el-form :model="form">
-        <el-form-item label="banner标题" label-width="120px">
+        <el-form-item label="标题" label-width="120px">
           <el-input v-model="form.title" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
@@ -61,9 +75,6 @@
       layout="total, prev, pager, next, jumper"
       :total="totalNum">
     </el-pagination>
-    <el-dialog :visible.sync="dialogVisible2">
-      <img width="100%" :src="dialogImageUrl" alt="">
-    </el-dialog>
   </div>
 </template>
 <script>
@@ -74,16 +85,29 @@ export default {
       list: null,
       listLoading: true,
       dialogFormVisible: false,
-      dialogTitle:'添加banner',
+      dialogTitle:'添加',
       form: {
         title: '',
         coverUrl:'',
         id:-1
       },
-      dialogVisible2:false,
-      dialogImageUrl:'',
+      selectOptionsStatus:[
+        {'id':0,'name':'未售'},
+        {'id':1,'name':'已售'},
+        {'id':2,'name':'已使用'}
+      ],
+      selectOptions:[
+        {'id':1,'name':'菜地卡'},
+        {'id':2,'name':'选鸡卡'}
+      ],
       currentPage: 1,
-      totalNum:1
+      totalNum:1,
+      searchObj:{
+        type:-1,
+        status:'',
+        cardNo:'',
+        cardType:''
+      }
     }
   },
   created() {
@@ -92,11 +116,35 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getCardRecordList({'page':this.currentPage-1,'size':10}).then(response => {
+      getCardRecordList({'page':this.currentPage-1,'size':10},this.searchObj).then(response => {
         this.list = response.data.content;
         this.totalNum=response.data.totalElements
         this.listLoading = false
       })
+    },
+    handleFilter(){
+      if(this.searchObj.cardNo!==''&&this.searchObj.cardType==''&&this.searchObj.status==''){
+        this.searchObj.type=0
+      }
+      if(this.searchObj.cardNo==''&&this.searchObj.cardType!==''&&this.searchObj.status==''){
+        this.searchObj.type=1
+      }
+      if(this.searchObj.cardNo==''&&this.searchObj.cardType==''&&this.searchObj.status!==''){
+        this.searchObj.type=2
+      }
+      if(this.searchObj.cardNo!==''&&this.searchObj.cardType!==''&&this.searchObj.status==''){
+        this.searchObj.type=3
+      }
+      if(this.searchObj.cardNo!==''&&this.searchObj.cardType==''&&this.searchObj.status!==''){
+        this.searchObj.type=4
+      }
+      if(this.searchObj.cardNo==''&&this.searchObj.cardType!==''&&this.searchObj.status!==''){
+        this.searchObj.type=5
+      }
+      if(this.searchObj.cardNo!==''&&this.searchObj.cardType!==''&&this.searchObj.status!==''){
+        this.searchObj.type=6
+      }
+      this.fetchData()
     },
     delBanner(id){
       deleteBanner(id).then(response => {

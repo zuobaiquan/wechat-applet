@@ -9,7 +9,7 @@
       </el-option>
       </el-select>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      状态&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="searchObj.status" placeholder="选择分区">
+      状态&nbsp;&nbsp;<el-select clearable style="width: 120px" class="filter-item" v-model="searchObj.status" placeholder="选择状态">
       <el-option v-for="item in selectOptionsStatus" :key="item.id" :label="item.name" :value="item.id">
       </el-option>
       </el-select>
