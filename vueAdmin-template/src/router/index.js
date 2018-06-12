@@ -124,23 +124,29 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/chosenvegetable',
+    path: '/chicken',
     component: Layout,
-    redirect: '/chosenvegetable/onsale',
-    name: 'chosenvegetable',
+    redirect: '/chicken/onsale',
+    name: 'chicken',
     meta: { title: '选鸡管理', icon: 'tree' },
     children: [
       {
         path: 'onsale',
         name: 'Onsale',
-        component: () => import('@/views/chosenvegetable/onsale/index'),
+        component: () => import('@/views/chicken/onsale/index'),
         meta: { title: '已售鸡管理', icon: 'table' }
       },
       {
         path: 'chosensetting',
         name: 'Chosensetting',
-        component: () => import('@/views/chosenvegetable/chosensetting/index'),
+        component: () => import('@/views/chicken/chosensetting/index'),
         meta: { title: '选鸡信息设置', icon: 'table' }
+      },
+	  {
+        path: 'setcover',
+        name: 'setcover',
+        component: () => import('@/views/chicken/setcover/index'),
+        meta: { title: '编辑买鸡封面', icon: 'table' }
       }
     ]
   },
